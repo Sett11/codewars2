@@ -1,1 +1,1 @@
-SELECT * FROM users WHERE age > 18 OR age=18;
+SELECT * FROM companies ORDER BY employees DESC;
