@@ -1,7 +1,4 @@
-function isSortedAndHow(array) {
-  let newArr = array.join('')
-    return newArr===array.sort((a, b) => a-b).join('')?"yes, ascending":
-    newArr===array.sort((a, b) => b-a).join('')?"yes, descending":
-    'no'
+function shortenToDate(longDate) {
+  return longDate.replace(/,.+$/, '')
 }
-console.log(isSortedAndHow([15, 7, 3, -8]))
+console.log(shortenToDate("Friday May 2, 9am"))
