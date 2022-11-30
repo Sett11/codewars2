@@ -1,8 +1,10 @@
-class SmallestIntegerFinder {
-  findSmallestInt(args) {
-    let sorted = args.sort((a,b)=>a-b)
-    return sorted[0]
-  }
-}
-const s = new SmallestIntegerFinder()
-console.log(s.findSmallestInt([78,56,232,12,8]))
+function billboard(name, price = 30){
+  let result = 0
+  let count = name.length
+   while(count){
+    result+=price
+    count--
+   }
+   return result
+} 
+console.log(billboard("Jeong-Ho Aristotelis"))
