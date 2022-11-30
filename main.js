@@ -1,4 +1,7 @@
-function shortenToDate(longDate) {
-  return longDate.replace(/,.+$/, '')
+const f = (n) => {
+  if(n===1){
+    return 1
+  }
+  return n * f(n-1)
 }
-console.log(shortenToDate("Friday May 2, 9am"))
+console.log(f(5))
