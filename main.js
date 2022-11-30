@@ -1,10 +1,3 @@
-function billboard(name, price = 30){
-  let result = 0
-  let count = name.length
-   while(count){
-    result+=price
-    count--
-   }
-   return result
-} 
-console.log(billboard("Jeong-Ho Aristotelis"))
+const cubeChecker = function(volume, side){
+  return side<=0||volume<=0?false: side*side*side===volume?true:false
+}
