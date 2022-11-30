@@ -39,14 +39,19 @@ const tree = [
 ]
 
 const rec = (tree) =>{
+  if(!tree.length){
+    return 0
+  }
   let sum = 0
-  tree.map(el => {
+  let arr = []
+  tree.map(el=> arr.push(el))
+  while(arr.length){
+    const el = arr.pop()
     sum += el.v
-    if(!el.c){
-      return el.v
+    if(el.c){
+      el.c.map(nel=>arr.push(nel))
     }
-    sum += rec(el.c)
-  })
+  }
   return sum
 }
 
