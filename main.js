@@ -1,26 +1,49 @@
 const graph = {}
-graph.a = ['b', 'c']
-graph.b = ['f']
-graph.c = ['d', 'e']
-graph.d = ['f']
-graph.e = ['f']
-graph.f = ['g']
+graph.a = {b: 2, c: 1}
+graph.b = {f: 7}
+graph.c = {d: 5, e: 2}
+graph.d = {f: 2}
+graph.e = {f: 1}
+graph.f = {g: 1}
+graph.g = {}
 
-function graphSearch(graph, start, end){
-  let queue = [start]
-  while(queue.length>0){
-    const cur = queue.shift()
-    if(!graph[cur]){
-      graph[cur] = []
-    }
-    if(graph[cur].includes(end)){
-      return true
-    }
-    else{
-      queue = [...queue, ...graph[cur]]
-    }
+function searchPath(graph, start, end){
+ const cos = {}
+ const proc = []
+ let neighbors = {}
+ Object.keys(graph).map(node=>{
+  if(node !== start){
+    let value = graph[start][node]
+    cos[node] = value || 10000000
   }
-  return false
+ })
+ let node = findNodeLowestCost(cos, proc)
+ while(node){
+  const cost = cos[node]
+  neighbors = graph[node]
+  Object.keys(neighbors).map(neighbor=>{
+    let newCost = cost + neighbors[neighbor]
+    if(newCost<cos[neighbor]){
+      cos[neighbor] = newCost
+    }
+  })
+  proc.push(node)
+  node = findNodeLowestCost(cos, proc)
+ }
+ return cos
 }
 
-console.log(graphSearch( graph,'a','e'))
+function findNodeLowestCost(cos, proc){
+  let lowestCost = 10000000
+  let lowestNode;
+  Object.keys(cos).map(node=>{
+    let cost = cos[node]
+    if(cost < lowestCost && !proc.includes(node)){
+      lowestCost = cost
+      lowestNode = node
+    }
+  })
+  return lowestNode
+}
+
+console.log(searchPath(graph, 'a', 'g'))
