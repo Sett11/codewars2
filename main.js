@@ -1,42 +1,16 @@
-function one(callback){
-  return callback?callback(1):1
-}
-function two(callback){
-  return callback?callback(2):2
-}
-function free(callback){
-  return callback?callback(3):3
-}
-function four(callback){
-  return callback?callback(4):4
-}
-function five(callback){
-  return callback?callback(5):5
-}
-function six(callback){
-  return callback?callback(6):6
-}
-function seven(callback){
-  return callback?callback(7):7
-}
-function eight(callback){
-  return callback?callback(8):8
-}
-function nine(callback){
-  return callback?callback(9):9
+const concerts = {
+  'Москва': new Date('2022-12-01'),
+  'Казань': new Date('2021-07-02'),
+  'Владивосток': new Date('2020-04-21'),
+  'Калининград': new Date('2021-07-15'),
+  'Омск': new Date('2022-12-18'),
+  'Питер': new Date('2021-07-10'),
 }
 
-function plus(a){
-  return (b)=> a+b
+function chech(obj){
+  return Object.keys(obj)
+  .filter(el=> obj[el] > new Date())
+  .sort((a,b) => obj[a] - obj[b])
+ 
 }
-function minus(a){
-  return (b)=> a-b 
-}
-function divide(a){
-  return (b)=> a*b
-}
-function mult(a){
-  return (b)=> a/b
-}
-
-console.log(two(plus(five())))
+console.log(chech(concerts))
