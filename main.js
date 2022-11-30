@@ -1,49 +1,58 @@
-class LinkedList {
+class BinaryTree {
   constructor(){
-    this.size = 0
     this.root = null
   }
+
   add(value){
-    if(this.size === 0){
-      this.root = new Node(value)
-      this.size += 1
+    if(!this.root){
+      this.root = new TreeNode(value)
+    }
+    else{
+      let node = this.root
+      let newNode = new TreeNode(value)
+      while(node){
+        if(value > node.value){
+          if(!node.right){
+            break
+          }
+          node = node.right
+        } else{
+          if(!node.left){
+            break
+          }
+          node = node.left
+        }
+      }
+      if(value > node.value){
+        node.right = newNode
+      } else{
+        node.left = newNode
+      }
+    }
+  }
+
+  print(root = this.root){
+    if(!root){
       return true
     }
-    let node = this.root
-    while(node.next){
-      node = node.next
-    }
-    let newNode = new Node(value)
-    node.next = newNode
-    this.size += 1
-  }
-  getSize(){
-    return this.size
-  }
-  print(){
-    let result = []
-    let node = this.root
-    while(node){
-      result.push(node.value)
-      node = node.next
-    }
-    console.log(result)
+    console.log(root.value)
+    this.print(root.left)
+    this.print(root.right)
   }
 }
 
-class Node {
+class TreeNode {
   constructor(value){
     this.value = value
-    this.next = null
+    this.left = null
+    this.right = null
   }
 }
 
-const list = new LinkedList()
-
-list.add(5)
-list.add(3)
-list.add(2)
-list.add(5)
-list.add(7)
-
-list.print()
+const tree = new BinaryTree()
+tree.add(5)
+tree.add(2)
+tree.add(6)
+tree.add(2)
+tree.add(1)
+tree.print()
