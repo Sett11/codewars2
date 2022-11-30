@@ -1,26 +1,26 @@
-const array = [0,3,2,5,6,8,1,9,4,2,1,2,9,6,4,1,7,-1, -5, 23,6,2,35,6,3,32]
-let count = 0
-const sortArray = (arr)=>{
-  if(arr.length <= 1){
-    return arr
-  }
-  let basesElem = Math.floor(arr.length/2)
-  let bases = arr[basesElem]
-  let little = []
-  let big = []
-  for(let i = 0; i < arr.length; i++){
-    count+=1
-    if(i===basesElem){
-      continue
+const graph = {}
+graph.a = ['b', 'c']
+graph.b = ['f']
+graph.c = ['d', 'e']
+graph.d = ['f']
+graph.e = ['f']
+graph.f = ['g']
+
+function graphSearch(graph, start, end){
+  let queue = [start]
+  while(queue.length>0){
+    const cur = queue.shift()
+    if(!graph[cur]){
+      graph[cur] = []
     }
-    if(arr[i] < bases){
-      little.push(arr[i])
+    if(graph[cur].includes(end)){
+      return true
     }
     else{
-      big.push(arr[i])
+      queue = [...queue, ...graph[cur]]
     }
   }
-  return [...sortArray(little), basesElem, ...sortArray(big)]
+  return false
 }
-console.log(sortArray(array))
-console.log(count)
+
+console.log(graphSearch( graph,'a','e'))
