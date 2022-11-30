@@ -1,59 +1,28 @@
-const tree = [
-  {
-      v: 5,
-      c: [
-          {
-              v:10,
-              c: [
-                  {
-                      v:11,
-                  }
-              ]
-          },
-          {
-              v:7,
-              c: [
-                  {
-                      v:5,
-                      c: [
-                          {
-                              v:1
-                          }
-                      ]
-                  }
-              ]
-          }
-      ]
-  },
-  {
-      v: 5,
-      c: [
-          {
-              v:10
-          },
-          {
-              v:15
-          }
-      ]
-  }
-]
-
-const rec = (tree) =>{
-  if(!tree.length){
-    return 0
-  }
-  let sum = 0
-  let arr = []
-  tree.map(el=> arr.push(el))
-  while(arr.length){
-    const el = arr.pop()
-    sum += el.v
-    if(el.c){
-      el.c.map(nel=>arr.push(nel))
+const cashFunc = (fn) =>{
+  const cash = {}
+  return function (n) {
+    if(cash[n]){
+       console.log('From cash', cash[n])
+       return cash[n]
     }
+    let result = fn(n)
+    console.log('From function', result)
+    cash[n] = result
+    return result
   }
-  return sum
 }
 
+const fact = (n) => {
+  if(n===1){
+    return 1
+  }
+  return n *= fact(n-1)
+}
 
-console.log(rec(tree))
+const cashFact = cashFunc(fact)
+cashFact(5)
+cashFact(4)
+cashFact(4)
+cashFact(3)
+cashFact(2)
+cashFact(5)
