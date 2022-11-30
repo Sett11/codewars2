@@ -1,17 +1,70 @@
+const tree = [
+  {
+      v: 5,
+      c: [
+          {
+              v: 5
+          },
+          {
+              v: 10,
+              c: [
+                  {
+                      v: 11,
+                  }
+              ]
+          },
+          {
+              v: 11,
+              c: [
+                  {
+                      v: 12,
+                      c: [
+                          {
+                              v: 5
+                          }
+                      ]
+                  }
+              ]
+          },
+      ]
+  },
+  {
+      v: 5,
+      c: [
+          {
+              v: 7
+          },
+          {
+              v: 12,
+              c: [
+                  {
+                      v: 11,
+                  }
+              ]
+          },
+          {
+              v: 14,
+          },
+      ]
+  }
+]
 
-function chech(arr){
-  const res = []
-  for(let i = 0; i<arr.length;i++){
-    let count = 0
-    for(let j = 0; j < arr.length;j++){
-      if(arr[i] === arr[j]){
-        count++
-      }
-    }
-    if(count === 1){
-      res.push(arr[i])
+const f = (n) => {
+  if(!tree.length){
+    return 0
+  }
+  let sum = 0
+  let arr = []
+
+  tree.map(el=>arr.push(el))
+
+  while(arr.length){
+    let node = arr.pop()
+    sum += node.v
+    if(node.c){
+      node.c.map(el=>arr.push(el))
     }
   }
-  return res
+  return sum
 }
-console.log(chech( [1,1,2,2,3,4,5,5]))
+console.log(f(tree))
