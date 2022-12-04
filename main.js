@@ -1,7 +1,5 @@
-
-function cookie(x){
-  return  typeof x ==='string' ? "Who ate the last cookie? It was Zach!": Number.isFinite(x)?
-    "Who ate the last cookie? It was Monica!":
-    "Who ate the last cookie? It was the dog!"
-}
-console.log(cookie(3))
+function sayHello( name, city, state ) {
+    let str = name.join(' ')
+    return `Hello, ${str}! Welcome to ${city}, ${state}!`
+  }
+  console.log(sayHello(['Franklin','Delano','Roosevelt'], 'Chicago', 'Illinois'))
