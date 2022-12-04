@@ -1,5 +1,3 @@
-function sayHello( name, city, state ) {
-    let str = name.join(' ')
-    return `Hello, ${str}! Welcome to ${city}, ${state}!`
+function _if(bool, func1, func2) {
+    return bool?func1():func2()
   }
-  console.log(sayHello(['Franklin','Delano','Roosevelt'], 'Chicago', 'Illinois'))
