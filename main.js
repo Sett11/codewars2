@@ -1,4 +1,3 @@
-function mango(quantity, price){
-    return Math.floor((quantity - Math.floor(quantity/3)) * price)
+let TempleStrings = function(obj, feature) {
+    return `${obj} are ${feature}`
   }
-console.log(mango(9, 5))  
