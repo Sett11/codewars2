@@ -1,11 +1,10 @@
-function f(n){
-    if(!Number.isInteger(n) || n<=0 || !Number(n)){
-        return false
+function pillars(numPill, dist, width) {
+    if(numPill <= 1){
+        return 0
     }
-    let r = 0
-    while(n){
-        r += n--
+    if(numPill === 2){
+        return dist * 100
     }
-    return r
-}
-console.log(f(0))
+    return numPill * ((dist * 100) + width) - (width * 2) - (dist * 100)
+  }
+  console.log(pillars(11, 15, 30))
