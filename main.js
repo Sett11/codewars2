@@ -1,6 +1,10 @@
-function meeting(s) {
-    return s.split(/\;/)
-    .map(el => el.split(':').reverse().join(', ').toUpperCase())
-    .sort().map(el => '('+el+')').join('')
-}
-console.log(meeting("Fred:Corwill;Wilfred:Corwill;Barney:Tornbull;Betty:Tornbull;Bjon:Tornbull;Raphael:Corwill;Alfred:Corwill"))
+function Ship(draft,crew) {
+    this.draft = draft;
+    this.crew = crew;
+    this.isWorthIt = function(){
+        return (this.draft - (this.crew * 1.5)) > 20? true : false
+    }
+   }
+   let aWorthyShip = new Ship(100,20)
+   console.log(aWorthyShip.isWorthIt())
+   
