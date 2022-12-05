@@ -1,2 +1,11 @@
-const isPowerOfTwo = n => n===0 ?  false : (n & (n - 1)) === 0
-console.log(isPowerOfTwo(0))
+function f(n){
+    if(!Number.isInteger(n) || n<=0 || !Number(n)){
+        return false
+    }
+    let r = 0
+    while(n){
+        r += n--
+    }
+    return r
+}
+console.log(f(0))
