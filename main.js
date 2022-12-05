@@ -1,4 +1,10 @@
-function partlist(arr) {
-    return arr.map((el, i) => [arr.slice(0, i).join(' '), arr.slice(i).join(' ')]).slice(1)
-  }
-  console.log(partlist(["az", "toto", "picaro", "zone", "kiwi"]))
+function array(arr){
+    let newArr = arr.split(/,/)
+    if(newArr.length <= 2){
+        return null
+    }
+    newArr.shift()
+    newArr.pop()
+    return newArr.join(' ')
+}
+console.log(array('1,2,3,4'))
