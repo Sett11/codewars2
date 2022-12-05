@@ -1,25 +1,11 @@
-
-function howManydays(month){
-    let days;
-    switch (month){
-    case 4:
-        days = 30
-        break
-    case 6:
-        days = 30
-        break
-    case 9:
-        days = 30
-        break
-    case 11:
-        days = 30
-        break
-    case 2:
-        days = 28
-        break
-        default:
-            days = 31
+reverse = function(array) {
+    if(array.length === 0){
+        return []
     }
-    return days;
+    let arr = []
+    for(let i = array.length - 1; i >= 0; i--){
+      arr.push(array[i])
+    }
+    return arr
   }
-  console.log(howManydays(9))
+  console.log(reverse(["two",14,null,1]))
