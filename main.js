@@ -1,10 +1,25 @@
-function pillars(numPill, dist, width) {
-    if(numPill <= 1){
-        return 0
-    }
-    if(numPill === 2){
-        return dist * 100
-    }
-    return numPill * ((dist * 100) + width) - (width * 2) - (dist * 100)
-  }
-  console.log(pillars(11, 15, 30))
+function add(a,b){
+    return a+b 
+}
+
+function divide(a,b){
+    return a/b
+}
+
+function multiply(a,b){
+    return a*b
+}
+
+function mod(a,b){
+    return a%b
+}
+   
+function exponent(a,b){
+    return a**b
+}
+    
+function subt(a,b){
+    return a-b
+}
+
+console.log(add(2,3))
