@@ -1,11 +1,9 @@
-function sumMul(n, m) {
-  if (m < n || m <= 0) {
-    return "INVALID";
+function maxDiff(list) {
+    if(list.length <= 1){
+        return 0
+    }
+    let arr = [...list]
+    let sArr = arr.sort((a,b) => b - a)
+    return sArr[0] - sArr[sArr.length - 1]
   }
-  let arr = [];
-  for (let i = n; i < m; i += n) {
-    arr.push(i);
-  }
-  return arr.reduce((x,y) => x + y, 0)
-}
-console.log(sumMul(4, 123));
+  console.log(maxDiff([1, 2, 3, 4]))
