@@ -1,4 +1,3 @@
-var filterString = function(value) {
-    return Number(value.replace(/\D/g, ''))
-  }
-  console.log(filterString("aa1bb2cc3dd"))
+function joinStrings(string1, string2){
+    return `${string1} ${string2}`
+ }
