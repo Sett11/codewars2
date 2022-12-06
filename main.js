@@ -1,10 +1,13 @@
-
-    function toBinary (n) {
-        let bin = (n%2).toString()
-        for(; n > 1; ){
-            n = parseInt(n/2)
-            bin = (n%2) + (bin)
-        }
-        return bin
+function solve(arr) {
+    const newArr = []
+    for(let i = 0; i < arr.length; i++){
+        newArr.push(arr.lastIndexOf(arr[i]))
     }
-  console.log(toBinary(11))
+    const set = [...new Set(newArr)].sort((a,b) => a-b)
+    const res = []
+    for(let i = 0; i < set.length; i++){
+        res.push(arr[set[i]])
+    }
+    return res
+  }
+  console.log(solve([1,1,4,5,1,2,1]))
