@@ -1,10 +1,11 @@
-function wordsToMarks(string){
-    let res = 0
-    let arr = string.split('')
-    let arr_en = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-    for(let i = 0; i < arr.length; i++){
-        res += arr_en.indexOf(arr[i]) + 1
-    }
-    return res
-  }
-  console.log(wordsToMarks("friends"))
+function highestRank(arr) {
+  const res = arr.reduce((acc, curr) => {
+    acc[curr] = (acc[curr] || 0) + 1;
+    return acc;
+  }, {});
+  const result = [...Object.values(res)];
+  const nextRes = result.lastIndexOf(Math.max(...result));
+  const keysArr = [...Object.keys(res)];
+  return Number(keysArr[nextRes]);
+}
+console.log(highestRank([12, 10, 8, 12, 7, 6, 4, 10, 12]));
