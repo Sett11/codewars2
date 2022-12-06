@@ -1,10 +1,12 @@
-let addBinary = function(a, b) {
-    let sum = a + b
-    let bin = (sum % 2).toString()
-    for(; sum > 1; ){
-        sum = parseInt(sum / 2)
-        bin = (sum % 2) + (bin)
+function getSum( a,b ){
+    let newA = Math.max(a,b)
+    let newB = Math.min(a,b)
+    let result = []
+    let count = newA - newB
+    while(count>=0){
+        result.push(newA--)
+        count--
     }
-    return bin
-}
-console.log(addBinary(5, 9))
+    return result.reduce((acc, curr) => acc + curr, 0)
+ }
+ console.log(getSum(-1,2))
