@@ -1,9 +1,4 @@
-function minSum(arr) {
-    const arr2 = arr.sort((a,b) => a - b)
-    let s = 0
-    for(let i = 0; i < arr.length / 2; i++){
-     s += arr2[i] * arr2[arr2.length - 1 - i]
-    }
-    return s
+function duckDuckGoose(players, goose) {
+    return players[(goose - 1) % players.length].name
   }
-  console.log(minSum([5,4,2,3]))
+  console.log(duckDuckGoose(['a', 'b', 'c', 'd'], 1))
