@@ -1,8 +1,10 @@
-function duplicateCount(text){
-    const count = text.toLowerCase().split('').reduce((acc, curr) => {
-        acc[curr] = (acc[curr] || 0) + 1
-        return acc
-    }, {})
-    return [...Object.values(count)].filter(el => el !== 1).length  
-  }
-  console.log(duplicateCount("ABBA"))
+let addBinary = function(a, b) {
+    let sum = a + b
+    let bin = (sum % 2).toString()
+    for(; sum > 1; ){
+        sum = parseInt(sum / 2)
+        bin = (sum % 2) + (bin)
+    }
+    return bin
+}
+console.log(addBinary(5, 9))
