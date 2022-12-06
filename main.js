@@ -1,11 +1,10 @@
-function highestRank(arr) {
-  const res = arr.reduce((acc, curr) => {
-    acc[curr] = (acc[curr] || 0) + 1;
-    return acc;
-  }, {});
-  const result = [...Object.values(res)];
-  const nextRes = result.lastIndexOf(Math.max(...result));
-  const keysArr = [...Object.keys(res)];
-  return Number(keysArr[nextRes]);
+function multipleOfIndex(array) {
+    const newArr = []
+    array.map((el, i) => {
+        if(el % i === 0){
+            newArr.push(el)
+        }
+    })
+    return newArr
 }
-console.log(highestRank([12, 10, 8, 12, 7, 6, 4, 10, 12]));
+console.log(multipleOfIndex([68, -1, 1, -7, 10, 10]))
