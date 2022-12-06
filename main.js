@@ -1,13 +1,8 @@
-function padIt(str,n){
-    let res = str.split('')
-    while(n){
-        if(n % 2 !== 0){
-            res.unshift('*')
-        } else{
-            res.push(('*'))
-        }
-        n--
-    }
-    return res.join('')
+function kebabize(str) {
+    let newStr = str.replace(/\W/g, '').replace(/[A-Z]/g, ' $&').toLowerCase().replace(/\s/g, '-').replace(/\d/g, '').split('')
+     if(newStr[0] === '-'){
+        newStr.splice(0, 1)
+     }
+     return newStr.join('')
   }
-  console.log(padIt("a", 5))
+  console.log(kebabize('-Qny'))
