@@ -1,29 +1,16 @@
-function balancedNum(number){
-    const newNum = (''+number).split('').map(Number)
-    if(newNum.length <= 2){
-        return "Balanced"
-    }
-    if(newNum.length === 3){
-        if(newNum[0] === newNum[newNum.length-1]){
-            return "Balanced"
+function menFromBoys(arr){
+    const arr1 = []
+    const arr2 = []
+    const set = [...new Set(arr)]
+    for( let i = 0; i < set.length; i++){
+        if(set[i] % 2 === 0){
+            arr1.push(set[i])
         } else{
-            "Not Balanced"
+            arr2.push(set[i])
         }
     }
-    if(newNum.length === 5){
-        if(newNum[0]+newNum[1] === newNum[newNum.length-1] + newNum[newNum.length-2]){
-            return "Balanced"
-        } else{
-            "Not Balanced"
-        }
-    }
-    
-    const start = Math.floor(newNum.length / 2) - 1
-    const end = Math.floor(newNum.length / 2) + 1
-    const arr1 = newNum.slice(0, start)
-    const arr2 = newNum.slice(end, newNum.length)
-    return arr1.reduce((x,y) => x+y, 0) === arr2.reduce((x,y) => x+y, 0) ?
-    "Balanced" : 'Not Balanced'
-
+    arr1.sort((a,b) => a-b)
+    arr2.sort((a,b) => b-a)
+    return arr1.concat(arr2)
 }
-console.log(balancedNum(56239814))
+console.log(menFromBoys([82,91,72,76,76,100,85]))
