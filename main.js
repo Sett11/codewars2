@@ -1,6 +1,11 @@
-function high(x){
-    const arr = x.split(' ').map(el => [...el].map(el => (parseInt(el, 36)- 9)).reduce((acc,curr) => acc + curr))
-    const ind = arr.indexOf(Math.max(...arr))
-    const res = x.split(' ')
-    return res[ind]
-}
+var findDigit = function(num, nth){
+    if(nth<=0){
+        return -1
+    }
+      let arr = [num].join('').replace(/-/, '').split('').reverse()
+      if(nth>arr.length){
+        return 0
+      }
+      return Number(arr[nth-1])
+  }
+  console.log(findDigit(-456, 4))
