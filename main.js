@@ -1,10 +1,9 @@
-function sumCubes(n){
-    let arr = []
-    let count = 1
-    while(n>=count){
-        arr.push(count)
-        count++
+function evil(n) {
+    let bin = (n%2).toString()
+    for(; n > 1; ){
+        n = parseInt(n/2)
+        bin = (n%2) + (bin)
     }
-    return arr.map(el => el ** 3).reduce((acc, curr) => acc + curr)
-  }
-  console.log(sumCubes(3))
+    return bin.replace(/0/g, '').length % 2 === 0 ? "It's Evil!" : "It's Odious!"
+}
+console.log(evil(20))
