@@ -1,7 +1,3 @@
-function calc(x){
-    let res = x.split('').map(el => el.charCodeAt())
-    let res1 = res.join('').split('').map(Number).reduce((acc, curr) => acc + curr)
-    let res2 = res.join('').split('').map(el => el==='7' ? el = '1': el).map(Number).reduce((acc, curr) => acc + curr)
-    return res1 - res2
-}
-console.log(calc('aaaaaddddr'))
+const uniTotal = (string) => string.length === 0 ? 0: string.split('').map(el => el.charCodeAt()).reduce((acc, curr) => acc + curr)
+
+console.log(uniTotal("Mary Had A Little Lamb"));
