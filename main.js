@@ -1,7 +1,13 @@
-function shark(pontoonDistance, sharkDistance, youSpeed, sharkSpeed, dolphin){
-    if(dolphin){
-        sharkSpeed = sharkSpeed / 2
+function giveMeFive(obj){
+    const arr = []
+    for( let i in obj){
+        if(i.length === 5){
+            arr.push(i)
+        }
+        if(obj[i].length === 5){
+            arr.push(obj[i])
+        }
     }
-    return sharkDistance / sharkSpeed > pontoonDistance / youSpeed ? "Alive!" : "Shark Bait!"
-}
-console.log(shark(24, 0, 4, 8, true))
+    return arr
+  }
+  console.log(giveMeFive({Ihave:"enough", money:"to",buy:"a",car:"model"}))
