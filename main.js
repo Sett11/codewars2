@@ -1,11 +1,7 @@
-function alternateCase(s) {
-    return s.split('').map(el => {
-        if(el === el.toUpperCase()){
-            el = el.toLowerCase()
-            return el
-        } else{
-            return el.toUpperCase()
-        }
-    }).join('')
-  }
-  console.log(alternateCase("ABC"))
+function shark(pontoonDistance, sharkDistance, youSpeed, sharkSpeed, dolphin){
+    if(dolphin){
+        sharkSpeed = sharkSpeed / 2
+    }
+    return sharkDistance / sharkSpeed > pontoonDistance / youSpeed ? "Alive!" : "Shark Bait!"
+}
+console.log(shark(24, 0, 4, 8, true))
