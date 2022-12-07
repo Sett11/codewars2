@@ -1,5 +1,7 @@
-function maxProduct(numbers, size){
-    return numbers.sort((a,b) => b - a).slice(0, size)
-    .reduce((acc, curr) => acc * curr)
-  }
-  console.log(maxProduct([10,3,-27,-1], 3))
+function calc(x){
+    let res = x.split('').map(el => el.charCodeAt())
+    let res1 = res.join('').split('').map(Number).reduce((acc, curr) => acc + curr)
+    let res2 = res.join('').split('').map(el => el==='7' ? el = '1': el).map(Number).reduce((acc, curr) => acc + curr)
+    return res1 - res2
+}
+console.log(calc('aaaaaddddr'))
