@@ -1,7 +1,3 @@
-function count (string) {  
-  return string.split('').reduce((acc, curr) => {
-    acc[curr] = (acc[curr] || 0) + 1
-    return acc
-  }, {})
+function sumTriangularNumbers(n) {
+  return n < 0 ? 0: n * (n + 1) * (n + 2) / 6
 }
-console.log(count(""))
