@@ -1,5 +1,6 @@
-function nthSmallest(arr, pos){
-  const arr1 = arr.sort((a,b) => a - b)
-  return arr1[pos-1]
+function explode(s) {
+  return s.split('').map((el, i) => {
+   return el.toString().repeat(el)
+  }).filter(el => el !== '').join('')
 }
-console.log(nthSmallest([-102,-16,-1,-2,-367,-9], 5))
+console.log(explode("102269"))
