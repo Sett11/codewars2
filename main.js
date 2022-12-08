@@ -1,21 +1,5 @@
-function strong(n) {
-  const arr = ("" + n).split("").map(Number);
-  const factorial = (num) => {
-    if (num === 1) {
-      return 1;
-    }
-    let res = 1;
-    while (num) {
-      res *= num--;
-    }
-    return res;
-  };
-  const arr1 = [];
-  for (let i = 0; i < arr.length; i++) {
-    arr1.push(factorial(arr[i]));
-  }
-  return arr1.reduce((acc, curr) => acc + curr) === n
-    ? "STRONG!!!!"
-    : "Not Strong !!";
+function nthSmallest(arr, pos){
+  const arr1 = arr.sort((a,b) => a - b)
+  return arr1[pos-1]
 }
-console.log(strong(2));
+console.log(nthSmallest([-102,-16,-1,-2,-367,-9], 5))
