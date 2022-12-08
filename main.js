@@ -1,7 +1,3 @@
-function removeRotten(bagOfFruits){
-  if(bagOfFruits === undefined || bagOfFruits === null || bagOfFruits.length === 0 || bagOfFruits.join('') === ' '){
-    return []
-  }
-  return bagOfFruits.map((el) => el.replace(/rotten/, '').toLowerCase())
-}
-console.log(removeRotten([]))
+const multiplyAll = arr => num => arr.map(el => el * num)
+
+console.log(multiplyAll([1,2,3])(2))
