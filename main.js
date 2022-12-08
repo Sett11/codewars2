@@ -1,17 +1,4 @@
-function solve(arr) {
-  return arr.map((el) =>
-    [...el]
-      .map((el, i) => {
-        if (i === parseInt(el, 36) - 10) {
-          el = 1;
-          return el;
-        } else {
-          el = 2;
-          return el;
-        }
-      })
-      .filter((el) => el !== 2)
-      .reduce((acc, curr) => acc + curr, 0)
-  );
+function squares(x, n) {
+ return Array.from({length: n}, (_, index) => index == 0 ? x : x*=x)
 }
-console.log(solve(["encode", "abc", "xyzD", "ABmD"]));
+console.log(squares(3, 3));
