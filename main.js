@@ -1,6 +1,7 @@
-function solve(s) {
-  let arr = s.slice().replace(/[aeiou]/g, ' ')
-  arr = arr.split(' ').map(el => el.split('').map(el => el.charCodeAt() - 96).reduce((acc,curr) => acc + curr, 0))
-  return Math.max(...arr)
+function count (string) {  
+  return string.split('').reduce((acc, curr) => {
+    acc[curr] = (acc[curr] || 0) + 1
+    return acc
+  }, {})
 }
-console.log(solve("zodiacs"))
+console.log(count(""))
