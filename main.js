@@ -1,10 +1,7 @@
-function reverse(str){
-  return str.trim().split(' ').map((el,i) => {
-    if(i % 2 !== 0){
-      return el.split('').reverse().join('')
-    } else{
-      return el
-    }
-  }).join(' ')
+function removeRotten(bagOfFruits){
+  if(bagOfFruits === undefined || bagOfFruits === null || bagOfFruits.length === 0 || bagOfFruits.join('') === ' '){
+    return []
+  }
+  return bagOfFruits.map((el) => el.replace(/rotten/, '').toLowerCase())
 }
-console.log(reverse("Reverse this string, please!"))
+console.log(removeRotten([]))
