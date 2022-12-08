@@ -1,7 +1,10 @@
-function isPythagoreanTriple(integers) {
-  return (integers[0]**2 + integers[1]**2) === integers[2]**2 ? true 
-  : (integers[1]**2 + integers[2]**2) === integers[0]**2 ? true :
-  (integers[2]**2 + integers[0]**2) === integers[1]**2 ? true : false
-}
-console.log(isPythagoreanTriple([72, 78, 30]))
-console.log(78**2)
+function solve(s){
+  const len = s.length
+  const s1 = s.replace(/[A-Z]/g, '')
+  const s2 = s.replace(/[a-z]/g, '')
+  const s3 = s.replace(/\d/g, '')
+  const s4 = s.replace(/\w/g, '')
+  const s5 = s.replace(/_/g, '')
+  return [len - s1.length, len - s2.length, len - s3.length, s4.length + (len - s5.length)]
+ }
+ console.log(solve("|%<|;(,%,/_\}>\[<@)&"))
