@@ -1,11 +1,8 @@
-function specialNumber(n) {
-  return ("" + n)
-    .split("")
-    .map(Number)
-    .filter((el) => el <= 5 && el >= 0).length === ("" + n)
-    .split("")
-    .map(Number).length
-    ? "Special!!"
-    : "NOT!!";
+function extraPerfect(n){
+  const arr = []
+  for(let i = 1; i <= n; i += 2){
+    arr.push(i)
+  }
+  return arr
 }
-console.log(specialNumber(2553));
+console.log(extraPerfect(7))
