@@ -1,3 +1,7 @@
-function min(arr, toReturn) {
-  return toReturn === 'value' ? Math.min(...arr): arr.indexOf(Math.min(...arr))
+function Hero (name = 'Hero') {
+  this.name = name,
+  this.position = '00',
+  this.health = 100,
+  this.damage = 5,
+  this.experience = 0
 }
