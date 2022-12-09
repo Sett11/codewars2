@@ -1,4 +1,3 @@
-function splitAndMerge(string, separator) {
-  return string.split(' ').map(el => el.split('').join(' ')).join(' ')
+function min(arr, toReturn) {
+  return toReturn === 'value' ? Math.min(...arr): arr.indexOf(Math.min(...arr))
 }
-console.log(splitAndMerge("My name is John"," "))
