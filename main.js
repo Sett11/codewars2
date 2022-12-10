@@ -1,53 +1,18 @@
-function encode(string) {
-  return string.split('').map((el) => {
-    if(el=== 'a'){
-      el = '1'
-      return el
+function digPow(n, p){
+  const arr = (''+n).split('').map(Number)
+  const newArr = []
+  for(let i = 0; i < arr.length; i++){
+    newArr.push(arr[i]**p++)
+  }
+  const total = newArr.reduce((acc, curr) => acc + curr)
+  let res = 0
+  for(let i = 0; i < 15000; i++){
+    n * i
+    if(n*i === total){
+      res += i
+      break
     }
-    if(el=== 'e'){
-      el = '2'
-      return el
-    }
-    if(el=== 'i'){
-      el = '3'
-      return el
-    }
-    if(el=== 'o'){
-      el = '4'
-      return el
-    }
-    if(el=== 'u'){
-      el = '5'
-      return el
-    } else{
-      return el
-    }
-  }).join('')
+  }
+  return res ? res: -1
 }
-
-function decode(string) {
-  return string.split('').map((el) => {
-    if(el=== '1'){
-      el = 'a'
-      return el
-    }
-    if(el=== '2'){
-      el = 'e'
-      return el
-    }
-    if(el=== '3'){
-      el = 'i'
-      return el
-    }
-    if(el=== '4'){
-      el = 'o'
-      return el
-    }
-    if(el=== '5'){
-      el = 'u'
-      return el
-    } else{
-      return el
-    }
-  }).join('')
-}
+console.log(digPow(89, 1))
