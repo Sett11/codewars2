@@ -1,13 +1,18 @@
-function multiply(a, b){
-  const arr = Array(a.length + b.length).fill(0)
-  for(let i = a.length; i--; null){
-    let count = 0
-    for(let j = b.length; j--; null){
-      arr[1+i+j] += count + a[i] * b[j]
-      count = Math.floor(arr[1+i+j] / 10)
-      arr[1+i+j] = arr[1+i+j] % 10
-    }
-    arr[i] += count
+function nbDig(n, d) {
+  const arr = []
+  while(n>=0){
+    arr.push(n**2)
+    n--
   }
-  return arr.join('').replace(/^0*(\d)/, '$1')
+  const newArr = arr.join('').split('')
+  const res = newArr.map((el) => {
+    if(el === d.toString()){
+      el = '&'
+      return el
+    } else{
+      return el
+    }
+  })
+  return res.length - res.filter(el => el !== '&').length
 }
+console.log(nbDig(5750, 0))
