@@ -11,4 +11,3 @@ function multiply(a, b){
   }
   return arr.join('').replace(/^0*(\d)/, '$1')
 }
-console.log(multiply('16789293762567289282', '37655278882773783'))
