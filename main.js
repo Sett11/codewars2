@@ -1,2 +1,7 @@
-const integrate = (coefficient, exponent) => `${coefficient / (exponent + 1)}x^${exponent+1}`
-console.log(integrate(12,5))
+function ensureQuestion(s) {
+ if(s[s.length-1] === '?') return s
+const res = s.split('')
+res.push('?')
+return res.join('')
+}
+console.log(ensureQuestion("No"))
