@@ -1,3 +1,2 @@
-const fibonacci = n => n <= 2 ? 1 : fibonacci(n-1) + fibonacci(n-2)
-
-console.log(fibonacci(4))
+const integrate = (coefficient, exponent) => `${coefficient / (exponent + 1)}x^${exponent+1}`
+console.log(integrate(12,5))
