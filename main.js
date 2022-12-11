@@ -1,7 +1,5 @@
-function datingRange(age){
-  if(age>14){
-    return `${Math.floor(age/2)+7}-${(age-7)*2}`
-  }
-  return `${Math.floor(age - 0.10 * age)}-${Math.floor(age + 0.10 * age)}`
+function largestPairSum (numbers) {
+  const result = numbers.sort((a,b)=>b-a)
+  return result[0] + result[1]
 }
-console.log(datingRange(10))
+console.log(largestPairSum([10, 14, 2, 23, 19]))
