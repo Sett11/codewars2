@@ -1,11 +1,42 @@
-function yearDays(year) {
-  if (year % 4 !== 0) {
-    return year + ' has 365 days';
-  } else if (year % 100 !== 0) {
-    return year + ' has 366 days';
-  } else if (year % 400 !== 0) {
-    return year + ' has 365 days';
-  } else {
-    return year + ' has 366 days';
+function toLeetSpeak(str) {
+  const obj = {
+    A : '@',
+    B : '8',
+    C : '(',
+    D : 'D',
+    E : '3',
+    F : 'F',
+    G : '6',
+    H : '#',
+    I : '!',
+    J : 'J',
+    K : 'K',
+    L : '1',
+    M : 'M',
+    N : 'N',
+    O : '0',
+    P : 'P',
+    Q : 'Q',
+    R : 'R',
+    S : '$',
+    T : '7',
+    U : 'U',
+    V : 'V',
+    W : 'W',
+    X : 'X',
+    Y : 'Y',
+    Z : '2'
   }
+  const key = Object.keys(obj)
+  const val = Object.values(obj)
+  const newStr = str.split('')
+  for(let i = 0; i < newStr.length; i++){
+    for(let j = 0; j < key.length; j++){
+      if(newStr[i] === key[j]){
+        newStr[i] = val[j]
+      }
+    }
+  }
+  return newStr.join('')
 }
+console.log(toLeetSpeak('CODEWARS'))
