@@ -1,30 +1,80 @@
-function minimumNumber(numbers){
-  const arr = []
-  const sum = numbers.reduce((acc, curr) => acc + curr)
-  let counter = 2
-  while(counter < sum+100){
-    arr.push(counter)
-    counter++
+function upArray(arr) {
+  const newArr = arr.slice();
+  if(!newArr.length){
+    return null
   }
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 2; j < arr[i]; j++) {
-      if (arr[i] % j === 0) {
-        arr[i] = null;
-      } else {
-        arr[i] = arr[i];
+  if(!newArr.every(el => el < 10 && el >=0)){
+    return null
+  }
+  if(newArr.every(el => el === 0)){
+    newArr.unshift(1)
+    return newArr
+  }
+  if (newArr[newArr.length - 1] === 0) {
+    newArr[newArr.length - 1] = 1;
+    return newArr;
+  }
+  else {
+    let counter = newArr.length;
+    while (counter >= 0) {
+      if (newArr[counter] === 9) {
+        newArr[counter] = 0;
       }
+      if (newArr[counter] === 1) {
+        newArr[counter] = 2;
+        counter = -1;
+      }
+      if (newArr[counter] === 2) {
+        newArr[counter] = 3;
+        counter = -1;
+      }
+      if (newArr[counter] === 3) {
+        newArr[counter] = 4;
+        counter = -1;
+      }
+      if (newArr[counter] === 4) {
+        newArr[counter] = 5;
+        counter = -1;
+      }
+      if (newArr[counter] === 5) {
+        newArr[counter] = 6;
+        counter = -1;
+      }
+      if (newArr[counter] === 6) {
+        newArr[counter] = 7;
+        counter = -1;
+      }
+      if (newArr[counter] === 7) {
+        newArr[counter] = 8;
+        counter = -1;
+      }
+      if (newArr[counter] === 8) {
+        newArr[counter] = 9;
+        counter = -1;
+      }
+      if (newArr[counter] < 0 || newArr[counter] > 9) {
+        return null;
+      }
+      counter--;
     }
+    if (newArr.length === 2 && newArr[0] === 0 && newArr[1] === 0) {
+      newArr[0] = 1;
+      newArr.push(0);
+      return newArr;
+    }
+    if (newArr.length === 0) {
+      return null;
+    }
+    if(newArr.every(el => el === 0)){
+      newArr.unshift(1)
+      return newArr
+    }
+    if(!newArr.every(el => el < 10 && el >=0)){
+      return null
+    }
+    return newArr.filter((el) => !Number.isNaN(el))
   }
- const newArr = arr.filter(el => el !== null)
- let res = 0
- for(let i = 0; i < newArr.length; i++){
-  if(newArr[i] < sum){
-    continue
-  } else{
-    res = newArr[i]
-    break
-  }
- }
- return res-sum
 }
-console.log(minimumNumber([2,12,8,4,6]))
+
+
+console.log(upArray([9,9,9,9]));
