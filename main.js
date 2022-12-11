@@ -1,12 +1,13 @@
-function jumpingNumber(n){
-  const num = (''+n).split('').map(Number)
-  if(num.length===1){
-    return "Jumping!!"
+function add(x, y) {
+  if(x === 0){
+    return y
   }
-  const arr = []
-  for(let i = 0; i < num.length; i++){
-    arr.push(Math.abs(num[i] - num[i+1]))
+  else if(y === 0){
+    return x
+  } else{
+    const sum = x^y
+  const count = (x & y) << 1
+  return add(sum, count)
   }
-  return arr.filter(el =>  !Number.isNaN(el)).every((el) => el === 1) ? "Jumping!!" : "Not!!"
 }
-console.log(jumpingNumber(4643456))
+console.log(add(23, 17))
