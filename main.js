@@ -1,6 +1,12 @@
-function disariumNumber(n){
-  return (''+n).split('').map(Number).map((el, i) => {
-    return el**(i+1)
-  }).reduce((acc, curr) => acc + curr) === n ? "Disarium !!" : "Not !!"
+function jumpingNumber(n){
+  const num = (''+n).split('').map(Number)
+  if(num.length===1){
+    return "Jumping!!"
+  }
+  const arr = []
+  for(let i = 0; i < num.length; i++){
+    arr.push(Math.abs(num[i] - num[i+1]))
+  }
+  return arr.filter(el =>  !Number.isNaN(el)).every((el) => el === 1) ? "Jumping!!" : "Not!!"
 }
-console.log(disariumNumber(1024))
+console.log(jumpingNumber(4643456))
