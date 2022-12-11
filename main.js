@@ -1,2 +1,13 @@
-Array.prototype.remove_ = (integer_list, values_list) => integer_list.filter(el => !values_list.includes(el))
-console.log(remove_([1, 1, 2, 3, 1, 2, 3, 4], [1, 3]))
+function wave(str) {
+  let arr = []
+  for(let i = 0; i < str.length; i++){
+    let l = str[i]
+    if(l === ' '){
+      continue
+    } else{
+      arr.push(str.slice(0, i) + l.toUpperCase() + str.slice(i+1))
+    }
+  }
+  return arr
+}
+console.log(wave(" gap  "));
