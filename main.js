@@ -1,8 +1,6 @@
-function calculate(num1, operation, num2) {
-  return operation === '+' ? num1+num2 :
-   operation === '-' ? num1-num2 :
-   operation === '*' ? num1*num2 : 
-   operation === '/' && num2 === 0 ? null :
-   operation === '/' ? num1/num2 : null
- }
- console.log(calculate(3.2,"/", 0))
+function disariumNumber(n){
+  return (''+n).split('').map(Number).map((el, i) => {
+    return el**(i+1)
+  }).reduce((acc, curr) => acc + curr) === n ? "Disarium !!" : "Not !!"
+}
+console.log(disariumNumber(1024))
