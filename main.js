@@ -1,42 +1,9 @@
-function toLeetSpeak(str) {
-  const obj = {
-    A : '@',
-    B : '8',
-    C : '(',
-    D : 'D',
-    E : '3',
-    F : 'F',
-    G : '6',
-    H : '#',
-    I : '!',
-    J : 'J',
-    K : 'K',
-    L : '1',
-    M : 'M',
-    N : 'N',
-    O : '0',
-    P : 'P',
-    Q : 'Q',
-    R : 'R',
-    S : '$',
-    T : '7',
-    U : 'U',
-    V : 'V',
-    W : 'W',
-    X : 'X',
-    Y : 'Y',
-    Z : '2'
+function generateIntegers(m, n) {
+  const arr = []
+  while(m<=n){
+    arr.push(m)
+    m++
   }
-  const key = Object.keys(obj)
-  const val = Object.values(obj)
-  const newStr = str.split('')
-  for(let i = 0; i < newStr.length; i++){
-    for(let j = 0; j < key.length; j++){
-      if(newStr[i] === key[j]){
-        newStr[i] = val[j]
-      }
-    }
-  }
-  return newStr.join('')
+  return arr
 }
-console.log(toLeetSpeak('CODEWARS'))
+console.log(generateIntegers(2,5))
