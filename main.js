@@ -1,9 +1,16 @@
-function sumPairs(ints, s) {
-  const newS = new Set();
-  for (let i = 0; i < ints.length; i++) {
-    let curr = ints[i];
-    if (newS.has(s - curr)) return [s - curr, curr];
-    else newS.add(curr);
+function gap(g, m, n) {
+  let counter = 0;
+  const check = function(x) { 
+    for (var i=2; i*i<=x; i++){
+       if (x % i == 0) return false}
+       return true;
   }
+  for (let i = m; i <= n; i++) {
+    if (check(i)) {
+      if (i - counter === g) return [counter, i];
+       else counter = i;
+    }
+  }
+  return null;
 }
-console.log(sumPairs([10, 5, 2, 3, 7, 5], 10));
+console.log(gap(4, 100, 110));
