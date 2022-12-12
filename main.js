@@ -1,19 +1,5 @@
-function solve(a,b){
-  const newA = a.split('')
-  const newB = b.split('')
-  const arr = []
- for(let i = 0; i < newA.length + newB.length; i++){
-  if(newB.includes(newA[i]) === false){
-    arr.push(newA[i])
-  }
- }
- let counter = 0
- while(counter < newA.length + newB.length){
-  if(newA.includes(newB[counter]) === false){
-    arr.push(newB[counter])
-  }
-  counter++
- }
- return arr.join('')
+function twoHighest(arr) {
+  const arr1 =  [...new Set(arr)].sort((a,b) => b-a)
+  return [arr1[0], arr1[1]].filter(el => el !== undefined)
 }
-console.log(solve("xxx","xzca"))
+console.log(twoHighest([15]))
