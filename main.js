@@ -1,18 +1,9 @@
-const isPP = function (n) {
-  let curr = 2;
-  let pow = 2;
-  let max = Math.floor(n / 2);
-  while (curr <= max) {
-    pow = 2;
-    while (curr ** pow <= n) {
-      if (n === curr ** pow) {
-        return [curr, pow];
-      } else {
-        pow += 1;
-      }
-    }
-    curr += 1;
+const splitInParts = function(s, partLength){
+  const arr = []
+  const newS = s.split('')
+  for(let i = 0; i < Math.ceil(newS.length/partLength); i++){
+    arr[i] = newS.slice(i * partLength, i * partLength + partLength)
   }
-  return null;
-};
-console.log(isPP(484));
+  return arr.map(el => el.join('')).join(' ')
+}
+console.log(splitInParts("supercalifragilisticexpialidocious", 3))
