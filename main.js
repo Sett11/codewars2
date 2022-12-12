@@ -1,6 +1,18 @@
-function toTime(seconds) {
-  const min = (seconds / 60).toFixed(2) % 60
-  const hour = (seconds / 3600).toFixed(2)
-  return `${Math.floor(hour)} hour(s) and ${Math.floor(min)} minute(s)`
+const isPP = function (n) {
+  let curr = 2;
+  let pow = 2;
+  let max = Math.floor(n / 2);
+  while (curr <= max) {
+    pow = 2;
+    while (curr ** pow <= n) {
+      if (n === curr ** pow) {
+        return [curr, pow];
+      } else {
+        pow += 1;
+      }
+    }
+    curr += 1;
   }
-console.log(toTime(0))
+  return null;
+};
+console.log(isPP(484));
