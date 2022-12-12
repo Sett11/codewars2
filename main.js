@@ -1,13 +1,19 @@
-function wave(str) {
-  let arr = []
-  for(let i = 0; i < str.length; i++){
-    let l = str[i]
-    if(l === ' '){
-      continue
-    } else{
-      arr.push(str.slice(0, i) + l.toUpperCase() + str.slice(i+1))
-    }
+function solve(a,b){
+  const newA = a.split('')
+  const newB = b.split('')
+  const arr = []
+ for(let i = 0; i < newA.length + newB.length; i++){
+  if(newB.includes(newA[i]) === false){
+    arr.push(newA[i])
   }
-  return arr
+ }
+ let counter = 0
+ while(counter < newA.length + newB.length){
+  if(newA.includes(newB[counter]) === false){
+    arr.push(newB[counter])
+  }
+  counter++
+ }
+ return arr.join('')
 }
-console.log(wave(" gap  "));
+console.log(solve("xxx","xzca"))
