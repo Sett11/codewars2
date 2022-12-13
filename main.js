@@ -1,15 +1,3 @@
-function logicalCalc(array, op){
-  if(op === 'AND'){
-    let arr = array.join('&&')
-    return eval(arr)
-  }
-  if(op === 'OR'){
-    let arr = array.join('||')
-    return eval(arr)
-  }
-  if(op === 'XOR'){
-    let arr = array.join('^')
-    return !!eval(arr)
-  }
-}
-console.log(logicalCalc([true, true, true, false], "XOR"))
+const lostSheep = (friday,saturday,total) => total - friday.concat(saturday).reduce((acc, curr) => acc + curr, 0)
+
+console.log(lostSheep([2,7,13,17],[23,56,44,12,1,2,1,],255))
