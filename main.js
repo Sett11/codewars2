@@ -1,9 +1,10 @@
-function Xbonacci(signature,n){
-  signature.push(signature.reduce((acc, curr) => acc+curr))
-  for(let i = 1; i < n; i++){
-    signature.push(signature.slice(i, signature.length).reduce((acc, curr) => acc + curr))
+function productFib(prod){
+  let z = 0
+  let v = 1
+  while(z*v < prod){
+    v = z + v
+    z = v - z
   }
-  signature.length = n
-  return signature
+  return [z,v, z*v === prod]
 }
-console.log(Xbonacci([1,1],10))
+console.log(productFib(4895))
