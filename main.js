@@ -1,10 +1,8 @@
-function productFib(prod){
-  let z = 0
-  let v = 1
-  while(z*v < prod){
-    v = z + v
-    z = v - z
+function hydrate(s) {
+  const res  = s.split(/\D/).filter(el => el !== '').map(el => el = Number(el)).reduce((acc, curr) => acc + curr)
+  if(res === 1){
+    return `${res} glass of water`
   }
-  return [z,v, z*v === prod]
+  return `${res} glasses of water`
 }
-console.log(productFib(4895))
+console.log(hydrate("1 shot"))
