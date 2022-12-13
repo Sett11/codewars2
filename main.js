@@ -1,9 +1,3 @@
-function differenceOfSquares(n){
-  const arr = []
-  while(n){
-    arr.unshift(n)
-    n--
+function playerRankUp (points) {
+  return points >= 100 ? "Well done! You have advanced to the qualifying stage. Win 2 out of your next 3 games to rank up.": false
   }
-  return arr.reduce((acc,curr) => acc + curr)**2 - arr.map(el => el**2).reduce((acc, curr) => acc+curr)
-}
-console.log(differenceOfSquares(100))
