@@ -1,15 +1,15 @@
-function Dog (breed) {
-  this.breed = breed;
+function logicalCalc(array, op){
+  if(op === 'AND'){
+    let arr = array.join('&&')
+    return eval(arr)
+  }
+  if(op === 'OR'){
+    let arr = array.join('||')
+    return eval(arr)
+  }
+  if(op === 'XOR'){
+    let arr = array.join('^')
+    return !!eval(arr)
+  }
 }
-
-var snoopy = new Dog("Beagle");
-
-snoopy.bark = function() {
-  return "Woof";
-};
-
-var scoobydoo = new Dog("Great Dane");
-
-scoobydoo.bark = function() {
-  return "Woof";
-};
+console.log(logicalCalc([true, true, true, false], "XOR"))
