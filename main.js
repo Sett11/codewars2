@@ -1,4 +1,3 @@
-function typeValidation(variable, type) {
-  return typeof variable === type
+function SafeInteger(n) {
+  return Number.isSafeInteger(n)
 }
-console.log(typeValidation('42', 'number'))
