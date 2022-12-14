@@ -1,5 +1,4 @@
-function divisibleByThree(str){
-  const n = str.split('').map(Number).reduce((acc, curr) => acc + curr, 0) / 3
-  return Number.isInteger(n)
+function typeValidation(variable, type) {
+  return typeof variable === type
 }
-console.log(divisibleByThree('123'))
+console.log(typeValidation('42', 'number'))
