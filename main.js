@@ -1,30 +1,10 @@
-function balance(left, right) {
-  const l = left
-    .split("")
-    .map((el) => {
-      if (el === "!") {
-        el = 2;
-        return el;
-      }
-      if (el === "?") {
-        el = 3;
-        return el;
-      }
-    })
-    .reduce((acc, curr) => acc + curr, 0);
-  const r = right
-    .split("")
-    .map((el) => {
-      if (el === "!") {
-        el = 2;
-        return el;
-      }
-      if (el === "?") {
-        el = 3;
-        return el;
-      }
-    })
-    .reduce((acc, curr) => acc + curr, 0);
-  return l > r ? "Left" : r > l ? "Right" : "Balance";
+function sevenAte9(str) {
+  const newStr = str.split('')
+  for(let i = 0; i < newStr.length; i++){
+    if(newStr[i] === '9' && newStr[i-1] === '7' && newStr[i+1] === '7'){
+      newStr[i] = null
+    }
+  }
+  return newStr.filter(el => el !== null).join('')
 }
-console.log(balance("!??", "?!!"));
+console.log(sevenAte9('165561786121789797'))
