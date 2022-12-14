@@ -1,10 +1,11 @@
-function sevenAte9(str) {
-  const newStr = str.split('')
-  for(let i = 0; i < newStr.length; i++){
-    if(newStr[i] === '9' && newStr[i-1] === '7' && newStr[i+1] === '7'){
-      newStr[i] = null
-    }
+function mostFrequentItemCount(collection) {
+  if(collection.length === 0){
+    return 0
   }
-  return newStr.filter(el => el !== null).join('')
+  const obj = collection.reduce((acc, curr) => {
+    acc[curr] = (acc[curr] || 0) + 1
+    return acc
+  }, {})
+  return Object.values(obj).sort((a,b) => b - a)[0]
 }
-console.log(sevenAte9('165561786121789797'))
+console.log(mostFrequentItemCount([3, -1, -1]))
