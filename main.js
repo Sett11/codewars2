@@ -1,21 +1,7 @@
-function getOrder(input) {
-  const menu = [
-    "burger",
-    "fries",
-    "chicken",
-    "pizza",
-    "sandwich",
-    "onionrings",
-    "milkshake",
-    "coke",
-  ];
-  const arr = [];
-  for (let el of menu) {
-    arr.push(input.match(new RegExp(el, "gi")));
-  }
-  return []
-    .concat(...arr)
-    .filter((el) => el)
-    .map((el) => el.charAt(0).toUpperCase() + el.slice(1).toLowerCase())
-    .join(" ");
+function consecutive(arr, a, b) {
+  return arr.indexOf(a) + 1 === arr.indexOf(b) ||
+    arr.indexOf(a) - 1 === arr.indexOf(b)
+    ? true
+    : false;
 }
+console.log(consecutive([1, 3, 5, 7], 3, 7));
