@@ -1,9 +1,11 @@
-function swap(string) {
-  return string
-    .replace(/a/g, "A")
-    .replace(/u/g, "U")
-    .replace(/o/g, "O")
-    .replace(/i/g, "I")
-    .replace(/e/g, "E");
+function makeString(s) {
+  return s
+    .split(" ")
+    .map((el) => {
+      const first = el.charAt(0);
+      return first;
+    })
+    .join("");
 }
-console.log(swap("HelloWorld!"));
+
+console.log(makeString("brown eyes are nice"));
