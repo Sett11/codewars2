@@ -1,8 +1,9 @@
-function shorter_reverse_longer(a,b){
-  if(a.length >= b.length){
-    return b + a.split('').reverse().join('') + b
-  } else{
-   return a + b.split('').reverse().join('') + a
+function dataReverse(data) {
+  const arr = []
+  const chank = 8
+  for(let i = 0; i < data.length; i+= chank){
+    arr.push(data.slice(i, i+chank))
   }
+  return arr.reverse().flat()
 }
-console.log(shorter_reverse_longer("fghi", "abcde"))
+console.log(dataReverse([1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,1,0,1,0,1,0]))
