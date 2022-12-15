@@ -1,16 +1,9 @@
-function duplicateEncode(word) {
-  return word
-    .toLowerCase()
+function isLucky(n) {
+  const arr = ("" + n)
     .split("")
-    .map((el, i, arr) => {
-      if (arr.indexOf(el) === arr.lastIndexOf(el)) {
-        el = "(";
-        return el;
-      } else {
-        el = ")";
-        return el;
-      }
-    })
-    .join("");
+    .map(Number)
+    .reduce((acc, curr) => acc + curr, 0);
+  const sum = arr / 9;
+  return arr === 0 || Number.isInteger(sum) ? true : false;
 }
-console.log(duplicateEncode("Success"));
+console.log(isLucky(0));
