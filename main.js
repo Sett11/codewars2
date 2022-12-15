@@ -1,7 +1,8 @@
-function longestWord(stringOfWords) {
-  const arr = stringOfWords.split(" ");
-  const newArr = arr.map((el) => (el = el.length));
-  const ind = newArr.lastIndexOf(Math.max.apply(null, newArr));
-  return arr[ind];
+function shorter_reverse_longer(a,b){
+  if(a.length >= b.length){
+    return b + a.split('').reverse().join('') + b
+  } else{
+   return a + b.split('').reverse().join('') + a
+  }
 }
-console.log(longestWord("one two three"));
+console.log(shorter_reverse_longer("fghi", "abcde"))
