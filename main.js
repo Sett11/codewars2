@@ -1,11 +1,15 @@
-function validSpacing(s) {
-  let res = true
+function remove(s,n){
   const arr = s.split('')
+  const store = []
   for(let i = 0; i < arr.length; i++){
-    if(arr[0] === ' ' || arr[arr.length - 1] === ' ' || arr[i] === ' ' && arr[i+1] === ' '){
-      res = false
+    if(arr[i] === '!'){
+      arr[i] = 0
+      store.push(arr[i])
+    }
+    if(store.length === n){
+      break
     }
   }
-  return res
+  return arr.filter(el => el !== 0).join('')
 }
-console.log(validSpacing('Hello world'))
+console.log(remove("!!!Hi !!hi!!! !hi",1))
