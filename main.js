@@ -1,4 +1,3 @@
-function anyArrows(arrows){
-  return arrows.some(el => !el.damaged);
+function greet(name) {
+  return name ? `hello ${name}!`: null
 }
-console.log(anyArrows([{range: 5, damaged: true}, {range: 10, damaged: true}, {damaged: true}]))
