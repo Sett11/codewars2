@@ -1,25 +1,35 @@
-function htmlspecialchars(formData) {
-  const arr = formData.split("");
-  return arr
-    .map((el) => {
-      if (el === "<") {
-        el = "&lt;";
-        return el;
+function bingo(ticket, win) {
+  const arr = ticket.map((el) => {
+    return [el[0].split(""), el[1]];
+  });
+  let counter = 0;
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr[i][0].length; j++) {
+      arr[i][0][j] = arr[i][0][j].charCodeAt(arr[i][0][j]);
+      if (arr[i][0][j] === arr[i][0][j]) {
       }
-      if (el === ">") {
-        el = "&gt;";
-        return el;
+      if (arr[i][0][j] === arr[i][1]) {
+        counter += 1;
+        break;
       }
-      if (el === '"') {
-        el = "&quot;";
-        return el;
-      }
-      if (el === "&") {
-        el = "&amp;";
-        return el;
-      }
-      return el;
-    })
-    .join("");
+    }
+  }
+  return counter < win ? "Loser!" : "Winner!";
 }
-console.log(htmlspecialchars("Hello, how would you & I fare?"));
+console.log(
+  bingo(
+    [
+      ["BGRWIML", 71],
+      ["ZYHHZOO", 80],
+      ["WKZVG", 79],
+      ["YZLNDWO", 87],
+      ["IXNBE", 69],
+      ["CMDCHWIC", 67],
+      ["XPNI", 65],
+      ["DBSHG", 80],
+      ["RBD", 77],
+      ["WQXJRE", 85],
+    ],
+    5
+  )
+);
