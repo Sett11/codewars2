@@ -1,5 +1,11 @@
-const gimme = (triplet) => {
-  const arr = triplet.slice().sort((a,b) => a - b)
-  return triplet.indexOf(arr[1])
+function flyBy(lamps, drone) {
+  const l = lamps.split("");
+  const d = drone.split("");
+  for (let i = 0; i < drone.length; i++) {
+    if (l[i] === "x") {
+      l[i] = "o";
+    }
+  }
+  return l.join("");
 }
-console.log(gimme([10.4, 5.9, 14.2]))
+console.log(flyBy("xxxxxxxxx", "==T"));
