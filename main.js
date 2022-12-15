@@ -1,9 +1,4 @@
-function isLucky(n) {
-  const arr = ("" + n)
-    .split("")
-    .map(Number)
-    .reduce((acc, curr) => acc + curr, 0);
-  const sum = arr / 9;
-  return arr === 0 || Number.isInteger(sum) ? true : false;
+function anyArrows(arrows){
+  return arrows.some(el => !el.damaged);
 }
-console.log(isLucky(0));
+console.log(anyArrows([{range: 5, damaged: true}, {range: 10, damaged: true}, {damaged: true}]))
