@@ -1,8 +1,11 @@
-const sequenceSum = (begin, end, step) => {
-  const arr = []
-  for(let i = begin; i <= end; i+=step){
-    arr.push(i)
+function validSpacing(s) {
+  let res = true
+  const arr = s.split('')
+  for(let i = 0; i < arr.length; i++){
+    if(arr[0] === ' ' || arr[arr.length - 1] === ' ' || arr[i] === ' ' && arr[i+1] === ' '){
+      res = false
+    }
   }
-  return arr.reduce((acc, curr) => acc + curr, 0)
+  return res
 }
-console.log(sequenceSum(2,2,2))
+console.log(validSpacing('Hello world'))
