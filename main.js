@@ -1,9 +1,25 @@
-function dataReverse(data) {
-  const arr = []
-  const chank = 8
-  for(let i = 0; i < data.length; i+= chank){
-    arr.push(data.slice(i, i+chank))
-  }
-  return arr.reverse().flat()
+function htmlspecialchars(formData) {
+  const arr = formData.split("");
+  return arr
+    .map((el) => {
+      if (el === "<") {
+        el = "&lt;";
+        return el;
+      }
+      if (el === ">") {
+        el = "&gt;";
+        return el;
+      }
+      if (el === '"') {
+        el = "&quot;";
+        return el;
+      }
+      if (el === "&") {
+        el = "&amp;";
+        return el;
+      }
+      return el;
+    })
+    .join("");
 }
-console.log(dataReverse([1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,1,0,1,0,1,0]))
+console.log(htmlspecialchars("Hello, how would you & I fare?"));
