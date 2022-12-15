@@ -1,11 +1,4 @@
-function flyBy(lamps, drone) {
-  const l = lamps.split("");
-  const d = drone.split("");
-  for (let i = 0; i < drone.length; i++) {
-    if (l[i] === "x") {
-      l[i] = "o";
-    }
-  }
-  return l.join("");
+function evensAndOdds(num){
+	return num % 2 === 0 ? num.toString(2): num.toString(16)
 }
-console.log(flyBy("xxxxxxxxx", "==T"));
+console.log(evensAndOdds(13))
