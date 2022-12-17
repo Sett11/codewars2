@@ -1,6 +1,10 @@
-function pendulum(values) {
-  const [arr1, arr2] = [[], []]
-  values.sort((a,b) => a - b).map((el,i) => (i % 2 === 0 ? arr1 : arr2).push(el))
-  return arr1.reverse().concat(arr2)
+function maxMultiple(divisor, bound) {
+  let res = null;
+  for (let i = 1; i <= bound; i++) {
+    if (i % divisor === 0) {
+      res = i
+    }
+  }
+  return res
 }
-console.log(pendulum([9, 4, 6, 4, 10, 5]));
+console.log(maxMultiple(2, 7));
