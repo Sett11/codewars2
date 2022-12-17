@@ -1,1 +1,1 @@
-const quadratic = (x1, x2) =>  [1, -(x1+x2), x1*x2]
+const sameCase = (a, b) => /[a-z]/i.test(a) && /[a-z]/i.test(b) ? Number(/[a-z]/.test(a) == /[a-z]/.test(b)): -1
