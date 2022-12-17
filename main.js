@@ -1,10 +1,8 @@
-function maxRot(n) {
-  let str = n.toString()
-  const arr = [str]
-  for(let i = 0; i< str.length-1; i++){
-    str = str.slice(0,i) + str.slice(i+1) + str[i]
-    arr.push(str.split('').join(''))
-  }
-  return Math.max(...arr)
+function removeSmallest(numbers) {
+  const newArr = numbers.slice();
+  const min = Math.min(...newArr);
+  const ind = newArr.indexOf(min)
+  newArr[ind] = '&'
+  return newArr.filter((el) => el !== '&');
 }
-console.log(maxRot(56789));
+console.log(removeSmallest([2, 2, 1, 2, 1]));
