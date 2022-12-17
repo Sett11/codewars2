@@ -1,23 +1,4 @@
-function longestConsec(strarr, k) {
-  if (k <= 0 || k > strarr.length || strarr.length === 0) {
-    return "";
-  }
-  const arr = [];
-  for (let i = 0; i <= strarr.length - k; i++) {
-    let curr = strarr[i];
-    for (let j = k, w = 1; j > 1; j--, w++) {
-      curr += strarr[i + w];
-    }
-    arr.push(curr);
-  }
-  return arr.reduce((acc, curr) => {
-    return acc.length > curr.length
-      ? acc
-      : acc.length == curr.length
-      ? acc
-      : curr;
-  });
+function periodIsLate(last, today, cycleLength){
+  return Date.parse(today) -  Date.parse(last) > cycleLength * ((24*3600)*1000)
 }
-console.log(
-  longestConsec(["it", "wkppv", "ixoyx", "3452", "zzzzzzzzzzzz"], 48)
-);
+console.log(periodIsLate(new Date(2016, 6, 13), new Date(2016, 7, 16), 35))
