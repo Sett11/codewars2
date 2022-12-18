@@ -1,9 +1,12 @@
-function lastSurvivor(letters, coords) {
-  const arr = letters.split('')
-  while(coords.length > 0){
-    let tmp = coords.shift()
-    arr.splice(tmp, 1)
+class Person {
+  constructor(name, age) {
+  this.name = name
+  this.age = age
+  this.info = `${this.name}s age is ${this.age}`
   }
-  return arr[0]
+    info() {
+      return `${this.name}s age is ${this.age}`
+  }
 }
-console.log(lastSurvivor('abc', [1, 1]))
+var john = new Person('john', 34)
+console.log(john.info)
