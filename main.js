@@ -1,10 +1,11 @@
-function validatePIN (pin) {
-  if(pin.length !== 4 && pin.length !== 6){
-    return false
+function filterLongWords(sentence, n) {
+  const str = sentence.split(" ");
+  const arr = [];
+  for (let i = 0; i < str.length; i++) {
+    if (str[i].length > n) {
+      arr.push(str[i]);
+    }
   }
-  if(pin.replace(/\D/g, '').length < pin.length){
-    return false
-  }
-  return true
+  return arr;
 }
-console.log(validatePIN('12.0'))
+console.log(filterLongWords("The quick brown fox jumps over the lazy dog", 4));
