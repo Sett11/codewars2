@@ -1,17 +1,12 @@
-function duplicates(array) {
-  if (array.length < 2) {
-    return 0;
+function findMissingNumber(sequence) {
+  if (sequence == "") return 0;
+  sequence = sequence.split(" ").map(Number);
+  if(sequence.length === 0) return 0
+  if(sequence.some(el => Number.isNaN(Number(el)))){
+    return 1
   }
-  array.sort((a, b) => a - b);
-  let arr = [];
-  for (let i = 0; i < array.length; i++) {
-    if (array[i] === array[i + 1]) {
-      arr.push(array[i]);
-      arr.push(array[i + 1]);
-      array[i] = "&";
-      array[i + 1] = "&";
-    }
+  for (let i = 1; i <= sequence.length; i++) {
+    if (i !== sequence[i - 1]) return i;
   }
-  return arr.length / 2;
+  return 0;
 }
-console.log(duplicates([0, 0, 0, 0, 0, 0, 0]));
