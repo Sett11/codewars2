@@ -1,20 +1,13 @@
-class FileNameExtractor {
-  extractFileName(dirtyFileName) {
-    let arr = dirtyFileName.split("");
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i] === "_") {
-        arr = arr.slice(i + 1);
-        break;
-      }
-    }
-    for (let i = arr.length; i > 0; i--) {
-      if (arr[i] === ".") {
-        arr = arr.slice(0, i);
-        break;
-      }
-    }
-    return arr.join("");
+class Girl{
+  constructor(name, age, boobs_size, loves_to_suck = true){
+    this.name = name
+    this.age = age
+    this.boobs_size = boobs_size
+    this.loves_to_suck = loves_to_suck
+  }
+  minet(){
+    return `Wow! cham! cham! cham!`
   }
 }
-const file = new FileNameExtractor();
-console.log(file.extractFileName("1231231223123131_myFile.tar.gz2"));
+const maria = new Girl('Maria', 25, 3, true)
+console.log(maria.minet())
