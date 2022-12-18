@@ -1,14 +1,8 @@
-function gordon(a) {
-  return a
-    .split(" ")
-    .map((el) => {
-      el =
-        el
-          .toUpperCase()
-          .replace(/a/gi, "@")
-          .replace(/[ouei]/gi, "*") + "!!!!";
-      return el;
-    })
-    .join(" ");
-}
-console.log(gordon("What feck damn cake"));
+function getAges(sum,difference){
+  if (difference<0||sum<0) return null;
+  sum=sum/2
+  difference/=2
+  if (sum+difference<0||sum-difference<0) return null;
+  return [sum+difference,sum-difference]
+};
+console.log(getAges(40, 13));
