@@ -1,7 +1,12 @@
-function prefill(n, v) {
-  if (Number.isNaN(parseInt(n)) || n % 1 !== 0 || n < 0) {
-    throw new TypeError(`${n} is invalid`);
+function twoDecimalPlaces(number) {
+  const arr = (''+number).split('')
+  const res = []
+  for(let i = 0; i < arr.length; i++){
+    res.push(arr[i])
+    if(arr[i-2] === '.'){
+      break
+    }
   }
-  return Array.from({length: n}).fill(v)
+  return Number(res.join(''))
 }
-console.log(prefill(3, 1.2));
+console.log(twoDecimalPlaces(10.1289767789))
