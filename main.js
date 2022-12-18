@@ -1,13 +1,9 @@
-function nextHappyYear(year) {
-  let counter = 0;
-  for (let i = year; i < year + 200; i++) {
-    const arr = ("" + i).split("").map(Number);
-    const set = [...new Set(arr)];
-    if (arr.length === set.length) {
-      counter = i;
-      break;
-    }
+function lastSurvivor(letters, coords) {
+  const arr = letters.split('')
+  while(coords.length > 0){
+    let tmp = coords.shift()
+    arr.splice(tmp, 1)
   }
-  return counter;
+  return arr[0]
 }
-console.log(nextHappyYear(1123));
+console.log(lastSurvivor('abc', [1, 1]))
