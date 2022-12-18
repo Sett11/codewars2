@@ -1,11 +1,10 @@
-function amIWilson(p) {
-  p = BigInt(p)
-  const f = (x) => {
-    if (x <= 1n) {
-      return 1n;
+function evenLast(numbers) {
+  var sum = 0
+    if(numbers.length == 0) return 0
+    for(var i=0;i<numbers.length;i++){
+      if(i % 2 == 0){
+        sum += numbers[i]
+      }
     }
-    return x * f(x - 1n);
-  };
-  return ((f(p - 1n)) + 1n) % (p * p) == 0n
+  return sum * numbers[numbers.length-1]
 }
-console.log(amIWilson(563));
