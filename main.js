@@ -1,12 +1,10 @@
-class Person {
-  constructor(name, age) {
-  this.name = name
-  this.age = age
-  this.info = `${this.name}s age is ${this.age}`
+function validatePIN (pin) {
+  if(pin.length !== 4 && pin.length !== 6){
+    return false
   }
-    info() {
-      return `${this.name}s age is ${this.age}`
+  if(pin.replace(/\D/g, '').length < pin.length){
+    return false
   }
+  return true
 }
-var john = new Person('john', 34)
-console.log(john.info)
+console.log(validatePIN('12.0'))
