@@ -1,35 +1,20 @@
-function titleCase(title, minorWords) {
-  if (!minorWords) {
-    return title
-      .split(" ")
-      .map((el) => {
-        el = el.toLowerCase()
-        const first = el.charAt(0).toUpperCase();
-        const last = el.slice(1);
-        return first + last;
-      })
-      .join(" ");
-  }
-  const arr2 = minorWords.split(" ").map((el) => el.toLowerCase());
-  const res = title
-    .split(" ")
-    .map((el) => el.toLowerCase().split(""))
-    .map((el) => {
-      if (arr2.includes(el.join(""))) {
-        return el.join("");
-      } else {
-        el[0] = el[0].toUpperCase();
-        return el.join("");
+class FileNameExtractor {
+  extractFileName(dirtyFileName) {
+    let arr = dirtyFileName.split("");
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] === "_") {
+        arr = arr.slice(i + 1);
+        break;
       }
-    });
-  if (res[0].length === 1) {
-    res[0] = res[0].toUpperCase();
+    }
+    for (let i = arr.length; i > 0; i--) {
+      if (arr[i] === ".") {
+        arr = arr.slice(0, i);
+        break;
+      }
+    }
+    return arr.join("");
   }
-  if (res[0].length > 1) {
-    const first = res[0].charAt(0).toUpperCase();
-    const last = res[0].slice(1);
-    res[0] = first + last;
-  }
-  return res.join(" ");
 }
-console.log(titleCase("THE WIND IN THE WILLOWS"));
+const file = new FileNameExtractor();
+console.log(file.extractFileName("1231231223123131_myFile.tar.gz2"));
