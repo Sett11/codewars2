@@ -1,13 +1,10 @@
-function solution(string,limit){
-    if(string.length <= limit){
-      return string
+function getMissingElement(s){
+  let res = null
+  for(let i = 0; i < s.length + 1; i++){
+    if(!s.includes(i)){
+      res = i
     }
-    const str = string.split('')
-    const arr = []
-    for(let i = 0; i < limit; i++){
-      arr.push(str[i])
-    }
-    arr.push('...')
-    return arr.join('')
+  }
+  return res
 }
-console.log(solution('Test', 8))
+console.log(getMissingElement([0,5,1,3,2,9,7,6,4]))
