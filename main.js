@@ -1,18 +1,12 @@
-function solution(value) {
-  const arr = [0, 0, 0, 0, 0];
-  const nextArr = arr.slice();
-  value = value.toString();
-  for (let i = 0; i < value.length; i++) {
-    if (value) {
-      nextArr.push(value);
-      break;
-    }
+function fiveLine(s){
+  s = s.trim()
+  const arr = []
+  for(let i = 1; i <=5; i++){
+    arr.push((s).repeat(i))
   }
-  let total = value.length;
-  while (total) {
-    nextArr.shift();
-    total--;
+  for(let i = 1; i < 5; i++){
+   arr[i] =  '\n' + arr[i]
   }
-  return `Value is ${nextArr.join("")}`;
+   return arr.join('')
 }
-console.log(solution(1109));
+console.log(fiveLine('a'))
