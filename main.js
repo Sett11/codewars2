@@ -1,11 +1,11 @@
-function filterLongWords(sentence, n) {
-  const str = sentence.split(" ");
-  const arr = [];
-  for (let i = 0; i < str.length; i++) {
-    if (str[i].length > n) {
-      arr.push(str[i]);
+function amIWilson(p) {
+  p = BigInt(p)
+  const f = (x) => {
+    if (x <= 1n) {
+      return 1n;
     }
-  }
-  return arr;
+    return x * f(x - 1n);
+  };
+  return ((f(p - 1n)) + 1n) % (p * p) == 0n
 }
-console.log(filterLongWords("The quick brown fox jumps over the lazy dog", 4));
+console.log(amIWilson(563));
