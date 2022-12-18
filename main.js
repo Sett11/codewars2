@@ -1,4 +1,14 @@
-const arithmeticSequenceElements = (a, r, n) =>
-  Array.from({ length: n }, (_, i) => a + r * i).join(', ')
-
-console.log(arithmeticSequenceElements(1,2,5))
+function gordon(a) {
+  return a
+    .split(" ")
+    .map((el) => {
+      el =
+        el
+          .toUpperCase()
+          .replace(/a/gi, "@")
+          .replace(/[ouei]/gi, "*") + "!!!!";
+      return el;
+    })
+    .join(" ");
+}
+console.log(gordon("What feck damn cake"));
