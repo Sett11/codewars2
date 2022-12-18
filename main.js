@@ -1,17 +1,68 @@
-function initializeNames(name){
-  const arr = name.split(' ')
-  if(arr.length === 1){
-    return arr[0]
-  }
-  if(arr.length === 2){
-    return [arr[0] + ' ' + arr[1]].join(' ')
-  }
-  return arr.map((el, i, arr) => {
-    if(i === 0 || i === arr.length-1){
-      return el
+const whosOnline = (friends) => {
+  const obj = {};
+  friends.map((el) => {
+    if (!obj.online) {
+      if (el.status === "online" && el.lastActivity <= 10) {
+        obj.online = [el.username];
+      }
+    } else {
+      if (el.status === "online" && el.lastActivity <= 10) {
+        obj.online.push(el.username);
+      }
     }
-    el = el.charAt(0) + '.'
-    return el
-  }).join(' ')
-}
-console.log(initializeNames('Alice Betty Catherine Davis'))
+    if (!obj.offline) {
+      if (el.status === "offline") {
+        obj.offline = [el.username];
+      }
+    } else {
+      if (el.status === "offline") {
+        obj.offline.push(el.username);
+      }
+    }
+    if (!obj.away) {
+      if (el.status === "online" && el.lastActivity > 10) {
+        obj.away = [el.username];
+      }
+    } else{
+      if (el.status === "online" && el.lastActivity > 10) {
+        obj.away.push(el.username)
+      }
+    }
+  });
+  return obj;
+};
+
+console.log(
+  whosOnline([
+    {
+      username: "David",
+      status: "online",
+      lastActivity: 10,
+    },
+    {
+      username: "Vasia",
+      status: "online",
+      lastActivity: 5,
+    },
+    {
+      username: "w",
+      status: "offline",
+      lastActivity: 22,
+    },
+    {
+      username: "d",
+      status: "offline",
+      lastActivity: 22,
+    },
+    {
+      username: "Lucy",
+      status: "offline",
+      lastActivity: 22,
+    },
+    {
+      username: "Bob",
+      status: "online",
+      lastActivity: 104,
+    },
+  ])
+);
