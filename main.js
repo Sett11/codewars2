@@ -1,10 +1,4 @@
-const findAll = (array, n) => {
-  const arr = []
-  for(let i = 0; i < array.length; i++){
-    if(array[i] === n){
-      arr.push(i)
-    }
-  }
-  return arr
-}
-console.log(findAll([10, 16, 20, 6, 14, 11, 20, 2, 17, 16, 14], 16))
+const arithmeticSequenceElements = (a, r, n) =>
+  Array.from({ length: n }, (_, i) => a + r * i).join(', ')
+
+console.log(arithmeticSequenceElements(1,2,5))
