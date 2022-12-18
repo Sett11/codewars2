@@ -1,8 +1,12 @@
-function createDict(keys, values) {
-  const obj = {};
-  for (let i = 0; i < keys.length; i++) {
-    obj[keys[i]] = values[i] != undefined ? values[i] : null;
+function one(arr, fun) {
+  const res = [];
+  for (let i = 0; i < arr.length; i++) {
+    res.push(fun(arr[i]));
   }
-  return obj;
+  return res.filter((el) => el !== false).length === 1 ? true : false;
 }
-console.log(createDict(["a", "b", "c", "d"], [1, 2, 3]));
+console.log(
+  one([1, 2, 3, 4, 5], function (item) {
+    return item < 2;
+  })
+);
