@@ -1,10 +1,7 @@
-function evenLast(numbers) {
-  var sum = 0
-    if(numbers.length == 0) return 0
-    for(var i=0;i<numbers.length;i++){
-      if(i % 2 == 0){
-        sum += numbers[i]
-      }
-    }
-  return sum * numbers[numbers.length-1]
+function prefill(n, v) {
+  if (Number.isNaN(parseInt(n)) || n % 1 !== 0 || n < 0) {
+    throw new TypeError(`${n} is invalid`);
+  }
+  return Array.from({length: n}).fill(v)
 }
+console.log(prefill(3, 1.2));
