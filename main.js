@@ -1,16 +1,14 @@
-function save(sizes, hd) {
-  let sum = 0;
-  for (let i = 0; i < sizes.length; i++) {
-    sum += sizes[i];
-    if (sum > hd) {
-      sum = i;
-      break
-    }
-    if (i === sizes.length-1) {
-      sum = sizes.length;
-      break
-    }
+function diamond(n) {
+  if (n < 3 || n % 2 === 0) {
+    return null;
   }
-  return sum;
+  let midll = parseInt((n + 1) / 2);
+  let first,
+    last = "";
+  for (let i = 1; i <= n; i++) {
+    first = i <= midll ? i : n - i + 1;
+    last += " ".repeat(midll - first) + "*".repeat(2 * first - 1) + "\n";
+  }
+  return last;
 }
-console.log(save([4, 8, 15, 16, 23, 42], 108));
+console.log(diamond(5));
