@@ -1,13 +1,10 @@
-class Girl{
-  constructor(name, age, boobs_size, loves_to_suck = true){
-    this.name = name
-    this.age = age
-    this.boobs_size = boobs_size
-    this.loves_to_suck = loves_to_suck
+const findAll = (array, n) => {
+  const arr = []
+  for(let i = 0; i < array.length; i++){
+    if(array[i] === n){
+      arr.push(i)
+    }
   }
-  minet(){
-    return `Wow! cham! cham! cham!`
-  }
+  return arr
 }
-const maria = new Girl('Maria', 25, 3, true)
-console.log(maria.minet())
+console.log(findAll([10, 16, 20, 6, 14, 11, 20, 2, 17, 16, 14], 16))
