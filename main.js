@@ -1,12 +1,4 @@
-function twoDecimalPlaces(number) {
-  const arr = (''+number).split('')
-  const res = []
-  for(let i = 0; i < arr.length; i++){
-    res.push(arr[i])
-    if(arr[i-2] === '.'){
-      break
-    }
-  }
-  return Number(res.join(''))
+function countLettersAndDigits(input) {
+  return input.length - input.replace(/[A-Za-z0-9]/g, '').length
 }
-console.log(twoDecimalPlaces(10.1289767789))
+console.log(countLettersAndDigits("aBcDeFg090"))
