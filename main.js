@@ -1,8 +1,14 @@
-function numberJoy(n) {
-  const num = ("" + n).split("").map(Number);
-  const sum = num.reduce((acc, curr) => acc + curr, 0);
-  return sum * Number(("" + sum).split("").map(Number).reverse().join("")) === n
-    ? true
-    : false;
+class Person {
+  constructor(firstName = 'John', lastName = 'Doe', age = 0, gender = 'Male'){
+    this.firstName = firstName
+    this.lastName = lastName
+    this.age = age
+    this.gender = gender
+  }
+  sayFullName(){
+    return `${firstName} ${lastName}`
+  }
+  static greetExtraTerrestrials(raceName){
+    return `Welcome to Planet Earth ${raceName}`
+  }
 }
-console.log(numberJoy(1729));
