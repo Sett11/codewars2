@@ -1,14 +1,8 @@
-function whatNumberIsIt(n) {
-  return n === Number.MAX_VALUE
-    ? "Input number is Number.MAX_VALUE"
-    : n === Number.MIN_VALUE
-    ? "Input number is Number.MIN_VALUE"
-    : Number.isNaN(n)
-    ? "Input number is Number.NaN"
-    : n === Number.NEGATIVE_INFINITY
-    ? "Input number is Number.NEGATIVE_INFINITY"
-    : n === Number.POSITIVE_INFINITY
-    ? "Input number is Number.POSITIVE_INFINITY"
-    : `Input number is ${n}`;
+function beggars(values, n) {
+  const sum = [...Array(n)].fill(0);
+  return values.reduce((acc, curr, i) => {
+    acc[i % acc.length] += curr;
+    return acc;
+  }, sum);
 }
-console.log(whatNumberIsIt(10));
+console.log(beggars([1, 2, 3, 4, 5], 2));
