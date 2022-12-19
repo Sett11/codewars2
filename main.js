@@ -1,6 +1,8 @@
-function bandNameGenerator(str) {
-  return str[0] !== str[str.length - 1]
-    ? `The ${str.charAt(0).toUpperCase() + str.slice(1)}`
-    : `${str.charAt(0).toUpperCase() + str.slice(1) + str.slice(1)}`;
+function numberJoy(n) {
+  const num = ("" + n).split("").map(Number);
+  const sum = num.reduce((acc, curr) => acc + curr, 0);
+  return sum * Number(("" + sum).split("").map(Number).reverse().join("")) === n
+    ? true
+    : false;
 }
-console.log(bandNameGenerator('tart'));
+console.log(numberJoy(1729));
