@@ -1,8 +1,22 @@
-function beggars(values, n) {
-  const sum = [...Array(n)].fill(0);
-  return values.reduce((acc, curr, i) => {
-    acc[i % acc.length] += curr;
-    return acc;
-  }, sum);
+function solution(pairs) {
+  return Object.entries(pairs)
+    .join("= ")
+    .split("")
+    .map((el) => {
+      if (el === ",") {
+        el = "=";
+        return el;
+      }
+      if (el === "=") {
+        el = ",";
+        return el;
+      } else {
+        return el;
+      }
+    })
+    .join(" ")
+    .split(" ")
+    .join("")
+    .replace(/\=/g, " $& ");
 }
-console.log(beggars([1, 2, 3, 4, 5], 2));
+console.log(solution({ a: 1, b: "2", c: 3, d: "4" }));
