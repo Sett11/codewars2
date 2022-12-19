@@ -1,12 +1,11 @@
-const isNice = arr => {
-  if (arr.length <= 0) {
-    return false;
-  }
+let list1 = [
+  { firstName: 'Harry', lastName: 'K.', country: 'Brazil', continent: 'Americas', age: 22, language: 'JavaScript', githubAdmin: 'yes' },
+  { firstName: 'Kseniya', lastName: 'T.', country: 'Belarus', continent: 'Europe', age: 49, language: 'Ruby', githubAdmin: 'no' },
+  { firstName: 'Jing', lastName: 'X.', country: 'China', continent: 'Asia', age: 34, language: 'JavaScript', githubAdmin: 'yes' },
+  { firstName: 'Piotr', lastName: 'B.', country: 'Poland', continent: 'Europe', age: 128, language: 'JavaScript', githubAdmin: 'no' }
+];
 
-  const result = arr.every(item => {
-    return arr.some(current => {
-      return item === current + 1 || item === current - 1;
-    });
-  });
-  return result;
-};
+function findAdmin(list, lang) {
+  return list.filter((el) =>  el.githubAdmin === 'yes' && el.language === lang)
+}
+console.log(findAdmin(list1, 'JavaScript'))
