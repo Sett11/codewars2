@@ -1,22 +1,9 @@
-function well(x) {
-  if (x.length === 0) {
-    return "Fail!";
+function mergeArrays(a, b) {
+  const res = [];
+  for (let i = 0; i < a.length + b.length; i++) {
+    res.push(a[i]);
+    res.push(b[i]);
   }
-  const res = x
-    .flat(10)
-    .filter((el) => typeof el === "string")
-    .map((el) => el.toLowerCase())
-    .filter((el) => el === "good");
-  return res.length === 1 || res.length === 2
-    ? "Publish!"
-    : res.length > 2
-    ? "I smell a series!"
-    : "Fail!";
+  return res.filter((el) => el !== undefined);
 }
-console.log(
-  well([
-    ["bAd", "bad", "cheat"],
-    [6, 16, "BAD", "bad", 16, 3],
-    [3, 16, "CoNcenTraTe", 6, 16, "bAd"],
-  ])
-);
+console.log(mergeArrays([1, 2, 3, 4, 5, 6, 7, 8], ["a", "b", "c", "d", "e"]));
