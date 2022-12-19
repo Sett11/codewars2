@@ -1,12 +1,6 @@
-function last(x) {
-  return x
-    .split(" ")
-    .map((el) => [...el].reverse().join(""))
-    .sort((a,b) => {
-      if(a == b){
-        return a = b
-      }
-    })
-    .map((el) => [...el].reverse().join(""));
+function bandNameGenerator(str) {
+  return str[0] !== str[str.length - 1]
+    ? `The ${str.charAt(0).toUpperCase() + str.slice(1)}`
+    : `${str.charAt(0).toUpperCase() + str.slice(1) + str.slice(1)}`;
 }
-console.log(last("what time are we climbing up the volcano"));
+console.log(bandNameGenerator('tart'));
