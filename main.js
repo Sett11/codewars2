@@ -1,12 +1,8 @@
-function one(arr, fun) {
-  const res = [];
-  for (let i = 0; i < arr.length; i++) {
-    res.push(fun(arr[i]));
+function SeriesSum(n){
+  let sum = 0
+  for(let i = 1, j = 1; i <= n*3; i+=3){
+    sum += j/i
   }
-  return res.filter((el) => el !== false).length === 1 ? true : false;
+  return sum.toFixed(2)
 }
-console.log(
-  one([1, 2, 3, 4, 5], function (item) {
-    return item < 2;
-  })
-);
+console.log(SeriesSum(2))
