@@ -1,20 +1,34 @@
-function evenOrOdd(str) {
-  str = str.split("").map(Number);
-  const arr1 = [];
-  const arr2 = [];
-  for (let i = 0; i < str.length; i++) {
-    if (str[i] % 2 === 0) {
-      arr1.push(str[i]);
-    } else {
-      arr2.push(str[i]);
-    }
+function rank(st, we, n) {
+  if (st === "") {
+    return "No participants";
   }
-  return arr1.reduce((acc, curr) => acc + curr,0) >
-    arr2.reduce((acc, curr) => acc + curr,0)
-    ? "Even is greater than Odd"
-    : arr1.reduce((acc, curr) => acc + curr,0) <
-      arr2.reduce((acc, curr) => acc + curr,0)
-    ? "Odd is greater than Even"
-    : "Even and Odd are the same";
+  const arr = st.split(",").map((el) => {
+    return el
+      .split("")
+      .map((el) => parseInt(el, 36) - 8)
+      .reduce((acc, curr) => acc + curr, 0);
+  });
+  if (n > arr.length) {
+    return "Not enough participants";
+  }
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = arr[i] * we[i];
+  }
+  const str = st.split(",");
+  const res = [];
+  for (let i = 0; i < arr.length; i++) {
+    res.push([arr[i], str[i]]);
+  }
+  res.sort((a, b) => {
+    if (b[0] !== a[0]) {
+      return b[0] - a[0];
+    }
+    if (b[0] === a[0]) {
+      return a[1].localeCompare(b[1])
+    }
+  });
+  return res[n - 1][1];
 }
-console.log(evenOrOdd("123"));
+console.log(
+  rank('Sophia,Natalie,Matthew,Logan,Mason,Elizabeth,Alexander,William,Avery,Willaim,Naoh,Robert,David,Lagon,Andrew,Michael', [3,4,3,4,1,3,2,6,5,2,5,5,4,1,1,5], 4)
+);
