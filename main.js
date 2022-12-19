@@ -1,3 +1,3 @@
-const add = n => x => n + x
-console.log(add(3)(8))
-  
+String.prototype.digit = function() {
+  return /^\d$/.test(this)
+};
