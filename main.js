@@ -1,3 +1,12 @@
-const deepCount = (a) =>  a.reduce((acc,curr) => Array.isArray(curr) ? acc += deepCount(curr) : acc, a.length)
+const isNice = arr => {
+  if (arr.length <= 0) {
+    return false;
+  }
 
-console.log(deepCount([[[[[]], 2, 24]], 10, [[3, 10, [[]]]]]));
+  const result = arr.every(item => {
+    return arr.some(current => {
+      return item === current + 1 || item === current - 1;
+    });
+  });
+  return result;
+};
