@@ -1,44 +1,22 @@
-function isVeryEvenNumber(n) {
-  if (/\^d$/.test(n)) {
-    if (n % 2 === 0) {
-      return true;
-    }
-  } else {
-    let res = ("" + n)
-      .split("")
-      .map(Number)
-      .reduce((acc, curr) => acc + curr, 0);
-    if (/\^d$/.test(res)) {
-      return res % 2 === 0;
-    } else {
-      if (/\^d$/.test(res)) {
-        return (
-          ("" + res)
-            .split("")
-            .map(Number)
-            .reduce((acc, curr) => acc + curr, 0) %
-            2 ===
-          0
-        );
-      } else {
-        if (/\^d$/.test(res)) {
-          return res % 2 === 0;
-        } else {
-          res = ("" + res)
-            .split("")
-            .map(Number)
-            .reduce((acc, curr) => acc + curr, 0);
-          return (
-            ("" + res)
-              .split("")
-              .map(Number)
-              .reduce((acc, curr) => acc + curr, 0) %
-              2 ===
-            0
-          );
-        }
-      }
-    }
+function well(x) {
+  if (x.length === 0) {
+    return "Fail!";
   }
+  const res = x
+    .flat(10)
+    .filter((el) => typeof el === "string")
+    .map((el) => el.toLowerCase())
+    .filter((el) => el === "good");
+  return res.length === 1 || res.length === 2
+    ? "Publish!"
+    : res.length > 2
+    ? "I smell a series!"
+    : "Fail!";
 }
-
+console.log(
+  well([
+    ["bAd", "bad", "cheat"],
+    [6, 16, "BAD", "bad", 16, 3],
+    [3, 16, "CoNcenTraTe", 6, 16, "bAd"],
+  ])
+);
