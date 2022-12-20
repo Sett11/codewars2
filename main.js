@@ -1,4 +1,2 @@
-String.prototype.isUpperCase = function() {
-  const newStr = this.replace(/\s/g, '').split('')
-     return newStr.every(el => el === el.toUpperCase())
-   }
+const remove = (s) => s.split(' ').map(el => el.replace(/!+$/g, '')).join(' ')
+console.log(remove("!!!Hi !!hi!!! !hi"))
