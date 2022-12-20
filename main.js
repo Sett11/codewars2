@@ -1,2 +1,3 @@
-const unscrambleEggs = word => word.replace(/egg/gi, '')
-console.log(unscrambleEggs("ceggodegge heggeregge"))
+const rowSumOddNumbers = n => n**3
+
+console.log(rowSumOddNumbers(5))
