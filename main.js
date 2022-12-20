@@ -1,2 +1,1 @@
-const remove = (s) => s.split(' ').map(el => el.replace(/!+$/g, '')).join(' ')
-console.log(remove("!!!Hi !!hi!!! !hi"))
+const broken = x => x.split('').map(el => el === '1' ? el = '0' : el === '0' ? el = 1: null).join('')
