@@ -1,6 +1,5 @@
-function largest(n,xs){
-  const res = xs.sort((a, b) => b-a)
-  res.length = n
-  return res.reverse()
+const moveTen = (s) => {
+  const alOrg = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLM';
+  return s.replace(/[a-z]/gi, el => alOrg[alOrg.indexOf(el) + 10]);
 }
-console.log(largest(2,[10,9,8,7,6,5,4,3,2,1]))
+console.log(moveTen("testcase"))
