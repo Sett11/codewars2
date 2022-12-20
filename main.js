@@ -1,5 +1,6 @@
-const moveTen = (s) => {
-  const alOrg = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLM';
-  return s.replace(/[a-z]/gi, el => alOrg[alOrg.indexOf(el) + 10]);
+function roundIt(n){
+  const arr = n.toString().split('.').map(el => el.split(''))
+  return arr[0].length > arr[1].length ? Math.floor(n) :
+  arr[1].length > arr[0].length ? Math.ceil(n) : Math.round(n)
 }
-console.log(moveTen("testcase"))
+console.log(roundIt(34.56))
