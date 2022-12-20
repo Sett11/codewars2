@@ -1,10 +1,6 @@
-const countDeafRats = (town) => {
-  if(town != null){
-    [left,right]=town.split('P');
-        const a=left+right.split('').reverse().join('');
-        const b=(a.match(/O~|~O/gi)||[]).filter(v=>v=='O~').length;
-         return b;
-  }
-  return 0;   
+function largest(n,xs){
+  const res = xs.sort((a, b) => b-a)
+  res.length = n
+  return res.reverse()
 }
-console.log(countDeafRats('PO~O~O~O~  O~  O~~O~OO~O~O~  O~O~O~O~O~~O~O  O~O~O~O~O~O~O~O~O~O~'));
+console.log(largest(2,[10,9,8,7,6,5,4,3,2,1]))
