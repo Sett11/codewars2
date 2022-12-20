@@ -1,6 +1,22 @@
-function newAvg(arr, newavg, count = 10) {
-  let sum = newavg * (arr.length + 1) - arr.reduce((acc, curr) => acc + curr, 0);
-  if(sum <=0) throw 'ValueError'
- return Math.round(sum)
-}
-console.log(newAvg([14, 30, 5, 7, 9, 11, 15], 92));
+const prevMultOfThree = (n) => {
+  if(n < 9){
+    return null
+  }
+  n = n.toString();
+  if(n.length === 2 && n % 3 !== 0){
+    return null
+  }
+  let val = true;
+  while (val) {
+    if (n % 9 === 0) {
+      val = false;
+      return Number(n) !== 0 ? Number(n) : null
+    }
+    if (n % 3 === 0) {
+      return Number(n) !== 0 ? Number(n) : null
+    }
+    n = n.slice(0, n.length - 1);
+  }
+  return null;
+};
+console.log(prevMultOfThree(25));
