@@ -1,3 +1,5 @@
-Math.roundTo = function (number, precision) {
-  return Number(number.toFixed(precision))
+function addExtra( listOfNumbers ){
+  listOfNumbers = listOfNumbers.slice()
+   listOfNumbers.push('1')
+  return listOfNumbers
 }
