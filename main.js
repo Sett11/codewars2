@@ -1,3 +1,6 @@
-const sumSquares = a => a.reduce((acc, curr) => acc += curr**2, 0)
-
-console.log(sumSquares([7,3,9,6,5]));
+function newAvg(arr, newavg, count = 10) {
+  let sum = newavg * (arr.length + 1) - arr.reduce((acc, curr) => acc + curr, 0);
+  if(sum <=0) throw 'ValueError'
+ return Math.round(sum)
+}
+console.log(newAvg([14, 30, 5, 7, 9, 11, 15], 92));
