@@ -1,22 +1,4 @@
-const prevMultOfThree = (n) => {
-  if(n < 9){
-    return null
-  }
-  n = n.toString();
-  if(n.length === 2 && n % 3 !== 0){
-    return null
-  }
-  let val = true;
-  while (val) {
-    if (n % 9 === 0) {
-      val = false;
-      return Number(n) !== 0 ? Number(n) : null
-    }
-    if (n % 3 === 0) {
-      return Number(n) !== 0 ? Number(n) : null
-    }
-    n = n.slice(0, n.length - 1);
-  }
-  return null;
-};
-console.log(prevMultOfThree(25));
+const head = a => a.length === 1 ? [] : a[0]
+const teil = a => a.length === 1 ? [] : a[a.length - 1]
+const init = a => a.slice(0, a.length - 1)
+const last = a => a[a.length - 1]
