@@ -1,9 +1,9 @@
-function mergeArrays(a, b) {
-  const res = [];
-  for (let i = 0; i < a.length + b.length; i++) {
-    res.push(a[i]);
-    res.push(b[i]);
+const seven = (m) => {
+  let counter = 0;
+  while (("" + m).length > 2) {
+    counter++;
+    m = Math.floor(m / 10) - (m % 10);
   }
-  return res.filter((el) => el !== undefined);
-}
-console.log(mergeArrays([1, 2, 3, 4, 5, 6, 7, 8], ["a", "b", "c", "d", "e"]));
+  return [m, counter];
+};
+console.log(seven(1021));
