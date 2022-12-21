@@ -1,5 +1,4 @@
-function NameMe(first, last) {
-    this.firstName = first;
-    this.lastName = last;
-    this.name = this.firstName + ' ' + this.lastName
-}
+String.prototype.vowel = function() {
+    const vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
+      return (/^[aeiouAEIOU]$/g).test(this);
+  };
