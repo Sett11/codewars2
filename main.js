@@ -1,1 +1,3 @@
-Object.freeze(MrFreeze)
+function reverseList(arr) {
+    return arr.reverse()
+  }
