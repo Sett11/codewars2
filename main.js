@@ -1,17 +1,12 @@
-function isIntArray(arr) {
-  return !arr
-    ? false
-    : arr.length === 0
-    ? true
-    : arr.every(
-        (el) =>
-          !Number.isNaN(el) &&
-          !!el === true &&
-          Number.isFinite(el) &&
-          Number.isSafeInteger(el)&&
-          el >-1 && Number.isInteger(el)
-      )
-    ? true
-    : false;
+function pattern(n) {
+  const arr = [];
+  for (let i = 1; i <= n; i++) {
+    arr.push(i);
+  }
+  let res = "";
+  for (let i = 1; i < arr.length; i++) {
+    res += 1 + "*".repeat(i) + arr[i] + "\n";
+  }
+  return "1\n" + res.slice(0, res.length-1)
 }
-console.log(isIntArray([1.2, 1.8, 3]));
+console.log(pattern(20));
