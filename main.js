@@ -1,11 +1,36 @@
-function unusedDigits() {
-  const arr = [...arguments].join("").split("").map(Number);
-  const res = [];
-  for (let i = 0; i < 10; i++) {
-    if (!arr.includes(i)) {
-      res.push(i);
+function mean(lst) {
+  const num = [], letter = [];
+  for (let i = 0; i < lst.length; i++) {
+    if (/[0-9]/.test(lst[i])) {
+      num.push(lst[i]);
+    } else {
+      letter.push(lst[i]);
     }
   }
-  return res.join("");
+  const res = num.map(Number).reduce((acc, curr) => acc + curr, 0);
+  return [res / num.length, letter.join("")];
 }
-console.log(unusedDigits(2015, 8, 26));
+console.log(
+  mean([
+    "u",
+    "6",
+    "d",
+    "1",
+    "i",
+    "w",
+    "6",
+    "s",
+    "t",
+    "4",
+    "a",
+    "6",
+    "g",
+    "1",
+    "2",
+    "w",
+    "8",
+    "o",
+    "2",
+    "0",
+  ])
+);
