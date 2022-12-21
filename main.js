@@ -1,16 +1,14 @@
-function freqSeq(str, sep) {
-  const arr = str.split("").reduce((acc, curr) => {
-    acc[curr] = (acc[curr] || 0) + 1;
-    return acc;
-  }, {});
-  const s = str.split("");
-  const obj = Object.entries(arr).flat(2);
-  for (let i = 0; i < s.length; i++) {
-    const gam = obj.indexOf(s[i]);
-    if (gam != -1) {
-      s[i] = obj[gam + 1];
-    }
+function binaryToString(binary) {
+  const bin = binary.split("");
+  const arr = [];
+  for (let i = 0; i < bin.length; i += 8) {
+    arr.push(bin.slice(i, i + 8));
   }
-  return s.join(sep);
+  return arr
+    .map((el) => el.join(""))
+    .map((el) => String.fromCharCode(parseInt(el, 2)))
+    .join("");
 }
-console.log(freqSeq("hello world", "-"));
+console.log(
+  binaryToString("01001011010101000100100001011000010000100101100101000101")
+);
