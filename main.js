@@ -1,16 +1,3 @@
-function vowelOne(s) {
-  return s
-    .split("")
-    .map((el) => {
-        el = el.toLowerCase()
-      if (el === "a" || el === "u" || el === "e" || el === "i" || el === "o") {
-        el = 1;
-        return el;
-      } else {
-        el = 0;
-        return el;
-      }
-    })
-    .join("");
-}
-console.log(vowelOne("aeiou, abc"));
+const searchNames = logins => logins.filter(el => el[0][el[0].length - 1] === '_')
+
+console.log(searchNames([[ "foo", "foo@foo.com" ], [ "bar_", "bar@bar.com" ]]))
