@@ -1,14 +1,8 @@
-class Cube {
-  constructor(n = 0) {
-    this.setSide(n);
-  }
+const firstLetter = str => str[0].toUpperCase()
 
-  setSide(n) {
-    if (typeof n !== "number") throw new Error("Only numbers accepted");
-    this.side = Math.abs(n);
-  }
+const isValidName = name => /[a-z]/gi.test(name)
 
-  getSide() {
-    return this.side;
-  }
-}
+const aliasGen = (fName, sName) =>
+  isValidName(fName[0]) && isValidName(sName[0])
+    ? `${firstName[firstLetter(fName)]} ${surname[firstLetter(sName)]}`
+    : 'Your name must start with a letter from A - Z.'
