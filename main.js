@@ -1,6 +1,14 @@
-function last(list) {
-  const arg = arguments[arguments.length - 1];
-  const res = list[list.length - 1];
-  return arguments.length > 1 ? arg : res || arg;
+function evenChars(string) {
+  if (string.length < 2 && string.length > 100) {
+    return "invalid string";
+  }
+  const str = string.split``;
+  const arr = [];
+  for (let i = 0; i < str.length; i++) {
+    if (i % 2 !== 0) {
+      arr.push(str[i]);
+    }
+  }
+  return arr;
 }
-console.log(last(1, "b", 3, "d", 5));
+console.log(evenChars("abcdefghijklm"));
