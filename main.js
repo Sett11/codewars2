@@ -1,9 +1,14 @@
-function isDivisible() {
-  const arg = [...arguments];
-  if (arg.length === 1) {
-    return true;
+class Cube {
+  constructor(n = 0) {
+    this.setSide(n);
   }
-  const first = arg.shift();
-  return arg.every((el) => first % el === 0);
+
+  setSide(n) {
+    if (typeof n !== "number") throw new Error("Only numbers accepted");
+    this.side = Math.abs(n);
+  }
+
+  getSide() {
+    return this.side;
+  }
 }
-console.log(isDivisible(12, 3, 4, 5));
