@@ -1,20 +1,3 @@
-function decomp(n) {
-  let obj = {};
-  for (let i = 2; i <= n; i++) {
-    let count = i;
-    for (let j = 2; count > 1; j++) {
-      while (count % j === 0) {
-        count /= j;
-        obj[j] = obj[j] + 1 || 1;
-      }
-    }
-  }
-  return Object.keys(obj)
-    .map((el) => {
-      let res = obj[el];
-      return el + (res > 1 ? "^" + res : "");
-    })
-    .join(" * ");
-}
+const solve = arr => arr.filter((el,i) => el > Math.max(...arr.slice(i+1)))
 
-console.log(decomp(22));
+console.log(solve([16,17,14,3,14,5,2]));
