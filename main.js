@@ -1,11 +1,2 @@
-function calcType(a, b, res) {
-  return a + b === res
-    ? "addition"
-    : a * b === res
-    ? "multiplication"
-    : a - b === res
-    ? "subtraction"
-    : a / b === res
-    ? "division"
-    : null;
-}
+const solve = (s,g) => s%g === 0 ? [g, s-g] : -1
+console.log(solve(12, 5))
