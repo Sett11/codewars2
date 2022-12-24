@@ -1,10 +1,9 @@
-function containAllRots(strng, arr) {
-  const ar = strng.split``
-  const newArr = ar.map((el,i) => (ar.slice(i) + ar.slice(0, i)).replace(/,/g, ''))
-  const res = []
-  for(let i = 0; i < ar.length; i++){
-    res.push(arr.includes(newArr[i]))
+Array.prototype.filter = function (func) {
+  const arr = []
+  for(let i = 0; i < this.length; i++){
+    if(func(this[i])){
+      arr.push(this[i])
+    }
   }
-  return res.every(el => el === true)
+  return arr
 }
-console.log(containAllRots("XjYABhR", ["TzYxlgfnhf", "yqVAuoLjMLy", "BhRXjYA", "YABhRXj", "hRXjYAB", "jYABhRX", "XjYABhR", "ABhRXjY"]))
