@@ -1,11 +1,10 @@
-function dominator(arr) {
-  const obj = arr.reduce((acc, curr) => {
-   acc[curr] = (acc[curr] || 0) + 1
-   return acc
-  }, {})
-  const res = Object.entries(obj).flat()
-  const max = Math.max(...res)
-  const ind = res.indexOf(max)
-  return Number(res[ind]) > (arr.length / 2) ? Number(res[ind-1]) : -1
+function containAllRots(strng, arr) {
+  const ar = strng.split``
+  const newArr = ar.map((el,i) => (ar.slice(i) + ar.slice(0, i)).replace(/,/g, ''))
+  const res = []
+  for(let i = 0; i < ar.length; i++){
+    res.push(arr.includes(newArr[i]))
+  }
+  return res.every(el => el === true)
 }
-console.log(dominator([3,4,3,2,3,1,3,3]))
+console.log(containAllRots("XjYABhR", ["TzYxlgfnhf", "yqVAuoLjMLy", "BhRXjYA", "YABhRXj", "hRXjYAB", "jYABhRX", "XjYABhR", "ABhRXjY"]))
