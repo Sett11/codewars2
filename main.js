@@ -1,11 +1,11 @@
-function Dog(name, breed, sex, age){
-  this.name  = name;
-  this.breed = breed;
-  this.sex   = sex;
-  this.age   = age;
+function dominator(arr) {
+  const obj = arr.reduce((acc, curr) => {
+   acc[curr] = (acc[curr] || 0) + 1
+   return acc
+  }, {})
+  const res = Object.entries(obj).flat()
+  const max = Math.max(...res)
+  const ind = res.indexOf(max)
+  return Number(res[ind]) > (arr.length / 2) ? Number(res[ind-1]) : -1
 }
-Dog.prototype.bark = function(){
-  return 'Woof!'
-}
-const rex = new Dog('Rex', 'tuzik', 'male', 5)
-console.log(rex.bark())
+console.log(dominator([3,4,3,2,3,1,3,3]))
