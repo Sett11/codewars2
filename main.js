@@ -1,4 +1,11 @@
-function sabb(s, val, happiness){
-  return s.replace(/[^sabticl]/g, '').length + val + happiness > 22 ? 'Sabbatical! Boom!' : 'Back to your desk, boy.'
+function Dog(name, breed, sex, age){
+  this.name  = name;
+  this.breed = breed;
+  this.sex   = sex;
+  this.age   = age;
 }
-console.log(sabb('Can I have a sabbatical?', 5, 5))
+Dog.prototype.bark = function(){
+  return 'Woof!'
+}
+const rex = new Dog('Rex', 'tuzik', 'male', 5)
+console.log(rex.bark())
