@@ -1,18 +1,17 @@
-class Guesser {
-  constructor(number, lives) {
-    this.number = number;
-    this.lives = lives;
-  }
-  
-  guess(n) {
-    if(this.lives === 0){
-      throw new Error('You dead')
-    }
-    if(n === this.number){
-      return true
-    }
-    this.lives--
-    return false;
-    
-  }
-}
+const vampire_test = (a, b) => {
+  const sum = (a * b).toString();
+  const str = (a.toString() + b.toString()).split``;
+  const obj1 = str.reduce((acc, curr) => {
+    acc[curr] = (acc[curr] || 0) + 1;
+    return acc;
+  }, {});
+  const obj2 = sum.split``.reduce((acc, curr) => {
+    acc[curr] = (acc[curr] || 0) + 1;
+    return acc;
+  }, {});
+  return (
+    Object.entries(obj1).join``.replace(/,/g, "") ===
+    Object.entries(obj2).join``.replace(/,/g, "")
+  );
+};
+console.log(vampire_test(204, 615));
