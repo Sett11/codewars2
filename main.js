@@ -3,18 +3,18 @@ function Node(data, next = null) {
   this.next = next;
 }
 
-function filter(head, p) {
+function map(head, f) {
   if(head){
-    return p(head.data) ? new Node(head.data, filter(head.next, p)): filter(head.next, p)
+    return new Node(f(head.data), map(head.next, f))
   }
   return null
 }
 console.log(
-  filter(
+  map(
     {
       data: 1,
       next: { data: 2, next: { data: 3, next: { data: 3, next: null } } },
     },
-    el => el >=2
+    el => el * 2
   )
 );
