@@ -1,9 +1,12 @@
-Array.prototype.filter = function (func) {
-  const arr = []
-  for(let i = 0; i < this.length; i++){
-    if(func(this[i])){
-      arr.push(this[i])
+function remove(string) {
+  const arr = string.split``;
+  const res = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === "!") {
+      res.push(arr[i]);
     }
   }
-  return arr
+  const str = arr.filter((el) => el !== "!");
+  return str.concat(res).join("");
 }
+console.log(remove("Hi! Hi! Hi!"));
