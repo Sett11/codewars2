@@ -1,6 +1,4 @@
-const capMe = (names) => {
-  return names.map(
-    (el) => el.charAt(0).toUpperCase() + el.slice(1).toLowerCase()
-  );
-};
-console.log(capMe(["KARLY", "DANIEL", "KELSEY"]));
+function remove (string) {
+  return string.replace(/!+([^!$])/g, '$1')
+}
+console.log(remove('!Hi!'))
