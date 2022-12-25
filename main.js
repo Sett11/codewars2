@@ -1,9 +1,5 @@
-function reverse(n) {
-  let counter = 0;
-  while (n) {
-    counter = counter * 10 + (n % 10);
-    n = Math.floor(n / 10);
-  }
-  return counter;
+function tripleX(str){
+  const first = str.indexOf('x')
+  return str[first] === 'x' && str[first + 1] === 'x' && str[first + 2] === 'x'
 }
-console.log(reverse(112));
+console.log(tripleX("kittywarmxx"));
