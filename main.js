@@ -1,10 +1,12 @@
-function findChildren(santasList, children) {
-  const arr = []
-  for(let i = 0; i < santasList.length + children.length; i++){
-    if(santasList.includes(children[i])){
-      arr.push(children[i])
-    }
+function listToArray(list) {
+  const arr = [];
+  let tmp = list;
+  while (tmp) {
+    arr.push(tmp.value);
+    tmp = tmp.next;
   }
-  return [...new Set(arr)].sort()
+  return arr;
 }
-console.log(findChildren(["Jason", "James", "Johnson"], ["Jason", "James", "JJ"]))
+console.log(
+  listToArray({ value: 1, next: { value: 2, next: { value: 3, next: null } } })
+);
