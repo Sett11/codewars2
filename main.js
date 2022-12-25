@@ -1,12 +1,18 @@
-function length(head) {
-  let tmp = head;
-  const arr = [];
-  while (tmp) {
-    arr.push(tmp.value);
-    tmp = tmp.next;
+function indexOf(head, value) {
+  let count = 0;
+  while (head) {
+    if (head.data === value) return count;
+    head = head.next;
+    count++;
   }
-  return arr.length;
+  return -1;
 }
 console.log(
-  length({ value: 1, next: { value: 2, next: { value: 3, next: null } } })
+  indexOf(
+    {
+      value: 1,
+      next: { value: 2, next: { value: 3, next: { value: 3, next: null } } },
+    },
+    3
+  )
 );
