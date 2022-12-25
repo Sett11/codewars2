@@ -1,29 +1,9 @@
-function solve(a) {
-  let odd = 0,
-    even = 0;
-  a.map(el => typeof el === 'number' && el %2===0?  even++ : typeof el === 'number' && el %2!==0? odd++:null)
-  return even - odd;
+function splitTheBill(x) {
+  const arr = Object.values(x);
+  const total = (arr.reduce((acc, curr) => acc + curr, 0) / arr.length).toFixed(2)
+  for (let k in x) {
+    x[k] = (x[k] - total).toFixed(2)
+  }
+  return x;
 }
-
-console.log(
-  solve([
-    5,
-    15,
-    16,
-    10,
-    6,
-    4,
-    16,
-    "t",
-    13,
-    "n",
-    14,
-    "k",
-    "n",
-    0,
-    "q",
-    "d",
-    7,
-    9,
-  ])
-);
+console.log(splitTheBill({ A: 40, B: 25, X: 10 }));
