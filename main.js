@@ -3,18 +3,21 @@ function Node(data, next = null) {
   this.next = next;
 }
 
-function map(head, f) {
-  if(head){
-    return new Node(f(head.data), map(head.next, f))
+function reduce(head, f, init) {
+  let count = 0, arr = [], tmp = head
+  while(tmp !== null){
+    arr.push(tmp.data)
+    tmp = tmp.next
+    count++
   }
-  return null
+  return arr.reduce(f,init)
 }
 console.log(
-  map(
+  reduce(
     {
       data: 1,
       next: { data: 2, next: { data: 3, next: { data: 3, next: null } } },
     },
-    el => el * 2
+    (a,b) => a + b, 0
   )
 );
