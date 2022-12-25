@@ -1,6 +1,10 @@
-function wordSearch(query, seq){
-  const r = new RegExp(`${query}`, 'i')
-  const res = seq.filter(el => r.test(el))
-  return res.length === 0 ? ['Empty'] : res
+
+
+function chained(a) {
+  return function (b) {
+    for (let i = 0; i < a.length; i++) {
+      b = a[i](b);
+    }
+    return b;
+  };
 }
-console.log(wordSearch("ab", ["za", "aB", "Abc", "zAB", "zbc"]));
