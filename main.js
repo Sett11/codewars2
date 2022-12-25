@@ -1,14 +1,18 @@
-function indexOf(head, value) {
-  let count = 0;
+function lastIndexOf(head, value) {
+  let count = 0,
+    curr = head,
+    arr = [];
   while (head) {
-    if (head.data === value) return count;
-    head = head.next;
-    count++;
+    if (curr !== null) {
+      arr.push(curr);
+      curr = curr.next;
+      count++;
+    }
   }
-  return -1;
+  return arr.lastIndexOf(value);
 }
 console.log(
-  indexOf(
+  lastIndexOf(
     {
       value: 1,
       next: { value: 2, next: { value: 3, next: { value: 3, next: null } } },
