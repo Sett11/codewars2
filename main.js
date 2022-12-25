@@ -1,22 +1,20 @@
-function lastIndexOf(head, value) {
+function countIf(head, p) {
   let count = 0,
     curr = head,
     arr = [];
-  while (head) {
-    if (curr !== null) {
-      arr.push(curr);
+  while (curr !== null) {
+      arr.push(curr.data);
       curr = curr.next;
       count++;
-    }
   }
-  return arr.lastIndexOf(value);
+  return arr.filter(p).length
 }
 console.log(
-  lastIndexOf(
+  countIf(
     {
-      value: 1,
-      next: { value: 2, next: { value: 3, next: { value: 3, next: null } } },
+      data: 1,
+      next: { data: 2, next: { data: 3, next: { data: 3, next: null } } },
     },
-    3
+    el => el >=2
   )
 );
