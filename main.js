@@ -1,12 +1,12 @@
-function listToArray(list) {
-  const arr = [];
-  let tmp = list;
-  while (tmp) {
-    arr.push(tmp.value);
-    tmp = tmp.next;
+const isMonotone = (arr) => {
+  if(arr.length === 0 || arr.length ===1){
+    return true
   }
-  return arr;
-}
-console.log(
-  listToArray({ value: 1, next: { value: 2, next: { value: 3, next: null } } })
-);
+  const ar = [];
+  for (let i = 0; i < arr.length; i++) {
+    ar.push(arr[i] <= arr[i + 1]);
+  }
+  ar.length = arr.length - 1;
+  return ar.every((el) => el === true);
+};
+console.log(isMonotone([1, 2, 3]));
