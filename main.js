@@ -1,28 +1,16 @@
-function anyMatch(head, p) {
-  let count = 0,
-  curr = head,
-  arr = [];
-while (curr !== null) {
-    arr.push(curr.data);
-    curr = curr.next;
-    count++;
-}
-return arr.some(p)
+function Node(data, next = null) {
+  this.data = data;
+  this.next = next;
 }
 
-function allMatch(head, p) {
-  let count = 0,
-  curr = head,
-  arr = [];
-while (curr !== null) {
-    arr.push(curr.data);
-    curr = curr.next;
-    count++;
-}
-return arr.every(p)
+function filter(head, p) {
+  if(head){
+    return p(head.data) ? new Node(head.data, filter(head.next, p)): filter(head.next, p)
+  }
+  return null
 }
 console.log(
-  countIf(
+  filter(
     {
       data: 1,
       next: { data: 2, next: { data: 3, next: { data: 3, next: null } } },
