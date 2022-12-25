@@ -1,13 +1,25 @@
-function countIf(head, p) {
+function anyMatch(head, p) {
   let count = 0,
-    curr = head,
-    arr = [];
-  while (curr !== null) {
-      arr.push(curr.data);
-      curr = curr.next;
-      count++;
-  }
-  return arr.filter(p).length
+  curr = head,
+  arr = [];
+while (curr !== null) {
+    arr.push(curr.data);
+    curr = curr.next;
+    count++;
+}
+return arr.some(p)
+}
+
+function allMatch(head, p) {
+  let count = 0,
+  curr = head,
+  arr = [];
+while (curr !== null) {
+    arr.push(curr.data);
+    curr = curr.next;
+    count++;
+}
+return arr.every(p)
 }
 console.log(
   countIf(
