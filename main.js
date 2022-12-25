@@ -1,9 +1,29 @@
-const catchSignChange = (arr) => {
-  let cou = 0;
-  arr.map((el, i, arr) =>
-    (el >= 0 && arr[i+1] < 0) || (el < 0 && arr[i+1] >= 0) ? cou++ : cou
-  );
-  return cou;
-};
+function solve(a) {
+  let odd = 0,
+    even = 0;
+  a.map(el => typeof el === 'number' && el %2===0?  even++ : typeof el === 'number' && el %2!==0? odd++:null)
+  return even - odd;
+}
 
-console.log(catchSignChange([-47, 84, -30, -11, -5, 74, 77]));
+console.log(
+  solve([
+    5,
+    15,
+    16,
+    10,
+    6,
+    4,
+    16,
+    "t",
+    13,
+    "n",
+    14,
+    "k",
+    "n",
+    0,
+    "q",
+    "d",
+    7,
+    9,
+  ])
+);
