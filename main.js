@@ -1,8 +1,4 @@
- const nextItem = (xs, item) => {
-  arr = xs[Symbol.iterator]()
-  for(let el of arr){
-    if(el == item)
-    return arr.next().value
-  }
+function closeCompare(a, b, m = 0){ 
+ return m >= Math.abs(a-b) ? 0 : a < b ? -1 : a > b ? 1: null
 }
-console.log(nextItem("testing", "t"))
+console.log(closeCompare(4,5))
