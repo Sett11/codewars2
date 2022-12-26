@@ -1,13 +1,11 @@
-const riders = stations => 
-  stations.reduce((acc,curr) => {
-    acc.totalDistance += curr
-    if(acc.totalDistance > 100){
-      acc.totalDistance = curr
-      acc.totalRiders++
-    }
-    return acc
-  },
-  { totalRiders: 1, totalDistance: 0 }
-  ).totalRiders
-
-console.log(riders([6, 24, 6, 8, 28, 8, 23, 47, 17, 29, 37, 18, 40, 49]))
+function addUsername(list) {
+  const today = new Date()
+  return list.map((el) => {
+    el.username = `${el.firstName.toLowerCase() + el.lastName.toLowerCase().replace(/\./, '') + (today.getFullYear() - el.age)}`
+    return el
+  })
+}
+console.log(addUsername([
+  { firstName: 'Emily', lastName: 'N.', country: 'Ireland', continent: 'Europe', age: 30, language: 'Ruby' },
+  { firstName: 'Nor', lastName: 'E.', country: 'Malaysia', continent: 'Asia', age: 20, language: 'Clojure' }
+]))
