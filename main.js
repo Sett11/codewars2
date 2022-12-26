@@ -1,11 +1,12 @@
-function remove(s) {
-  return s.split` `
-    .map((el) =>
-      el.indexOf("!") === el.lastIndexOf("!") && el.includes("!")
-        ? el === "&"
-        : el
-    )
-    .filter((el) => el !== false)
-    .join(" ");
+function makeValley(arr) {
+  let db = arr.slice().sort((a, b) => a - b);
+  let res = [], res2 = [];
+  for (let i = 0; i < arr.length; i++) {
+    res.push(db.pop());
+    res2.push(db.pop());
+  }
+  return (res
+    .concat(res2.sort((a, b) => a - b))
+    .filter((el) => el !== undefined))
 }
-console.log(remove("Hi! Hi Hi!! Hi!"));
+console.log(makeValley([20, 7, 6, 2]));
