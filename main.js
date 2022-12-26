@@ -1,28 +1,16 @@
-function primeFactors(n) {
-  let arr = [],
-    obj = {},
-    str = "";
-  const f = (x) => {
-    if (n > 1) {
-      for (let i = 2; i <= x; i++) {
-        if (x % i === 0) {
-          arr.push(i);
-          f(x / i);
-          return true;
-        }
+function autocomplete(input, dictionary) {
+  let arr = [];
+  let r = /[A-Z]/gi;
+  input = input.match(r).join("");
+  dictionary.forEach((el) => {
+    if (el.slice(0, input.length).toLowerCase() === input) {
+      if (arr.length <= 4) {
+        arr.push(el);
       }
-    } else {
-      return true;
     }
-  };
-  f(n);
-  arr.map((el) => {
-    obj[el] ? obj[el]++ : (obj[el] = 1);
   });
-  for (let i in obj) {
-    obj[i] == 1 && (str += "(" + i + ")");
-    obj[i] > 1 && (str += "(" + i + "**" + obj[i] + ")");
-  }
-  return str;
+  return arr;
 }
-console.log(primeFactors(7775460));
+console.log(
+  autocomplete("a)($&#i", ["airport", "airplane", "gai", "apple", "ball"])
+);
