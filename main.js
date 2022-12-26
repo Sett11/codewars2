@@ -1,8 +1,10 @@
-function replaceAll(seq, find, replace) {
-  if(typeof seq === 'string'){
-    seq = seq.split('')
-    return seq.map((el) => (el === find ? (el = replace) : (el = el))).join('')
-  }
-  return seq.map((el) => (el === find ? (el = replace) : (el = el)));
+function noRepeat(str) {
+  const arr = str.split``;
+  const res = arr.map((el) => {
+    if (arr.indexOf(el) === arr.lastIndexOf(el)) {
+      return el;
+    }
+  });
+  return res.filter((el) => el !== undefined)[0];
 }
-console.log(replaceAll([1, 2, 2], 1, 2));
+console.log(noRepeat("wxyz"));
