@@ -1,8 +1,4 @@
-function isValid(f) {
-  return f.includes(1) && f.includes(2) ? false:
-  f.includes(3) && f.includes(4) ? false:
-  f.includes(5) && !f.includes(6) ? false:
-  f.includes(6) && !f.includes(5) ? false:
-  !f.includes(7) && !f.includes(8) ? false:true
+function riders(stations) {
+  return Math.ceil(stations.reduce((acc,curr) => acc+curr,0)/100)
 }
-console.log(isValid([1,7,3, 2]))
+console.log(riders([6, 24, 6, 8, 28, 8, 23, 47, 17, 29, 37, 18, 40, 49]))
