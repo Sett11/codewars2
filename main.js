@@ -1,10 +1,3 @@
-function noRepeat(str) {
-  const arr = str.split``;
-  const res = arr.map((el) => {
-    if (arr.indexOf(el) === arr.lastIndexOf(el)) {
-      return el;
-    }
-  });
-  return res.filter((el) => el !== undefined)[0];
+function ghostBusters(building) {
+  return building.indexOf(' ') === -1 ? "You just wanted my autograph didn't you?" : building.replace(/\s/g, '')
 }
-console.log(noRepeat("wxyz"));
