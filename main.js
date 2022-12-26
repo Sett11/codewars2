@@ -1,16 +1,8 @@
-function autocomplete(input, dictionary) {
-  let arr = [];
-  let r = /[A-Z]/gi;
-  input = input.match(r).join("");
-  dictionary.forEach((el) => {
-    if (el.slice(0, input.length).toLowerCase() === input) {
-      if (arr.length <= 4) {
-        arr.push(el);
-      }
-    }
-  });
-  return arr;
+ const nextItem = (xs, item) => {
+  arr = xs[Symbol.iterator]()
+  for(let el of arr){
+    if(el == item)
+    return arr.next().value
+  }
 }
-console.log(
-  autocomplete("a)($&#i", ["airport", "airplane", "gai", "apple", "ball"])
-);
+console.log(nextItem("testing", "t"))
