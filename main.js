@@ -1,11 +1,11 @@
-function mirror(data) {
-  let newArr = data.slice().sort((a, b) => a - b);
-  let nextArr = newArr.slice();
-  let arr = [];
-  arr.push(newArr.pop());
-  arr.unshift(newArr);
-  nextArr.pop();
-  arr.push(nextArr.reverse());
-  return arr.flat(1);
+function doubleEveryOther(a) {
+  return a.map((el,i) => {
+    if(Number.isInteger(el) && i % 2 !== 0){
+      el = el * 2
+      return el
+    } else {
+      return el
+    }
+  })
 }
-console.log(mirror([-8, 42, 18, 0, -16]));
+console.log(doubleEveryOther([1,2,3,4]))
