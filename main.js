@@ -1,42 +1,12 @@
-function driver(data) {
-  let one = data[2]
-  if(one.length < 5){
-    one = one.split('')
-    for(let i = one.length; i < 5; i++){
-      one.push('9')
-    }
-    one = one.join('')
+function decode  (code, n) {
+  const arr_en = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+  const num = String(n).repeat(20).split``.map(Number)
+  for(let i = 0; i < code.length; i++){
+    code[i] -= num[i]
   }
-  if(one.length > 5){
-    one = one.split``
-    one.length = 5
-    one = one.join``
+  for(let i = 0; i <= arr_en.length + 20; i++){
+    code[i] = arr_en[code[i]-1]
   }
-  const six = data[3][data[3].length - 2]
-  let seven =  data[3].slice(3,6) === 'Jan' ? '01' : 
-  data[3].slice(3,6) === 'Feb' ? '02' : 
-  data[3].slice(3,6) === 'Mar' ? '03' : 
-  data[3].slice(3,6) === 'Apr' ? '04' : 
-  data[3].slice(3,6) === 'May' ? '05' : 
-  data[3].slice(3,6) === 'Jun' ? '06' : 
-  data[3].slice(3,6) === 'Jul' ? '07' : 
-  data[3].slice(3,6) === 'Aug' ? '08' : 
-  data[3].slice(3,6) === 'Sep' ? '09' : 
-  data[3].slice(3,6) === 'Oct' ? '10' : 
-  data[3].slice(3,6) === 'Nov' ? '11' : 
-  data[3].slice(3,6) === 'Dec' ? '12' : null
-  if(data[data.length - 1] === 'F'){
-    seven = seven.split``.map(Number)
-    seven[0] = seven[0] + 5
-    seven = seven.join``
-  }
-  const night = data[3][0] + data[3][1]
-  const eleven = data[3][data[3].length-1]
-  let twelwe = data[0][0] + data[1][0]
-  if(!data[1][0]){
-    twelwe = String(data[0][0]) + '9'
-  }
-  const last = '9AA'
-  return `${one.toUpperCase()}${six}${seven}${night}${eleven}${twelwe}${last}`
+  return code.filter(el => el).join``
 }
-console.log(driver(["Johanna","","Gibbs","13-Dec-1981","F"]))
+console.log(decode([ 14, 10, 22, 29, 6, 27, 19, 18, 6, 12, 8], 1939))
