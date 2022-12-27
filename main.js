@@ -1,7 +1,9 @@
-function highlight(code) {
-  return code.replace(/(F+)/g, '<span style="color: pink">$1</span>')
-  .replace(/(L+)/g, '<span style="color: red">$1</span>')
-  .replace(/(R+)/g, '<span style="color: green">$1</span>')
-  .replace(/(\d+)/g, '<span style="color: orange">$1</span>')
+function createArrayOfTiers(num) {
+  const arr = String(num).split``;
+  const res = [];
+  for (let i = 0; i <= arr.length; i++) {
+    res.push(arr.slice(0, i));
+  }
+  return res.map((el) => el.join``).filter((el) => el !== "");
 }
-console.log(highlight('FF3RF5LF7'));
+console.log(createArrayOfTiers(2017));
