@@ -1,7 +1,7 @@
-function golfScoreCalculator(parList, scoreList) {
-  return (
-    scoreList.split``.map(Number).reduce((acc, curr) => acc + curr, 0) -
-    parList.split``.map(Number).reduce((acc, curr) => acc + curr, 0)
-  );
+function highlight(code) {
+  return code.replace(/(F+)/g, '<span style="color: pink">$1</span>')
+  .replace(/(L+)/g, '<span style="color: red">$1</span>')
+  .replace(/(R+)/g, '<span style="color: green">$1</span>')
+  .replace(/(\d+)/g, '<span style="color: orange">$1</span>')
 }
-console.log(golfScoreCalculator("443454444344544443", "353445334534445344"));
+console.log(highlight('FF3RF5LF7'));
