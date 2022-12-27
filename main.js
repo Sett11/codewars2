@@ -1,8 +1,11 @@
-function elevatorDistance(array) {
-  const arr = [];
-  for (let i = 0; i < array.length; i++) {
-    arr.push(Math.abs(array[i] - array[i + 1]));
-  }
-  return arr.filter((el) => el).reduce((acc, curr) => acc + curr, 0);
+function mirror(data) {
+  let newArr = data.slice().sort((a, b) => a - b);
+  let nextArr = newArr.slice();
+  let arr = [];
+  arr.push(newArr.pop());
+  arr.unshift(newArr);
+  nextArr.pop();
+  arr.push(nextArr.reverse());
+  return arr.flat(1);
 }
-console.log(elevatorDistance([7, 1, 7, 1]));
+console.log(mirror([-8, 42, 18, 0, -16]));
