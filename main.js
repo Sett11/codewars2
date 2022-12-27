@@ -1,6 +1,11 @@
-function liftoff(i){
-  const res = i.sort((a, b) => b - a)
-  res.push('liftoff!')
-  return res.join` `
+function completeSeries(arr) {
+  if (arr.length !== [...new Set(arr)].length) {
+    return [0];
+  }
+  const ar = [];
+  for (let i = 0; i <= Math.max(...arr); i++) {
+    ar.push(i);
+  }
+  return ar;
 }
-console.log(liftoff([2, 8, 10, 9, 1, 3, 4, 7, 6, 5]))
+console.log(completeSeries([1, 4, 6]));
