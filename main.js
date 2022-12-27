@@ -1,9 +1,10 @@
-Array.prototype.numberOfOccurrences = function(el) {
-  const arr = []
-  for(let i = 0; i < this.length; i++){
-    if(this[i] === el){
-      arr.push(this[i])
-    }
+function howMuchWater(water, load, clothes){
+  if(load * 2 < clothes){
+    return 'Too much clothes'
   }
-  return arr.length
+  if(clothes < load){
+    return 'Not enough clothes'
+  }
+  return Number((water * 1.1 ** (clothes-load)).toFixed(2))
 }
+console.log(howMuchWater(50,15,29))
