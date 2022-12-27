@@ -1,4 +1,10 @@
-function search(budget, prices) {
-  return prices.filter(el => budget >= el).sort((a, b) => a - b).join(',')
+function sortVowels(s) {
+  return typeof s !== "string" || !s
+    ? ""
+    : s
+        .replace(/[^aiuoe]/gi, "$&|\n")
+        .replace(/[aieou]/gi, "|$&\n")
+        .replace(/\n$/, '');
 }
-  console.log(search(14, [7, 3, 23, 9, 14, 20, 7]))
+console.log(sortVowels("Codewars"));
+("C|\n|o\nd|\n|e\nw|\n|a\nr|\ns|");
