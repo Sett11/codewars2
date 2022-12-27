@@ -1,14 +1,12 @@
-function scrabbleScore(str) {
-  return str
-    .replace(/[aeioulnrst]/gi, " 1 ")
-    .replace(/[dg]/gi, " 2 ")
-    .replace(/[bcmp]/gi, " 3 ")
-    .replace(/[fhvwy]/gi, " 4 ")
-    .replace(/[k]/gi, " 5 ")
-    .replace(/[jx]/gi, " 8 ")
-    .replace(/[qz]/gi, " 10 ").split` `
-    .filter((el) => el !== "")
-    .map(Number)
-    .reduce((acc, curr) => acc + curr, 0);
+function cake(x, y){
+  return y.split``.map((el,i) => {
+    if(i % 2 === 0){
+      el = el.charCodeAt()
+      return el
+    } else{
+      el = parseInt(el, 36) - 9
+      return el
+    }
+  }).reduce((acc,curr) => acc+curr,0) > (x/100)*70 ? 'Fire!' : 'That was close!'
 }
-console.log(scrabbleScore("street"));
+console.log(cake(900, 'abcdef'))
