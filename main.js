@@ -1,9 +1,3 @@
-function createArrayOfTiers(num) {
-  const arr = String(num).split``;
-  const res = [];
-  for (let i = 0; i <= arr.length; i++) {
-    res.push(arr.slice(0, i));
-  }
-  return res.map((el) => el.join``).filter((el) => el !== "");
-}
-console.log(createArrayOfTiers(2017));
+const sortme = names =>  names.sort((a,b) => a.toLowerCase().localeCompare(b.toLowerCase()))
+
+console.log(sortme(["Hello","there","I'm","fine"]))
