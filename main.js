@@ -1,12 +1,7 @@
-function cake(x, y){
-  return y.split``.map((el,i) => {
-    if(i % 2 === 0){
-      el = el.charCodeAt()
-      return el
-    } else{
-      el = parseInt(el, 36) - 9
-      return el
-    }
-  }).reduce((acc,curr) => acc+curr,0) > (x/100)*70 ? 'Fire!' : 'That was close!'
+function golfScoreCalculator(parList, scoreList) {
+  return (
+    scoreList.split``.map(Number).reduce((acc, curr) => acc + curr, 0) -
+    parList.split``.map(Number).reduce((acc, curr) => acc + curr, 0)
+  );
 }
-console.log(cake(900, 'abcdef'))
+console.log(golfScoreCalculator("443454444344544443", "353445334534445344"));
