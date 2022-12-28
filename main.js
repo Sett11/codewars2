@@ -1,15 +1,14 @@
-function task(w, n, c) {
-  const obj = {
-    Monday: "James",
-    Tuesday: "John",
-    Wednesday: "Robert",
-    Thursday: "Michael",
-    Friday: "William",
-  };
-  return `It is ${w} today, ${
-    obj[w]
-  }, you have to work, you must spray ${n} trees and you need ${
-    n * c
-  } dollars to buy liquid`;
+function wordPattern(arr) {
+  const ar = Array.from(arr).map((el) => el.toLowerCase());
+  const set = [...new Set(ar)];
+  const res = [];
+  for (let i = 0; i < set.length; i++) {
+    res.push(set[i]);
+    res.push(i);
+  }
+  for (let i = 0; i < ar.length; i++) {
+    ar[i] = res[res.indexOf(ar[i]) + 1];
+  }
+  return ar.join`.`;
 }
-console.log(task("Wednesday", 10, 2));
+console.log(wordPattern("Hippopotomonstrosesquippedaliophobia"));
