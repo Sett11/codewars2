@@ -1,13 +1,20 @@
-function duplicates(arr) {
-  const arr1 = [],
-    arr2 = [];
-  for (let i of arr) {
-    if (!arr1.includes(i)) {
-      arr1.push(i);
-    } else {
-      arr2.push(i);
-    }
+function isValidWalk(w) {
+  if (w.length !== 10) {
+    return false;
   }
-  return [...new Set(arr2)];
+  const obj = {
+    n: 0,
+    s: 0,
+    w: 0,
+    e: 0,
+  };
+  for (let i = 0; i < w.length; i++) {
+    obj[w[i]]++;
+  }
+  if (obj["n"] !== obj["s"] || obj["w"] !== obj["e"]) {
+    return false;
+  } else {
+    return true;
+  }
 }
-console.log(duplicates([1, 2, 4, 4, 3, 3, 1, 5, 3, "5"]));
+console.log(isValidWalk(["n", "w", "s", "e", "s", "e", "n", "w", "n", "s"]));
