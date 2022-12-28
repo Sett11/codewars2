@@ -1,7 +1,3 @@
-const ballCollector = (detritus) => {
-  return {weight: detritus
-     .filter((el) => el === 58)
-     .reduce((acc, curr) => acc + curr, 0)}
-}
+const REGEXP = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{6,}$/
 
-console.log(ballCollector([58, 68, 62, 69, 58]));
+console.log((REGEXP.test('fjd3IR9')));
