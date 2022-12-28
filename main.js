@@ -1,3 +1,13 @@
-const REGEXP = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{6,}$/
-
-console.log((REGEXP.test('fjd3IR9')));
+function duplicates(arr) {
+  const arr1 = [],
+    arr2 = [];
+  for (let i of arr) {
+    if (!arr1.includes(i)) {
+      arr1.push(i);
+    } else {
+      arr2.push(i);
+    }
+  }
+  return [...new Set(arr2)];
+}
+console.log(duplicates([1, 2, 4, 4, 3, 3, 1, 5, 3, "5"]));
