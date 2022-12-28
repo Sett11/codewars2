@@ -1,12 +1,15 @@
-function filterHomogenous(a) {
-  return a
-    .filter((el) => {
-      return (
-        el.every((el) => typeof el === "number") ||
-        el.every((el) => typeof el === "string") ||
-        el.every((el) => typeof el === "object")
-      );
-    })
-    .filter((el) => el.length !== 0);
+function task(w, n, c) {
+  const obj = {
+    Monday: "James",
+    Tuesday: "John",
+    Wednesday: "Robert",
+    Thursday: "Michael",
+    Friday: "William",
+  };
+  return `It is ${w} today, ${
+    obj[w]
+  }, you have to work, you must spray ${n} trees and you need ${
+    n * c
+  } dollars to buy liquid`;
 }
-console.log(filterHomogenous([[1, 5, 4], ["a", 3, 5], ["b"], [], ["1", 2, 3]]));
+console.log(task("Wednesday", 10, 2));
