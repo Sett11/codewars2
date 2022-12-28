@@ -1,20 +1,12 @@
-function isValidWalk(w) {
-  if (w.length !== 10) {
-    return false;
-  }
-  const obj = {
-    n: 0,
-    s: 0,
-    w: 0,
-    e: 0,
-  };
-  for (let i = 0; i < w.length; i++) {
-    obj[w[i]]++;
-  }
-  if (obj["n"] !== obj["s"] || obj["w"] !== obj["e"]) {
-    return false;
-  } else {
-    return true;
-  }
+function filterHomogenous(a) {
+  return a
+    .filter((el) => {
+      return (
+        el.every((el) => typeof el === "number") ||
+        el.every((el) => typeof el === "string") ||
+        el.every((el) => typeof el === "object")
+      );
+    })
+    .filter((el) => el.length !== 0);
 }
-console.log(isValidWalk(["n", "w", "s", "e", "s", "e", "n", "w", "n", "s"]));
+console.log(filterHomogenous([[1, 5, 4], ["a", 3, 5], ["b"], [], ["1", 2, 3]]));
