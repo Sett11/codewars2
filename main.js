@@ -1,4 +1,3 @@
-function toAcronym(inp){
-  return inp.split` `.map(el => el[0].toUpperCase()).join``
+function spread(func, args) {
+  return func(...args)
 }
-console.log(toAcronym("PHP: Hypertext Preprocessor"))
