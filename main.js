@@ -1,16 +1,10 @@
-function expandedForm(num) {
-  let arr = [];
-  let indArr = [];
-  const w = ("" + num).split("").map(Number);
-  w.map((el, i) => {
-      arr.push(el);
-      indArr.push(i);
-  });
-  indArr = indArr.reverse()
-  arr = arr.map(el => [el])
-  for(let i = 0; i < arr.length; i++){
-    arr[i].push(`${'0'.repeat(indArr[i])}`)
-  }
-  return arr.filter(el => el[0] !== 0).map(el => el.reduce((acc,curr) => acc+curr,'')).join` + `
+function mirror(t) {
+  let s = Math.max(...t.split` `.map((el) => el.length)) + 4,
+    s1 = s - 4;
+  let arr = t.split` `.map(
+    (el) =>
+      "\n* " + el.split(``).reverse().join`` + " ".repeat(s1 - el.length) + " *\n"
+  ).join``.replace(/\*\n\n\*/g, "*\n*");
+  return "*".repeat(s) + arr + "*".repeat(s);
 }
-console.log(expandedForm(70304));
+console.log(mirror("nfstvbq lei aw"));
