@@ -1,11 +1,6 @@
-function rotate(str) {
-  if(!str){
-    return []
-  }
-  const res = str.split``.map((el, i, arr) =>
-    (arr.slice(i) + arr.slice(0, i)).replace(/,/g, "")
-  );
-  res.push(res.shift())
-  return res
+function multiple(x) {
+  return x % 3 === 0 && x % 5 === 0 ? 'BangBoom' :
+  x % 3 === 0 && x % 5 !== 0 ? 'Bang' :
+  x % 5 === 0 && x % 3 !== 0 ? 'Boom': 'Miss'
 }
-console.log(rotate("Hello"));
+console.log(multiple(30))
