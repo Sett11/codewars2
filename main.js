@@ -1,10 +1,11 @@
-function mirror(t) {
-  let s = Math.max(...t.split` `.map((el) => el.length)) + 4,
-    s1 = s - 4;
-  let arr = t.split` `.map(
-    (el) =>
-      "\n* " + el.split(``).reverse().join`` + " ".repeat(s1 - el.length) + " *\n"
-  ).join``.replace(/\*\n\n\*/g, "*\n*");
-  return "*".repeat(s) + arr + "*".repeat(s);
+function rotate(str) {
+  if(!str){
+    return []
+  }
+  const res = str.split``.map((el, i, arr) =>
+    (arr.slice(i) + arr.slice(0, i)).replace(/,/g, "")
+  );
+  res.push(res.shift())
+  return res
 }
-console.log(mirror("nfstvbq lei aw"));
+console.log(rotate("Hello"));
