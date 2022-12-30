@@ -1,12 +1,15 @@
-function cache(func) {
-  const cash = {};
-  return (...args) => {
-    const key = JSON.stringify(args);
-    if (!(key in cash)) {
-      const res = func.apply(null, args);
-      cash[key] = res;
-    }
-    return cash[key];
-  };
+function diagonalSum(matrix) {
+  let sum = null;
+  matrix.map((el, i) => {
+    sum += el[i];
+  });
+  return sum;
 }
-console.log(cache());
+console.log(
+  diagonalSum([
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [9, 10, 11, 12],
+    [13, 14, 15, 16],
+  ])
+);
