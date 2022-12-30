@@ -1,6 +1,16 @@
-function cutIt(arr){
-    const res = []
-     arr.map(el => res.push(el.length))
-     return arr.map(el => el.slice(0, Math.min(...res)))
-  }
-  console.log(cutIt(["abc","defgh","ijklmn"]))
+function bald(x) {
+  const arr = [];
+  x.split``.map((el) => (el === "/" ? arr.push(el) : null));
+  const res =
+    arr.length === 0
+      ? "Clean!"
+      : arr.length === 1
+      ? "Unicorn!"
+      : arr.length === 2
+      ? "Homer!"
+      : arr.length > 2 && arr.length < 6
+      ? "Careless!"
+      : "Hobo!";
+  return [x.replace(/\//g, "-"), res];
+}
+console.log(bald("--/--/---/-/---"));
