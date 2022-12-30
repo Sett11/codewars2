@@ -1,16 +1,16 @@
-function bald(x) {
-  const arr = [];
-  x.split``.map((el) => (el === "/" ? arr.push(el) : null));
-  const res =
-    arr.length === 0
-      ? "Clean!"
-      : arr.length === 1
-      ? "Unicorn!"
-      : arr.length === 2
-      ? "Homer!"
-      : arr.length > 2 && arr.length < 6
-      ? "Careless!"
-      : "Hobo!";
-  return [x.replace(/\//g, "-"), res];
+function pattern(n){
+    if(n === q){
+        return '1'
+    }
+    const arr = [], res = []
+    let cou = n
+    while(cou > 0){
+        arr.push(cou)
+        cou--
+    }
+    for(let i = 1; i <= arr.length; i++){
+        res.push(arr.slice(0, i) + '\n')
+    }
+    return res.map(el => el.split``.reverse().join``).reverse().join('').replace(/,/g, '').replace(/\n$/,'')
 }
-console.log(bald("--/--/---/-/---"));
+console.log(pattern(5))
