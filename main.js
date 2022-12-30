@@ -1,32 +1,6 @@
-function meeting(x, need) {
-  if (need === 0) {
-    return "Game On";
-  }
-  const res = x.map(([x, y]) => Math.max(...[y - x.length, 0]));
-  let sum = res.reduce((acc, curr) => acc + curr, 0);
-  if (sum < need) {
-    return "Not enough!";
-  }
-  sum = 0;
-  const arr = [];
-  while (sum < need) {
-    tmp = res.shift();
-    sum += tmp;
-    arr.push(tmp);
-  }
-  arr[arr.length - 1] -= sum - need;
-  return arr;
+function repeats(arr){
+    let sum = null
+    arr.map((el,i,arr) => arr.indexOf(el) === arr.lastIndexOf(el) ? sum += el: null)
+    return sum
 }
-console.log(
-  meeting(
-    [
-      ["XXX", 1],
-      ["XXXXXX", 6],
-      ["X", 2],
-      ["XXXXXX", 8],
-      ["X", 3],
-      ["XXX", 1],
-    ],
-    5
-  )
-);
+console.log(repeats([5, 17, 18, 11, 13, 18, 11, 13]))
