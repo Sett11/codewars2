@@ -1,14 +1,4 @@
-function solve(a, b) {
-  while(a >= (b*2) || b >= (a*2)){
-    if(a === 0 || b === 0){
-        return [a,b]
-    } else if(a >= b*2){
-        a = a%(b*2)
-    } else if(b >= (a*2)){
-        b  =b% (a*2)
-    }
+const sumSquareEvenRootOdd = ns => {
+    return parseFloat((ns.map(el => el % 2 === 0 ? el**2 : Math.sqrt(el)).reduce((acc,curr) => acc+curr,0)).toFixed(2))
   }
-  return [a,b]
-}
-
-console.log(solve(2, 10));
+  console.log(sumSquareEvenRootOdd([1,14,9,8,17,21]))
