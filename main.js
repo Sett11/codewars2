@@ -1,10 +1,16 @@
-function geometricSequenceElements(a, r, n) {
-  const arr = [];
-  arr.push(a);
-  arr.push(a * r);
-  while (arr.length < n) {
-    arr.push(arr.reduce((acc) => acc * r, a));
-  }
-  return arr.join(", ");
+function scoreboard(s) {
+  s = s
+    .replace(/nil/g, "0")
+    .replace(/one/g, "1")
+    .replace(/two/g, "2")
+    .replace(/three/g, "3")
+    .replace(/four/g, "4")
+    .replace(/five/g, "5")
+    .replace(/six/g, "6")
+    .replace(/seven/g, "7")
+    .replace(/eight/g, "8")
+    .replace(/nine/g, "9")
+    .replace(/\D/g, "");
+  return s.split``.map(Number);
 }
-console.log(geometricSequenceElements(1, -2, 10));
+console.log(scoreboard("The score is four nil"));
