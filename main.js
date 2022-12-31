@@ -1,4 +1,11 @@
-function sortByBit(arr) {
-  return arr.sort((a,b) => a.toString(2).replace(/0/g, '') - b.toString(2).replace(/0/g, '') || a - b)
+function moreZeros(s) {
+  return [
+    ...new Set(
+      s.split``
+        .map((el) => el.charCodeAt().toString(2))
+        .filter((el) => el.replace(/1/g, "").length >= 4)
+        .map((el) => String.fromCharCode(parseInt(el, 2)))
+    ),
+  ];
 }
-console.log(sortByBit([3, 8, 3, 6, 5, 7, 9, 1]))
+console.log(moreZeros("abcdeabcde"));
