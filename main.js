@@ -1,13 +1,17 @@
-class Dictionary {
-  constructor() {
-    this.obj = {};
+const bigToSmall = (arr) => {
+  const res = [];
+  for (let i = 0, j = 1; i < arr.length, j <= arr.length; i++, j++) {
+    res.push(...arr[i]);
   }
+  return res.sort((a, b) => b - a).join`>`;
+};
 
-  newEntry(key, value) {
-    return this.obj[key] = value;
-  }
-
-  look(key) {
-    return this.obj[key] || `Can\'t find entry for ${key}`;
-  }
-}
+console.log(
+  bigToSmall([
+    [13, 2, 24],
+    [10],
+    [45, 12, 13, 20, 7, 1],
+    [37, 34, 43, 16, 44, 47],
+    [22],
+  ])
+);
