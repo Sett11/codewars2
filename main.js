@@ -1,3 +1,6 @@
-const wordToBin = str => str.split``.map(el => '0' + (el.charCodeAt()).toString(2))
-
-console.log(wordToBin('AB'))
+class Ghost {
+  constructor(){
+    const arr = ["white", "yellow", "purple", "red"]
+    this.color = arr[Math.floor(Math.random() * 5)]
+  }
+};
