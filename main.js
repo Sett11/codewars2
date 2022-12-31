@@ -1,11 +1,7 @@
-function solve(s) {
-  s = s.split``;
-  const arr = [];
-  for (let i = 0; i < s.length; i++) {
-    if (s[i] === s[i + 1]) {
-      arr.push(s[i + 1]);
-    }
-  }
-  return arr.length;
+function initials(n){
+  n = n.split` `
+  let arr = []
+  arr.push(n.pop())
+  return (n.map(el => el.charAt(0).toUpperCase() + '.') + arr.map(el => el.charAt(0).toUpperCase() + el.slice(1))).replace(/,/g, '')
 }
-console.log(solve("RRRRGGGGBBBB"));
+console.log(initials('Barack Hussain obama'))
