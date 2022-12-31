@@ -1,4 +1,11 @@
-function calculate(s) {
-  return eval(s.replace(/loses/g, '-').replace(/gains/g, '+').replace(/[^0-9-+]/g, ''))
+function solve(s) {
+  s = s.split``;
+  const arr = [];
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === s[i + 1]) {
+      arr.push(s[i + 1]);
+    }
+  }
+  return arr.length;
 }
-console.log(calculate("Panda has 48 apples and loses 4"))
+console.log(solve("RRRRGGGGBBBB"));
