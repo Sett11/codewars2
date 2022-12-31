@@ -1,3 +1,3 @@
-const singleDigit = n => n < 10 ? n : singleDigit(n.toString(2).split``.map(Number).reduce((acc, curr) => acc + curr, 0))
+const wordToBin = str => str.split``.map(el => '0' + (el.charCodeAt()).toString(2))
 
-console.log(singleDigit(567448));
+console.log(wordToBin('AB'))
