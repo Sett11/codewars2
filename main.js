@@ -1,11 +1,3 @@
-function moreZeros(s) {
-  return [
-    ...new Set(
-      s.split``
-        .map((el) => el.charCodeAt().toString(2))
-        .filter((el) => el.replace(/1/g, "").length >= 4)
-        .map((el) => String.fromCharCode(parseInt(el, 2)))
-    ),
-  ];
-}
-console.log(moreZeros("abcdeabcde"));
+const singleDigit = n => n < 10 ? n : singleDigit(n.toString(2).split``.map(Number).reduce((acc, curr) => acc + curr, 0))
+
+console.log(singleDigit(567448));
