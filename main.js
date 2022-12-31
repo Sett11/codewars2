@@ -1,11 +1,4 @@
-function trouble(x, t) {
-  for (let i = 0; i < x.length; i++) {
-    if (x[i] + x[i + 1] === t) {
-      x.splice(i + 1, 1);
-      i--;
-    }
-  }
-  return x;
+function sortByBit(arr) {
+  return arr.sort((a,b) => a.toString(2).replace(/0/g, '') - b.toString(2).replace(/0/g, '') || a - b)
 }
-
-console.log(trouble([4, 1, 1, 1, 4], 2));
+console.log(sortByBit([3, 8, 3, 6, 5, 7, 9, 1]))
