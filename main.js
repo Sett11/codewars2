@@ -1,35 +1,13 @@
-function whoseBicycle(diary1, diary2, diary3) {
-  const ageTable = {
-    'firstSonAge': 14,
-    'secondSonAge': 9,
-    'thirdSonAge': 8
+function sumOrProduct(a, n) {
+  const arr1 = [],
+    arr2 = [];
+  a = a.sort((a, b) => a - b);
+  for (let i = 0; i < n; i++) {
+    arr1.push(a[i]);
+    arr2.push(a[a.length - i-1]);
   }
-  const db = [Object.values(diary1), Object.values(diary2), Object.values(diary3)].map(el => el.reduce((acc,curr) => acc+curr,0))
-  let gam = db.lastIndexOf(Math.max(...db))
-  return `I need to buy a bicycle for my ${gam === 0 ? 'first' : gam === 1 ? 'second' : 'third'} son.`
+  const sum1 = arr1.reduce((acc, curr) => acc * curr)
+  const sum2 = arr2.reduce((acc, curr) => acc + curr)
+  return sum1 > sum2 ? 'product' : sum1 < sum2 ? 'sum' : 'same'
 }
-
-
-
-
-console.log(whoseBicycle({
-  'algebra': 6,
-  'history': 7,
-  'physics': 8,
-  'geography': 9,
-  'chemistry': 5
-},
-{
-  'algebra':6,
-  'history': 7,
-  'physics': 8,
-  'geography': 9,
-  'chemistry': 10
-},
-{
-  'algebra': 6,
-  'history': 7,
-  'physics': 8,
-  'geography': 9,
-  'chemistry': 10
-}))
+console.log(sumOrProduct([10, 20, 3, 30, 5, 4], 3));
