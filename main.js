@@ -1,8 +1,11 @@
-function ArithmeticSequenceSum(a, r, n) {
-  const arr = [a];
-  while (arr.length < n) {
-    arr.push(arr.reduce((acc, curr) => acc + r, a));
+function firstNonRepeated(s) {
+  s = s.split``;
+  const arr = [];
+  for (let i = 0; i < s.length; i++) {
+    if (s.indexOf(s[i]) === s.lastIndexOf(s[i])) {
+      arr.push(s[i]);
+    }
   }
-  return arr.reduce((acc, curr) => acc + curr, 0);
+  return arr.length === s.length ? arr[0] : arr.length === 0 ? null : arr[0];
 }
-console.log(ArithmeticSequenceSum(2, 2, 10));
+console.log(firstNonRepeated("teeter"));
