@@ -1,8 +1,11 @@
-function stringBreakers(n, s) {
-  (s = s.replace(/\s/g, "").split``), (arr = []);
-  for (let i = 0; i < s.length; i += n) {
-    arr.push(s.slice(i, i + n));
-  }
-  return arr.map((el) => "\n" + el.join``).join``.replace(/\n/, "");
+function moveVowel(inp) {
+  const arr = [];
+  inp.split``.map((el) =>
+    el === "a" || el === "i" || el === "e" || el === "o" || el === "u"
+      ? arr.push(el)
+      : el
+  );
+  inp = inp.replace(/a|i|e|o|u/g, "");
+  return inp + arr.join``;
 }
-console.log(stringBreakers(5, "This is an example string"));
+console.log(moveVowel("apple"));
