@@ -1,6 +1,13 @@
-function findNextSquare(sq) {
-  let min = Math.sqrt(sq)
-  if(!Number.isInteger(min)) return -1
-  return (min+1)**2 
+function alphabetWar(f){
+   const left = f.split``.map(el => {
+    return el === 'w' ? 4 : el === 'p' ? 3 :
+    el === 'b' ? 2 : el === 's' ? 1 : 0
+   }).reduce((acc,curr) => acc+curr,0)
+   const right = f.split``.map(el => {
+    return el === 'm' ? 4 : el === 'q' ? 3 :
+    el === 'd' ? 2 : el === 'z' ? 1 : 0
+   }).reduce((acc,curr) => acc+curr,0)
+   return left > right ? "Left side wins!" :
+    right > left ? "Right side wins!" : "Let's fight again!"
 }
-console.log(findNextSquare(625))
+console.log(alphabetWar("zdqmwpbs"))
