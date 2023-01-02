@@ -1,12 +1,8 @@
-function howManyGifts(m, g) {
-  if (m === 0) return 0;
-  g.sort((a, b) => a - b);
-  if (g.reduce((acc, curr) => acc + curr, 0) <= m) {
-    return g.length;
+function stringBreakers(n, s) {
+  (s = s.replace(/\s/g, "").split``), (arr = []);
+  for (let i = 0; i < s.length; i += n) {
+    arr.push(s.slice(i, i + n));
   }
-  while (g.reduce((acc, curr) => acc + curr, 0) > m) {
-    g.pop();
-  }
-  return g.length;
+  return arr.map((el) => "\n" + el.join``).join``.replace(/\n/, "");
 }
-console.log(howManyGifts(20, [13, 2, 1, 1, 1, 1, 4, 6, 1]));
+console.log(stringBreakers(5, "This is an example string"));
