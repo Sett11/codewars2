@@ -1,8 +1,3 @@
-function randomCase(x) {
-  return x.split``.map((el) => {
-    const arr = [el.toLowerCase(), el.toUpperCase()]
-    let counter = arr[Math.floor(Math.random() * 2)]
-    return counter
-  }).join``
+function chain(input, fs) {
+  return fs.reduce((input,curr) => curr(input), input)
 }
-console.log(randomCase("Donec eleifend cursus lobortis"))
