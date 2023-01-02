@@ -1,11 +1,21 @@
-function firstNonRepeated(s) {
-  s = s.split``;
-  const arr = [];
-  for (let i = 0; i < s.length; i++) {
-    if (s.indexOf(s[i]) === s.lastIndexOf(s[i])) {
-      arr.push(s[i]);
+function List() {
+  this.countSpecDigits = function (id, d) {
+    id = id.join``.replace(/-/g, "").split``.map(Number);
+    const set = new Set(d);
+    const newD = d.map((el) => [el, []]);
+    for (let i = 0; i < id.length; i++) {
+      for (let j = 0; j < newD.length; j++) {
+        if (id[i] === newD[j][0]) {
+          newD[j][1].push(id[i]);
+        }
+      }
     }
-  }
-  return arr.length === s.length ? arr[0] : arr.length === 0 ? null : arr[0];
+    for (let i = 0; i < newD.length; i++) {
+      newD[i][1] = newD[i][1].length;
+    }
+    return newD;
+  };
 }
-console.log(firstNonRepeated("teeter"));
+const l = new List();
+
+console.log(l.countSpecDigits([], [1, 8, 4]));
