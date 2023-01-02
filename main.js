@@ -1,21 +1,12 @@
-function List() {
-  this.countSpecDigits = function (id, d) {
-    id = id.join``.replace(/-/g, "").split``.map(Number);
-    const set = new Set(d);
-    const newD = d.map((el) => [el, []]);
-    for (let i = 0; i < id.length; i++) {
-      for (let j = 0; j < newD.length; j++) {
-        if (id[i] === newD[j][0]) {
-          newD[j][1].push(id[i]);
-        }
-      }
-    }
-    for (let i = 0; i < newD.length; i++) {
-      newD[i][1] = newD[i][1].length;
-    }
-    return newD;
-  };
+function howManyGifts(m, g) {
+  if (m === 0) return 0;
+  g.sort((a, b) => a - b);
+  if (g.reduce((acc, curr) => acc + curr, 0) <= m) {
+    return g.length;
+  }
+  while (g.reduce((acc, curr) => acc + curr, 0) > m) {
+    g.pop();
+  }
+  return g.length;
 }
-const l = new List();
-
-console.log(l.countSpecDigits([], [1, 8, 4]));
+console.log(howManyGifts(20, [13, 2, 1, 1, 1, 1, 4, 6, 1]));
