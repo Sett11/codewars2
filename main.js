@@ -1,10 +1,13 @@
-function blackOrWhiteKey(k) {
-  if(k > 88){
-    k = k % 88
+function change(s){
+    s = s.replace(/\W/g, '').toLowerCase().split``
+    const arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    for(let i = 0; i < arr.length; i++){
+        if(s.indexOf(arr[i]) !== -1){
+            arr[i] = 1
+        } else{
+            arr[i] = 0
+        }
+    }
+    return arr.join``
   }
-  if(k === 2 || k === 5 || k === 7 || k === 10 || k === 12 || k === 14 || k === 17 || k === 19 || k === 22 || k === 24 || k === 26 || k === 29 || k === 31 || k === 34 || k === 36 || k === 38 || k === 41 || k === 43 || k === 46 || k === 48 || k === 50 || k === 53 || k === 55 || k === 58 || k === 60 || k === 62 ||k === 65 || k === 67 || k === 70 || k === 72 || k === 74 || k === 77 || k === 79 || k === 82 || k === 84 || k === 86){
-    return 'black'
-  }
-  return 'white'
-}
-console.log(blackOrWhiteKey(2017))
+  console.log(change("a **&  bZ"))
