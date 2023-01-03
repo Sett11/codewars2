@@ -1,4 +1,8 @@
-function gap(n) {
-    return Math.max(...(n).toString(2).match(/1.+1/g).join``.replace(/1/g, ' ').split` `.map(el => el.length))
+function scramble(str, arr) {
+  arr = arr.map(el => [el])
+  for(let i = 0; i < arr.length; i++){
+    arr[i].push(str[i])
+  }
+  return arr.sort((a,b) => a[0] - b[0]).map(el => el[1]).join``
 }
-console.log(gap(529))
+console.log(scramble('bskl5', [2,1,4,3,0]))
