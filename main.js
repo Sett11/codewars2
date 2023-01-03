@@ -1,22 +1,13 @@
-function gcdi(x,y) {
-    return b ? gcdi(b, a % b) : Math.abs(a)
+function createSecretHolder(secret) {
+    return {
+        getSecret: function(){
+            return secret
+        },
+        setSecret: function(arg){
+            secret = arg
+        }
+    }
 }
-function lcmu(a, b) {
-    return Math.abs(a * b) / gcdi(a,b)
-}
-function som(a, b) {
-    return a + b
-}
-function maxi(a, b) {
-    return Math.max(a,b)
-}
-function mini(a, b) {
-    return Math.min(a,b)
-}
-function operArray(fct, arr, init) {
-    return arr.map(el => {
-        init = fct(init, el)
-        return init
-    })
-}
-console.log(operArray(maxi, [ 18, 69, 69, 69, 69, 69 ], 18))
+const obj = createSecretHolder(5)
+obj.setSecret(7)
+console.log(obj.getSecret())
