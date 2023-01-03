@@ -1,13 +1,22 @@
-function change(s){
-    s = s.replace(/\W/g, '').toLowerCase().split``
-    const arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-    for(let i = 0; i < arr.length; i++){
-        if(s.indexOf(arr[i]) !== -1){
-            arr[i] = 1
-        } else{
-            arr[i] = 0
-        }
-    }
-    return arr.join``
-  }
-  console.log(change("a **&  bZ"))
+function gcdi(x,y) {
+    return b ? gcdi(b, a % b) : Math.abs(a)
+}
+function lcmu(a, b) {
+    return Math.abs(a * b) / gcdi(a,b)
+}
+function som(a, b) {
+    return a + b
+}
+function maxi(a, b) {
+    return Math.max(a,b)
+}
+function mini(a, b) {
+    return Math.min(a,b)
+}
+function operArray(fct, arr, init) {
+    return arr.map(el => {
+        init = fct(init, el)
+        return init
+    })
+}
+console.log(operArray(maxi, [ 18, 69, 69, 69, 69, 69 ], 18))
