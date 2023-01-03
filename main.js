@@ -1,6 +1,19 @@
-function reverseAndMirror(s1,s2) {
-    s2 = s2.split``.reverse().map(el => el === el.toUpperCase() ? el.toLowerCase(): el.toUpperCase()).join``
-    s1 = s1.split``.reverse().map(el => el === el.toUpperCase() ? el.toLowerCase(): el.toUpperCase()).join``
-    return `${s2}@@@${s1}${s1.split``.reverse().join``}`
+const intDiff = (arr, n) => {
+  let cou = 0;
+  if (n === 0) {
+    for (let i = 0; i < arr.length; i++) {
+      for (let j = i + 1; j < arr.length; j++) {
+        if (Math.abs(arr[j] - arr[i]) === n) {
+          cou++;
+        }
+      }
+    }
+  } else{
+    for (let i = 0; i < arr.length; i++) {
+        let tmp = arr[i];
+        arr.map((el, ind) => (el - tmp === n && ind !== i ? cou++ : null));
+      }
   }
-  console.log(reverseAndMirror("FizZ", "buZZ"))
+  return cou;
+};
+console.log(intDiff([1, 1, 3, 3], 2));
