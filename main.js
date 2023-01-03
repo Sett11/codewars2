@@ -1,26 +1,19 @@
-function solve(a, b) {
-    const f = (x) => {
-        if(x===0||x===1) {
-            return false
-        }
-        if(x===2){
-            return true
-        }
-        else{
-            for(let i = 2; i < x; i++){
-                if(x%i===0){
-                    return false
-                }
-            }
-        }
-        return true
+function minimumSum(values, n) {
+    if(values.length === 0||n===0){
+      return 0
     }
-  const arr = []
-  for(let i = 1; i <= b; i++){
-    if(b % i === 0 && f(i)){
-        arr.push(i)
+       const arr = values.slice().sort((a,b) => a - b)
+       arr.length = n
+       return arr.reduce((acc,curr) => acc+curr,0)
     }
-  }
-  return arr.every(el => a % el === 0)
-}
-console.log(solve(2,253));
+    
+    function maximumSum(values, n) {
+       if(values.length === 0||n===0){
+      return 0
+    }
+      const arr = values.slice().sort((a,b) => b - a)
+       arr.length = n
+       return arr.reduce((acc,curr) => acc+curr,0)
+    }
+  console.log(minimumSum([5, 4, 3, 2, 1], 2))
+  console.log(maximumSum([5, 4, 3, 2, 1], 8))
