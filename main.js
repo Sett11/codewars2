@@ -1,8 +1,21 @@
-function scramble(str, arr) {
-  arr = arr.map(el => [el])
-  for(let i = 0; i < arr.length; i++){
-    arr[i].push(str[i])
-  }
-  return arr.sort((a,b) => a[0] - b[0]).map(el => el[1]).join``
+function total(arr){
+    for(let i = 0; i < arr.length; i++){
+        if(i === 0 || i === 1){
+            arr[i] = 0
+        }
+        if(i === 2){
+            continue
+        }
+        else{
+            for(let j = 2; j < i; j++){
+                if(i % j === 0){
+                    arr[i] = 0
+                } else{
+                    continue
+                }
+            }
+        }
+    }
+    return arr.reduce((acc,curr) => acc+curr,0)
 }
-console.log(scramble('bskl5', [2,1,4,3,0]))
+console.log(total([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]))
