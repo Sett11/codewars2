@@ -1,28 +1,15 @@
-function daysRepresented(trips) {
-    const res = []
-  const arr = trips
-    .map((el) => [el, []])
-    .map((el) => {
-      if (el[0][1] > el[0][0]) {
-        for (let i = el[0][0]; i <= el[0][1]; i++) {
-          el[1].push(i);
-        }
-      }
-      return el;
-    })
-    .map((el) => el[1]).map(el=>{
-        for(let i = 0; i < el.length; i++){
-            res.push(el[i])
-        }
-    })
-  return [...new Set(res)].length
+function solve(a, b) {
+  let totalA = 0, totalB = 0
+  for(let i = 0; i < a.length; i++){
+    if(a[i] > b[i]){
+        totalA+=1
+    }
+    if(b[i] > a[i]){
+        totalB+=1
+    }
+  }
+  const res = `${totalA}, ${totalB}`
+  return totalA === totalB ? `${res}: that looks like a "draw"! Rock on!` :
+  totalA > totalB ? `${res}: Alice made "Kurt" proud!` : `${res}: Bob made "Jeff" proud!`
 }
-
-console.log(
-  daysRepresented([ [ 54, 93 ],
-    [ 8, 43 ],
-    [ 101, 128 ],
-    [ 17, 27 ],
-    [ 171, 180 ],
-    [ 210, 220 ] ])
-);
+console.log(solve([25, 50, 22], [34, 49, 50]))
