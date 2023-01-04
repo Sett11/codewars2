@@ -1,6 +1,24 @@
-function inverseSlice(items, a, b) {
-  const str = items.slice(a,b).join` `
-  const r = new RegExp(`${str}`)
-  return items.join` `.replace(r, '').split` `.filter(el => el !== '').map(el => Number(el) === Number(el) ? Number(el) : el)
+function solve(s, k){
+  let str = 'abcdefghijklmnopqrstuvwxyz'.split``
+  const arr = []
+  for(let i = 0; i < str.length; i++){
+    if(s.indexOf(str[i]) !== -1){
+      arr.push(s.indexOf(str[i]))
+    } else{
+      str[i] = 0
+    }
+  }
+  str = str.filter(el => el !== 0)
+  let cou = 0
+  let counter = 0
+  while(cou < k){
+    let r = new RegExp(`${str[counter]}`)
+    s = s.replace(r, '')
+    if(s.indexOf(str[counter]) === -1){
+      counter++
+    }
+    cou++
+  }
+  return s
 }
-console.log(inverseSlice(['Intuition', 'is', 'a', 'poor', 'guide', 'when', 'facing', 'probabilistic', 'evidence'], 5, 13))
+console.log(solve('abracadabra', 6))
