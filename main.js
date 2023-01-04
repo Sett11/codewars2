@@ -1,24 +1,19 @@
-function solve(s, k){
-  let str = 'abcdefghijklmnopqrstuvwxyz'.split``
-  const arr = []
-  for(let i = 0; i < str.length; i++){
-    if(s.indexOf(str[i]) !== -1){
-      arr.push(s.indexOf(str[i]))
-    } else{
-      str[i] = 0
-    }
+function iTri(s){
+  if(s === 0) return 'Starting Line... Good Luck!'
+  if(s <= 2.40){
+    return {'Swim':`${(140.60 - s).toFixed(2)} to go!`}
   }
-  str = str.filter(el => el !== 0)
-  let cou = 0
-  let counter = 0
-  while(cou < k){
-    let r = new RegExp(`${str[counter]}`)
-    s = s.replace(r, '')
-    if(s.indexOf(str[counter]) === -1){
-      counter++
-    }
-    cou++
+  if(s > 2.40 && s <= 114.40){
+    return {'Bike':`${(140.60 - s).toFixed(2)} to go!`}
   }
-  return s
+  if(s > 114.40 && s < 130.60){
+    return {'Run':`${(140.60 - s).toFixed(2)} to go!`}
+  }
+  if(s > 130.60 && s < 140.60){
+    return {'Run':'Nearly there!'}
+  }
+  else{
+    return "You're done! Stop running!"
+  }
 }
-console.log(solve('abracadabra', 6))
+console.log(iTri(150))
