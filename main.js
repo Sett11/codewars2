@@ -1,11 +1,9 @@
-function bitsBattle(n) {
-  const odds = [], evens = []
-  const bits = n
-    .filter((el) => el !== 0)
-    .map((el) => [el, el.toString(2)])
-    .map((el) =>
-      el[0] % 2 === 0 ? el[1].replace(/1/g, "") : el[1].replace(/0/g, "")
-    ).join``.split``.map(el => el === '0' ? evens.push(el) : odds.push(el))
-    return evens.length > odds.length ? 'evens win' : odds.length > evens.length ? 'odds win' : 'tie'
+function matchArrays(v,r){
+  let counter = 0
+  for(let i = 0; i < v.length; i++){
+    if(r.indexOf(v[i]) !== -1){
+      counter += 1
+    }
+  }
+  return counter
 }
-console.log(bitsBattle([1,13,16]));
