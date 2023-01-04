@@ -1,19 +1,11 @@
-function iTri(s){
-  if(s === 0) return 'Starting Line... Good Luck!'
-  if(s <= 2.40){
-    return {'Swim':`${(140.60 - s).toFixed(2)} to go!`}
-  }
-  if(s > 2.40 && s <= 114.40){
-    return {'Bike':`${(140.60 - s).toFixed(2)} to go!`}
-  }
-  if(s > 114.40 && s < 130.60){
-    return {'Run':`${(140.60 - s).toFixed(2)} to go!`}
-  }
-  if(s > 130.60 && s < 140.60){
-    return {'Run':'Nearly there!'}
-  }
-  else{
-    return "You're done! Stop running!"
-  }
+function bitsBattle(n) {
+  const odds = [], evens = []
+  const bits = n
+    .filter((el) => el !== 0)
+    .map((el) => [el, el.toString(2)])
+    .map((el) =>
+      el[0] % 2 === 0 ? el[1].replace(/1/g, "") : el[1].replace(/0/g, "")
+    ).join``.split``.map(el => el === '0' ? evens.push(el) : odds.push(el))
+    return evens.length > odds.length ? 'evens win' : odds.length > evens.length ? 'odds win' : 'tie'
 }
-console.log(iTri(150))
+console.log(bitsBattle([1,13,16]));
