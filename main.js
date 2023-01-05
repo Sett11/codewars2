@@ -1,21 +1,7 @@
-function listSquared(m, n) {
-  const arr = []
-  for(let i = m; i <= n; i++){
-    arr.push(i)
+const shuffleIt = (arr,...arg) => {
+  for(let i = 0; i < arg.length; i++){
+    [arr[arg[i][0]], arr[arg[i][1]]] = [arr[arg[i][1]], arr[arg[i][0]]]
   }
-  return arr.map(el => [el, []]).map((el) => {
-    for(let i = 0; i <= el[0]; i++){
-      if(el[0]%i===0){
-        el[1].push(i)
-      }
-    }
-    return el
-  }).map((el) => [el[0], (el[1].map(ul=>ul**2).reduce((acc,curr)=>acc+curr,0))])
-  .map((el)=>{
-    if(Number.isInteger(Math.sqrt(el[1]))){
-      return el
-    }
-    return 0
-  }).filter(el=>el!==0)
+  return arr
 }
-console.log(listSquared(250,500))
+console.log(shuffleIt([1,2,3,4,5],[1,2],[3,4],[2,3]))
