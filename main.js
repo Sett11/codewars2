@@ -1,10 +1,12 @@
-function sortIt(arr){
-  return arr.slice().sort((a,b)=>{
-    const first = arr.filter(el=>el===a).length
-    const last = arr.filter(el=>el===b).length
-    if(first===last){return b-a}
-    if(first>last){return 1}
-     return -1
+function isolateIt(arr){
+  return arr.map((el)=>{
+    if(el.length % 2 === 0){
+      el = el.slice(0, ~~el.length/2)+'|'+el.slice(~~el.length/2)
+      return el
+    }else{
+      el = el.slice(0,~~el.length/2)+'|'+el.slice(Math.ceil(el.length/2))
+      return el
+    }
   })
 }
-console.log(sortIt([1,2,3,4,4,5,5,6,6]))
+console.log(isolateIt(["abcde","fghij", 'kkkk']))
