@@ -1,16 +1,21 @@
-function insideOut(x){
-  return x.split` `.map(el => el.split``).map((el) => {
-    if(el.length < 4){
+function listSquared(m, n) {
+  const arr = []
+  for(let i = m; i <= n; i++){
+    arr.push(i)
+  }
+  return arr.map(el => [el, []]).map((el) => {
+    for(let i = 0; i <= el[0]; i++){
+      if(el[0]%i===0){
+        el[1].push(i)
+      }
+    }
+    return el
+  }).map((el) => [el[0], (el[1].map(ul=>ul**2).reduce((acc,curr)=>acc+curr,0))])
+  .map((el)=>{
+    if(Number.isInteger(Math.sqrt(el[1]))){
       return el
     }
-    if(el.length % 2 === 0 && el.length > 3){
-      el = el.slice(0, el.length/2).reverse().concat(el.slice(el.length/2).reverse())
-      return el
-    }
-    if(el.length % 2 !== 0 && el.length > 3){
-      el = el.slice(0, Math.floor(el.length/2)).reverse() + el.join``.charAt(Math.floor(el.length/2)) + el.slice(Math.ceil(el.length/2)).reverse()
-      return el
-    }
-  }).join` `.replace(/,/g, '')
+    return 0
+  }).filter(el=>el!==0)
 }
-console.log(insideOut('take me to semynak'))
+console.log(listSquared(250,500))
