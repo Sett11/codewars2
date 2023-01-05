@@ -1,4 +1,4 @@
-function isTriangular(t) {
-  return Number.isInteger(Math.sqrt((t*8)+1))
+function wordsToSentence(words) {
+  return words.join` `
 }
-console.log(isTriangular(7))
+console.log(wordsToSentence(["hello", "world"]))
