@@ -1,10 +1,4 @@
-function hammingDistance (a, b) {
-	let counter = 0
-  for(let i = 0; i < a.length; i++){
-    if(a[i]!==b[i]){
-      counter+=1
-    }
-  }
-  return counter
+function convertHashToArray(hash){
+  return Object.entries(hash).sort()
 }
-console.log(hammingDistance('1010', '0101'))
+console.log(convertHashToArray({name: "Jeremy", age: 24}))
