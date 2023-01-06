@@ -1,4 +1,10 @@
-function eliminateUnsetBits(number) {
-  return number.match(/1/g)===null?0:parseInt(number.replace(/0/g, ''), 2)
+function hammingDistance (a, b) {
+	let counter = 0
+  for(let i = 0; i < a.length; i++){
+    if(a[i]!==b[i]){
+      counter+=1
+    }
+  }
+  return counter
 }
-console.log(eliminateUnsetBits('11010101010101'))
+console.log(hammingDistance('1010', '0101'))
