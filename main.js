@@ -1,8 +1,7 @@
-const nthterm = (f, n, c) => {
-  const arr = [f]
-  while(arr.length < n+1){
-    arr.push(arr.reduce((acc)=>acc+=c,f))
+function getLargerNumbers(a, b) {
+  const arr = []
+  for(let i = 0; i < a.length; i++){
+    arr.push(Math.max(a[i], b[i]))
   }
-  return arr.reverse()[0]
-};
-console.log(nthterm(-50,10,20));
+  return arr
+}
