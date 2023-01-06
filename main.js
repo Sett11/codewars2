@@ -1,18 +1,10 @@
-function stringExpansion(s) {
-  if(!s.match(/[\d]/)){
-    return s
-  }
-  s=1+s
-  const arr = s.match(/\d[a-zA-Z]+/g)
-  if(arr===null){
-    return ''
-  }
-  let str = ''
+function findDeletedNumber(arr, mixArr) {
+  let res = 0
   for(let i = 0; i < arr.length; i++){
-    for(let j = 1; j < arr[i].length; j++){
-      str+=arr[i][j].repeat(arr[i][0])
+    if(!mixArr.includes(arr[i])){
+      res=arr[i]
     }
   }
-  return str
+  return res
 }
-console.log(stringExpansion('0d0a0v0t0y'))
+console.log(findDeletedNumber([1,2,3,4,5,6,7,8,9], [1,9,7,4,6,2,3,8]))
