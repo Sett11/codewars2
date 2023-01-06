@@ -1,4 +1,8 @@
-function lineupStudents(s){
-  return s.split` `.sort((a,b)=> b.length - a.length || b.localeCompare(a))
+function maxSum(arr,range){
+  const res = []
+  for(let i = 0, j = 0; i < arr.length, j < range.length; i++, j++){
+    res.push(arr.slice(range[j][0], range[j][1]+1))
+  }
+  return Math.max(...res.map(el=>el.reduce((acc,curr)=>acc+curr,0)))
 }
-console.log(lineupStudents("xxa xxb xxc xxd xa xb xc xd"))
+console.log(maxSum([1,-2,3,4,-5,-4,3,2,1],[[1,3],[0,4],[6,8]]))
