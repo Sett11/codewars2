@@ -1,10 +1,4 @@
-function findDeletedNumber(arr, mixArr) {
-  let res = 0
-  for(let i = 0; i < arr.length; i++){
-    if(!mixArr.includes(arr[i])){
-      res=arr[i]
-    }
-  }
-  return res
+function eliminateUnsetBits(number) {
+  return number.match(/1/g)===null?0:parseInt(number.replace(/0/g, ''), 2)
 }
-console.log(findDeletedNumber([1,2,3,4,5,6,7,8,9], [1,9,7,4,6,2,3,8]))
+console.log(eliminateUnsetBits('11010101010101'))
