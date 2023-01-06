@@ -1,5 +1,9 @@
-function product (s) {
-  const str = s.match(/!/g), nextStr = s.match(/\?/g)
-  return !str||!nextStr?0: nextStr.length*str.length
+function climb(n) {
+  const arr = []
+  while(n>=1){
+    arr.push(n)
+    n = ~~(n/2)
+  }
+  return arr.reverse()
 }
-console.log(product("!????!!!?"))
+console.log(climb(10));
