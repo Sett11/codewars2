@@ -1,7 +1,4 @@
-function getLargerNumbers(a, b) {
-  const arr = []
-  for(let i = 0; i < a.length; i++){
-    arr.push(Math.max(a[i], b[i]))
-  }
-  return arr
+function lineupStudents(s){
+  return s.split` `.sort((a,b)=> b.length - a.length || b.localeCompare(a))
 }
+console.log(lineupStudents("xxa xxb xxc xxd xa xb xc xd"))
