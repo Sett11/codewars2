@@ -1,15 +1,4 @@
-function findTheBall(start, swaps) {
-  let counter = start
-  for(let i = 0; i < swaps.length; i++){
-    if(swaps[i][0] === counter){
-      counter = swaps[i][1]
-      swaps[i] = '&'
-    }
-    if(swaps[i][1] === counter){
-      counter = swaps[i][0]
-      swaps[i] = '&'
-    }
-  }
-  return counter
+const sumNested = arr => {
+  return arr.flat(100).reduce((acc,curr)=>acc+curr,0)
 }
-console.log(findTheBall(0, [[0, 1], [1, 2], [2, 0], [0, 1], [1, 2], [2, 1], [2, 0], [0, 2]]))
+console.log(sumNested([1, [1], [1, [1]], [1, [1], [1, [1]]]]))
