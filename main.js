@@ -1,18 +1,15 @@
-function group(arr) {
-  const res = []
-  arr.map((el)=>{
-    const interArr = []
-    arr = arr.filter((ul)=>{
-      if(el===ul){
-        interArr.push(el)
-        return false
-      }
-      return true
-    })
-    if(interArr.length > 0){
-      res.push(interArr)
+function findTheBall(start, swaps) {
+  let counter = start
+  for(let i = 0; i < swaps.length; i++){
+    if(swaps[i][0] === counter){
+      counter = swaps[i][1]
+      swaps[i] = '&'
     }
-  })
-  return res
+    if(swaps[i][1] === counter){
+      counter = swaps[i][0]
+      swaps[i] = '&'
+    }
+  }
+  return counter
 }
-console.log(group([12,14,11,14,19,14,19,20,11,13]));
+console.log(findTheBall(0, [[0, 1], [1, 2], [2, 0], [0, 1], [1, 2], [2, 1], [2, 0], [0, 2]]))
