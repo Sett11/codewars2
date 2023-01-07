@@ -1,7 +1,18 @@
-function solve(st) {
-  return st.split``.map((el,i,arr)=>{
-    el = [el, Math.abs(arr.indexOf(el) - arr.lastIndexOf(el))]
-    return el
-  }).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]))[0][0]
+function group(arr) {
+  const res = []
+  arr.map((el)=>{
+    const interArr = []
+    arr = arr.filter((ul)=>{
+      if(el===ul){
+        interArr.push(el)
+        return false
+      }
+      return true
+    })
+    if(interArr.length > 0){
+      res.push(interArr)
+    }
+  })
+  return res
 }
-console.log(solve("axyzxyz"))
+console.log(group([12,14,11,14,19,14,19,20,11,13]));
