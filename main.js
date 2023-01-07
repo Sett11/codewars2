@@ -1,4 +1,4 @@
-const sumNested = arr => {
-  return arr.flat(100).reduce((acc,curr)=>acc+curr,0)
+function orderWord(s){
+  return s? s.split``.sort().join``: 'Invalid String!'
 }
-console.log(sumNested([1, [1], [1, [1]], [1, [1], [1, [1]]]]))
+console.log(orderWord("Hello, World!"))
