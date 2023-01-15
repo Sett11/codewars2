@@ -1,9 +1,4 @@
-function duplicateElements(m, n) {
-  for(let i = 0; i < m.length+n.length; i++){
-   if(m.includes(n[i])||n.includes(m[i])){
-    return true
-   }
-  }
-  return false
+function printerError(s) {
+  return `${s.replace(/[^n-z]/gi,'').length}/${s.length}`
 }
-console.log(duplicateElements([0,9, 1, 7], [8, 0, 3]))
+console.log(printerError("aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbmmmmmmmmmmmmmmmmmmmxyz"))
