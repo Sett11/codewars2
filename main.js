@@ -1,16 +1,10 @@
-function diagonal(matrix){
-  let principal = [], secondary = []
-  for(let i = 0, j = matrix.length-1; i < matrix.length, j >= 0; i++, j--){
-    principal.push(matrix[i][i])
-    secondary.push(matrix[i][j])
+function lowestProduct(input) {
+  if(input.length < 4) return "Number is too small"
+  let arr = []
+  for(let i = 0; i < input.length; i++){
+    arr.push(input.slice(i, i+4))
   }
- secondary = secondary.reduce((acc,curr)=>acc+curr)
- principal = principal.reduce((acc,curr)=>acc+curr)
-  return  secondary > principal ? "Secondary Diagonal win!":
-  secondary < principal ? "Principal Diagonal win!": 'Draw!'
+  arr = arr.filter(el=>el.length>=4)
+  return Math.min(...arr.map(el=>el.split``.map(Number).reduce((acc,curr)=>acc*curr)))
 }
-
-  console.log(diagonal([ 
-    [2,2,2],
-    [4,2,6],
-    [1,8,2] ]))
+console.log(lowestProduct('1234111'))
