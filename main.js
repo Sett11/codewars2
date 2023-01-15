@@ -1,12 +1,16 @@
-const trueIfValueEqualsIndex = function(v, i) { return v === i; }
-
-const findInArray = (array, iterator) => {
-  const arr = []
-  for(let i = 0; i < array.length; i++){
-    if(iterator(array[i], i)){
-      arr.push(i)
-    }
+function diagonal(matrix){
+  let principal = [], secondary = []
+  for(let i = 0, j = matrix.length-1; i < matrix.length, j >= 0; i++, j--){
+    principal.push(matrix[i][i])
+    secondary.push(matrix[i][j])
   }
-  return arr.length===0?-1:arr[0]
+ secondary = secondary.reduce((acc,curr)=>acc+curr)
+ principal = principal.reduce((acc,curr)=>acc+curr)
+  return  secondary > principal ? "Secondary Diagonal win!":
+  secondary < principal ? "Principal Diagonal win!": 'Draw!'
 }
-console.log(findInArray([13,5,3,1,4,5], trueIfValueEqualsIndex))
+
+  console.log(diagonal([ 
+    [2,2,2],
+    [4,2,6],
+    [1,8,2] ]))
