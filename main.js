@@ -1,4 +1,10 @@
-function consonantCount(str) {
-  return str.replace(/a|u|e|i|o|_/gi,'').replace(/[^a-zA-Z]/gi,'').length
+function Node(data) {
+  this.data = data;
+  this.next = null;
 }
-console.log(consonantCount("0123456789"))
+
+function append(listA, listB) {
+  if(!listA)return listB
+  listA.next=append(listA.next,listB)
+  return listA
+}
