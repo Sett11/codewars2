@@ -1,9 +1,10 @@
-function hist(s) {
-  s = s.replace(/[^w+|u+|z+|x+]/gi, '').split``.sort().join``.replace(/w+|u+|z+|x+/gi, ' $&').split` `.filter(el=>el!=='')
-  let str = ''
-  for(let i = 0; i < s.length; i++){
-    str += `${s[i][0]}  ${s[i].length}     ${'*'.repeat(s[i].length)}${'\n'}   `
+function reject(array, predicate) {
+  const newArr = array.slice().filter(predicate)
+  for(let i = 0; i <array.length; i++){
+    if(newArr.indexOf(array[i])!==-1){
+      array[i] = '&'
+    }
   }
-  return str.slice(0, str.length) 
+  return array.filter(el=>el!=='&')
 }
-console.log(hist("tpwaemuqxdmwqbqrjbeosjnejqorxdozsxnrgpgqkeihqwybzyymqeazfkyiucesxwutgszbenzvgxibxrlvmzihcb"))
+console.log(reject([1, 2, 3, 4, 5, 6], (n) => n % 2 === 0))
