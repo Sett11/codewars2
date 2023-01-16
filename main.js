@@ -1,22 +1,4 @@
-function askForMissingDetails(list) {
-  return list.map(el=>{
-    for(let i in el){
-      if(el[i]===null){
-        return el
-      }
-    }
-  }).map(el=>{
-    for(let i in el){
-      if(el[i]===null){
-        el.question = `Hi, could you please provide your ${i}.`
-      }
-    }
-    return el
-  }).filter(el=>el!==undefined)
+function add() {
+  return Object.values(arguments).map((el,i)=>el*++i).reduce((acc,curr)=>acc+curr,0)
 }
-
-console.log(askForMissingDetails([
-  { firstName: null, lastName: 'I.', country: 'Argentina', continent: 'Americas', age: 35, language: 'Java' },
-  { firstName: 'Lukas', lastName: 'X.', country: 'Croatia', continent: 'Europe', age: 35, language: null },
-  { firstName: 'Madison', lastName: 'U.', country: 'United States', continent: 'Americas', age: 32, language: 'Ruby' } 
-]))
+console.log(add(100,200,300))
