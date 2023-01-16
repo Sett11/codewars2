@@ -1,4 +1,5 @@
-function add() {
-  return Object.values(arguments).map((el,i)=>el*++i).reduce((acc,curr)=>acc+curr,0)
-}
-console.log(add(100,200,300))
+const unique = arr => arr.filter((el,i,arr)=>{
+ return arr.indexOf(el)==i
+})
+
+console.log(unique([1,2,2,3]))
