@@ -1,7 +1,5 @@
-function explode(x){
-  if(typeof x[0]==='number'&&typeof x[1]==='number')return Array(x[0]+x[1]).fill(x)
-  if(typeof x[0]==='number'&&typeof x[1]!=='number')return Array(x[0]).fill(x)
-  if(typeof x[1]==='number'&&typeof x[0]!=='number')return Array(x[1]).fill(x)
-  if(typeof x[0]!=='number'&&typeof x[1]!=='number')return 'Void!'
+function isItANum(str) {
+  const res = str.replace(/[^0-9]/g,'')
+  return res.length === 11 && res[0] === '0' ? res : "Not a phone number"
 }
-console.log(explode(['a', 0]))
+  console.log(isItANum("S:)0207ERGQREG88349F82!efRF)"))
