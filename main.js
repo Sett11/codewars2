@@ -1,6 +1,7 @@
-function sortDict(dict) {
-  return Object.entries(dict)
-  .map(el=>el.map(ul=>typeof ul !== 'number' && Number(ul)===Number(ul)? Number(ul):ul))
-  .sort((a,b)=>b[1]-a[1])
+function explode(x){
+  if(typeof x[0]==='number'&&typeof x[1]==='number')return Array(x[0]+x[1]).fill(x)
+  if(typeof x[0]==='number'&&typeof x[1]!=='number')return Array(x[0]).fill(x)
+  if(typeof x[1]==='number'&&typeof x[0]!=='number')return Array(x[1]).fill(x)
+  if(typeof x[0]!=='number'&&typeof x[1]!=='number')return 'Void!'
 }
-console.log(sortDict({'a':6,'b':2,'c':4}))
+console.log(explode(['a', 0]))
