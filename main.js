@@ -1,9 +1,16 @@
-function sortList (sortBy, list) {
-  return list.sort((a,b)=>b[sortBy]-a[sortBy])
+function countAdjacentPairs(s) {
+  s = s.split` `.map(el=>el.toLowerCase())
+  let counter = 0
+  let cash = ''
+  for(let i = 0; i < s.length; i++){
+    if(s[i] === s[i+1]&&s[i]!==cash){
+      counter++
+      cash = s[i]
+    }
+    if(s[i]!==cash){
+      cash = ''
+    }
+  }
+  return counter
 }
-console.log(sortList('a', [
-  {"a": 1, "b": 3},
-  {"a": 3, "b": 2},
-  {"a": 2, "b": 40},
-  {"a": 4, "b": 12}
-]))
+console.log(countAdjacentPairs("dog dog DOG dog dog dog" ))
