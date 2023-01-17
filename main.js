@@ -1,17 +1,33 @@
-function computeDepth (x){
-  const arr = []
-  let sum = 0
-  for(let i = 1; i < 50; i++){
-    sum = String(x*i).split``
-    for(let j = 0; j < sum.length; j++){
-      if(arr.indexOf(sum[j])===-1){
-        arr.push(sum[j])
+function solve(z) {
+  const notPrimes = (n) => {
+    if (n === 1) {
+      return true
+    }
+    if (n === 2 || n === 3) {
+      return false
+    }
+    const num = String(n).split``.map(Number);
+    if (num.includes(2) ||
+      num.includes(3) ||
+      num.includes(5) ||
+      num.includes(7)) {
+      return false;
+    }
+    for (let i = 2; i < n; i++) {
+      if (n % i === 0) {
+        return true;
       }
     }
-    if(arr.length===10){
-      return i
-    }
+    return false;
   }
-  return arr
-}
-console.log(computeDepth(1))
+  const arr = [];
+    let counter = 1;
+    while (arr.length <= z) {
+      if (notPrimes(counter)) {
+        arr.push(counter);
+      }
+      counter++;
+    }
+    return arr[z]
+  }
+  console.log(solve(10))
