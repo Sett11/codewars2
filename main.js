@@ -1,16 +1,9 @@
-function findMissingLetter(a){
-  let arr = 'abcdefghijklmnopqrstuvwxyz'
-  if(a[0] === a[0].toUpperCase()){
-    arr = arr.toUpperCase()
-  }
-  if(a[0]!==arr[0]){
-    const ind = arr.indexOf(a[0])
-    arr = arr.slice(ind)
-  }
-  for(let i = 0; i < arr.length; i++){
-    if(arr[i]!==a[i]){
-      return arr[i]
-    }
-  }
+function sortList (sortBy, list) {
+  return list.sort((a,b)=>b[sortBy]-a[sortBy])
 }
-console.log(findMissingLetter(['O','Q','R','S']))
+console.log(sortList('a', [
+  {"a": 1, "b": 3},
+  {"a": 3, "b": 2},
+  {"a": 2, "b": 40},
+  {"a": 4, "b": 12}
+]))
