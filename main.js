@@ -1,10 +1,10 @@
-function avgArray(ar) {
-    let arr = [], res = []
-    ar.map(el=>el.map((ul,i)=>[ul, i])).map(el=>el.map(ul=>arr.push(ul)))
-    arr.sort((a,b)=>a[1]-b[1])
-    for(let i = 0; i < arr.length; i+=ar.length){
-        res.push(arr.slice(i, i + ar.length))
+function bestMatch(ALAHLYGoals, zamalekGoals) {
+    const arr = []
+    for(let i = 0; i < ALAHLYGoals.length; i++){
+        arr.push([Math.abs(ALAHLYGoals[i] - zamalekGoals[i]), zamalekGoals[i], i])
     }
-    return res.map(el=>el.map(ul=>ul[0]).reduce((acc,curr)=>acc+curr,0)/ar.length)
+    const min = Math.min(...arr)
+    const ind = arr.indexOf(min)
+    return arr.sort((a,b)=>a[0] - b[0] || b[1] - a[1])[0][2]
 }
-console.log(avgArray([[1.2, 8.521, 0.4, 3.14, 1.9], [2, 4.5, 3.75, 0.987, 1.0]]))
+  console.log(bestMatch([13,7,19,5,14,7,8,9,7,2],[9,2,9,2,10,6,6,7,2,1]))
