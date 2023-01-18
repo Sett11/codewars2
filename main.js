@@ -1,13 +1,10 @@
-function nextPal(val) {
-  let v = true,
-    res = "";
-  while (v) {
-    val++;
-    res = String(val).split``;
-    if (res.join`` === res.reverse().join``) {
-      v = false;
-    }
+const AmIAfraid = function (d, n){
+    return d==='Monday'&&n===12 ? true :
+    d==='Tuesday'&&n>95 ? true :
+    d==='Wednesday'&&n===34 ? true :
+    d==='Thursday'&&n===0 ? true :
+    d==='Friday'&&n%2===0 ?true :
+    d==='Saturday'&&n===56 ? true :
+    d==='Sunday'&&n===666||d==='Sunday'&&n===-666 ? true : false
   }
-  return Number(res.join``);
-}
-console.log(nextPal(2541));
+  console.log(AmIAfraid("Monday", 13))
