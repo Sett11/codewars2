@@ -1,10 +1,21 @@
-function part(x){
-    let counter = 0
-    for(let i = 0; i < x.length; i++){
-        if(x[i]==='Partridge'||x[i]==='PearTree'||x[i]==='Chat'||x[i]==='Dan'||x[i]==='Toblerone'||x[i]==='Lynn'||x[i]==='AlphaPapa'||x[i]==='Nomad'){
-            counter++
+function solve(s){
+    if(s.length===0||s.length===1)return 0
+
+    let d = Math.floor(s.length / 2), first = s.slice(0,d), last = s.slice(d+1)
+    const arr1 = [], arr2 = [], res = []
+    if(s.length%2===0){
+        first=s.slice(0,s.length/2)
+        last = s.slice(s.length/2)
+    }
+    for(let i = 0; i < first.length; i++){
+        arr1.push(first.slice(0, first.length-i))
+        arr2.push(last.slice(i))
+    }
+    for(let i = 0; i < arr1.length; i++){
+        if(arr1[i]===arr2[i]){
+            res.push(arr1[i].length)
         }
     }
-    return counter === 0 ? `Lynn, I've pierced my foot on a spike!!` : `Mine\'s a Pint` + '!'.repeat(counter)
+    return res.length===0?0:res[0]
 }
-  console.log(part(['Grouse', 'Partridge', 'Pheasant']))
+console.log(solve('abcdabc'))
