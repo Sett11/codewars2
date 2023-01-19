@@ -1,8 +1,13 @@
-function convert(number){
-    const arr = []
-    for(let i = 0; i < number.length; i+= 2){
-        arr.push(number.slice(i, i+2))
-    }
-    return arr.map(el=>String.fromCharCode(el)).join``
-}
-  console.log(convert("656667"))
+function getNiceNames(people){
+    return people.map(el=>el.wasNice ? el.name : null).filter(el=>el!==null)
+  }
+  
+  function getNaughtyNames(people){
+    return people.map(el=>!el.wasNice ? el.name : null).filter(el=>el!==null)
+  }
+
+  console.log(getNaughtyNames([
+    { name: 'Warrior reading this kata', wasNice: true },
+    { name: 'xDranik', wasNice: false },
+    { name: 'Santa', wasNice: true }
+]))
