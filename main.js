@@ -1,17 +1,8 @@
-function sortAnimal(animal) {
-    if(animal===null){
-          return null
-        }
-        if(animal.length===0){
-          return []
-        }
-        return animal.sort((a,b)=>a.numberOfLegs - b.numberOfLegs|| a.name.localeCompare(b.name))
+function solution(fullText, searchText){
+    if(fullText.length===0){
+      return 0
     }
-
-  console.log(sortAnimal([
-    { name: "Cat", numberOfLegs: 4 }, 
-    { name: "Snake", numberOfLegs: 0 }, 
-    { name: "Dog", numberOfLegs: 4 },
-    { name: "Pig", numberOfLegs: 4 },
-    { name: "Human", numberOfLegs: 2 },
-    { name: "Bird", numberOfLegs: 2 }]))
+      const r = new RegExp(`${searchText}`, 'g')
+      return fullText.match(r)? fullText.match(r).length : 0
+  }
+console.log(solution('abbc','bb'))
