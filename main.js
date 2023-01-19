@@ -1,11 +1,10 @@
-function hasSubpattern(s){
-    if(s.length===2&&s[0]===s[1])return true
-    const arr = []
-    for(let i = 1; i <= s.length/2; i++){
-        arr.push(s.slice(0,i))
+function part(x){
+    let counter = 0
+    for(let i = 0; i < x.length; i++){
+        if(x[i]==='Partridge'||x[i]==='PearTree'||x[i]==='Chat'||x[i]==='Dan'||x[i]==='Toblerone'||x[i]==='Lynn'||x[i]==='AlphaPapa'||x[i]==='Nomad'){
+            counter++
+        }
     }
-    return arr
-     .map(el=>[el,s.length/el.length])
-     .filter(el=>el[0].repeat(el[1])===s).length !== 0
+    return counter === 0 ? `Lynn, I've pierced my foot on a spike!!` : `Mine\'s a Pint` + '!'.repeat(counter)
 }
-console.log(hasSubpattern('abbaabbaabba'))
+  console.log(part(['Grouse', 'Partridge', 'Pheasant']))
