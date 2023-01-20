@@ -1,6 +1,6 @@
-function alan(x){
-    return [...new Set(x.filter(el=>{
-        return el==='Rejection'||el==='Disappointment'||el==='Backstabbing Central'||el==='Shattered Dreams Parkway'?true:false
-    }))].length===4 ? 'Smell my cheese you mother!' : 'No, seriously, run. You will miss it.'
+function formatPoem(poem) {
+    const p = poem.split`.`.map(el=>el.trim()).join`.\n`
+    return p.replace(/\n$/,'')
 }
-console.log(alan(["Backstabbing Central","Disappointment","the Moon","Rejection","the Moon","Spiksworth","Norwich","Rejection"]))
+  console.log(formatPoem('Beautiful is better than ugly. Explicit is better than implicit. Simple is better than complex. Complex is better than complicated.'))
+
