@@ -1,10 +1,7 @@
-function blackAndWhite(arr){
-    if(!Array.isArray(arr)){
-        return "It's a fake array"
+function sumDigNthTerm(initval, patternl, nthterm) {
+    for(let i = 0; i < nthterm-1; i++){
+        initval += patternl[i%patternl.length]
     }
-    if(arr.indexOf(5)!==-1&&arr.indexOf(13)!==-1){
-        return "It's a black array"
-    }
-    return "It's a white array"
-  }
-  console.log(blackAndWhite([5,13]))
+    return String(initval).split``.reduce((acc,curr)=>acc+ +curr,0)
+}
+console.log(sumDigNthTerm(10, [2, 1, 3], 6))
