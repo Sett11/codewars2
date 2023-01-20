@@ -1,22 +1,23 @@
-function sharedBits(a, b) {
-    a = (a).toString(2).split``, b = (b).toString(2).split``
-    if(a.length!==b.length||b.length<a.length){
-        while(a.length!==b.length||b.length<a.length){
-            let minL = Math.min(a.length, b.length)
-        if(a.length===minL){
-            a.unshift('0')
-        }
-        else{
-            b.unshift('0')
-        }
-        }
+function isOddHeavy(n) {
+  if (n.length === 0) return false;
+  const arr = [], arr2 = []
+  for(let i = 0; i < n.length; i++){
+    if(n[i]%2===0){
+        arr.push(n[i])
     }
-    let counter = 0
-    for(let i = 0; i<a.length; i++){
-        if(a[i]==='1'&&b[i]==='1'){
-            counter++
-        }
+    if(n[i]%2!==0){
+        arr2.push(n[i])
     }
-    return counter >= 2
+  }
+  if(arr2.length===0){
+    return false
+  }
+  const res = []
+   arr2.map(el=>{
+    for(let i = 0; i < arr.length; i++){
+        res.push(el>arr[i])
+    }
+  })
+  return res.every(el=>el===true)
 }
-console.log(sharedBits(56,7))
+console.log(isOddHeavy([11,4,9,2,3,10]));
