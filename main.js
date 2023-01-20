@@ -1,24 +1,22 @@
-function swap(s, n){
-    const ar = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split``
-    n = (n).toString(2)
-    n = n.repeat(s.length)
-    const ind = []
-    for(let i = 0; i < s.length; i++){
-        if(ar.indexOf(s[i])===-1){
-            ind.push(i)
+function sharedBits(a, b) {
+    a = (a).toString(2).split``, b = (b).toString(2).split``
+    if(a.length!==b.length||b.length<a.length){
+        while(a.length!==b.length||b.length<a.length){
+            let minL = Math.min(a.length, b.length)
+        if(a.length===minL){
+            a.unshift('0')
+        }
+        else{
+            b.unshift('0')
+        }
         }
     }
-    for(let i = 0; i < ind.length; i++){
-        n = n.slice(0, ind[i]) + '0' + n.slice(ind[i])
-    }
-    return s.split``.map((el,i)=>{
-        if(ar.indexOf(el)!==-1){
-            el = [el, n[i]]
-            return el
+    let counter = 0
+    for(let i = 0; i<a.length; i++){
+        if(a[i]==='1'&&b[i]==='1'){
+            counter++
         }
-        return el
-    })
-    //.map(el=>el[1]==='1'&&el[0] === el[0].toUpperCase()?el[0].toLowerCase():el[1]==='1'&&el[0] === el[0].toLowerCase()?el[0].toUpperCase():el)
-    //.map(el=>el[0]).join``
+    }
+    return counter >= 2
 }
-  console.log(swap("eVerybody likes ice cReam", 85))
+console.log(sharedBits(56,7))
