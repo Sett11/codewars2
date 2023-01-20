@@ -1,24 +1,25 @@
-function recycle(array) {
-    const arr = Array(4).fill(array)
-    return arr.map((el,i)=>{
-        if(i===0){
-            return el.filter(el=>el.material==='paper'||el.secondMaterial==='paper').map(el=>el.type)
-        }
-        if(i===1){
-            return el.filter(el=>el.material==='glass'||el.secondMaterial==='glass').map(el=>el.type)
-        }
-        if(i===2){
-            return el.filter(el=>el.material==='organic'||el.secondMaterial==='organic').map(el=>el.type)
-        }
-        if(i===3){
-            return el.filter(el=>el.material==='plastic'||el.secondMaterial==='plastic').map(el=>el.type)
-        }
-    })
-}
-  console.log(recycle([
-    {"type": "rotten apples", "material": "organic"},
-    {"type": "out of date yogurt", "material": "organic", "secondMaterial": "plastic"},
-    {"type": "wine bottle", "material": "glass", "secondMaterial": "paper"},
-    {"type": "amazon box", "material": "paper"},
-    {"type": "beer bottle", "material": "glass", "secondMaterial": "paper"}
-  ]))
+function numberFormat(p){
+    p = String(p).split``
+    let M = ''
+    if(p[0]==='-'){
+        M = p.shift()
+    }
+    if(p.length===8){
+        return M + `${p[0]}${p[1]},${p[2]}${p[3]}${p[4]},${p[5]}${p[6]}${p[7]}`
+    }
+    if(p.length===7){
+        return M + `${p[0]},${p[1]}${p[2]}${p[3]},${p[4]}${p[5]}${p[6]}`
+    }
+    if(p.length===5){
+      return M + `${p[0]}${p[1]},${p[2]}${p[3]}${p[4]}`
+    }
+    if(p.length===4){
+      return M + `${p[0]},${p[1]}${p[2]}${p[3]}`
+    }
+    const arr = []
+    for(let i = 0; i < p.length; i+=3){
+      arr.push(p.slice(i,i+3))
+    }
+    return M + arr.map(el=>el.join``).join`,`
+  }
+  console.log(numberFormat(-567854655))
