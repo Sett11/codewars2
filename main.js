@@ -1,23 +1,14 @@
-function encode(str,key) {
-     const obj = {}
-     for(let i = 0; i < key.length; i++){
-        obj[key[i]] = key[i+1]
-        i+=1
-     }
-     let K = key.toUpperCase()
-     for(let i = 0; i < K.length; i++){
-        obj[K[i]] = K[i+1]
-        i+=1
-     }
-     const val = Object.entries(obj)
-     for(let i = 0; i < val.length; i++){
-        obj[val[i][1]] = val[i][0]
-     }
-     return str.replace(/./g, el=>obj[el]||el)
+function findTheKey(messages , secrets) {
+    const arr = []
+    for(let i = 0; i < messages.length; i++){
+        for(let j = 0; j < messages[i].length; j++){
+            if(messages[i][j]!==secrets[i][j]&&arr.indexOf(messages[i][j]!==-1&&arr.indexOf(secrets[i][j]!==-1))){
+                arr.push([messages[i][j], secrets[i][j]])
+            }
+        }
+    }
+    const res = [...new Set(arr.map(el=>el.join``))].sort().map(el=>el.split``.sort().join``).sort().join``
+    return [...new Set(res)].join``
 }
-
-function decode(str,key) {
-     return encode(str, key)
-}
-
-console.log(decode("Gug hgs g cgt", "gaderypoluki"))
+console.log(findTheKey([ "dance on the table", "hide my beers", "scouts rocks" ],
+[ "egncd pn thd tgbud" ,"hked mr bddys" ,"scplts ypcis" ]))
