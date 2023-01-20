@@ -1,14 +1,30 @@
-function findTheKey(messages , secrets) {
-    const arr = []
-    for(let i = 0; i < messages.length; i++){
-        for(let j = 0; j < messages[i].length; j++){
-            if(messages[i][j]!==secrets[i][j]&&arr.indexOf(messages[i][j]!==-1&&arr.indexOf(secrets[i][j]!==-1))){
-                arr.push([messages[i][j], secrets[i][j]])
-            }
+function findTheKey(message, code) {
+  const arr = message.split``.map((el) => el.charCodeAt()-96)
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = code[i%code.length]-arr[i]
+  }
+
+  function F(array) {
+    let seq = arr.join``;
+    let res = "";
+    function Z(seq, sub) {
+      for (let i = 0; i < seq.length; i += 1) {
+        if (seq[i] !== sub[i % sub.length]) {
+          return false;
+        }
+      }
+      return true
+    }
+    for(let i = 0; i < seq.length; i+=1){
+        res += seq[i]
+        if(Z(seq,res)){
+            return res
         }
     }
-    const res = [...new Set(arr.map(el=>el.join``))].map(el=>el.split``.sort().join``).sort.join``
-    return [...new Set(res)].join``
+    return res
+  }
+  return F(arr)*1
 }
-console.log(findTheKey([ "dance on the table", "hide my beers", "scouts rocks" ],
-[ "egncd pn thd tgbud" ,"hked mr bddys" ,"scplts ypcis" ]))
+console.log(
+  findTheKey("masterpiece", [14, 10, 22, 29, 6, 27, 19, 18, 6, 12, 8])
+);
