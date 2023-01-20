@@ -1,12 +1,5 @@
-function michaelPays(c) {
-    if(c<5){
-        return Number((c).toFixed(2))
-    }
-    let K = c / 3
-    if(K>10){
-        K = 10
-    }
-    return Number((c - K).toFixed(2))
+function giveChange(amount) {
+  const arr = [100,50,20,10,5,1]
+  return arr.map((el)=>[el,amount]=[Math.floor(amount/el), amount%el]).map(el=>el[0]).reverse()
 }
-
-console.log(michaelPays(28.789))
+console.log(giveChange(367))
