@@ -1,6 +1,10 @@
-function formatPoem(poem) {
-    const p = poem.split`.`.map(el=>el.trim()).join`.\n`
-    return p.replace(/\n$/,'')
-}
-  console.log(formatPoem('Beautiful is better than ugly. Explicit is better than implicit. Simple is better than complex. Complex is better than complicated.'))
-
+function blackAndWhite(arr){
+    if(!Array.isArray(arr)){
+        return "It's a fake array"
+    }
+    if(arr.indexOf(5)!==-1&&arr.indexOf(13)!==-1){
+        return "It's a black array"
+    }
+    return "It's a white array"
+  }
+  console.log(blackAndWhite([5,13]))
