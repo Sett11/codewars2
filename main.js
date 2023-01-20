@@ -1,23 +1,11 @@
-function isOddHeavy(n) {
-  if (n.length === 0) return false;
-  const arr = [], arr2 = []
-  for(let i = 0; i < n.length; i++){
-    if(n[i]%2===0){
-        arr.push(n[i])
-    }
-    if(n[i]%2!==0){
-        arr2.push(n[i])
-    }
-  }
-  if(arr2.length===0){
-    return false
-  }
-  const res = []
-   arr2.map(el=>{
-    for(let i = 0; i < arr.length; i++){
-        res.push(el>arr[i])
-    }
-  })
-  return res.every(el=>el===true)
+function zeroPlentiful(ar){
+    const res = ar.map(el=>{
+        let str = String(el).split``
+        if(str[str.length-1]==='0'&&el!==0){
+            el = '&'
+        }
+        return el
+    }).join``.replace(/0+/g,' $& ').replace(/[^0\s]/g,'').split` `.filter(el=>el!=='')
+    return res.every(el=>el.length>=4) ? res.length : 0
 }
-console.log(isOddHeavy([11,4,9,2,3,10]));
+  console.log(zeroPlentiful([0, 0, 0, 0, 0, 0]))
