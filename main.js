@@ -1,7 +1,10 @@
-function sumDigNthTerm(initval, patternl, nthterm) {
-    for(let i = 0; i < nthterm-1; i++){
-        initval += patternl[i%patternl.length]
-    }
-    return String(initval).split``.reduce((acc,curr)=>acc+ +curr,0)
-}
-console.log(sumDigNthTerm(10, [2, 1, 3], 6))
+function isSantaClausable(obj) {
+    return ['sayHoHoHo', 'distributeGifts', 'goDownTheChimney'].every(el=>{
+       return typeof obj[el] ==='function'
+    })
+  }
+  console.log(isSantaClausable({
+    sayHoHoHo: function() { console.log('Ho Ho Ho!') },
+    distributeGifts: function() { console.log('Gifts for all!'); },
+    goDownTheChimney: function() { console.log('*whoosh*'); }
+}))
