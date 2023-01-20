@@ -1,7 +1,4 @@
-function sentence(l) {
-    return l.map(el=>Object.entries(el)[0]).map(el=>[Number(el[0]), el[1]]).sort((a,b)=>a[0]-b[0]).map(el=>el[1]).join` `
+function area(d,l){
+    return d<=l?  "Not a rectangle" : Number((Math.sqrt((d**2) - (l**2)) * l).toFixed(2))
 }
-  console.log(sentence([
-    {'4': 'dog' }, {'2': 'took'}, {'3': 'his'},
-    {'-2': 'Vatsan'}, {'5': 'for'}, {'6': 'a'}, {'12': 'spin'}
-   ]))
+console.log(area(12,5))
