@@ -1,25 +1,25 @@
-function numberFormat(p){
-    p = String(p).split``
-    let M = ''
-    if(p[0]==='-'){
-        M = p.shift()
+class Cuboid {
+    constructor(length, width, height){
+        this.length = length
+        this.width = width
+        this.height = height
     }
-    if(p.length===8){
-        return M + `${p[0]}${p[1]},${p[2]}${p[3]}${p[4]},${p[5]}${p[6]}${p[7]}`
+   get surfaceArea(){
+        return 2 *(this.length*this.height + this.height*this.width + this.length*this.width)
     }
-    if(p.length===7){
-        return M + `${p[0]},${p[1]}${p[2]}${p[3]},${p[4]}${p[5]}${p[6]}`
+   get volume(){
+        return this.length * this.width * this.height
     }
-    if(p.length===5){
-      return M + `${p[0]}${p[1]},${p[2]}${p[3]}${p[4]}`
-    }
-    if(p.length===4){
-      return M + `${p[0]},${p[1]}${p[2]}${p[3]}`
-    }
-    const arr = []
-    for(let i = 0; i < p.length; i+=3){
-      arr.push(p.slice(i,i+3))
-    }
-    return M + arr.map(el=>el.join``).join`,`
   }
-  console.log(numberFormat(-567854655))
+  class Cube extends Cuboid {
+    constructor(length){
+        super(length,length,length)
+    }
+  }
+
+const r = new Cuboid(1,2,3)
+r.length = 4
+
+const c = new Cube(1)
+
+console.log(r.surfaceArea)
