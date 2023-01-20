@@ -7,7 +7,7 @@ function findTheKey(messages , secrets) {
             }
         }
     }
-    const res = [...new Set(arr.map(el=>el.join``))].sort().map(el=>el.split``.sort().join``).sort().join``
+    const res = [...new Set(arr.map(el=>el.join``))].map(el=>el.split``.sort().join``).sort.join``
     return [...new Set(res)].join``
 }
 console.log(findTheKey([ "dance on the table", "hide my beers", "scouts rocks" ],
