@@ -1,7 +1,5 @@
-function tea42(input) {
-  if(typeof input !== 'string'){
-    input = String(input)
-  }
-  return input.replace(/2/g,'t')
+function validPass(password){
+  if(password.length<4||password.length>19||password.match(/\W/g)||!password.match(/[0-9]/g)||!password.match(/[a-zA-Z]/g))return 'INVALID'
+  return 'VALID'
 }
-console.log(tea42(9022))
+console.log(validPass('Username123'))
