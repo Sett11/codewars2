@@ -1,18 +1,11 @@
-function alphabetized(s) {
-  return s.replace(/[^a-zA-Z]/g,'').split``.map(el=>{
-    if(el === el.toUpperCase()){
-      el = [el.toLowerCase(), 1]
-      return el
+function solve(x, y) {
+  const arr = []
+  for(let i = x; i < y; i++){
+    if((i).toString().match(/2|3|4|5|7/g)){
+      continue
     }
-    el = [el.toLowerCase(),0]
-    return el
-  }).sort((a,b)=>a[0].localeCompare(b[0]))
-  .map(el=>{
-    if(el[1]===1){
-      el = el[0].toUpperCase()
-      return el[0]
-    }
-    return el[0]
-  }).join``
+    arr.push(i+[])
+  }
+  return arr.filter(el=>el===el.replace(/6|9/g, ul=>ul==='6'?'9':'6').split``.reverse().join``).length
 }
-console.log(alphabetized("The Holy Bible"))
+ console.log(solve(10, 100))
