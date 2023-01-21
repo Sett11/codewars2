@@ -1,10 +1,18 @@
-function generatePairs(m, n) {
-  const arr = []
-  for(let i = m; i <= n; i++){
-    for(let j = m; j <= n; j++){
-      j>=i?arr.push([i,j]):null
+function alphabetized(s) {
+  return s.replace(/[^a-zA-Z]/g,'').split``.map(el=>{
+    if(el === el.toUpperCase()){
+      el = [el.toLowerCase(), 1]
+      return el
     }
-  }
-  return arr
+    el = [el.toLowerCase(),0]
+    return el
+  }).sort((a,b)=>a[0].localeCompare(b[0]))
+  .map(el=>{
+    if(el[1]===1){
+      el = el[0].toUpperCase()
+      return el[0]
+    }
+    return el[0]
+  }).join``
 }
-console.log(generatePairs(2, 4))
+console.log(alphabetized("The Holy Bible"))
