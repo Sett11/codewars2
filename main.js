@@ -1,30 +1,13 @@
-function findTheKey(message, code) {
-  const arr = message.split``.map((el) => el.charCodeAt()-96)
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] = code[i%code.length]-arr[i]
+function getScore(ar) {
+  const arr = [0, 40, 100, 300, 1200];
+  let count = 0,
+    level = 0;
+  for (let n of ar) {
+    count += arr[n] * (1 + ((level / 10) | 0));
+    level += n;
   }
-
-  function F(array) {
-    let seq = arr.join``;
-    let res = "";
-    function Z(seq, sub) {
-      for (let i = 0; i < seq.length; i += 1) {
-        if (seq[i] !== sub[i % sub.length]) {
-          return false;
-        }
-      }
-      return true
-    }
-    for(let i = 0; i < seq.length; i+=1){
-        res += seq[i]
-        if(Z(seq,res)){
-            return res
-        }
-    }
-    return res
-  }
-  return F(arr)*1
+  return count;
 }
 console.log(
-  findTheKey("masterpiece", [14, 10, 22, 29, 6, 27, 19, 18, 6, 12, 8])
+  getScore([3, 2, 1, 2, 2, 1, 4, 4, 4, 3, 3, 0, 2, 1, 1, 0, 3, 4, 4, 3, 3, 4])
 );
