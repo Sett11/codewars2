@@ -1,6 +1,24 @@
-function uncollapse(digits){
-  return digits.replace(/zero/g, '$& ').replace(/one/g,'$& ').replace(/two/g,'$& ')
-  .replace(/three/g,'$& ').replace(/four/g,'$& ').replace(/five/g,'$& ').replace(/six/g,'$& ')
-  .replace(/seven/g,'$& ').replace(/eight/g,'$& ').replace(/nine/g,'$& ').replace(/\s$/,'')
+function bowlingPins(arr){
+  let str = '7 8 9 10\n 4 5 6 \n  2 3  \n   1   '
+   arr = arr.map(el=>String(el))
+  str = str.split``
+  for(let i = 0; i < str.length; i++){
+    if(str[i]==='1'&&str[i+1]==='0'){
+      str[i] = '10'
+      str[i+1] = '&'
+    }
+  }
+  str = str.filter(el=>el!=='&')
+  return str.map(el=>{
+    if(arr.indexOf(el)!==-1){
+      el = ' '
+      return el
+    }
+    if(arr.indexOf(el)===-1&&el!=='\n'&&el!==' '){
+      el = 'I'
+      return el
+    }
+    return el
+  }).join``
 }
-console.log(uncollapse("zeronineoneoneeighttwoseventhreesixfourtwofive"))
+console.log(bowlingPins([3,5,9]))
