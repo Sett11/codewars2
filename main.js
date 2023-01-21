@@ -1,10 +1,7 @@
-function generatePairs(n) {
-  const arr = []
-  for(let i = 0; i <= n; i++){
-    for(let j = 0; j <= n; j++){
-      j>=i?arr.push([i,j]):null
-    }
+function tea42(input) {
+  if(typeof input !== 'string'){
+    input = String(input)
   }
-  return arr
+  return input.replace(/2/g,'t')
 }
-console.log(generatePairs(2))
+console.log(tea42(9022))
