@@ -1,5 +1,10 @@
-function validPass(password){
-  if(password.length<4||password.length>19||password.match(/\W/g)||!password.match(/[0-9]/g)||!password.match(/[a-zA-Z]/g))return 'INVALID'
-  return 'VALID'
+function generatePairs(m, n) {
+  const arr = []
+  for(let i = m; i <= n; i++){
+    for(let j = m; j <= n; j++){
+      j>=i?arr.push([i,j]):null
+    }
+  }
+  return arr
 }
-console.log(validPass('Username123'))
+console.log(generatePairs(2, 4))
