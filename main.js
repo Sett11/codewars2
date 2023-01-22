@@ -1,33 +1,17 @@
-function buddy(start, limit) {
+function findPair(arr1,arr2){
   const arr = []
-  while (start < limit) {
-    let sum = 1, sum2 = 1, check = 0
-    for(let i = 2; i < Math.sqrt(start); i++){
-      if(start%i===0){
-        sum+=i
-        sum+=start/i
-      }
-    }
-    if(sum>start){
-      check = sum - 1
-     for(let j = 2; j < Math.sqrt(check); j++){
-      if(check%j===0){
-        sum2+=j
-        sum2+=check/j
-      }
-     }
-    if (start+1 === sum2 && check+1 === sum) {
-      if (start > check) {
-        return "Nothing";
-      }
-      return [start, check];
-    } else {
-      start++;
-    }
-    }else{
-      start++
-    }
+  for(let i = 0; i < arr1.length; i++){
+    arr.push([arr1[i],arr2[i]])
   }
-  return "Nothing";
+  const res = arr.map((el,i)=>[el, el.reduce((acc,curr)=>acc+curr,0), i])
+  const counter = Object.entries(res.map(el=>el[1]).reduce((acc,curr)=>{
+    acc[curr] = (acc[curr]||0) + 1
+    return acc
+  }, {})).map(el=>{
+    el[0] = Number(el[0])
+    return el
+  }).sort((a,b)=>b[1]-a[1]||b[0]-a[0])[0][0]
+  const finRes = res.filter(el=>el[1]===counter).map(el=>el[0])
+  return finRes.length < 2 ? [] : finRes
 }
-console.log(buddy(381, 4318));
+console.log(findPair([1,2,3,0,5,-2],[-1,2,-3,4,-5,6]))
