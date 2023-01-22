@@ -1,17 +1,18 @@
-function nClosestPairsTonum(n, k) {
-  const arr = []
-  for(let i = n-1; i > 0; i--){
-    let tmp = i
-    for(let j = n-2; j > 0; j--){
-      let tmp2 = j
-      if(Number.isInteger(Math.sqrt(tmp + tmp2))&&Number.isInteger(Math.sqrt(tmp-tmp2))&&tmp>tmp2){
-        arr.push([tmp, tmp2])
+function squaresToOdd(sqr1, sqr2){
+  const counter = sqr1-sqr2, sum = sqr1**2 - sqr2**2, arr = [], res = []
+  if(counter===1){
+    return `${sqr1}^2 - ${sqr2}^2 = ${sum} = ${sum}`
+  }
+  for(let i = 0; i <= sum; i++){
+      if(i%2!==0){
+        arr.push(i)
       }
-      if(arr.length===k){
-        break
-      }
+  }
+  for(let i = 0, j = counter; i < arr.length, j < arr.length; i+=1, j+=1){
+    if(arr.slice(i, j).reduce((acc,curr)=>acc+curr,0)===sum){
+      res.push(arr.slice(i,j))
     }
   }
-  return arr
+  return `${sqr1}^2 - ${sqr2}^2 = ${String(res).replace(/,/g,' + ')} = ${sum}`
 }
-console.log(nClosestPairsTonum(10000, 8))
+console.log(squaresToOdd(100,99))
