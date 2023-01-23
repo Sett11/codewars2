@@ -1,9 +1,4 @@
-function cycle(n) {
-  if(n%2===0||n%5===0)return -1
-  let i = 0, val = 1
-  while(++i){
-    val = val * 10%n
-    if(val===1)return i
-  }
+function solve(a,b){
+  return new RegExp(`^${a.replace(/\*/, '(.)*')}$`, '').test(b)
 }
-console.log(cycle(7))
+console.log(solve("a*a","aaa"))
