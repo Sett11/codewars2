@@ -1,55 +1,15 @@
-function workOnStrings(a,b){
-  let newA = a.split``, newB = b.split``
-  for(let i = 0; i < newA.length; i++){
-    let counter = 0, tmp = newA[i]
-    for(let j = 0; j < newB.length; j++){
-      if(tmp.toLowerCase()===newB[j].toLowerCase()){
-        counter++
-      }
-    }
-    newA[i] = [tmp, counter]
+function colorOf(r,g,b){
+  let one = (r).toString(16), two = (g).toString(16), three = (b).toString(16)
+  if(r<=15){
+    one = `0${one}`
   }
-  for(let i = 0; i < newB.length; i++){
-    let counter = 0, tmp = newB[i]
-    for(let j = 0; j < a.length; j++){
-      if(tmp.toLowerCase()===a[j].toLowerCase()){
-        counter++
-      }
-    }
-    newB[i] = [tmp, counter]
+  if(g<=15){
+    two = `0${two}`
   }
-  const res = newA.map(el=>{
-    if(el[1]!==0){
-      let counter = el[1]
-      while(counter>0){
-        if(el[0]===el[0].toLowerCase()){
-          el[0] = el[0].toUpperCase()
-          
-        }else{
-          el[0] = el[0].toLowerCase()
-        }
-        counter--
-      }
-      return el[0]
-    }
-    return el[0]
-  })
-  const res2 = newB.map(el=>{
-    if(el[1]!==0){
-      let counter = el[1]
-      while(counter>0){
-        if(el[0]===el[0].toLowerCase()){
-          el[0] = el[0].toUpperCase()
-          
-        }else{
-          el[0] = el[0].toLowerCase()
-        }
-        counter--
-      }
-      return el[0]
-    }
-    return el[0]
-  })
-  return res.join`` + res2.join``
+  if(b<=15){
+    three = `0${three}`
+  }
+  return '#' + one + two + three
 }
-console.log(workOnStrings("abcdeFgtrzw", "defgGgfhjkwqe"))
+
+console.log(colorOf(13,178,226))
