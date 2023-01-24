@@ -1,12 +1,19 @@
-function minimum(a, x) {
-  if(a===x)return 0
-  let counter = 1
-  while(a%x!==0){
-    if((a+counter)%x===0||(a-counter)%x===0){
-      break
-    }
-    counter++
-  }
-  return counter
+Array.prototype.even = function(){
+  return this.filter(el=> typeof el === 'number' && Number.isInteger(el) && el%2===0)
 }
-console.log(minimum(10,6))
+
+Array.prototype.odd = function(){
+  return this.filter(el=> typeof el === 'number' && Number.isInteger(el) && el%2!==0)
+}
+
+Array.prototype.under = function(x){
+  return this.filter(el=> typeof el === 'number' && Number.isInteger(el) && el<x)
+}
+
+Array.prototype.over = function(x){
+  return this.filter(el=> typeof el === 'number' && Number.isInteger(el) &&el>x)
+}
+
+Array.prototype.inRange = function(min,max){
+  return this.filter(el=> typeof el === 'number' && Number.isInteger(el) && el>=min&&el<=max)
+}
