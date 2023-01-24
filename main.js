@@ -1,5 +1,14 @@
-function hexHash(code){
-  return code.split``.map(el=>el.charCodeAt().toString(16)).map(el=>el.replace(/\D/g,''))
-  .map(el=>el.length>1?el.split``:[el]).join`,`.split`,`.map(Number).reduce((acc,curr)=>acc+curr,0)
+function pattern(n) {
+  let str = "";
+  const arr = []
+  while(n>0){
+    arr.push(n)
+    n--
+  }
+  while(arr.length!==0){
+    str += `${arr.join``}${'\n'}`
+    arr.pop()
+  }
+  return str.split`\n`.reverse().join`\n`.slice(1)
 }
-console.log(hexHash("Yo"))
+console.log(pattern(6));
