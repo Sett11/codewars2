@@ -1,19 +1,5 @@
-Array.prototype.even = function(){
-  return this.filter(el=> typeof el === 'number' && Number.isInteger(el) && el%2===0)
+function hexHash(code){
+  return code.split``.map(el=>el.charCodeAt().toString(16)).map(el=>el.replace(/\D/g,''))
+  .map(el=>el.length>1?el.split``:[el]).join`,`.split`,`.map(Number).reduce((acc,curr)=>acc+curr,0)
 }
-
-Array.prototype.odd = function(){
-  return this.filter(el=> typeof el === 'number' && Number.isInteger(el) && el%2!==0)
-}
-
-Array.prototype.under = function(x){
-  return this.filter(el=> typeof el === 'number' && Number.isInteger(el) && el<x)
-}
-
-Array.prototype.over = function(x){
-  return this.filter(el=> typeof el === 'number' && Number.isInteger(el) &&el>x)
-}
-
-Array.prototype.inRange = function(min,max){
-  return this.filter(el=> typeof el === 'number' && Number.isInteger(el) && el>=min&&el<=max)
-}
+console.log(hexHash("Yo"))
