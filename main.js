@@ -1,14 +1,4 @@
-function pattern(n) {
-  let str = "";
-  const arr = []
-  while(n>0){
-    arr.push(n)
-    n--
-  }
-  while(arr.length!==0){
-    str += `${arr.join``}${'\n'}`
-    arr.pop()
-  }
-  return str.split`\n`.reverse().join`\n`.slice(1)
+function alternateSqSum(arr){
+  return arr.map((el,i)=>i%2!==0?el**2:el).reduce((acc,curr)=>acc+curr,0)
 }
-console.log(pattern(6));
+console.log(alternateSqSum([1,2,3,4,5]))
