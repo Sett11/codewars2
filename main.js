@@ -1,24 +1,12 @@
-function numbersOfLetters(int) {
-  const F = (str) => {
-    return (str + "")
-      .replace(/0/g, "zero")
-      .replace(/1/g, "one")
-      .replace(/2/g, "two")
-      .replace(/3/g, "three")
-      .replace(/4/g, "four")
-      .replace(/5/g, "five")
-      .replace(/6/g, "six")
-      .replace(/7/g, "seven")
-      .replace(/8/g, "eight")
-      .replace(/9/g, "nine");
-  };
-  const arr = [];
-  let count = int;
-  while (F(count) !== "four") {
-    arr.push(F(count));
-    count = F(count).length;
+function pattern(n){
+  if(n<1)return ''
+  let str = ``
+  for(let i = 0; i <= n; i++){
+    if(i%2===0){
+      continue
+    }
+    str+= `${(i+'').repeat(i)}${'\n'}`
   }
-  arr.push(F(count));
-  return arr;
+  return str.slice(0,str.length-1)
 }
-console.log(numbersOfLetters(1));
+ console.log(pattern(9))
