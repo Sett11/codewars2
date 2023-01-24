@@ -1,21 +1,24 @@
-function expandedForm(num) {
-  num = (num+'').split`.`
-  const arr1 = [num[0]][0].split``, len1 = arr1.length, arr2 = [num[1]][0].split``, len2 = arr2.length
-  let str = ''
-  for(let i = 0; i < len1; i++){
-    let tmp = arr1[i]
-    if(tmp === '0'){
-      continue
-    }
-    str += `${tmp}${'0'.repeat(len1-i-1)} + `
+function numbersOfLetters(int) {
+  const F = (str) => {
+    return (str + "")
+      .replace(/0/g, "zero")
+      .replace(/1/g, "one")
+      .replace(/2/g, "two")
+      .replace(/3/g, "three")
+      .replace(/4/g, "four")
+      .replace(/5/g, "five")
+      .replace(/6/g, "six")
+      .replace(/7/g, "seven")
+      .replace(/8/g, "eight")
+      .replace(/9/g, "nine");
+  };
+  const arr = [];
+  let count = int;
+  while (F(count) !== "four") {
+    arr.push(F(count));
+    count = F(count).length;
   }
-  for(let i = 0; i < len2; i++){
-    let tmp = arr2[i], counter = '1'
-    if(tmp==='0'){
-      continue
-    }
-    str += `${tmp}/${counter}${'0'.repeat(i+1)} + `
-  }
-  return str.slice(0,str.length-2).trim()
+  arr.push(F(count));
+  return arr;
 }
-console.log(expandedForm(7.304))
+console.log(numbersOfLetters(1));
