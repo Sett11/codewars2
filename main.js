@@ -1,12 +1,21 @@
-function removeNb (n) {
- const sum = n*(n+1)/2
- const arr = []
- for(let i = Math.round(n/2); i * i <= sum; i++){
-  const check = (sum-i)/(i+1)
-  if(Number.isInteger(check)){
-      arr.push([i,check], [check,i])
+function expandedForm(num) {
+  num = (num+'').split`.`
+  const arr1 = [num[0]][0].split``, len1 = arr1.length, arr2 = [num[1]][0].split``, len2 = arr2.length
+  let str = ''
+  for(let i = 0; i < len1; i++){
+    let tmp = arr1[i]
+    if(tmp === '0'){
+      continue
+    }
+    str += `${tmp}${'0'.repeat(len1-i-1)} + `
   }
- }
- return arr.sort((a,b)=>a[0]-b[0])
+  for(let i = 0; i < len2; i++){
+    let tmp = arr2[i], counter = '1'
+    if(tmp==='0'){
+      continue
+    }
+    str += `${tmp}/${counter}${'0'.repeat(i+1)} + `
+  }
+  return str.slice(0,str.length-2).trim()
 }
-console.log(removeNb(1000003))
+console.log(expandedForm(7.304))
