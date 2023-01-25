@@ -1,13 +1,7 @@
-const abc = 'abcdefghijklmnopqrstuvwxyz'
-
-function AtbashCipher(abc) {
-  this.encode = function (str) {
-    return str.split``.map(el=>abc.includes(el)?abc.indexOf(el):el).map(el=> typeof el !== 'number' ? el : abc.split``.reverse().join``[el]).join``
-  };
-  this.decode = function (str) {
-    return this.encode(str)
-  };
+function encode(p){
+  return p.split` `.map(el=>el.split``.reverse().join``).map(el=>{
+    el = el.slice(1) + el.charAt(0)
+    return el
+  }).join` `
 }
-
-const z = new AtbashCipher(abc)
-console.log(z.decode('zyx'))
+console.log(encode("Hello World!"))
