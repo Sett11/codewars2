@@ -1,16 +1,13 @@
-const abc1 = "dpwuqoxmeykzcvihljntrsgfab";
-const abc2 = "ckxlvzerqgfidspbyohmtajwun";
+const abc = 'abcdefghijklmnopqrstuvwxyz'
 
-function SubstitutionCipher(abc1, abc2) {
+function AtbashCipher(abc) {
   this.encode = function (str) {
-    return str.split``.map(el=> abc1.includes(el) ? abc1.indexOf(el) : el)
-    .map(el=> typeof el === 'number'? abc2[el] : el).join``
-  }
+    return str.split``.map(el=>abc.includes(el)?abc.indexOf(el):el).map(el=> typeof el !== 'number' ? el : abc.split``.reverse().join``[el]).join``
+  };
   this.decode = function (str) {
-    return str.split``.map(el=> abc2.includes(el)? abc2.indexOf(el) : el)
-    .map(el=> typeof el === 'number'? abc1[el] : el).join``
-  }
+    return this.encode(str)
+  };
 }
-const r = new SubstitutionCipher(abc1,abc2)
 
-console.log(r.encode("b9bv"))
+const z = new AtbashCipher(abc)
+console.log(z.decode('zyx'))
