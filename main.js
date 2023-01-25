@@ -1,4 +1,13 @@
-function solve(arr) {
-  return arr.map(el=>[...new Set(el)].length).reduce((a,c)=>a*c)
-};
-console.log(solve([[1,2],[3,4],[5,6]]))
+function whitespaceNumber(n) {
+  console.log(n)
+  let res = (Math.abs(n)).toString(2)
+  if(n>0){
+    res = '+' + res
+  }
+  if(n<0){
+    res = '-' + res
+  }
+  return res.replace(/^-/g, '\t').replace(/^\+/, ' ')
+  .replace(/1/g,'\t').replace(/0/g,' ') + '\n'
+}
+console.log(whitespaceNumber(-1))
