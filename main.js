@@ -1,41 +1,33 @@
-const removeDuplicateIds = (obj) => {
-  const O = {}
-  if(Object.entries(obj).length===1){
-     Object.entries(obj).map(el=>{
-      el[1] = [...new Set(el[1])]
-      O[el[0]] = el[1]
-      return el
-    })
-    return O
-  }
-  const arr = Object.entries(obj).map(el=>{
-    el[0] = Number(el[0])
-    el[1] = [...new Set(el[1])]
-    return el
-  }).map((el,i,arr)=>{
-    for(let i = 0; i < arr.length; i++){
-      for(let j = 0; j < Math.max(arr[1].length, el[1].length); j++){
-        if(el[1].indexOf(arr[i][1][j])===-1&&arr[i][1].indexOf(el[1][j])===-1){
-          continue
-        }
-        if(arr[i][1].includes(el[1][j])){
-          if(arr[i][0]>el[0]){
-            el[1][j] = '&'
-          }
-          if(arr[i][0]<el[0]){
-            arr[i][1][j] = '&'
-          }
-        }
-      }
-    }
-    return el
-  }).map(el=>{
-    el[1] = el[1].filter(ul=>ul!=='&')
-    return el
-  }).map(el=>{
-    O[el[0]] = el[1]
-    return el
-  })
-  return O
+const NATO = {
+  a: 'Alfa',
+  n: 'November',
+  b: 'Bravo',
+  o: 'Oscar',
+  c: 'Charlie',
+  p: 'Papa',
+  d: 'Delta',
+  q: 'Quebec',
+  e: 'Echo',
+  r: 'Romeo',
+  f: 'Foxtrot',
+  s: 'Sierra',
+  g: 'Golf',
+  t: 'Tango',
+  h: 'Hotel',
+  u: 'Uniform',
+  i: 'India',
+  v: 'Victor',
+  j: 'Juliett',
+  w: 'Whiskey',
+  k: 'Kilo',
+  x: 'Xray',
+  l: 'Lima',
+  y: 'Yankee',
+  m: 'Mike',
+  z: 'Zulu'
 }
-console.log(removeDuplicateIds({ '22': [ 'Q', 'V', 'B' ] }))
+
+function to_nato(words) {
+	return words.replace(/\s/g,'').split``.map(el=>el.toLowerCase()).map(el=>NATO[el]? NATO[el]:el).join` `
+}
+console.log(to_nato('If, you can read?'))
