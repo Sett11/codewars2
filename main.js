@@ -1,33 +1,9 @@
-const NATO = {
-  a: 'Alfa',
-  n: 'November',
-  b: 'Bravo',
-  o: 'Oscar',
-  c: 'Charlie',
-  p: 'Papa',
-  d: 'Delta',
-  q: 'Quebec',
-  e: 'Echo',
-  r: 'Romeo',
-  f: 'Foxtrot',
-  s: 'Sierra',
-  g: 'Golf',
-  t: 'Tango',
-  h: 'Hotel',
-  u: 'Uniform',
-  i: 'India',
-  v: 'Victor',
-  j: 'Juliett',
-  w: 'Whiskey',
-  k: 'Kilo',
-  x: 'Xray',
-  l: 'Lima',
-  y: 'Yankee',
-  m: 'Mike',
-  z: 'Zulu'
+function addArrays(array1, array2) {
+  if(array1.length!==array2.length)throw new Error()
+  const res = []
+  for(let i = 0; i < array1.length; i++){
+    res.push([array1[i], array2[i]])
+  }
+  return res.map(el=>el.reduce((a,c)=>a+c))
 }
-
-function to_nato(words) {
-	return words.replace(/\s/g,'').split``.map(el=>el.toLowerCase()).map(el=>NATO[el]? NATO[el]:el).join` `
-}
-console.log(to_nato('If, you can read?'))
+  console.log(addArrays([1,2],[4,5]))
