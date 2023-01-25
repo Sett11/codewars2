@@ -1,11 +1,5 @@
-function createMessage(arg, res) {
-  if(arg === undefined){
-    return res
-  }
-  res = ((res||0) + ' ' + arg).replace(/0/, '').trim()
-  return function(arg){
-    return createMessage(arg,res)
-  }
+function pak(s){
+  if(!s.match(/[a-zA-Z]/g))return ''
+  return s.split` `.join` pak `
 }
-
-console.log(createMessage("Hello")("World!")())
+console.log(pak('Man I need a taxi up to Ubud'))
