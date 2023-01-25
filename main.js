@@ -1,7 +1,11 @@
-function encode(p){
-  return p.split` `.map(el=>el.split``.reverse().join``).map(el=>{
-    el = el.slice(1) + el.charAt(0)
-    return el
-  }).join` `
+function createMessage(arg, res) {
+  if(arg === undefined){
+    return res
+  }
+  res = ((res||0) + ' ' + arg).replace(/0/, '').trim()
+  return function(arg){
+    return createMessage(arg,res)
+  }
 }
-console.log(encode("Hello World!"))
+
+console.log(createMessage("Hello")("World!")())
