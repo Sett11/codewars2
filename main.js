@@ -1,13 +1,16 @@
-function whitespaceNumber(n) {
-  console.log(n)
-  let res = (Math.abs(n)).toString(2)
-  if(n>0){
-    res = '+' + res
+const abc1 = "dpwuqoxmeykzcvihljntrsgfab";
+const abc2 = "ckxlvzerqgfidspbyohmtajwun";
+
+function SubstitutionCipher(abc1, abc2) {
+  this.encode = function (str) {
+    return str.split``.map(el=> abc1.includes(el) ? abc1.indexOf(el) : el)
+    .map(el=> typeof el === 'number'? abc2[el] : el).join``
   }
-  if(n<0){
-    res = '-' + res
+  this.decode = function (str) {
+    return str.split``.map(el=> abc2.includes(el)? abc2.indexOf(el) : el)
+    .map(el=> typeof el === 'number'? abc1[el] : el).join``
   }
-  return res.replace(/^-/g, '\t').replace(/^\+/, ' ')
-  .replace(/1/g,'\t').replace(/0/g,' ') + '\n'
 }
-console.log(whitespaceNumber(-1))
+const r = new SubstitutionCipher(abc1,abc2)
+
+console.log(r.encode("b9bv"))
