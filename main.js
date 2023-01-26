@@ -1,9 +1,5 @@
-function addArrays(array1, array2) {
-  if(array1.length!==array2.length)throw new Error()
-  const res = []
-  for(let i = 0; i < array1.length; i++){
-    res.push([array1[i], array2[i]])
-  }
-  return res.map(el=>el.reduce((a,c)=>a+c))
+function stantonMeasure (array) {
+  const check = array.filter(el=>el===1)
+  return array.filter(el=>el===check.length).length
 }
-  console.log(addArrays([1,2],[4,5]))
+console.log(stantonMeasure([1, 4, 3, 2, 1, 2, 3, 2]))
