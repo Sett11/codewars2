@@ -1,27 +1,17 @@
-function lastSurvivors(str) {
-  const letters = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
-  let newStr = str.split``.map((el) => parseInt(el, 36) - 10);
-  for (let i = 0; i < newStr.length; i++) {
-    let ind1 = newStr.indexOf(newStr[i]),
-      ind2 = newStr.lastIndexOf(newStr[i]);
-    if (ind1 !== ind2) {
-      newStr[ind1] += 1;
-      newStr[ind2] = "&";
-      newStr = newStr.filter((el) => el !== "&");
-      if (newStr[i] > 25) {
-        newStr[i] = (newStr[i] % 25) - 1;
-      }
-      if (newStr.length > [...new Set(newStr)].length) {
-        i = 0;
-      }
-      if (newStr[i] > 25) {
-        newStr[i] = (newStr[i] % 25) - 1;
-      }
-      if (newStr.length > [...new Set(newStr)].length) {
-        i = 0;
-      }
-    }
+var nato = (function() {
+  var letters =  {
+    "A": "Alpha",  "B": "Bravo",   "C": "Charlie",
+    "D": "Delta",  "E": "Echo",    "F": "Foxtrot",
+    "G": "Golf",   "H": "Hotel",   "I": "India",
+    "J": "Juliett","K": "Kilo",    "L": "Lima",
+    "M": "Mike",   "N": "November","O": "Oscar",
+    "P": "Papa",   "Q": "Quebec",  "R": "Romeo",
+    "S": "Sierra", "T": "Tango",   "U": "Uniform",
+    "V": "Victor", "W": "Whiskey", "X": "X-ray",
+    "Y": "Yankee", "Z": "Zulu"
   }
-  return newStr.map((el) => letters[el]).sort().join``;
-}
-console.log(lastSurvivors("lxxoygparcpklltwnkoywtcnhgsqpxe"));
+  
+  return function(word) {
+    return word.split``.map(el=>letters[el.charAt(0).toUpperCase()]).join` `
+  }
+})()
