@@ -1,5 +1,4 @@
-function zipvalidate(p){
-  console.log(p)
-  return p.length!==6||p.match(/\D/g)||p.match(/^0|^5|^7|^8|^9/g)?false:true
+function sillycase(s) {
+  return s.slice(0, Math.ceil(s.length/2)).toLowerCase() + s.slice(Math.ceil(s.length/2)).toUpperCase()
 }
-console.log(zipvalidate('198328'))
+console.log(sillycase('brian'))
