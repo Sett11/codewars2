@@ -1,7 +1,5 @@
-function passTheDoorMan (word){
-  return [...new Set(word.split``.filter((el,i,arr)=>{
-    let firstInd = arr.indexOf(el), nextInd = arr.lastIndexOf(el)
-   return firstInd!==nextInd&&Math.abs(firstInd-nextInd)===1
-  }))].map(el=>(parseInt(el,36)-9)*3)[0]
+function zipvalidate(p){
+  console.log(p)
+  return p.length!==6||p.match(/\D/g)||p.match(/^0|^5|^7|^8|^9/g)?false:true
 }
-console.log(passTheDoorMan('lettuce'))
+console.log(zipvalidate('198328'))
