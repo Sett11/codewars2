@@ -1,7 +1,10 @@
-function gridMap(fn,a) {
-  return a.map(el=>el.map(fn))
+function Mormons(s, r, t) {
+  if(s>=t||s===s+(s*r))return 0
+  let counter = 0
+  while(s<t){
+    s+=s*r
+    counter++
+  }
+  return counter
 }
-console.log(gridMap(x => x+1, [ [1,2,3,4]
-  , [5,6,7,8,9]
-  , [0,2,4]
-  ]))
+console.log(Mormons(40, 2, 121))
