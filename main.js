@@ -1,10 +1,7 @@
-function Mormons(s, r, t) {
-  if(s>=t||s===s+(s*r))return 0
-  let counter = 0
-  while(s<t){
-    s+=s*r
-    counter++
-  }
-  return counter
+function passTheDoorMan (word){
+  return [...new Set(word.split``.filter((el,i,arr)=>{
+    let firstInd = arr.indexOf(el), nextInd = arr.lastIndexOf(el)
+   return firstInd!==nextInd&&Math.abs(firstInd-nextInd)===1
+  }))].map(el=>(parseInt(el,36)-9)*3)[0]
 }
-console.log(Mormons(40, 2, 121))
+console.log(passTheDoorMan('lettuce'))
