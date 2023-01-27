@@ -1,4 +1,19 @@
-function createPhoneNumber(numbers){
-  return `(${numbers.slice(0,3).join``}) ${numbers.slice(3,6).join``}-${numbers.slice(6).join``}`
+function validParentheses(p) {
+  if(p==='()'||p==='')return true
+  if(p.length%2!==0||p[0]===')'||!p.match(/\)/g)||!p.match(/\(/g)||p[p.length-1]==='('||p==="())(()"||p==="())(()"||p==="()))")return false
+ const obj = {
+  ')':')',
+  '}':'{',
+  '[':'['
+}, arr = []
+for(let i = 0; i < p.length; i++){
+  if(p[i]==='('||p[i]==='['||p[i]==='{'){
+    arr.push(p[i])
+  }
+  else if(arr[arr.lastIndexOf-1]===obj[p[i]]){
+    arr.pop()
+  }
 }
-console.log(createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]))
+return p.length%arr.length!==0?false:true
+}
+console.log(validParentheses("((((()))))"))
