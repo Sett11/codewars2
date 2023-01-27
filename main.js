@@ -1,4 +1,15 @@
-function sillycase(s) {
-  return s.slice(0, Math.ceil(s.length/2)).toLowerCase() + s.slice(Math.ceil(s.length/2)).toUpperCase()
+function shiftLeft(s, t){
+  if(s===t)return 0
+  let counter = 0
+  while(s!==t){
+    if(s.length>=t.length){
+      s=s.slice(1)
+      counter++
+    }else{
+      t=t.slice(1)
+      counter++
+    }
+  }
+  return counter
 }
-console.log(sillycase('brian'))
+console.log(shiftLeft("test", "yes"))
