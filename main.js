@@ -1,4 +1,4 @@
-function LCS(x, y) {
+function lsc(x, y) {
   const arr = Array.from({length:x.length}, _ =>Array(y.length))
   return F(x,y,0,0,arr)
 }
