@@ -1,15 +1,7 @@
-function shiftLeft(s, t){
-  if(s===t)return 0
-  let counter = 0
-  while(s!==t){
-    if(s.length>=t.length){
-      s=s.slice(1)
-      counter++
-    }else{
-      t=t.slice(1)
-      counter++
-    }
-  }
-  return counter
+function negationValue(s, v) {
+  const F = (z) => !z
+  const Z = (f) => !!f
+  if(s.length%2===0)return Z(v)
+  return F(v)
 }
-console.log(shiftLeft("test", "yes"))
+console.log(negationValue("!", false))
