@@ -1,36 +1,36 @@
-function sortArrays(arr1, arr2) {
-  const res1 = arr2
-      .slice()
-      .map((el, i) => [el, i])
-      .sort((a, b) => a[0] - b[0] || a[1] - b[1])
-      .map((el, i) => {
-        return [el[1], i];
-      }),
-    array1 = arr1.slice().map((el, i) => [el, i]);
-  for (let i = 0; i < array1.length; i++) {
-    for (let j = 0; j < res1.length; j++) {
-      if (array1[i][1] === res1[j][0]) {
-        array1[i].push(res1[j][1]);
-      }
+function findIndexOfSubArray(arr) {
+  console.log(arr)
+  if(arr.length===0||arr.join``==='00'||arr.slice().join``===arr.slice().sort((a,b)=>a-b).join``||arr.slice().join``===arr.slice().sort((a,b)=>b-a).join``)return [0,0]
+  const res = []
+  for(let i = 0; i <= arr.length; i++){
+    const innerArr = []
+    let tmp = arr.slice(0,i).sort((a,b)=>a-b), dmb = arr.slice(0,i).sort((a,b)=>b-a)
+    if((tmp.concat(arr.slice(i))).join``===(arr.slice().sort((a,b)=>a-b)).join``){
+      innerArr.push(i-1)
+    }
+    if((dmb.concat(arr.slice(i))).join``===(arr.slice().sort((a,b)=>b-a)).join``){
+      innerArr.push(i-1)
+    }
+    if((arr.slice(0,i).concat(arr.slice(i).sort((a,b)=>a-b))).join``===(arr.slice().sort((a,b)=>a-b)).join``){
+      innerArr.unshift([i])
+    }
+    if((arr.slice(0,i).concat(arr.slice(i).sort((a,b)=>b-a))).join``===(arr.slice().sort((a,b)=>b-a)).join``){
+      innerArr.unshift([i])
+    }
+    res.push(...innerArr)
+  }
+  const finRes = []
+  for(let i = 0; i < res.length; i++){
+    if(typeof res[i] === 'object' && typeof res[i+1] === 'number'){
+      finRes.push([...res[i], res[i+1]])
+      break
     }
   }
-  const finres1 = array1.sort((a, b) => a[2] - b[2]).map((el) => el[0]);
-  const res2 = arr1
-      .slice()
-      .map((el, i) => [el, i])
-      .sort((a, b) => a[0] - b[0] || a[1] - b[1])
-      .map((el, i) => {
-        return [el[1], i];
-      }),
-    array2 = arr2.slice().map((el, i) => [el, i]);
-  for (let i = 0; i < array2.length; i++) {
-    for (let j = 0; j < res2.length; j++) {
-      if (array2[i][1] === res2[j][0]) {
-        array2[i].push(res2[j][1]);
-      }
-    }
-  }
-  const finres2 = array2.sort((a, b) => a[2] - b[2]).map((el) => el[0]);
-  return [finres1, finres2];
+  return finRes[0]
 }
-console.log(sortArrays([5, 6, 9, 2, 6, 5], [3, 6, 7, 4, 8, 1]));
+
+
+console.log(findIndexOfSubArray([1,2,3,6,4,4]))
+ console.log(findIndexOfSubArray([9, 2, 32, 123, 3, 2, 2]))
+ console.log(findIndexOfSubArray([1, 2, 323, 45656, 2, 2, 345, 6, 2, 2]))
+ console.log(findIndexOfSubArray([1,2,3,4,5,9,8,7,6,10]))
