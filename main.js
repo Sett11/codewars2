@@ -1,13 +1,8 @@
-function remove(s){
-  if(s===''||s.length===1||s.length===2||s.length===3&&s[0]!==s[1]||s.length===3&&s[1]!==s[2])return s
-  return s.replace(/\!+|\?+/g, ' $& ').split` `.filter(el=>{
-      if(el==='')return false
-      if(el.length===1)return true
-      if(el.length!==1&&el.length%2===0)return true
-    }).join``.replace(/\!+|\?+/g, ' $& ').split` `.filter(el=>{
-      if(el==='')return false
-      if(el.length===1)return true
-      if(el.length!==1&&el.length%2===0)return true
-    }).join``
+function sort(initialArray, sortingArray) {
+  const arr = []
+  for(let i = 0; i < initialArray.length; i++){
+    arr.push([initialArray[i], sortingArray[i]])
+  }
+  return arr.sort((a,b)=>a[1]-b[1]).map(el=>el[0])
 }
-  console.log(remove("!???!!" ))
+console.log(sort([1, 2, 3, 4, 5], [0, 2, 1, 4, 3]))
