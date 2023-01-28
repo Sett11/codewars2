@@ -1,7 +1,5 @@
-function truncateString(str, num) {
-  if(str.length===num)return str
-  if(str.length<num)return str
-  if(num<=3)return str.slice(0,num) + '...'
-  return str.slice(0, num - 3) + '...'
+function time(distance,boatSpeed,stream){
+  return stream.replace(/[^a-zA-Z]/g,'')==='Downstream'?Number((distance/(boatSpeed + +stream.replace(/[^\d]/g,''))).toFixed(2)):
+  Number((distance/(boatSpeed - +stream.replace(/[^\d]/g,''))).toFixed(2))
 }
-console.log(truncateString('A-tisket a-tasket A green and yellow basket', 43))
+  console.log(time(24,10,"Downstream 2"))
