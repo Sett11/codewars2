@@ -1,29 +1,13 @@
-function sc(r) {
-  console.log(r)
-  r = r.replace(/\//g, ""), arr = []
-  for (let i = 1; i < r.length; i++) {
-    let tmp = r.slice(0, i),
-      counter = r.length, count = 1
-    while (counter >= 0) {
-      if (tmp.repeat(counter) === r) {
-        arr.push(tmp)
-        break;
-      }
-      counter--;
+function dup(s) {
+  return s.map(el=>{
+    el = el.split``
+   for(let i = 0; i < el.length; i++){
+    if(el[i]===el[i+1]){
+      el.splice(i+1,1)
+      i--
     }
-    while (count < r.length) {
-      if (tmp.repeat(count) === r) {
-        arr.push(tmp)
-        break;
-      }
-      count++;
-    }
-  }
-  if(arr.length===0){
-    return '/' + r + '/'
-  }
-  const res = arr.sort((a,b)=>a.length-b.length)[0]
-  const finRes = res.length===1 ? `/${res}{${r.length/res.length}}/` : `/(${res}){${r.length/res.length}}/`
-  return finRes.length < r.length + 2 ? finRes : '/' + r + '/'
+   }
+   return el.join``
+  })
 }
-console.log(sc("/IqF9X/"));
+console.log(dup(["ccooddddddewwwaaaaarrrrsssss","piccaninny","hubbubbubboo"]))
