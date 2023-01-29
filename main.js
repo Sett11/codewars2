@@ -1,24 +1,16 @@
-sc = e => {
-  c = "2"
-  for (i of e) {
-    if (c == i[0]) c = i[2]
-    else if (c == i[2]) c = i[0]
+function sc(words){
+  words = words.replace(/[^a-zA-Z\s]/g,'').split` `
+  const obj = {}
+  let counter = 0
+  for(let i of words){
+    i=i.toLowerCase()
+    if(!obj[i]){
+      obj[i]=i
+      counter+=i.length
+    }else{
+      counter+=1
+    }
   }
-  return c
+  return counter
 }
-
-console.log(
-  sc([
-    "1-3",
-    "3-2",
-    "3-2",
-    "2-3",
-    "1-2",
-    "3-2",
-    "3-1",
-    "1-2",
-    "1-2",
-    "2-3",
-    "1-2",
-  ])
-);
+console.log(sc("Hello World!"))
