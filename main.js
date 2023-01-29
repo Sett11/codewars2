@@ -1,11 +1,8 @@
-function sc(array){
-  const arr = []
-  for(let i = 0; i < array.length; i++){
-    for(let j = 0; j < array.length; j++){
-      if(i!==j){
-        arr.push(array[i]+array[j], array[i]-array[j], array[i]*array[j], array[i]/array[j])
-      }
-    }
-  }return Math.max(...arr.filter(el=>el==el&&el!==Infinity&&el!==-Infinity))
-}
-console.log(sc([1,0]))
+sc = (a) =>
+  Math.max(
+    (a = a.sort((z, v) => v - z))[0] + a[1],
+    a[0] * a[1],
+    a[0] - Math.min(...a),
+    a[0] * Math.max(...a.map((t) => (t == 0 ? 0 : 1 / t)))
+  )
+console.log(sc([-1, 2]));
