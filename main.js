@@ -1,6 +1,6 @@
-function sc(floor){
-  if(floor<=1)return ''
-  let res = `${'Aa~ '.repeat(floor-1)}${'Pa!'}`
-  return floor<7?res + ' ' + 'Aa!':res
+sc=f=>{
+  if(f<=1)return ''
+  let r = `${'Aa~ '.repeat(f-1)}${'Pa!'}`
+  return f<7?r + ' ' + 'Aa!':r
 }
 console.log(sc(1))
