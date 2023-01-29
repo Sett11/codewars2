@@ -1,13 +1,24 @@
-function sc(e){
-  let check = '2'
-  for(let i = 0; i < e.length; i++){
-    if(check===e[i][0]){
-      check=e[i][2]
-    }
-   else if(check===e[i][2]){
-      check=e[i][0]
-    }
+sc = e => {
+  c = "2"
+  for (i of e) {
+    if (c == i[0]) c = i[2]
+    else if (c == i[2]) c = i[0]
   }
-  return check
+  return c
 }
-console.log(sc(["1-3","3-2","3-2","2-3","1-2","3-2","3-1","1-2","1-2","2-3","1-2"]))
+
+console.log(
+  sc([
+    "1-3",
+    "3-2",
+    "3-2",
+    "2-3",
+    "1-2",
+    "3-2",
+    "3-1",
+    "1-2",
+    "1-2",
+    "2-3",
+    "1-2",
+  ])
+);
