@@ -1,16 +1,16 @@
-function sc(words){
-  words = words.replace(/[^a-zA-Z\s]/g,'').split` `
-  const obj = {}
-  let counter = 0
-  for(let i of words){
+sc=w=>{
+  w = w.replace(/[^a-zA-Z\s]/g,'').split` `
+   o = {}
+   c = 0
+  for( i of w){
     i=i.toLowerCase()
-    if(!obj[i]){
-      obj[i]=i
-      counter+=i.length
+    if(!o[i]){
+      o[i]=i
+      c+=i.length
     }else{
-      counter+=1
+      c+=1
     }
   }
-  return counter
+  return c
 }
 console.log(sc("Hello World!"))
