@@ -1,7 +1,31 @@
-const noIfsNoButs = function (a,b) {
-  const res1 = (a-b)<0&&`${a} is smaller than ${b}`
-  const res2 = (a-b)>0&&`${a} is greater than ${b}`
-  const res3 = (a-b)===0&&`${a} is equal to ${b}`
-  return res1||res2||res3
-}
-console.log(noIfsNoButs(100,100))
+String.prototype.findParenMatch = function (pos) {
+  let counter = 1;
+  if (this[pos] === "(") {
+    for (let i = pos + 1; i < this.length; i++) {
+      if (this[i] === ")") {
+        counter--;
+      }
+      if (this[i] === "(") {
+        counter++;
+      }
+      if (counter === 0) {
+        return i;
+      }
+    }
+  }
+  if (this[pos] === ")") {
+    for (let i = pos - 1; i >= 0; i--) {
+      if (this[i] === "(") {
+        counter--;
+      }
+      if (this[i] === ")") {
+        counter++;
+      }
+      if (counter === 0) {
+        return i;
+      }
+    }
+  }
+  return -1;
+};
+console.log("(som(th)ng)".findParenMatch(7));
