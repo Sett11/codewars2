@@ -1,6 +1,7 @@
-sc=f=>{
-  if(f<=1)return ''
-  let r = `${'Aa~ '.repeat(f-1)}${'Pa!'}`
-  return f<7?r + ' ' + 'Aa!':r
+function sc(a,b,c){
+  return a+b==c?`${a}+${b}=${c}`:a+c==b?`${a}+${c}=${b}`:c+b==a?`${c}+${b}=${a}`:
+  a-b==c?`${a}-${b}=${c}`:a-c==b?`${a}-${c}=${b}`:c-b==a?`${c}-${b}=${a}`:b-c==a?`${b}-${c}=${a}`:
+  a*b==c?`${a}*${b}=${c}`:a*c==b?`${a}*${c}=${b}`:c*b==a?`${c}*${b}=${a}`:b*c==a?`${b}*${c}=${a}`:
+  b/a==c? `${b}/${a}=${c}`: a/b==c?`${a}/${b}=${c}`:a/c==b?`${a}/${c}=${b}`:c/b==a?`${c}/${b}=${a}`:b/c==a?`${b}/${c}=${a}`:''
 }
-console.log(sc(1))
+console.log(sc(1,2,3))
