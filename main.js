@@ -1,8 +1,11 @@
-function alphaSeq (str) {
-  str = str.toLowerCase().split``.sort(), s = ''
-  for(let i = 0; i < str.length; i++){
-    s+=`${str[i].toUpperCase()}${str[i].repeat(parseInt(str[i], 36)-10)},`
+function eqSumPowdig(hMax, exp) {
+  let arr = [], counter = 2
+  while(counter<=hMax){
+    if((counter+'').split``.map(Number).map(el=>el**exp).reduce((a,c)=>a+c,0)==counter){
+      arr.push(counter)
+    }
+    counter++
   }
-  return s.slice(0, s.length-1)
+  return arr
 }
-console.log(alphaSeq('ZpglnRxqenU'))
+console.log(eqSumPowdig(400,3))
