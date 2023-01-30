@@ -1,5 +1,11 @@
-function toWeirdCase(s){
- return s.split` `.map(el=>el.split``.map((ul,i)=>i%2===0?ul.toUpperCase():ul.toLowerCase()).join``).join` `
+function solution(n){
+  if(n<0)return 0
+  let set = new Set()
+  for(let i = 1; i < n; i++){
+    if(i%3===0||i%5===0){
+      set.add(i)
+    }
+  }
+  return [...set].reduce((a,c)=>a+c,0)
 }
-console.log(toWeirdCase("Weird string case"))
-console.log(toWeirdCase('String'))
+console.log(solution(10))
