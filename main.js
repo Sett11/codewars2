@@ -1,6 +1,7 @@
-Array.prototype.average = function(){
-  return parseFloat('1.6')
-  return this
-  .reduce((a,c)=>typeof c === 'number'?a+c: typeof c==='string'? a+ parseInt(c):a+c.average())/this.length
+function stepDown(s,w,arr=[]){
+  if(w==0)return []
+  if(s>=0)arr.push(s)
+  if(s<0)return arr.reverse()
+  return stepDown(s-w,w,arr)
 }
-console.log([1,2,[2,4]].average())
+console.log(stepDown(5,7))
