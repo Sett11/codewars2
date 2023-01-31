@@ -1,7 +1,14 @@
-function stepDown(s,w,arr=[]){
-  if(w==0)return []
-  if(s>=0)arr.push(s)
-  if(s<0)return arr.reverse()
-  return stepDown(s-w,w,arr)
+function smaller(n) {
+  arr=[]
+  for(let i = 0; i < n.length; i++){
+    let counter = 0, tmp = n[i]
+    for(let j = i; j < n.length; j++){
+      if(n[j]<tmp){
+        counter++
+      }
+    }
+    arr.push(counter)
+  }
+  return arr
 }
-console.log(stepDown(5,7))
+  console.log(smaller([1,2,0]))
