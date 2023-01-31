@@ -6,3 +6,24 @@ function isPrime(n) {
   }
   return true;
 }
+
+function getPrimes(s, f) {
+  arr=[]
+  if(s<f){
+    while(s<=f){
+      if(isPrime(s)){
+        arr.push(s)
+      }
+      s++
+    }
+  }else{
+    while(f<=s){
+      if(isPrime(f)){
+        arr.push(f)
+      }
+      f++
+    }
+  }
+  return arr
+}
+console.log(getPrimes(30,0))
