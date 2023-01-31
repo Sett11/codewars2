@@ -1,5 +1,21 @@
-function orderWeight(s) {
-  return s.trim().split` `.map(el=>[el, el.split``.map(Number).reduce((a,c)=>a+c,0)])
-  .sort((a,b)=>a[1]-b[1]||a[0].localeCompare(b[0])).map(el=>el[0]).join` `
+function liftingCalc(w){
+  if(w<20||(w-20)%2.5!==0)return false
+  if(w===20)return []
+  w = (w-20)/2
+  const arr = [20,15,10,5,2.5,1.25], res = []
+  let c = 0, val = true
+  while(val){
+    if(w>=arr[c]){
+    w-=arr[c]
+    res.push(arr[c])
+    }
+    if(w<arr[c]){
+      c++
+    }
+    if(w==0){
+      val = false
+    }
+  }
+  return res
 }
-console.log(orderWeight("103 123 4444 99 2000"))
+console.log(liftingCalc(250))
