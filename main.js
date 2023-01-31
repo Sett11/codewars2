@@ -1,25 +1,14 @@
-function isPrime(n) {
-  if (n < 2) return false;
-  if (n === 2) return true;
-  for (let i = 2; i < Math.sqrt(n)+1; i++) {
-    if (n % i === 0) return false;
-  }
-  return true;
-}
-
-function twinPrime(n) {
-  let count = 2,arr=[], res = 0
-  while(count<=n+1){
-    if(isPrime(count)){
-      arr.push(count)
+function sumConsecutives(s) {
+  for(let i = 0; i < s.length;i++){
+   if(s[i]===s[i+1]){
+    for(let j = i; j < s.length; j++){
+      if(s[j]!==s[j+1]){
+       s = s.slice(0,i).concat(s.slice(i,j+1).reduce((a,c)=>a+c,0)).concat(s.slice(j+1))
+       break
+      }
     }
-    count++
+   }
   }
-  for(let i = 0; i < arr.length; i++){
-    if(arr[i+1]-arr[i]===2){
-      res+=1
-    }
-  }
-  return res
+  return s
 }
-console.log(twinPrime(12))
+console.log(sumConsecutives([1,4,4,4,0,4,3,3,1]))
