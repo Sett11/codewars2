@@ -7,23 +7,19 @@ function isPrime(n) {
   return true;
 }
 
-function getPrimes(s, f) {
-  arr=[]
-  if(s<f){
-    while(s<=f){
-      if(isPrime(s)){
-        arr.push(s)
-      }
-      s++
+function twinPrime(n) {
+  let count = 2,arr=[], res = 0
+  while(count<=n+1){
+    if(isPrime(count)){
+      arr.push(count)
     }
-  }else{
-    while(f<=s){
-      if(isPrime(f)){
-        arr.push(f)
-      }
-      f++
+    count++
+  }
+  for(let i = 0; i < arr.length; i++){
+    if(arr[i+1]-arr[i]===2){
+      res+=1
     }
   }
-  return arr
+  return res
 }
-console.log(getPrimes(30,0))
+console.log(twinPrime(12))
