@@ -1,11 +1,11 @@
-function fibonacci(n) {
-    arr = [0, 1];
-    for (let i = 0; i <= n; i++) {
-        if(arr[i]+arr[i+1]>=n){
-            break
-          }
-      arr.push(arr[i] + arr[i + 1])
-    }
-    return arr.filter(el=>el%2===0).reduce((a,c)=>a+c)
+function humanReadable (s) {
+  let hoors = Math.floor(s/3600)
+   s-= hoors*3600
+   if(hoors<10)hoors='0'+hoors
+   let min = Math.floor(s/60)
+   s-=min*60
+   if(min<10)min='0'+min
+   if(s<10)s='0'+s
+   return `${hoors}:${min}:${s}`
 }
-console.log(fibonacci(1000000000))
+  console.log(humanReadable(213545))
