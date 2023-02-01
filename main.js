@@ -1,7 +1,8 @@
-function fib(n) {
-  arr = [0, 1];
-  for (let i = 0; i <= n; i++) {
-    arr.push(arr[i] + arr[i + 1]);
+function fibonacci(n) {
+    arr = [0, 1];
+    for (let i = 0; i <= n; i++) {
+      arr.push(arr[i] + arr[i + 1]);
+    }
+    return arr.slice(0,n)
   }
-  return arr[n - 1];
-}
+console.log(fibonacci(5))
