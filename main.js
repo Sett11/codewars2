@@ -1,29 +1,8 @@
-function compareVersions (v1, v2) {
-    console.log(v1,v2)
-    const one = v1.replace(/\./g, ' ').split` `.map(Number)
-    const two = v2.replace(/\./g, ' ').split` `.map(Number)
+function compoundArray(a, b) {
     arr=[]
-    if(one.length<two.length){
-        while(one.length<two.length){
-            one.push(0)
-        }
+    for(i=0;i<Math.max(a.length,b.length);i++){
+    arr.push(a[i])
+      arr.push(b[i])
     }
-    if(two.length<one.length){
-        while(two.length<one.length){
-            two.push(0)
-        }
-    }
-    for(let i = 0; i < one.length; i++){
-        if(one[i]>two[i]){
-            return true
-        }
-        if(one[i]<two[i]){
-            return false
-        }
-        arr.push(one[i]>=two[i])
-    }
-    return arr.every(el=>el===true)
-}
-console.log(compareVersions("11", "11"))
-console.log(compareVersions("10.4.6", "10.4"))
-console.log(compareVersions('81.173.94.150.107.50', '30.93.158.121.155'))
+    return arr.filter(el=>el!==undefined)
+  }
