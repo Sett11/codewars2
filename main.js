@@ -1,14 +1,29 @@
-function isLanguageDiverse(l) {
-    let js = 0, py = 0, r = 0
-    l.forEach(e=>e.language==='JavaScript'?js++:e.language==='Python'?py++:r++)
-    const arr = [js,py,r].sort((a,b)=>b-a)
-    return arr[0]<=arr[2]*2
+function compareVersions (v1, v2) {
+    console.log(v1,v2)
+    const one = v1.replace(/\./g, ' ').split` `.map(Number)
+    const two = v2.replace(/\./g, ' ').split` `.map(Number)
+    arr=[]
+    if(one.length<two.length){
+        while(one.length<two.length){
+            one.push(0)
+        }
+    }
+    if(two.length<one.length){
+        while(two.length<one.length){
+            two.push(0)
+        }
+    }
+    for(let i = 0; i < one.length; i++){
+        if(one[i]>two[i]){
+            return true
+        }
+        if(one[i]<two[i]){
+            return false
+        }
+        arr.push(one[i]>=two[i])
+    }
+    return arr.every(el=>el===true)
 }
-  console.log(isLanguageDiverse([
-    { firstName: 'Daniel', lastName: 'J.', country: 'Aruba', continent: 'Americas', age: 42, language: 'Python' },
-    { firstName: 'Kseniya', lastName: 'T.', country: 'Belarus', continent: 'Europe', age: 22, language: 'Ruby' },
-    { firstName: 'Sou', lastName: 'B.', country: 'Japan', continent: 'Asia', age: 43, language: 'Ruby' },
-    { firstName: 'Hanna', lastName: 'L.', country: 'Hungary', continent: 'Europe', age: 95, language: 'JavaScript' },
-    { firstName: 'Jayden', lastName: 'P.', country: 'Jamaica', continent: 'Americas', age: 18, language: 'JavaScript' },
-    { firstName: 'Joao', lastName: 'D.', country: 'Portugal', continent: 'Europe', age: 25, language: 'JavaScript' }
-  ]))
+console.log(compareVersions("11", "11"))
+console.log(compareVersions("10.4.6", "10.4"))
+console.log(compareVersions('81.173.94.150.107.50', '30.93.158.121.155'))
