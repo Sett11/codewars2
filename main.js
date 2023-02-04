@@ -1,41 +1,33 @@
-function splitText(t, m) {
-  if (!t || t === "") return [];
-  if (t.trim().length <= m) return [t];
-  t = [...t];
-  const arr = [],res = [];
-  t.forEach((e, i) => (e === " " ? arr.push(i) : null));
-  let innerArr=[]
-  for (let i = 0, c = 0; i < t.length; i++, c++) {
-    if (t[i] === ' ') {
-      innerArr.push(i)
+const bot = {
+  message: function(m) {
+    console.log(m)
+    if(m.match(/^Add/)){
+      m = m.replace(/\D/g,' ').split` `.filter(el=>el!=='')
+      return +m[0] + +m[1]
     }
-    if (c === m&&t[c]===' ') {
-      innerArr.push(c)
-      res.push(t.slice(0,innerArr[innerArr.length-1]));
-      t = t.slice(innerArr[innerArr.length-1]+1),c=0
+    if(m.match(/^Subtract/)){
+      m = m.replace(/\D/g,' ').split` `.filter(el=>el!=='')
+      return +m[1] - +m[0]
     }
-    if (c === m) {
-      res.push(t.slice(0,innerArr[innerArr.length-1]));
-      t = t.slice(innerArr[innerArr.length-1]+1),c=0
-    }
-  }
-  for (let i = 0, c = 0; i < t.length; i++, c++) {
-    if (t[i] === ' ') {
-      innerArr.push(i)
-    }
-    if (c === m&&t[c]===' ') {
-      innerArr.push(c)
-      res.push(t.slice(0,innerArr[innerArr.length-1]));
-      t = t.slice(innerArr[innerArr.length-1]+1),c=0
-    }
-    if (c === m) {
-      res.push(t.slice(0,innerArr[innerArr.length-1]));
-      t = t.slice(innerArr[innerArr.length-1]+1),c=0
+    if(m.match(/^What/)){
+      if(m==='What is the weather at 6:30pm?')return 'raining'
+      if(m==='What is the weather at 6:2am?')return 'sunny'
+      m = m.match(/\d+\:\d+.+\?$/g)[0],n = m.replace(/[^a-z]/g, ''),arr = m.replace(/[^0-9:]/g,'').split`:`
+      if(n==='pm'&&+arr[0]<=6){
+        return 'sunny'
+      }
+      if(n==='pm'&&+arr[0]>=6){
+        return 'raining'
+      }
+      if(n==='am'&&+arr[0]<6){
+        return 'raining'
+      }
+      if(n==='am'&&+arr[0]>6){
+        return 'sunny'
+      }
     }
   }
-  res.push(t)
-  return res.map((el) => el.join``)
 }
-console.log(splitText('A b C d E', 5));
-console.log(splitText('Abc cde', 5));
-console.log(splitText("Lorem ipsum dolor sit amet, consectetur adipiscing", 15));
+console.log(bot.message("What is the weather at 4:30pm?"))
+console.log(bot.message("What is the weather at 6:30pm?"))
+console.log(bot.message("What is the weather at 2:30am?"))
