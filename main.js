@@ -1,31 +1,15 @@
-function peteTalk(s,o=[]){
-  s=s.replace(/\W+/g,' $&').split` `.filter(e=>e!==''), o=o.map(e=>e.toLowerCase())
-  for(let i = 0; i < s.length; i++){
-    if(s[i].replace(/\W_/g,'').length<3||o.includes(s[i].toLowerCase())){
-      s[i]=s[i].toLowerCase()
-      continue
-    }
-    if(i===0&&o.includes(s[i].toLowerCase())&&s[i].match(/\*/g)){
-      s[i]=s[i].charAt(0).toUpperCase()+s.slice(1).toLowerCase()
-    }
-    if(i===0&&!o.includes(s[i].toLowerCase())&&s[i].replace(/\W_/g,'').length>2){
-      s[i]=s[i].charAt(0).toUpperCase()+'*'.repeat(s[i].length-2)+s[i].charAt(s[i].length-1)
-    }
-    if(i!==0&&!o.includes(s[i].toLowerCase())&&s[i].replace(/\W_/g,'').length>2&&s[i-1]!=='.'||s[i-1]!=='?'||s[i-1]!=='!'){
-      s[i]=s[i].charAt(0).toLowerCase()+'*'.repeat(s[i].length-2)+s[i].charAt(s[i].length-1).toLowerCase()
-    }
-    if(i!==0&&!o.includes(s[i].toLowerCase())&&s[i].replace(/\W_/g,'').length>2&&s[i-1]=='.'||s[i-1]=='?'||s[i-1]=='!'){
-      s[i]=s[i].charAt(0).toUpperCase()+'*'.repeat(s[i].length-2)+s[i].charAt(s[i].length-1).toLowerCase()
-    }
-  }
-  for(let i = 1; i < s.length; i++){
-    if(s[i]===s[i].toLowerCase()&&s[i-1]==='.'||s[i-1]==='?'||s[i-1]==='!'){
-      s[i]=s[i].charAt(0).toUpperCase()+s[i].slice(1)
-    }
-  }
-  s=s.join` `.replace(/ (\W)/g,'$1')
-  return s.charAt(0).toUpperCase()+s.slice(1)
+function shoot(x){
+  let Pete=0, Phil=0
+  x=x.map(el=>{
+    el=[...Object.entries(el[0]),el[1]]
+    el[0][1]=el[0][1].split``
+    el[1][1]=el[1][1].split``
+    return el
+  }).map(el=>{
+     el[0][1].forEach(e=>e==='X'&&el[2]===true?Pete+=2:e==='X'&&el[2]===false?Pete+=1:null)
+     el[1][1].forEach(e=>e==='X'&&el[2]===true?Phil+=2:e==='X'&&el[2]===false?Phil+=1:null)
+    return el
+  })
+  return Pete>Phil?'Pete Wins!':Phil>Pete?'Phil Wins!':'Draw!'
 }
-console.log(peteTalk('FROM couch ALCOHOL eat over:'))
-console.log(peteTalk("I want to punch someone in the face",["someone","face"]))
-console.log(peteTalk('What the hell am I doing here? And where is my wallet? PETE SMASH!'))
+console.log(shoot([[{P1:'XX', P2:'XO'}, false], [{P1:'OX', P2:'XX'}, false], [{P1:'OO', P2:'XX'}, true]]))
