@@ -1,15 +1,41 @@
-function shoot(x){
-  let Pete=0, Phil=0
-  x=x.map(el=>{
-    el=[...Object.entries(el[0]),el[1]]
-    el[0][1]=el[0][1].split``
-    el[1][1]=el[1][1].split``
-    return el
-  }).map(el=>{
-     el[0][1].forEach(e=>e==='X'&&el[2]===true?Pete+=2:e==='X'&&el[2]===false?Pete+=1:null)
-     el[1][1].forEach(e=>e==='X'&&el[2]===true?Phil+=2:e==='X'&&el[2]===false?Phil+=1:null)
-    return el
-  })
-  return Pete>Phil?'Pete Wins!':Phil>Pete?'Phil Wins!':'Draw!'
+function splitText(t, m) {
+  if (!t || t === "") return [];
+  if (t.trim().length <= m) return [t];
+  t = [...t];
+  const arr = [],res = [];
+  t.forEach((e, i) => (e === " " ? arr.push(i) : null));
+  let innerArr=[]
+  for (let i = 0, c = 0; i < t.length; i++, c++) {
+    if (t[i] === ' ') {
+      innerArr.push(i)
+    }
+    if (c === m&&t[c]===' ') {
+      innerArr.push(c)
+      res.push(t.slice(0,innerArr[innerArr.length-1]));
+      t = t.slice(innerArr[innerArr.length-1]+1),c=0
+    }
+    if (c === m) {
+      res.push(t.slice(0,innerArr[innerArr.length-1]));
+      t = t.slice(innerArr[innerArr.length-1]+1),c=0
+    }
+  }
+  for (let i = 0, c = 0; i < t.length; i++, c++) {
+    if (t[i] === ' ') {
+      innerArr.push(i)
+    }
+    if (c === m&&t[c]===' ') {
+      innerArr.push(c)
+      res.push(t.slice(0,innerArr[innerArr.length-1]));
+      t = t.slice(innerArr[innerArr.length-1]+1),c=0
+    }
+    if (c === m) {
+      res.push(t.slice(0,innerArr[innerArr.length-1]));
+      t = t.slice(innerArr[innerArr.length-1]+1),c=0
+    }
+  }
+  res.push(t)
+  return res.map((el) => el.join``)
 }
-console.log(shoot([[{P1:'XX', P2:'XO'}, false], [{P1:'OX', P2:'XX'}, false], [{P1:'OO', P2:'XX'}, true]]))
+console.log(splitText('A b C d E', 5));
+console.log(splitText('Abc cde', 5));
+console.log(splitText("Lorem ipsum dolor sit amet, consectetur adipiscing", 15));
