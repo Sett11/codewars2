@@ -1,24 +1,11 @@
-function pickPeaks(arr){
-  const pos=[],peaks=[],obj={}
-  for(let i = 1; i < arr.length-1; i++){
-    if(arr[i]>arr[i-1]&&arr[i]>arr[i+1]){
-      pos.push(i)
-      peaks.push(arr[i])
-    }
-    if(arr[i]>arr[i-1]&&arr[i]===arr[i+1]){
-      for(let j = i+1; j < arr.length; j++){
-        if(j===arr.length-1||arr[j]<arr[j+1])break
-        if(arr[j]>arr[j+1]){
-          pos.push(i)
-          peaks.push(arr[i])
-          i=j
-          break
-        }
+function fromNb2Str(n, sys) {
+    for (let j = 0; j < sys.length; j++) {
+      let e=sys[j]
+      for(let i = j+1; i < sys.length; i++){
+          if((e % 2 === 0 && sys[i] % 2 === 0)||(e % 3 === 0 && sys[i] % 3 === 0) ||(e % 4 === 0 && sys[i] % 4 === 0) ||(e % 5 === 0 && sys[i] % 5 === 0) ||(e % 6 === 0 && sys[i] % 6 === 0) ||(e % 7 === 0 && sys[i] % 7 === 0) ||(e % 8 === 0 && sys[i] % 8 === 0) ||(e % 9 === 0 && sys[i] % 9 === 0)||sys.reduce((a, c) => a * c)<n) return "Not applicable"
       }
     }
-  }
-  obj.pos=pos
-  obj.peaks=peaks
-  return obj
+  return sys.map((e) => `-${n % e}-`).join``;
 }
-console.log(pickPeaks([]))
+console.log(fromNb2Str(15, [8, 6, 5, 3]))
+console.log(fromNb2Str(187, [8,7,5,3]))
