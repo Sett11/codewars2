@@ -1,11 +1,19 @@
-function interpreter(t, a) {
-  t=t.repeat(a.length),len=a.length,a=[...a],count=0
-  for(let i = 0; i < t.length; i++){
-    if(t[i]==='1')a[count]==='1'?a[count]=0:a[count]='1'
-    if(t[i]==='0')count++
-  }a.length=len
-  return a.join``
+class FileMaster {
+  constructor(filepath) {
+    this.filepath=filepath
+  }
+  
+  extension() {
+    return this.filepath.match(/\..+$/g)[0].replace(/\./,'')
+  }
+  
+  filename() {
+    return this.filepath.replace(/\..+$/,'').replace(/.+\//,'')
+  }
+  
+  dirpath() {
+    return this.filepath.replace(/\..+$/,'').replace(/.+\//,'$& ').split` `[0]
+  }
 }
-
-console.log(interpreter("10", "1100101"))
-console.log(interpreter("100", "1111111111"))
+const r = new FileMaster('/Users/person1/Pictures/house.png')
+console.log(r.dirpath())
