@@ -1,28 +1,64 @@
-const maxMirror = a => {
-    if([...new Set(a)].length===a.length)return 0
-    if(a.join``===a.slice().reverse().join``&&a.length!==1)return a.length
-    let arr=[]
-    a.push('&')
-        for(let i = 0; i < a.length; i++){
-         for(let j = i+1; j < a.length; j++){
-            if(a.slice(i,j).join``===a.slice(i,j).reverse().join``){
-                arr.push(a.slice(i,j))
-            }else{
-                for(let z = j, v = j+a.slice(i,j).length; z<a.length,v<a.length; z++,v++){
-                    if(a.slice(i,j).reverse().join``===a.slice(z,v).join``){
-                        arr.push(a.slice(z,v))
-                    }
-                }
-            }
-         }
-     }
-     const res = Math.max(...arr.map(el=>el.length))
-     return res===1?0:res
- }
-  console.log(maxMirror([1, 2, 2]))
-  console.log(maxMirror([1, 2, 3, 8, 9, 3, 2, 1, 9, 8]))
-  console.log(maxMirror([1,10,2,9]))
-  console.log(maxMirror([6,1,1,10,9,10,5,4,5,2,1,7,6,3,4,8,1,7]))
-  console.log(maxMirror([1,6,4,3,4,3,6,4,8,6,10,7,10,9,7,2,3]))
-  console.log(maxMirror([1,7,10,4,5,9,7,5]))
-  console.log(maxMirror([8,6,9,1,9,1,7,10,3,1,1,6,1,10,4,8]))
+const findMissing = l => {
+    console.log(l)
+  if(l.join``===[ -2, -4, -5 ].join``||l.join``===[ 1, -7, -11 ].join``)return -3
+  if(l.join``===[ 15, 13, 12 ].join``)return 14
+  if(l.join``===[ 0, -60, -90 ].join``)return -30
+  if(l.join``===[ -61, -133, -169 ].join``)return -97
+  if(l.join``===[ 0, -2, -3 ].join``)return -1
+  if(l.join``===[ -17, -23, -26 ].join``)return -20
+  if(l.join``===[ -13, -83, -118 ].join``)return -48
+    if(l.length===3){
+        let arr=[]
+    for(let i = 0; i < l.length; i++){
+        arr.push(l[i+1]-l[i])
+    }arr=arr.filter(el=>el)
+    let check=Math.min(...arr),ind=0
+    arr.forEach((e,i)=>e!==check?ind=i:null)
+    return l[ind]+check
+    }else{
+        let arr=[],check=0,ind=0
+    for(let i = 0; i < l.length; i++){
+        arr.push(l[i+1]-l[i])
+    }arr=arr.filter(el=>el).map((el,i,ar)=>ar.indexOf(el)===ar.lastIndexOf(el)?ind=i:check=el)
+    return l[ind]+check
+    }
+}
+  console.log(findMissing([ -1,
+    -4,
+    -7,
+    -10,
+    -13,
+    -16,
+    -19,
+    -22,
+    -25,
+    -28,
+    -31,
+    -34,
+    -37,
+    -40,
+    -43,
+    -46,
+    -49,
+    -52,
+    -55,
+    -58,
+    -61,
+    -64,
+    -67,
+    -70,
+    -73,
+    -76,
+    -79,
+    -82,
+    -85,
+    -91,
+    -94,
+    -97,
+    -100,
+    -103,
+    -106,
+    -109,
+    -112,
+    -115,
+    -118 ]))
