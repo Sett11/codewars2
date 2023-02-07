@@ -1,14 +1,12 @@
-function towerBuilder(nFloors, nBlockSz) {
-    console.log(nFloors,nBlockSz)
-    let arr=['*'.repeat(nBlockSz[0])],len=0
-    for(let i = 0; i < nFloors; i++){
-        if(i===0)continue
-        arr[i]=('*'.repeat(nBlockSz[0])+arr[i-1]+'*'.repeat(nBlockSz[0]))
-        len=Math.max(arr[i].length,len)
-    }
-    return arr.map(el=>el.length<len?el=' '.repeat((len-el.length)/2)+ el + ' '.repeat((len-el.length)/2):el).map(el=>{
-        el=(el+'&').repeat(nBlockSz[1])
-        return el.split`&`.filter(el=>el!=='')
-    }).flat()
+function encryptor (k, m) {
+    if(k===0)return m
+    const letters = 'abcdefghijklmnopqrstuvwxyz'
+	return m.split``.map(e=>!letters.includes(e.toLowerCase())?e:e===e.toUpperCase()?[((parseInt(e,36)-10)+k)%26,'U']:[((parseInt(e,36)-10)+k)%26,'L'])
+     .map(el=>{
+         if(el[0]<0)el[0]=26+el[0]
+         if(el[1]==='U')el=letters[el[0]].toUpperCase()
+         if(el[1]==='L')el=letters[el[0]]
+         return el
+     }).join``
 }
-  console.log(towerBuilder(3,[4,2]))
+console.log(encryptor(-5, 'Hello World!'))
