@@ -1,25 +1,17 @@
-function arrange(s) {
-    s=s.split` `
-    for(let i = 1; i < s.length-1; i++){
-        let tmp=''
-        if(i%2!==0&&s[i].length<s[i-1].length){
-            tmp=s[i]
-            s[i]=s[i-1]
-            s[i-1]=tmp
-            i-=1
+function isSolved(b) {
+    let count=3
+   while(count){
+    for(let i = 0; i < b.length-2; i++){
+        for(let j = 0; j < b.length-2; j++){
+            if(b[i][j]===0&&b[i][j+1]===1&&b[i][j+2]===1||b[i][j]===0&&b[i+1][j]===1&&b[i+2][j]===1||b[i][j]===0&&b[i+1][j+1]===1&&b[i+2][j+2]===1 || b[i][j]===0&&b[i][j+1]===2&&b[i][j+2]===2||b[i][j]===0&&b[i+1][j]===2&&b[i+2][j]===2||b[i][j]===0&&b[i+1][j+1]===2&&b[i+2][j+2]===2)return -1
+            if(b[i][j]===1&&b[i][j+1]===1&&b[i][j+2]===1||b[i][j]===1&&b[i+1][j]===1&&b[i+2][j]===1||b[i][j]===1&&b[i+1][j+1]===1&&b[i+2][j+2]===1)return 1
+            if(b[i][j]===2&&b[i][j+1]===2&&b[i][j+2]===2||b[i][j]===2&&b[i+1][j]===2&&b[i+2][j]===2||b[i][j]===2&&b[i+1][j+1]===2&&b[i+2][j+2]===2)return 2
         }
-        if(i%2===0&&s[i].length>s[i+1].length){
-            tmp=s[i+1]
-            s[i+1]=s[i]
-            s[i]=tmp
-        }
-        if(i%2!==0&&s[i].length<s[i+1].length){
-            tmp=s[i]
-            s[i]=s[i+1]
-            s[i+1]=tmp
-            i-=1
-        }
-    }
-    return s.map((e,i)=>i%2!==0?e.toUpperCase():e.toLowerCase()).join` `
+    }b=b.map(e=>e.reverse()).reverse()
+    count--
+   }return b.some(e=>e.some(u=>u===0))?-1:0
 }
-console.log(arrange("way the my wall them him"))
+  console.log(isSolved(
+   [[0,0,1],
+    [0,1,2],
+    [2,1,0]]))
