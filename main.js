@@ -1,10 +1,12 @@
-function isTwinPrime(n){
-    if(n<=2)return false
-      const F = (x) => {
-          if(x<2)return false
-          if(x===2)return true
-          for(let i = 2; i <= Math.sqrt(n); i++){if(x%i===0)return false}return true
+function minDistance(n){
+    console.log(n)
+      const arr=[],res=[]
+      for(let i = 1; i < n/2+1; i++){
+          if(n%i===0)arr.push(i)
       }
-      return !F(n)?false:F(n)&&F(n-2)||F(n+2)
+      arr.push(n)
+      for(let i = 0; i < arr.length-1; i++){
+          res.push(arr[i+1]-arr[i])
+      }return Math.min(...res)
   }
-  console.log(isTwinPrime(17))
+console.log(minDistance(17))
