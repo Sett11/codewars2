@@ -1,8 +1,6 @@
-function exampleSort(a,z){
-    return a.map(e=>{
-        e=[e,[]]
-        if(z.includes(e[0]))e[1].push(z.indexOf(e[0]))
-        return e
-    }).sort((a,b)=>a[1]-b[1]).map(e=>e[0])
+function moveZeros(a) {
+    const arr=[], zeroArr=[]
+    a.forEach(e=>e!==0?arr.push(e):zeroArr.push(e))
+    return arr.concat(zeroArr)
 }
-console.log(exampleSort([1,2,3,3,3,4,5],[2,3,4,1,5]))
+  console.log(moveZeros([1,2,0,1,0,1,0,3,0,1]))
