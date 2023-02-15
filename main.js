@@ -1,4 +1,4 @@
-function solve(s,a,b){
-  return s.slice(0,a)+s.slice(a,b+1).split``.reverse().join``+s.slice(b+1)
- }
-console.log(solve("codingIsFun",2,200))
+function solve(eq){
+   return eq.replace(/\D/g,' $& ').split` `.reverse().filter(e=>e!==' ').join``
+}
+console.log(solve("100*b/y"))
