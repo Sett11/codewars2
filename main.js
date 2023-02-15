@@ -1,8 +1,4 @@
-function solve(str){
-    const arr=[]
-    str=str.split``.map((e,i)=>e===' '?arr.push(i):e).filter(e=>typeof e==='string').reverse().join``
-    for(let i = 0; i < arr.length; i++){
-        str=str.slice(0,arr[i]) + ' ' + str.slice(arr[i])
-    }return str
+function solve(s,a,b){
+  return s.slice(0,a)+s.slice(a,b+1).split``.reverse().join``+s.slice(b+1)
  }
-console.log(solve("codewars"))
+console.log(solve("codingIsFun",2,200))
