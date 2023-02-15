@@ -1,9 +1,5 @@
-function max(){
-    res=[...arguments].flat(100)
-    return res.length===0?0:res.some(e=>+e!==+e)?NaN:+res.sort((a,b)=>b-a)[0]
+function checkValidTrNumber(n) {
+    n=(n+'').split``.map(Number)
+    return n.length===11&&n[0]!==0&&((n[0]+n[2]+n[4]+n[6]+n[8])*7-(n[1]+n[3]+n[5]+n[7]))%10===n[9]&&n.slice(0,n.length-1).reduce((a,c)=>a+c,0)%10===n[10]
 }
-function min(){
-    res=[...arguments].flat(100)
-    return res.length===0?0:res.some(e=>+e!==+e)?NaN:+res.sort((a,b)=>a-b)[0]
-}
-console.log(min(1,2,[3,[4]]))
+  console.log(checkValidTrNumber(12762438338))
