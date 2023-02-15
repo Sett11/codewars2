@@ -1,7 +1,8 @@
-function countZeros(n) {
-    arr=[],c=n%2===0?2:1
-    while(c<=n){arr.push(c);c+=2}
-    const res=(arr.reduce((a,c)=>BigInt(a)*BigInt(c))+'').match(/0+$/g)
-    return res?res[0].length:0
-}
-  console.log(countZeros(30))
+function zeros (n) {
+    if(n<1)return 0
+    let count=0
+    for(let i = 5; Math.floor(n/i)>=1; i*=5){
+        count+=Math.floor(n/i)
+    }return count
+   }
+   console.log(zeros(30))
