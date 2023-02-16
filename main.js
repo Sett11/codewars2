@@ -1,13 +1,8 @@
-sc=a=>{
-    for(i=0;i<a.length;i++){
-        for(j=0;j<a[i].length;j++){if(a[i][j]=='B')return [i,j]}
-    }
-}
 
-  console.log(sc([
-    ["A","A","A","A","A"],
-    ["A","A","A","A","A"],
-    ["A","A","A","A","A"],
-    ["A","A","A","A","A"],
-    ["A","B","A","A","A"]
-    ]))
+sc=s=>(s.match(/\-\+/g)||[]).length*5+(s.length*2)-1+(s.match(/\+\-/g)||[]).length*5
+
+  console.log(sc("-+-+-+"))
+  console.log(sc("---+++"))
+  console.log(sc("-+-+-----------"))
+  console.log(sc("-+-+-++++++++++"))
+
