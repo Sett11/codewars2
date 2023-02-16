@@ -1,8 +1,6 @@
-function primeWord(a){
-    const F=(x)=>{
-        if(x<2)return false
-        for(let i=2;i<Math.sqrt(x)+1;i++){if(x%i===0)return false}return x>=2
-    }
-    return a.map(e=>e[0].split``.map(u=>u.charCodeAt()).map(z=>z+e[1]).some(v=>F(v))).map(e=>e?1:0)
+sc=n=>{
+    a=[]
+  for(i=1;i<=n;i++){if(n%i==0)a.push(i)}n=n.toString(2)
+  return a.filter(e=>n.includes(e.toString(2)))
 }
-console.log(primeWord([["Ava",55],["William",17]]))
+console.log(sc(100))
