@@ -1,8 +1,3 @@
-array=()=>[...typeof x]
+array=_=>[...'112358314594370774156178538190998752796'].map(e=>+e)
 
-  console.log(array())
-
-//   [
-//     'array', 'boolean', 'function', 'number',
-//     'object', 'string', 'undefined'
-//   ];
+    console.log(array())
