@@ -1,17 +1,14 @@
-function findCharacters(m){
-    const total=Object.entries([...m.replace(/[\n\s]/g,'')].reduce((a,c)=>{
+String.prototype.characterCount = function (c) {
+    if(!c)return undefined
+    const total = Object.entries([...this].reduce((a,c)=>{
         a[c]=(a[c]||0)+1
         return a
-    },{})).sort((a,b)=>a[1]-b[1]),check=total[0][1],res1=[],res2=[],res3=[]
-    total.filter(e=>e[1]===check).map(e=>e[0]).map(e=>+e==e?+e:e).map(e=>typeof e==='string'&&e===e.toUpperCase()?res1.push(e):typeof e==='string'&&e===e.toLowerCase()?res2.push(e):res3.push(+e))
-    return res1.sort().concat(res2.sort().concat(res3)).join``
+    },{}))
+    c=[...c]
+    for(let i=0;i<c.length;i++){
+        for(let j=0;j<total.length;j++){
+            if(c[i]===total[j][0])c[i]=total[j][1]
+        }
+    }return c.length===1?c.map(e=>typeof e==='string'?0:e)[0]:c.map(e=>typeof e==='string'?0:e)
 }
-  console.log(findCharacters(`3v652
-  1uwyt
-  v254v
-  t54tv
-  x45yx
-  s7x45
-  5402v
-  2x3xw
-  5w22v`))
+  console.log('lol'.characterCount('l'))
