@@ -1,5 +1,7 @@
-function sortString(s){ 
-  let check=[...s.toLowerCase()].sort(),arr=[],str=[...s].map((e,i)=>!e.match(/[a-z]/g)&&!e.match(/[A-Z]/g)?arr.push([e,i]):null),res=[...s.replace(/[\W_]/g,'')].map(e=>[e,check.indexOf(e.toLowerCase())]).sort((a,b)=>a[1]-b[1]).map(e=>e[0]).join``
-  for(let i=0;i<arr.length;i++){res=res.slice(0,arr[i][1])+arr[i][0]+res.slice(arr[i][1])}return res
+function digitDifferenceSort(a) {
+  return a.map((e,i)=>{
+    let tmp=[...(e+'')].map(Number).sort((a,b)=>b-a)
+    return [e,tmp[0]-tmp[tmp.length-1],i]
+  }).sort((a,b)=>a[1]-b[1]||b[2]-a[2]).map(e=>e[0])
 }
-  console.log(sortString(" MkWD{RB=//k-^ J@,xH Vfi uAz+$ kV _[ }a!}%pSBwn !kKB (b  q PQF +}wS  .kfU r wFNEs#NsR UVMdG"))
+console.log(digitDifferenceSort([13098, 1308, 12398, 52433, 213, 424, 213, 243, 12213, 54234, 99487, 81892, 11111, 97897]))
