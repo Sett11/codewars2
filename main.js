@@ -1,6 +1,4 @@
-function deleteDigit(n) {
-  let arr=[],tmp=[...(n+'')].map(Number)
-  for(let i=0;i<tmp.length;i++){arr.push(+tmp.slice(0,i).concat(tmp.slice(i+1)).join``)}
-  return Math.max(...arr)
+function differentDigitsNumberSearch(a) {
+ for(let i=0;i<a.length;i++){if([...new Set([...(a[i]+'')])].length===[...(a[i]+'')].length)return a[i]}return -1
 }
-console.log(deleteDigit(10))
+console.log(differentDigitsNumberSearch([10, 11, 12, 13]))
