@@ -1,14 +1,21 @@
-function paginate(a) {
-    a=a.slice().sort((a,b)=>a-b)
-    for(let i=0;i<a.length;i++){
-        if(a[i+1]-a[i]===1){
-            for(let j=i;j<a.length;j++){
-                if(a[j+1]-a[j]!==1){
-                    a=a.slice(0,i).concat([a.slice(i,j+1)].concat(a.slice(j+1)))
-                    break
-                }
+function crashingWeights(g){
+    arr=[],res=[]
+    for(let i=0;i<g[0].length;i++){
+        for(let j=0;j<g.length;j++){
+            arr.push(g[j][i])
+        }
+    }for(let i=0;i<arr.length;i+=g.length){
+        res.push(arr.slice(i,i+g.length))
+    }
+    for(let i = 0;i<res.length;i++){
+        for(let j=0;j<res[i].length;j++){
+            if(res[i][j]>res[i][j+1]){
+                res[i][j+1]=res[i][j+1]+res[i][j]
             }
         }
-    }return a.map(e=>typeof e==='object'?[e[0],'-',e[e.length-1]]:e).flat().join`,`.replace(/,-,/g,'-').replace(/,/g,', ')
+    }return res.map(e=>e[e.length-1])
 }
-console.log(paginate([10,12,13,14,15,16,17,20,22,23,27]))
+  console.log(crashingWeights(
+    [[1, 3, 3, 2, 2],
+              [2, 2, 2, 2, 1],
+              [4, 2, 6, 2, 1]]))
