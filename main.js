@@ -1,6 +1,8 @@
-function primeProduct(n){
-  if(n<4)return 0
-  const F=(x)=>{if(x<2)return false;if(x===2)return true;for(let i=2;i<Math.sqrt(x)+1;i++){if(x%i===0)return false}return true};x=n-1,arr=[]
-  while(x>2){x--;if(F(x)&&F(n-x))arr.push(x*(n-x))}return !arr.length?0:Math.max(...arr)
+function primeString(s) {
+  if(s.length===1)return true
+  for(let i=1;i<s.length/2+1;i++){
+    if(s===s.slice(0,i).repeat(Math.floor(s.length/s.slice(0,i).length)))return false
+  }return true
 }
-console.log(primeProduct(1001))
+console.log(primeString('utdutdtdutd'))
+console.log(primeString('abba'))
