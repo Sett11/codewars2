@@ -1,30 +1,22 @@
-function numberOfPairs(g){
-  g=g.slice().sort(),arr=[]
-  for(let i=0;i<g.length;i++){
-    if(g[i]===g[i+1]){
-      for(let j=i;j<g.length;j++){
-        if(g[j+1]!==g[i]){
-          arr.push(g.slice(i,j+1))
-          i=j
-          break
-        }
-      }
+function nextVersion(n){
+  if(n==='9')return '10'
+  v=[...n].reverse()
+  for(let i=0;i<v.length;i++){
+    if(+v[i]===+v[i]&&+v[i]!==9){
+      v[i]=+v[i]+1
+      break
     }
-  }return arr.map(e=>Math.floor(e.length/2)).reduce((a,c)=>a+c,0)
+    if(+v[i]===+v[i]&&+v[i]==9){
+      v[i]=0
+    }
+  }
+  if(n.split`.`.every(e=>+e===0||+e===9||+e===99||+e===999)){
+    return (+n.split`.`[0]+1+'')+n.slice(n.indexOf('.')).replace(/9/g,'0')
+  }
+  return v.reverse().join``
 }
-console.log(numberOfPairs([
-  'Teal',   'Green',   'Aqua',   'Purple', 'Olive',
-  'Teal',   'Navy',    'Navy',   'Gray',   'Navy',
-  'White',  'Maroon',  'Lime',   'Silver', 'Purple',
-  'Gray',   'Green',   'Olive',  'Lime',   'Lime',
-  'Aqua',   'White',   'Purple', 'Black',  'Yellow',
-  'Maroon', 'Fuchsia', 'Black',  'Yellow', 'Maroon',
-  'Silver', 'Lime',    'Gray',   'Lime',   'Maroon',
-  'Gray',   'Yellow',  'Purple', 'Black',  'Fuchsia',
-  'Purple', 'Navy',    'Red',    'Navy',   'Purple',
-  'Silver', 'Green',   'Gray',   'Silver', 'Olive',
-  'Gray',   'White',   'Navy',   'Lime',   'Gray',
-  'Gray',   'Black',   'Teal',   'White',  'Teal',
-  'Lime'
-]))
-console.log(numberOfPairs([ 'Blue', 'Gray', 'Green', 'Aqua', 'Red', 'Black' ]))
+console.log(nextVersion("1.2.3"))
+console.log(nextVersion('9.9'))
+console.log(nextVersion('0.9.9'))
+console.log(nextVersion('10.9.9.9.9.9'))
+console.log(nextVersion('99.9'))
