@@ -1,13 +1,22 @@
-function format(t, w) {
-  let res=[],arr=[]
-  for(let i=0;i<t.length;i++){
-    if(t[i]===' ')arr.push(i+1)
-    if(i>=w){res.push(t.slice(0,arr[arr.length-1]));t=t.slice(arr[arr.length-1]),i=0}
-    if(t.length<=w)break
-  }res.push(t)
-  return res.map(e=>e.trim()).join('\n')
+function mixwords(s){
+  return typeof s!=='string'?undefined:s.length===1?s:s.split` `.map(e=>[e.replace(/[^a-zA-Z0-9]/g,''),e.match(/[\.\,\!]/g)]).map(e=>{
+    e=e.filter(u=>u)
+    if(e[0].length>3){
+      e[0]=[e[0].charAt(0),e[0].slice(1,e[0].length-1),e[0].charAt(e[0].length-1)]
+      e[0][1]=e[0][1].split``.map((e,i)=>[e,i])
+    }return e
+  }).map(e=>{
+    if(typeof e[0][1]==='object'){
+      for(let i=0;i<e[0][1].length;i++){
+        e[0][1][i][1]=Math.floor(Math.random()*e[0][1].length+1)
+      }
+    }if(e[0].length===3&&typeof e[0]==='object')e[0][1]=e[0][1].sort((a,b)=>a[1]-b[1]||a[0].localeCompare(b[0])).map(e=>e[0]).join``
+    return e
+  }).map(e=>{
+    if(typeof e[0]==='object')e[0]=e[0].join``
+    if(typeof e[1]==='object')e[1]=e[1].join``
+    return e.join``
+  }).join` `
 }
-console.log(format("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec consectet" + 
-"ur risus. Cras vel urna a tellus dapibus consequat. Duis bibendum tincidunt viverra. Ph" + 
-"asellus dictum efficitur sem quis porttitor. Mauris luctus auctor diam id ultrices. Pra" + 
-"esent laoreet in enim ut placerat. Praesent a facilisis turpis.",30))
+console.log(mixwords('I like winter'))
+console.log(mixwords('hey there, friends!'))
