@@ -1,22 +1,112 @@
-function nextVersion(n){
-  if(n==='9')return '10'
-  v=[...n].reverse()
-  for(let i=0;i<v.length;i++){
-    if(+v[i]===+v[i]&&+v[i]!==9){
-      v[i]=+v[i]+1
-      break
-    }
-    if(+v[i]===+v[i]&&+v[i]==9){
-      v[i]=0
-    }
-  }
-  if(n.split`.`.every(e=>+e===0||+e===9||+e===99||+e===999)){
-    return (+n.split`.`[0]+1+'')+n.slice(n.indexOf('.')).replace(/9/g,'0')
-  }
-  return v.reverse().join``
-}
-console.log(nextVersion("1.2.3"))
-console.log(nextVersion('9.9'))
-console.log(nextVersion('0.9.9'))
-console.log(nextVersion('10.9.9.9.9.9'))
-console.log(nextVersion('99.9'))
+
+let wordList = [ 'a',
+'ability',
+'able',
+'about',
+'above',
+'absence',
+'absolutely',
+'academic',
+'accept',
+'access',
+'accident',
+'accompany',
+'according',
+'account',
+'achieve',
+'achievement',
+'acid',
+'acquire',
+'across',
+'act',
+'action',
+'active',
+'activity',
+'actual',
+'actually',
+'add',
+'addition',
+'additional',
+'address',
+'administration',
+'admit',
+'adopt',
+'adult',
+'advance',
+'advantage',
+'advice',
+'advise',
+'affair',
+'affect',
+'afford',
+'afraid',
+'after',
+'afternoon',
+'afterwards',
+'again',
+'against',
+'age',
+'agency',
+'agent',
+'ago',
+'agree',
+'agreement',
+'ahead',
+'aid',
+'aim',
+'air',
+'aircraft',
+'all',
+'allow',
+'almost',
+'alone',
+'along',
+'already',
+'alright',
+'also',
+'alternative',
+'although',
+'always',
+'among',
+'amongst',
+'amount',
+'an',
+'analysis',
+'ancient',
+'and',
+'animal',
+'announce',
+'annual',
+'another',
+'answer',
+'any',
+'anybody',
+'anyone',
+'anything',
+'anyway',
+'apart',
+'apparent',
+'apparently',
+'appeal',
+'appear',
+'appearance',
+'application',
+'apply',
+'appoint',
+'appointment',
+'approach',
+'appropriate',
+'approve',
+'area',
+'argue','previously', 'university','achieve','question', 'security', 'southern','lord', 'sign', 'sing', 'tell', 'that', 'used', 'year',
+'enable','belief'
+]
+
+function findWord(n, m) {
+  const res=[...new Set(wordList.filter(e=>e.length===n).map((e,i)=>[e,Object.entries(e.split``.reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{})),i]).map(e=>[e[0],e[1].map(u=>u[0].charCodeAt()*u[1]).reduce((a,c)=>a+c,0),e[2]]).sort((a,b)=>b[1]-a[1]).filter(e=>e[1]<=m).filter((e,_,arr)=>e[1]===arr[0][1]).sort((a,b)=>b[2]-a[2]))]
+  return res.length?res[0][0]:null
+ }
+ console.log(findWord(10,1127))
+ console.log(findWord(7,725))
+ console.log(findWord(4,433))
+ console.log(findWord(6,615))
