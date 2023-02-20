@@ -1,3 +1,6 @@
-const divNum=(a,b)=>a>b?'Error':b===2?2:b===0?0:b>30&&b<90?60:b>90&&b<100?90:b>50&&b<180?120:b>2520&&b<5040?2520:b>7560&&b<10000?7560:b>1680&&b<2520?1680:b<1680&&b>1260?1260:b<720&&b>360?360:b>840&&b<1260?840:b>5000&&b<7560?5040:b<820&&b>360?720:b>200&&b<360?240:24
+const intSumSq=(n,m)=>{
+  const res=Array(n-1).fill(1).map((e,i)=>e=i+1).filter(e=>[...(e+'')].map(Number).reduce((a,c)=>a+c,0)**2===m)
+  return res.length!==0?res:'No result'
+}
 
-console.log(divNum(60, 421))
+console.log(intSumSq(2,4))
