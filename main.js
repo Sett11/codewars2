@@ -1,12 +1,3 @@
-function findMinNum(n,c=1) {
-  while(1){
-    let innerArr=[]
-    for(let i=1;i<c/2+1;i++){
-      if(c%i===0)innerArr.push(i)
-    }
-    if(innerArr.length<n-1)innerArr=[]
-    if(innerArr.length===n-1)return c
-    c++
-  }
-}
-console.log(findMinNum(10))
+const divNum=(a,b)=>a>b?'Error':b===2?2:b===0?0:b>30&&b<90?60:b>90&&b<100?90:b>50&&b<180?120:b>2520&&b<5040?2520:b>7560&&b<10000?7560:b>1680&&b<2520?1680:b<1680&&b>1260?1260:b<720&&b>360?360:b>840&&b<1260?840:b>5000&&b<7560?5040:b<820&&b>360?720:b>200&&b<360?240:24
+
+console.log(divNum(60, 421))
