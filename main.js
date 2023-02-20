@@ -1,3 +1,3 @@
-const findArr=(arrA, arrB, r, w)=>[...new Set(arrA.filter((e,_,arr)=>w==='odd'?e%2!==0&&arrB.includes(e)&&arrB.indexOf(e)!==arrB.lastIndexOf(e)&&arrA.indexOf(e)!==arrA.lastIndexOf(e)&&e>=r[0]&&e<=r[1]:e%2===0&&arrB.includes(e)&&arrB.includes(e)&&arrB.indexOf(e)!==arrB.lastIndexOf(e)&&arrA.indexOf(e)!==arrA.lastIndexOf(e)&&e>=r[0]&&e<=r[1]))].sort((a,b)=>a-b)
-
-console.log(findArr([1, -2, 7, 2, 1, 3, 4, 7, 1, 0, 2, 3, 0, 4],[0, 4, 2, -1, 1, 1, 1, 1, 2, 3, 3, 7, 7, 0, 4],[-4,4],'even'))
+Object.defineProperty( Array.prototype, "containsAll", { value: function containsAll(a) {
+  return a.every(e=>this.includes(e))
+} } );
