@@ -1,3 +1,3 @@
-Object.defineProperty( Array.prototype, "containsAll", { value: function containsAll(a) {
-  return a.every(e=>this.includes(e))
-} } );
+const formatWords=w=>!w?'':w.filter(e=>e).join`, `.split``.reverse().join``.replace(/,/,'dna ').split``.reverse().join``.replace(/  /g,' ')
+
+console.log(formatWords(['ninja', '', 'ronin']))
