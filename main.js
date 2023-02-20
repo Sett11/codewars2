@@ -1,6 +1,3 @@
-const intSumSq=(n,m)=>{
-  const res=Array(n-1).fill(1).map((e,i)=>e=i+1).filter(e=>[...(e+'')].map(Number).reduce((a,c)=>a+c,0)**2===m)
-  return res.length!==0?res:'No result'
-}
+const findArr=(arrA, arrB, r, w)=>[...new Set(arrA.filter((e,_,arr)=>w==='odd'?e%2!==0&&arrB.includes(e)&&arrB.indexOf(e)!==arrB.lastIndexOf(e)&&arrA.indexOf(e)!==arrA.lastIndexOf(e)&&e>=r[0]&&e<=r[1]:e%2===0&&arrB.includes(e)&&arrB.includes(e)&&arrB.indexOf(e)!==arrB.lastIndexOf(e)&&arrA.indexOf(e)!==arrA.lastIndexOf(e)&&e>=r[0]&&e<=r[1]))].sort((a,b)=>a-b)
 
-console.log(intSumSq(2,4))
+console.log(findArr([1, -2, 7, 2, 1, 3, 4, 7, 1, 0, 2, 3, 0, 4],[0, 4, 2, -1, 1, 1, 1, 1, 2, 3, 3, 7, 7, 0, 4],[-4,4],'even'))
