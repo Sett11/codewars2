@@ -1,4 +1,4 @@
-function mixwords(s){
+function jumble(s){
   return typeof s!=='string'?undefined:s.length===1?s:s.split` `.map(e=>[e.replace(/[^a-zA-Z0-9]/g,''),e.match(/[\.\,\!]/g)]).map(e=>{
     e=e.filter(u=>u)
     if(e[0].length>3){
@@ -18,5 +18,6 @@ function mixwords(s){
     return e.join``
   }).join` `
 }
-console.log(mixwords('I like winter'))
-console.log(mixwords('hey there, friends!'))
+
+console.log(jumble('I like winter'))
+console.log(jumble('hey there, friends!'))
