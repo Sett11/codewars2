@@ -1,11 +1,11 @@
-function findOutPrime(n){
-  const F=x=>{if(x<2)return false;if(x===2)return true;for(let i=2;i<Math.sqrt(x)+1;i++){if(x%i===0)return false}return true};arr=[],check=[...(n+'')]
-  if(F(n))return n
-  for(let i=0;i<check.length;i++){
-    for(let j=i;j<check.length;j++){
-    let tmp=check.slice(i,j+1).join``
-    if(F(+tmp))arr.push(tmp)
-    }
-  }return !arr.length?null:Math.max(...arr)
+function piecesValue(arr, s) {
+  return arr.map(e=>e.filter(u=>u!==' '&&u[0]===s[0]&&u[2]+u[3]!=='ki')).filter(e=>e.length).map(e=>e.length>1?e.join` `:e).join` `.split` `.map(e=>e.replace(/.-/,'')).map(e=>e==='queen'?9:e==='rook'?5:e==='pawn'?1:e==='bishop'?3:e==='knight'?3:0).reduce((a,c)=>a+c,0)
 }
-console.log(findOutPrime(1052326572))
+console.log(piecesValue([ [ ' ', ' ', 'b-king', ' ', ' ', ' ', ' ', ' ' ],
+[ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ],
+[ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ],
+[ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ],
+[ 'w-king', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ],
+[ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ],
+[ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ],
+[ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' ] ],'white'))
