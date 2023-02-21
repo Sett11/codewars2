@@ -1,112 +1,36 @@
-
-let wordList = [ 'a',
-'ability',
-'able',
-'about',
-'above',
-'absence',
-'absolutely',
-'academic',
-'accept',
-'access',
-'accident',
-'accompany',
-'according',
-'account',
-'achieve',
-'achievement',
-'acid',
-'acquire',
-'across',
-'act',
-'action',
-'active',
-'activity',
-'actual',
-'actually',
-'add',
-'addition',
-'additional',
-'address',
-'administration',
-'admit',
-'adopt',
-'adult',
-'advance',
-'advantage',
-'advice',
-'advise',
-'affair',
-'affect',
-'afford',
-'afraid',
-'after',
-'afternoon',
-'afterwards',
-'again',
-'against',
-'age',
-'agency',
-'agent',
-'ago',
-'agree',
-'agreement',
-'ahead',
-'aid',
-'aim',
-'air',
-'aircraft',
-'all',
-'allow',
-'almost',
-'alone',
-'along',
-'already',
-'alright',
-'also',
-'alternative',
-'although',
-'always',
-'among',
-'amongst',
-'amount',
-'an',
-'analysis',
-'ancient',
-'and',
-'animal',
-'announce',
-'annual',
-'another',
-'answer',
-'any',
-'anybody',
-'anyone',
-'anything',
-'anyway',
-'apart',
-'apparent',
-'apparently',
-'appeal',
-'appear',
-'appearance',
-'application',
-'apply',
-'appoint',
-'appointment',
-'approach',
-'appropriate',
-'approve',
-'area',
-'argue','previously', 'university','achieve','question', 'security', 'southern','lord', 'sign', 'sing', 'tell', 'that', 'used', 'year',
-'enable','belief'
-]
-
-function findWord(n, m) {
-  const res=[...new Set(wordList.filter(e=>e.length===n).map((e,i)=>[e,Object.entries(e.split``.reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{})),i]).map(e=>[e[0],e[1].map(u=>u[0].charCodeAt()*u[1]).reduce((a,c)=>a+c,0),e[2]]).sort((a,b)=>b[1]-a[1]).filter(e=>e[1]<=m).filter((e,_,arr)=>e[1]===arr[0][1]).sort((a,b)=>b[2]-a[2]))]
-  return res.length?res[0][0]:null
+function convert(s){
+ const F=x=>{if(x<2)return false;if(x===2)return true;for(let i=2;i<Math.sqrt(x)+1;i++){if(x%i===0)return false}return true};str=''
+ for(let i=0;i<s.length;i++){
+  if(s[i]==='!'&&s[i+1]!=='!')str+=1
+  if(s[i]==='!'&&s[i+1]==='!'){
+    for(let j=i;j<s.length;j++){
+      if(s[j+1]!=='!'){
+        str+=j-i+1
+        i=j
+        break
+      }
+    }
+  }
+  if(s[i]==='?'&&s[i+1]!=='?')str+=1
+  if(s[i]==='?'&&s[i+1]==='?'){
+    for(let j=i;j<s.length;j++){
+      if(s[j+1]!=='?'){
+        str+=j-i+1
+        i=j
+        break
+      }
+    }
+  }
  }
- console.log(findWord(10,1127))
- console.log(findWord(7,725))
- console.log(findWord(4,433))
- console.log(findWord(6,615))
+ if(F(+str))return +str
+ let c=2
+ while(!F(+str)){
+  if(!Number.isInteger(str/c)){
+    c++
+  }else{
+    str/=c
+  }
+ }
+ return str
+}
+console.log(convert("!!!!!!!???????"))
