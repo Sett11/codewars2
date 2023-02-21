@@ -1,9 +1,5 @@
-function solve(a){
-  const res=[], arr=Object.entries(a.slice().reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{})).sort((a,b)=>b[1]-a[1]||+a[0]- +b[0]).map(e=>{
-    for(let i=0;i<e[1];i++){res.push(+e[0])}
-  })
-  return res
+Array.prototype.except = function(){
+  const keys=[];[...arguments].map(e=>typeof e!=='object'?[e]:e).forEach(e=>e.forEach(u=>keys.push(u)))
+  return this.slice().filter((e,i)=>!keys.includes(i))
 }
-console.log(solve([4,9,5,0,7,3,8,4,9,0]))
-
-
+console.log(['a', 'b', 'c', 'd', 'e'].except([1,3]))
