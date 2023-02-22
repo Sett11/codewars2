@@ -1,8 +1,17 @@
-function reverseVowels(s) {
-  const arr=[],res=[],res2=[],res3=[],res4=[];[...s].forEach((e,i)=>e.match(/a|e|u|o|i/ig)?arr.push([e,i]):0);arr.forEach(e=>res.push(e[0])&&res2.push(e[1]));res.reverse()
-  for(let i=0;i<res.length;i++){res3.push(res[i]);res3.push(res2[i])};for(let i=0;i<res3.length;i+=2){res4.push(res3.slice(i,i+2))}
-  s=[...s]
-  for(let i=0;i<res4.length;i++){s[res4[i][1]]=res4[i][0]}
-  return s.join``
+function additionWithoutCarrying(a,b) {
+ a=([...a+'']).map(Number),b=([...b+'']).map(Number),arr=[]
+ if(a.length>b.length){
+  let tmp=a.length-b.length
+  while(tmp){b.unshift(0);tmp--}
+ }
+ if(b.length>a.length){
+  let tmp=b.length-a.length
+  while(tmp){a.unshift(0);tmp--}
+ }
+ for(let i=0;i<a.length;i++){arr.push(a[i]+b[i])}
+ return +arr.map(e=>{
+  e=[...(e+'')]
+  return e[e.length-1]
+ }).join``
 }
-console.log(reverseVowels("Reverse Vowels In A String"))
+console.log(additionWithoutCarrying(999,999))
