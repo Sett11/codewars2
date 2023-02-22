@@ -1,9 +1,7 @@
-function squareDigitsSequence(a) {
-  let arr=[a],val=true
-  while(val){
-    let tmp=arr[arr.length-1].toString().split``.map(Number).map(e=>e**2).reduce((a,c)=>a+c,0)
-    arr.push(tmp)
-    if([...new Set(arr)].length<arr.length)val=false
-  }return arr.length
+function almostIncreasingSequence(s) {
+  if(s.length-[...new Set(s)].length>1)return false
+ for(let i=0;i<s.length;i++){
+  if(s.slice(0,i).concat(s.slice(i+1)).join``===(s.slice(0,i).concat(s.slice(i+1))).sort((a,b)=>a-b).join``)return true
+ }return false
 }
-console.log(squareDigitsSequence(103))
+console.log(almostIncreasingSequence([10, 1, 2, 3, 4, 5]))
