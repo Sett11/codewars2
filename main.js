@@ -1,8 +1,3 @@
-function primiestNumber(k) {
-  const F=x=>{if(x<2)return false;if(x===2)return true;for(let i=2;i<Math.sqrt(x)+1;i++){if(x%i===0)return false}return true}
-  let arr=[],c=2
-  if(k<1||k>=62)return -1
-  while(arr.length<k){if(F(c)&&[...(c+'')].map(Number).every(e=>F(e)))arr.push(c);c++}
-  return arr[k-1]
- }
-console.log(primiestNumber(61))
+const revamp=s=>s.split` `.map(e=>[...e].sort().join``).map(e=>[e,[...e].map(u=>u.charCodeAt()).reduce((a,c)=>a+c,0)]).sort((a,b)=>a[1]-b[1]||a[0].length-b[0].length||a[0].localeCompare(b[0])).map(e=>e[0]).join` `
+
+console.log(revamp("batman is bruce wayne"))
