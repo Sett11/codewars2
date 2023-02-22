@@ -1,7 +1,8 @@
-function almostIncreasingSequence(s) {
-  if(s.length-[...new Set(s)].length>1)return false
- for(let i=0;i<s.length;i++){
-  if(s.slice(0,i).concat(s.slice(i+1)).join``===(s.slice(0,i).concat(s.slice(i+1))).sort((a,b)=>a-b).join``)return true
- }return false
-}
-console.log(almostIncreasingSequence([10, 1, 2, 3, 4, 5]))
+function primiestNumber(k) {
+  const F=x=>{if(x<2)return false;if(x===2)return true;for(let i=2;i<Math.sqrt(x)+1;i++){if(x%i===0)return false}return true}
+  let arr=[],c=2
+  if(k<1||k>=62)return -1
+  while(arr.length<k){if(F(c)&&[...(c+'')].map(Number).every(e=>F(e)))arr.push(c);c++}
+  return arr[k-1]
+ }
+console.log(primiestNumber(61))
