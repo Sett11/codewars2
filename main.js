@@ -1,10 +1,6 @@
-function matrixElementsSum(m) {
-  m.push(Array(m[0].length).fill(0))
-  for(let i=0;i<m.length-1;i++){
-    for(let j=0;j<m[i].length;j++){
-      if(m[i][j]===0)m[i+1][j]=0
-    }
-  }return m.flat().reduce((a,c)=>a+c)
+function avoidObstacles(ar) {
+ let arr=[],c=1
+ while(c<ar[ar.sort((a,b)=>a-b).length-1]+3){if(!ar.includes(c)&&ar.every(e=>e%c!==0))arr.push(c);c++}
+ return Math.min(...arr)
 }
-console.log(matrixElementsSum(
-  [[0]]))
+console.log(avoidObstacles([1, 4, 10, 6, 2]))
