@@ -1,6 +1,7 @@
-function avoidObstacles(ar) {
- let arr=[],c=1
- while(c<ar[ar.sort((a,b)=>a-b).length-1]+3){if(!ar.includes(c)&&ar.every(e=>e%c!==0))arr.push(c);c++}
- return Math.min(...arr)
+function buildPalindrome(s) {
+  if(s===[...s].reverse().join``)return s
+  for(let i=0;i<s.length;i++){
+    if(s+s.slice(0,i).split``.reverse().join``===(s+s.slice(0,i).split``.reverse().join``).split``.reverse().join``)return s+s.slice(0,i).split``.reverse().join``
+  }
 }
-console.log(avoidObstacles([1, 4, 10, 6, 2]))
+console.log(buildPalindrome('ababab'))
