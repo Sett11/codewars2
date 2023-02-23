@@ -1,3 +1,6 @@
-const revamp=s=>s.split` `.map(e=>[...e].sort().join``).map(e=>[e,[...e].map(u=>u.charCodeAt()).reduce((a,c)=>a+c,0)]).sort((a,b)=>a[1]-b[1]||a[0].length-b[0].length||a[0].localeCompare(b[0])).map(e=>e[0]).join` `
-
-console.log(revamp("batman is bruce wayne"))
+function isMAC48Address(s) {
+  return s.split`-`.map(e=>parseInt(e,16)).every(e=>e===e)&&s.split`-`.length===6&&!s.replace(/[A-F-0-9]/g,'').length
+}
+console.log(isMAC48Address("Z1-1B-63-84-45-E6"))
+console.log(isMAC48Address("00-1B-63-84-45-E6"))
+console.log(isMAC48Address("8C-DB-FQ-9A-1C-FB" ))
