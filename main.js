@@ -1,6 +1,16 @@
-function isMAC48Address(s) {
-  return s.split`-`.map(e=>parseInt(e,16)).every(e=>e===e)&&s.split`-`.length===6&&!s.replace(/[A-F-0-9]/g,'').length
+function numberAndIPaddress(s){
+  if(s.includes('.')){
+    s=s.split`.`.map(e=>(+e).toString(2))
+    .map(e=>{
+      if(e.length<8)e='0'.repeat(8-e.length)+e
+      return e
+  }).join``
+    return parseInt(s,2)+''
+  }
+  s=(+s).toString(2),arr=[]
+  if(s.length<32)s='0'.repeat(32-s.length)+s
+  for(let i=0;i<s.length;i+=8){arr.push(s.slice(i,i+8))}
+  return arr.map(e=>parseInt(+e,2)).join`.`
 }
-console.log(isMAC48Address("Z1-1B-63-84-45-E6"))
-console.log(isMAC48Address("00-1B-63-84-45-E6"))
-console.log(isMAC48Address("8C-DB-FQ-9A-1C-FB" ))
+console.log(numberAndIPaddress("10.0.3.193"))
+console.log(numberAndIPaddress("167969729"))
