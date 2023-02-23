@@ -1,17 +1,15 @@
-function stolenLunch(n) {
-  return [...(n+'')].map(e=>{
-    if(!e.match(/\w/))return e
-    if(typeof +e==='number'&&+e===+e){
-      e=String.fromCharCode((+e+97))
-      return e
+function arrayConversion(arr,c=0) {
+  let F=(x,y)=>x+y,R=(x,y)=>x*y
+    for(let i=0;i<arr.length-1;i++){
+      if(c%2===0){
+        arr[i]=F(arr[i],arr[i+1])
+        arr.splice(i+1,1)
+      }
+      if(c%2!==0){
+        arr[i]=R(arr[i],arr[i+1])
+        arr.splice(i+1,1)
+      }
     }
-    if(+e!==+e&&(parseInt(e,36)-10)<10){
-      e=parseInt(e,36)-10
-      return e
-    }return e
-  }).join``
+  return arr.length===1?arr[0]:arrayConversion(arr,c+1)
 }
-console.log(stolenLunch("you'll n4v4r 6u4ss 8t: cdja"))
-console.log(stolenLunch('0123456789'))
-console.log(stolenLunch('jihgfedcba'))
-console.log(stolenLunch("you won't know!!"))
+console.log(arrayConversion([3, 3, 5, 5]))
