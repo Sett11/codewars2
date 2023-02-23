@@ -1,36 +1,20 @@
-function rowsRearranging(m) {
-  n=m.slice().sort((a,b)=>a[0]-b[0]),arr=[],res=[]
-  for(let i=0;i<n[0].length;i++){
-    for(let j=0;j<n.length;j++){
-      arr.push(n[j][i])
-    }
-  }for(let i=0;i<arr.length;i+=n.length){
-    res.push(arr.slice(i,i+n.length))
-  }
-  for(let i=0;i<res.length;i++){
-    for(let j=0;j<res[i].length-1;j++){
-      if(res[i][j]>=res[i][j+1])return false
-    }
-  }return true
+function winnerString(s1,s2) {
+ s1=[...s1],s2=[...s2],c1=0,c2=0,z=2
+ while(z){
+  for(let i=0;i<Math.min(s1.length,s2.length);i++){
+    if(parseInt(s1[i],36)<parseInt(s2[i],36)&&s1[i]+s2[i]!=='az'&&s1[i]+s2[i]!=='za')c1++
+    if(parseInt(s1[i],36)>parseInt(s2[i],36)&&s1[i]+s2[i]!=='az'&&s1[i]+s2[i]!=='za')c2++
+    if(s1[i]+s2[i]==='az')c2++
+    if(s1[i]+s2[i]==='za')c1++
+    if(s2[i]+s1[i]==='za')c2++
+    if(s2[i]+s1[i]==='az')c1++
+   }
+   s1=s1.slice().reverse(),s2=s2.slice().reverse(),z--
+ }
+ s1=s1.join``,s2=s2.join``
+ let check=Math.min(s1.length,s2.length)-1,c=s1[check]==='z'&&s2[check]==='a'?s1:s2[check]==='z'&&s1[check]==='a'?s2:parseInt(s1[check],36)<parseInt(s2[check],36)?s1:s2
+ return c1>c2?s1:c1<c2?s2:c
 }
-
-console.log(rowsRearranging([
-  [6,4], 
-  [2,2], 
-  [4,3]]))
-console.log(rowsRearranging([
-  [1,3,1], 
-  [0,2,0], 
-  [1,7,2]]))
-console.log(rowsRearranging( [[56,67,-200],
-  [86,95,-173],
-  [71,87,-180],
-  [78,88,-175],
-  [63,72,-186],
-  [30,44,-220],
-  [48,58,-204],
-  [92,99,-164],
-  [59,70,-195],
-  [35,49,-215],
-  [69,81,-182],
-  [39,54,-206] ]))
+console.log(winnerString('lmfyyvgkrnsv', 'nncdirshyn'))
+console.log(winnerString("abc","aba"))
+console.log(winnerString('ozfntziqvclqp','buaevxbowd'))
