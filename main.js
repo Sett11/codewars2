@@ -1,4 +1,14 @@
-const countDigit=(n, d, base=10, fromBase=10)=>[...(parseInt(n,fromBase)).toString(base)].filter(e=>e===d).length
-
-console.log(countDigit("1100101110101", "d", 15, 2))
-console.log(countDigit("133", "3", 10, 10))
+function longestCollatz (a) {
+  return a.map((e,i)=>{
+    e=[e,0,e,i],val=true
+    if(e[0]>1){
+        while(e[0]!==1){
+            if(e[0]%2===0){e[0]/=2;e[1]+=1}
+            if(e[0]%2!==0&&e[0]!==1){e[0]=3*e[0]+1;e[1]+=1}
+            if(e[0]===1)val=false
+        }
+    }return e
+  }).sort((a,b)=>b[1]-a[1]||a[3]-b[3]).map(e=>e[2])[0]
+}
+console.log(longestCollatz([2, 5, 32]))
+console.log(longestCollatz([64, 64, 27, 64]))
