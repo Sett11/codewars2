@@ -1,10 +1,11 @@
-function stairs(n){
-    let str='',arr=[],c=1
+function pattern(n){
+    let center=[],arr=[],c=1,str=''
     while(arr.length<n){
-       if(c>9)c=0
-       arr.push(c)
-       str+=' '.repeat((n*4)-arr.length*4)+arr.join` `+' '+arr.slice().reverse().join` `+'\n'
-       c++
-    }return str.slice(0,str.length-1)
+        arr.push(' '.repeat(n-1)+c+'\n')
+        c++
+        if(c===10)c=0
+    }arr=arr.concat(arr.slice(0,arr.length-1).reverse()),center=arr.slice().join``.replace(/[^0-9]/g,'')
+    arr=arr.slice(0,Math.floor(arr.length/2)).concat([center+'\n']).concat(arr.slice(Math.ceil(arr.length/2))),str=arr.join``
+    return str
 }
-console.log(stairs(10))
+console.log(pattern(3))
