@@ -1,22 +1,12 @@
-function pattern(n,x){
+function pattern(n){
   if(n<1)return ''
- let arr=Array(n-1).fill(1).map((_,i)=>i+1).map(e=>e%10),str='',str2='',s='',s2='',res=[],arr2=Array(n-1).fill(1).map((_,i)=>i+1),ar=[]
- for(let i=0;i<arr.length;i++){
-  str+=' '.repeat((arr2[i]-1)<0?0:(arr2[i]))+arr[i]+'\n'
- }
- for(let i=0;i<arr.length;i++){
-  s+=' '.repeat((arr2.slice().reverse()[i]*2)<0?0:(arr2.slice().reverse()[i]*2-1))+arr[i]+' '.repeat(arr2[i]-1)+'\n'
- }
- str2=(str+' '.repeat(n)+((+(str.replace(/[\s]/g,'').split``.reverse()[0])+1)%10)+str.split('\n').reverse().join`\n`).split`\n`,s2=(s+' '.repeat(n-1)+s.split`\n`.reverse().join`\n`).split`\n`
- for(let i=0;i<s2.length;i++){
-  res.push(str2[i].slice(1)+s2[i])
- }
- if(!x)return res.join`\n`
- ar=res.slice()
-  while(x>1){
-    ar=ar.concat(res.slice(1))
-    x--
-  }
-  return ar.join`\n`
- }
-console.log(pattern(3,7))
+  let a=Array(n).fill(1).map((_,i)=>(i+1)%10).reverse(),b=Array(n).fill(1).map((_,i)=>i+1).reverse(),str='',c=1
+  for(let i=0;i<a.length;i++){
+    if(i===0){
+      str+=a.slice(0,i).join``+(a[i]+'').repeat(b[i]+1)+'\n'
+    }else{
+      str+=a.slice(0,i).join``+(a[i]+'').repeat(b[i])+'\n'
+    }
+  }return str.slice(1,str.length-1)
+}
+console.log(pattern(17))
