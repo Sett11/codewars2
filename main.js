@@ -1,2 +1,6 @@
-const sumNoDuplicates=n=>n.filter(e=>n.indexOf(e)===n.lastIndexOf(e)).reduce((a,c)=>a+c,0)
-console.log(sumNoDuplicates([1, 1, 2, 3]))
+function SumSquares(l){
+  let c=0
+  l.map(e=>typeof e==='number'?c+=e**2:c+=SumSquares(e))
+  return c
+}
+console.log(SumSquares([10,[[10],10],[10]]))
