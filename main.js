@@ -1,6 +1,5 @@
-function pattern(n){
-  let arr=[],s='',c=1
-  while(arr.length<=n-1){arr.push(c);c++;s+=(arr[arr.length-1]+'').repeat(arr[arr.length-1])+'\n'}
-  return s.slice(0,s.length-1)
- }
-console.log(pattern(5))
+const remainder=(D,d,c=d)=>D===0?0:D-c<d?D-c:remainder(D,d,c+d)
+
+console.log(remainder(3,2))
+console.log(remainder(10,2))
+console.log(remainder(34,7))
