@@ -1,6 +1,4 @@
-function SumSquares(l){
-  let c=0
-  l.map(e=>typeof e==='number'?c+=e**2:c+=SumSquares(e))
-  return c
+function deepReverse(l){
+  return l.map(e=>typeof e!=='object'?e:e.length>0&&typeof e==='object'&&e.some(u=>typeof u==='object')?deepReverse(e):e.reverse()).reverse()
 }
-console.log(SumSquares([10,[[10],10],[10]]))
+console.log(deepReverse([[50,51,[52,53]] , [[54,55],56,57]]))
