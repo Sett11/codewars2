@@ -12,12 +12,11 @@ function pattern(n,x){
   res.push(str2[i].slice(1)+s2[i])
  }
  if(!x)return res.join`\n`
-  ar=res.slice()
+ ar=res.slice()
   while(x>1){
-    for(let i=0;i<res.length;i++){
-        ar[i]+=res[i].slice(1)
-    }
+    ar=ar.concat(res.slice(1))
     x--
-  }return ar.join`\n`
-}
-console.log(pattern(7,3))
+  }
+  return ar.join`\n`
+ }
+console.log(pattern(3,7))
