@@ -1,4 +1,16 @@
-function deepReverse(l){
-  return l.map(e=>typeof e!=='object'?e:e.length>0&&typeof e==='object'&&e.some(u=>typeof u==='object')?deepReverse(e):e.reverse()).reverse()
+Number.prototype.add=function(x){
+  return this+x
 }
-console.log(deepReverse([[50,51,[52,53]] , [[54,55],56,57]]))
+Number.prototype.subtract=function(x){
+  return this-x
+}
+Number.prototype.multiply=function(x){
+  return this*x
+}
+Number.prototype.divide=function(x){
+  return this/x
+}
+Number.prototype.square=function(x){
+  return this**2
+}
+console.log((5).square())
