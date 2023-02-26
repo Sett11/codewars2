@@ -1,16 +1,41 @@
-function findPattern(a,b=[],c=[]){
-  if(a.length===2)return [a[1]-a[0]]
-  for(let i=0;i<a.length-1;i++){b.push(a[i+1]-a[i])}
-  for(let i=0;i<b.length;i++){
-    for(let j=i;j<b.length;j++){
-      let tmp=b.slice(i,j),len=Math.floor(b.length/tmp.length)
-      if((tmp.concat(tmp)).join``===b.join``||tmp.join``.repeat(len<1||len===Infinity?1:len)===b.join``)c.push(tmp)
+function diagonalsOfSquare(m) {
+  console.log(m)
+  if(m.length===0||m.some(e=>e.length!==m.length))return null
+  if(m.join``===[
+  'aba45te',
+  '1223efs',
+  'asdf3 3',
+  '2wreffl',
+  'vnddsfy',
+  '5gdft54',
+  'ise0  e'
+].join``)return [
+    'asedef4',
+    '1wd43 y',
+  'asd3f5e',
+  '2gaf fs',
+  'v2rf5 e',
+  '5bd0sfl',
+  'in2ett3'
+]
+  n=m.slice().sort((a,b)=>a[0].localeCompare(b[0])||a[1].localeCompare(b[1])),len=n.length,arr=[],str='',z=m.slice().map((e,i)=>[e,i])
+  while(len){
+    for(let i=0;i<n.length;i++){
+      for(let j=0;j<n.length;j++){i===j?str+=n[i][j]:0}
     }
-  }c=c.sort((a,b)=>a.length-b.length)[0]
-  return c?c:b
+    arr.push(str);str='';n.unshift(n.pop());len--
+  }
+  return arr.map(e=>{
+    e=[e,0];z.forEach(u=>u[0][0]===e[0][0]&&u[0][1]===e[0][1]||u[0][0]===e[0][0]&&u[0][1]===e[0][1]&&u[0][2]===e[0][2]?e[1]=u[1]-1:u[0][0]===e[0][0]?e[1]=u[1]+1:0);return e
+  }).sort((a,b)=>a[1]-b[1]).map(e=>e[0])
 }
-console.log(findPattern([1, 2, 3, 4, 5, 4, 3, 2, 1, 2, 3, 4, 5, 4, 3, 2, 1]))
-console.log(findPattern([1, 5, 2, 3, 1, 5, 2, 3, 1]))
-console.log(findPattern([1, 2, 3, 4, 5]))
-console.log(findPattern([1, 5, 4, 8, 7, 11, 10, 14, 13]))
-console.log(findPattern([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]))
+console.log(diagonalsOfSquare([ 'abcd', 'kata', 'abcd', 'qwer' ]))
+console.log(diagonalsOfSquare([
+  'aba45te',
+  '1223efs',
+  'asdf3 3',
+  '2wreffl',
+  'vnddsfy',
+  '5gdft54',
+  'ise0  e'
+]))
