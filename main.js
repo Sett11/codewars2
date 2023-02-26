@@ -1,2 +1,2 @@
-sq=x=>~~-(-.5-x/(1/x))
-console.log(sq(4.44))
+sd=x=>+[...x+''].map(e=>e**2).join``
+console.log(sd(3212))
