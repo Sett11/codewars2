@@ -1,17 +1,4 @@
-class Queue{
-  constructor(a=[]){
-    this.a=a
-  }
+function trickOrTreat(c,k,j=k.map(e=>e.filter(u=>u==='candy'))){
+  return c===k.length&&!k.flat(1).includes('bomb')&&j.every(e=>e.length===j[0].length&&e.length>1)?"Thank you, strange uncle!":"Trick or treat!"
 }
-
-Queue.prototype.enqueue = function(i) {
-  this.a.push(i)
-}
-
-Queue.prototype.dequeue = function() {
-  return this.a.shift()
-}
-
-Queue.prototype.size = function() {
-  return this.a.length
-}
+console.log(trickOrTreat(3,[["candy","apple","candy"],["candy","candy"],["candy","candy","candy"]]))
