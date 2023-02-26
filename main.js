@@ -1,13 +1,13 @@
-function isValidIP(str) {
-  if(JSON.stringify(str).replace(/"/g,'').replace(/[\d\.]/g,'').length!==0)return false
-  if(JSON.stringify(str).replace(/"/g,'').replace(/[^\.]/g,' ').match(/\.\./g))return false
-  const res=JSON.stringify(str).replace(/"/g,'').split``
-  if(+res[0]!==+res[0]||+res.slice().reverse()[0]!==+res.slice().reverse()[0])return false
-  console.log(str)
-  const check=JSON.stringify(str).split`.`.map(e=>e.replace(/"/g,'')).map(e=>{
-    if(e.length>1&&e[0]==='0')e='&'
-    return e
-  }).filter(e=>e&&e!=='&')
-  return check.length===4&&check.every(e=>+e===+e&&+e<256&&+e>=0&&e.replace(/[^\s]/g,'').length===0)
+function evaluate(a){
+  b=a.join``.replace(/[\+\*]/g,' $& ').trim().split` `
+  if(!+b[0]||!+b[b.length-1])return undefined
+  for(let i=0;i<a.length-1;i++){if(+a[i]===+a[i]&&+a[i+1]===+a[i+1])return undefined}
+  while(a.includes('*')){
+    let c=a.indexOf('*'),tmp=a.slice(c-1,c+2)
+   a=a.slice(0,c-1).concat([tmp[0]*tmp[2]]).concat(a.slice(c+2))
+  }
+  return a.filter(e=>+e===+e).map(Number).reduce((a,c)=>a+= +c)
 }
-console.log(isValidIP('abc.def.ghi.jkl') )
+console.log(evaluate(['10', '+', '20', '*','3', '+', '30']))
+console.log(evaluate(['10', '+', '20', '*','3', '*']))
+console.log(evaluate(['10', '20', '*','3']))
