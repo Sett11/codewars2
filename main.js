@@ -1,4 +1,13 @@
-const lengthOfSequence = (a, n)=>{
-  return a.indexOf(n)===a.lastIndexOf(n)||a.indexOf(n,a.indexOf(n)+1)!==a.lastIndexOf(n)?0:a.indexOf(n,a.indexOf(n)+1)-a.indexOf(n)+1
+const createIterator = function(f,n){
+  return function(){
+    let x=f(...arguments)
+    for(let i=0;i<n-1;i++){
+      x=f(x)
+    }return x
+  }
+ }
+const getDouble = function (n) {
+  return n + n;
 }
-console.log(lengthOfSequence([1,1,1], 1))
+const doubleIterator = createIterator(getDouble,2)
+console.log(doubleIterator(5))
