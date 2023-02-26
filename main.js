@@ -1,16 +1,4 @@
-Number.prototype.add=function(x){
-  return this+x
+const lengthOfSequence = (a, n)=>{
+  return a.indexOf(n)===a.lastIndexOf(n)||a.indexOf(n,a.indexOf(n)+1)!==a.lastIndexOf(n)?0:a.indexOf(n,a.indexOf(n)+1)-a.indexOf(n)+1
 }
-Number.prototype.subtract=function(x){
-  return this-x
-}
-Number.prototype.multiply=function(x){
-  return this*x
-}
-Number.prototype.divide=function(x){
-  return this/x
-}
-Number.prototype.square=function(x){
-  return this**2
-}
-console.log((5).square())
+console.log(lengthOfSequence([1,1,1], 1))
