@@ -1,1 +1,3 @@
-removeDuplication=a=>a.filter(e=>a.indexOf(e)===a.lastIndexOf(e))
+removeDuplicateWords=s=>[...new Set(s.split` `)].join` `
+
+console.log(removeDuplicateWords('alpha beta beta gamma gamma gamma delta alpha beta beta gamma gamma gamma delta'))
