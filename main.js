@@ -1,9 +1,4 @@
-function deleteValues(array, pred) {
-  for(var i = 0; i < array.length; i++) {
-    if ( pred(array[i]) ) {
-      array.splice(i, 1)
-      i--
-    }
-  }
-  return array;
+function censorThis(t,f) {
+ return t.split` `.map(e=>f.includes(e.toLowerCase())?'*'.repeat(e.length):e).join` `
 }
+console.log(censorThis("The cat does not like the fire",["cat","fire"]))
