@@ -1,10 +1,4 @@
-const reverseParentheses=(s,r=/\(([a-zA-Z]+)\)/g,v=/\(.+\)/g)=>{
-  if(!s.match(r)&&!s.match(v))return s
-  if(s.match(r))return reverseParentheses(s=s.replace(r,e=>[...e].reverse().join``.replace(/\(|\)/g,'')),r,v)
-  if(!s.match(r))return reverseParentheses(s=s.replace(v,e=>[...e].reverse().join``.replace(/\(|\)/g,'')),r,v)
-}
+const removeParentheses=(s,r=/\([^\(\)]*\)/g)=>!s.match(r)?s:removeParentheses(s=s.replace(r,''),r)
 
-console.log(reverseParentheses("Code(Cha(lle)nge)"))
-console.log(reverseParentheses("a(bcdefghijkl(mno)p)q"))
-console.log(reverseParentheses("f(niT((xjH)iQSk)QuMD)Hfu"))
-console.log(reverseParentheses("Ivjo(sGw((IDCZ(GWmlBVaUkI)y)(AkwFLq(qNmKmzF)uqd)wrw)cK)qI"))
+console.log(removeParentheses("example(unwanted thing)example"))
+console.log(removeParentheses("(first group) (second group) (third group)"))
