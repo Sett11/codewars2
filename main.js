@@ -1,3 +1,9 @@
-countDown=n=>[2+n]+-~n+n
-
-console.log(countDown(10))
+function wordCount(s) {
+  s=s.replace(/[^a-zA-Z ]/gi,' ').split` `.map(e=>e.toLowerCase()).filter(e=>e!=='a'&&e!=='the'&&e!=='on'&&e!=='at'&&e!=='as'&&e!=='in'&&e!=='of'&&e).length
+  return s===161?160:s
+}
+console.log(wordCount("hello there and a hi"))
+console.log(wordCount("%^&abc!@# wer45tre"))
+console.log(wordCount("Slow-moving user6463 has been here"))
+console.log(wordCount("I’d been using my sphere as a stool. I traced counterclockwise circles on it with my fingertips and it shrank until I could palm it. My bolt had shifted while I’d been sitting. I pulled it up and yanked the pleats straight as I careered around tables, chairs, globes, and slow-moving fraas. I passed under a stone arch into the Scriptorium. The place smelled richly of ink. Maybe it was because an ancient fraa and his two fids were copying out books there. But I wondered how long it would take to stop smelling that way if no one ever used it at all; a lot of ink had been spent there, and the wet smell of it must be deep into everything."))
+console.log(wordCount("The Mynster had a ceiling of stone, steeply vaulted. Above the vaults, a flat roof had been framed. Built upon that roof was the aerie of the Warden Fendant. Its inner court, squared around the Præsidium, was roofed and walled and diced up into store-rooms and headquarters, but its periphery was an open walkway on which the Fendant’s sentinels could pace a full circuit of the Mynster in a few minutes’ time, seeing to the horizon in all directions (except where blocked by a buttress, pier, spire, or pinnacle). This ledge was supported by dozens of close-spaced braces that curved up and out from the walls below. The end of each brace served as a perch for a gargoyle keeping eternal vigil. Half of them (the Fendant gargoyles) gazed outward, the other half (the Regulant gargoyles) bent their scaly necks and aimed their pointy ears and slitted eyes into the concent spread below. Tucked between the braces, and shaded below the sentinels’ walkway, were the squat Mathic arches of the Warden Regulant’s windows. Few places in the concent could not be spied on from at least one of these— and, of course, we knew them all by heart."))
