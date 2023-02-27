@@ -1,3 +1,1 @@
-function divisibleBy(n, d){
-  return n.filter(e=>e%d===0)
-}
+const multiplyAndFilter=(a,m)=>a.filter(e=>typeof e==='number'&&e===e).map(e=>e*m)
