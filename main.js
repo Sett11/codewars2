@@ -1,3 +1,3 @@
-countDown=n=>n+2+`!${n+1}!`+n
+countDown=n=>[2+n]+-~n+n
 
 console.log(countDown(10))
