@@ -1,10 +1,6 @@
-function countInversions(a){
-  if(a.length<2)return 0
-  let c=0
-  for(let i=0;i<a.length;i++){
-    for(let j=i+1;j<a.length;j++){if(a[i]>a[j])c++}
-  }return c
-}
-console.log(countInversions([4, 3, 2, 1]))
-console.log(countInversions([2,1,3]))
-console.log(countInversions([6,5,4,3,2,1]))
+const largestArrangement=b=>+b.map(e=>e+'').sort((a,b)=>(b+a)-(a+b)).join(``)
+
+console.log(largestArrangement([8, 6, 590, 70]))
+console.log(largestArrangement([4, 50, 8, 145]))
+console.log(largestArrangement([4, 40, 7]))
+console.log(largestArrangement([6, 73, 79, 356, 7]))
