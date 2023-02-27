@@ -1,4 +1,7 @@
-function censorThis(t,f) {
- return t.split` `.map(e=>f.includes(e.toLowerCase())?'*'.repeat(e.length):e).join` `
+function replaceDashesAsOne(s) {
+  s=s.replace(/- +-|--/g,'-')
+  return s.match(/--|- +-/)?replaceDashesAsOne(s):s
 }
-console.log(censorThis("The cat does not like the fire",["cat","fire"]))
+console.log(replaceDashesAsOne("we-are- - - code----warriors.-"))
+console.log(replaceDashesAsOne("a---b- - -c"))
+console.log(replaceDashesAsOne(" - - gmsvdz--  - -yfdttxusa" ))
