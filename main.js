@@ -1,8 +1,11 @@
-const removeConsecutiveDuplicates=s=>{
-  s=s.split` `
-  for(let i=0;i<s.length-1;i++){
-    if(s[i]===s[i+1]){s.splice(i,1);i--}
-  }return s.join` `
+function toBinaryString(n,arr=[]){
+  let v=n<0
+  if(v)n*=-1
+  arr.unshift(n%2);n=Math.floor(n/2)
+  if(n)arr=toBinaryString(n,arr)
+  else{
+    return arr.join``
+  }return (v?'-':'')+arr
 }
 
-console.log(removeConsecutiveDuplicates('alpha beta beta gamma gamma gamma delta alpha beta beta gamma gamma gamma delta'))
+console.log(toBinaryString(15))
