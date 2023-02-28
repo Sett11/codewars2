@@ -1,9 +1,20 @@
-function winner(s,j) {
-  s=s.map(e=>e=='T'?'10':e=='J'?'11':e=='Q'?'12':e=='K'?'13':e=='A'?'14':e),j=j.map(e=>e=='T'?'10':e=='J'?'11':e=='Q'?'12':e=='K'?'13':e=='A'?'14':e),cs=0,cj=0
-  for(let i=0;i<s.length;i++){
-    if(+s[i]>+j[i])cs++
-    if(+s[i]<+j[i])cj++
-  }
-  return cs>cj?`Steve wins ${cs} to ${cj}`:cs<cj?`Josh wins ${cj} to ${cs}`:'Tie'
+function getCommonDirectoryPath(p) {
+  let b=[]
+  p.map((e,z,a)=>{
+    e=[...e]
+    for(let i=0;i<a.length;i++){
+      if(z===i||JSON.stringify(e)===JSON.stringify(a[i])||e[0]!==a[i][0]){
+        i+=1
+        continue
+      }else{
+        for(let j=0;j<Math.min(a[i].length,e.length);j++){
+          if(e[j]===a[i][j])continue
+          if(e[j]!==a[i][j])b.push(e.slice(0,j))
+        }
+      }
+    }return e
+  });
+  return !b.length?'':[...new Set(b.map(e=>e.length===1?e.join``:e.slice(0,e.lastIndexOf('/')+1).join``).filter(e=>p.every(u=>u.match(e))))][0]||''
 }
-console.log(winner(["K","2","4","5","4","3","2","K","A","T"],["Q","3","4","6","4","3","5","A","8","7"]))
+console.log(getCommonDirectoryPath(['/web/images/image1.png', '/web/images/image2.png']))
+console.log(getCommonDirectoryPath(['/web/assets/style.css', '/web/scripts/app.js',  'home/setting.conf']))
