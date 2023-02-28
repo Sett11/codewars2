@@ -1,8 +1,8 @@
-function padovan(n) {
-  const arr=[1,1,1]
-  if(arr.length>=n+1)return arr[n]
-  for(let i=3;arr.length<n+1;i++){
-    arr.push(arr[i-2]+arr[i-3])
+function pell(n) {
+  const arr=[0n,1n,2n]
+  if(arr.length>n)return arr[n]
+  for(let i=3;arr.length<=n;i++){
+    arr.push(2n*BigInt(arr[i-1])+BigInt(arr[i-2]))
   }return arr[n]
 }
-console.log(padovan(9))
+console.log(pell(100))
