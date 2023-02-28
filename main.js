@@ -1,6 +1,11 @@
-generateRange=(n,m,s,a=[])=>n>m?a:a.push(n)&&generateRange(n+s,m,s,a)
-  // const arr=[]
-  // for(let i=n;i<=m;i+=s)arr.push(i)
-  // return arr
+function range(s=0,c,x=1) {
+  console.log(s,c,x)
+  if(s==c)return []
+  let arr=[],y=!c?s:c
+  for(let i=!c?0:s;i<y;i+=x){
+    arr.push(i)
+    if(arr.length==c-s)break
+  }return arr
+}
 
-console.log(generateRange(2, 10, 2))
+console.log(range(1,5,0))
