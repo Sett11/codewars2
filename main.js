@@ -1,4 +1,3 @@
-closestMultiple10=n=>Math.round(n/10)*10
+validateWord=s=>Object.values([...s.toLowerCase()].reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{})).every((e,i,a)=>e==a[0])
 
-console.log(closestMultiple10(22))
-console.log(closestMultiple10(37))
+console.log(validateWord('ababab'))
