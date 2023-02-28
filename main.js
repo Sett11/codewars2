@@ -1,3 +1,4 @@
-rankings=a=>a.map((e,i,v)=>v.slice().sort((a,b)=>b-a).map((u,j)=>e===u?j+1:0).filter(e=>e)[0])
+findAdded=(s1,s2,c=0)=>c===s1.length?[...s2].map(e=>+e).sort((a,b)=>a-b).join``:findAdded(s1,s2.replace(s1[c],''),c+1)
 
-console.log(rankings([22, 33, 18, 9, 110, 4, 1, 88, 6, 50]))
+
+console.log(findAdded('44554466', '447554466'))
