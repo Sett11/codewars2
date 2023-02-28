@@ -1,4 +1,3 @@
-findAdded=(s1,s2,c=0)=>c===s1.length?[...s2].map(e=>+e).sort((a,b)=>a-b).join``:findAdded(s1,s2.replace(s1[c],''),c+1)
+divisors=(n,i=2,a=[])=>i>=n/2+1&&!a.length?`${n} is prime`:i>=n/2+1?a:n%i===0?a.push(i)&&divisors(n,i+1,a):divisors(n,i+1,a)
 
-
-console.log(findAdded('44554466', '447554466'))
+console.log(divisors(36))
