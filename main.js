@@ -1,3 +1,4 @@
-checkConcatenatedSum=(n,m)=>[...(n+'')].map(e=> n<0?-+e.repeat(m):+e.repeat(m)).filter(e=>e).reduce((a,c)=>a+c,0)===n
+closestMultiple10=n=>Math.round(n/10)*10
 
-console.log(checkConcatenatedSum(-2997,3))
+console.log(closestMultiple10(22))
+console.log(closestMultiple10(37))
