@@ -1,3 +1,4 @@
-narcissistic=n=>[...n+''].map((e,i,a)=>e**a.length).reduce((a,c)=>a+c,0)===n
+subtract=(a,b)=> BigInt(a)-BigInt(b)+''
 
-console.log(narcissistic(153))
+
+console.log(subtract('30','69'))
