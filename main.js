@@ -1,10 +1,8 @@
-isReoccuring=a=>{
-  let arr=[]
-  for(let i=0;i<a.length;i++){
-    if(arr.includes(a[i])&&arr[arr.length-1]!==a[i])return true
-    else arr.push(a[i])
-  }return false
+function threeAmigos(n) {
+ let arr=[]
+ for(let i=0;i<n.length-2;i++){
+  arr.push([n.slice(i,i+3),i])
+ }arr=arr.filter(e=>e[0].every(u=>u%2===0)||e[0].every(u=>u%2!==0))
+ return !arr.length?[]:arr.map(e=>[...e,Math.max(...e[0])-Math.min(...e[0])]).sort((a,b)=>a[2]-b[2]||a[1]-b[1])[0][0]||[]
 }
-
-console.log(isReoccuring([0,0,1,1,2,2,1,1]))
-console.log(isReoccuring([0,0,1,1,2,2]))
+console.log(threeAmigos([2, 4, 5, 3, 6, 3, 1, 56, 7, 6, 3, 12]))
