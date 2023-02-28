@@ -1,3 +1,1 @@
-function gridIndex(g,i) {
-  return i.map(e=>g.flat(2)[e-1]).join``
-}
+findMagic=a=>a.filter((e,i)=>e==i)[0]||-1
