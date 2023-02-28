@@ -1,3 +1,8 @@
-validateWord=s=>Object.values([...s.toLowerCase()].reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{})).every((e,i,a)=>e==a[0])
-
-console.log(validateWord('ababab'))
+function flipNumber(m){
+  n=[...m].reverse()
+  for(let i=1;i<n.length-1;i++){
+    n=n.slice(0,i).concat(n.slice(i).reverse())
+  }
+  return n.join``
+}
+console.log(flipNumber('012'))
