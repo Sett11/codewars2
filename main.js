@@ -1,4 +1,3 @@
-biggest=(n,m=n.map(e=>e+'').sort((a,b)=>(b+a)-(a+b)).join``)=>m=='0000'?'0':m
-  
+narcissistic=n=>[...n+''].map((e,i,a)=>e**a.length).reduce((a,c)=>a+c,0)===n
 
-console.log(biggest([3, 30, 34, 5, 9]))
+console.log(narcissistic(153))
