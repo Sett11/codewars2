@@ -1,20 +1,3 @@
-function getCommonDirectoryPath(p) {
-  let b=[]
-  p.map((e,z,a)=>{
-    e=[...e]
-    for(let i=0;i<a.length;i++){
-      if(z===i||JSON.stringify(e)===JSON.stringify(a[i])||e[0]!==a[i][0]){
-        i+=1
-        continue
-      }else{
-        for(let j=0;j<Math.min(a[i].length,e.length);j++){
-          if(e[j]===a[i][j])continue
-          if(e[j]!==a[i][j])b.push(e.slice(0,j))
-        }
-      }
-    }return e
-  });
-  return !b.length?'':[...new Set(b.map(e=>e.length===1?e.join``:e.slice(0,e.lastIndexOf('/')+1).join``).filter(e=>p.every(u=>u.match(e))))][0]||''
-}
-console.log(getCommonDirectoryPath(['/web/images/image1.png', '/web/images/image2.png']))
-console.log(getCommonDirectoryPath(['/web/assets/style.css', '/web/scripts/app.js',  'home/setting.conf']))
+replaceCommon=(s,l,m=Object.entries([...s].reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{})).filter(e=>e[0]!==' ').map(e=>[...e,s.indexOf(e[0])]).sort((a,b)=>b[1]-a[1]||a[2]-b[2])[0][0])=>s.replace(RegExp(m,'g'),l)
+
+console.log(replaceCommon('real talk bro', 'n'))
