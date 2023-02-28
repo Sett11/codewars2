@@ -1,9 +1,4 @@
-minMinMax=a=>{
-  let x=Math.min(...a)+1
-  while(a.includes(x)){
-    x++
-  }return [Math.min(...a),x,Math.max(...a)]
-}
+biggest=(n,m=n.map(e=>e+'').sort((a,b)=>(b+a)-(a+b)).join``)=>m=='0000'?'0':m
+  
 
-console.log(minMinMax([-1, 4, 5, -23, 24]))
-console.log(minMinMax([1, 3, -3, -2, 8, -1]))
+console.log(biggest([3, 30, 34, 5, 9]))
