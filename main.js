@@ -1,8 +1,8 @@
-function threeAmigos(n) {
- let arr=[]
- for(let i=0;i<n.length-2;i++){
-  arr.push([n.slice(i,i+3),i])
- }arr=arr.filter(e=>e[0].every(u=>u%2===0)||e[0].every(u=>u%2!==0))
- return !arr.length?[]:arr.map(e=>[...e,Math.max(...e[0])-Math.min(...e[0])]).sort((a,b)=>a[2]-b[2]||a[1]-b[1])[0][0]||[]
+addedChar=(s1,s2)=>{
+  let c1=Object.entries([...s1].reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{})),c2=Object.entries([...s2].reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{})),r=''
+  c2.forEach(e=>c1.forEach(u=>u[0]===e[0]&&u[1]+3===e[1]?r=u[0]:0))
+  if(!r)c2.forEach(e=>!c1.map(u=>u[0]).join``.includes(e[0])?r=e[0]:0)
+  return r
 }
-console.log(threeAmigos([2, 4, 5, 3, 6, 3, 1, 56, 7, 6, 3, 12]))
+console.log(addedChar("hello","checlclo"))
+console.log(addedChar("aabbcc","aacccbbcc"))
