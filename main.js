@@ -1,3 +1,3 @@
-commonGround=(s1,s2)=>[...new Set(s2.split` `.filter(e=>s1.split` `.includes(e)))].join` `||'death'
+rankings=a=>a.map((e,i,v)=>v.slice().sort((a,b)=>b-a).map((u,j)=>e===u?j+1:0).filter(e=>e)[0])
 
-  console.log(commonGround("i like turtles", "what are you talking about"))
+console.log(rankings([22, 33, 18, 9, 110, 4, 1, 88, 6, 50]))
