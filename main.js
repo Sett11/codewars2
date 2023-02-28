@@ -1,9 +1,9 @@
-function cardGame(c1,c2,t) {
-  if(c1===c2)return "Someone cheats."
-  if(c1==='joker'&&c2!=='joker')return 'The first card won.'
-  if(c1!=='joker'&&c2==='joker')return 'The second card won.'
-  if(c1[c1.length-1]===c2[c2.length-1]&&c1.slice(0,c1.length-1)!==c2.slice(0,c2.length-1))return `The ${deck.indexOf(c1)>deck.indexOf(c2)?'first':'second'} card won.`
-  if(c1[c1.length-1]!==c2[c2.length-1]&&!c1.match(t)&&!c2.match(t))return "Let us play again."
-  if(c1.match(t)&&!c2.match(t))return 'The first card won.'
-  if(!c1.match(t)&&c2.match(t))return 'The second card won.'
+function winner(s,j) {
+  s=s.map(e=>e=='T'?'10':e=='J'?'11':e=='Q'?'12':e=='K'?'13':e=='A'?'14':e),j=j.map(e=>e=='T'?'10':e=='J'?'11':e=='Q'?'12':e=='K'?'13':e=='A'?'14':e),cs=0,cj=0
+  for(let i=0;i<s.length;i++){
+    if(+s[i]>+j[i])cs++
+    if(+s[i]<+j[i])cj++
+  }
+  return cs>cj?`Steve wins ${cs} to ${cj}`:cs<cj?`Josh wins ${cj} to ${cs}`:'Tie'
 }
+console.log(winner(["K","2","4","5","4","3","2","K","A","T"],["Q","3","4","6","4","3","5","A","8","7"]))
