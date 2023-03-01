@@ -1,6 +1,10 @@
-function validISBN10(n) {
-  if(n.includes('x')||n.length!==10||n.replace(/[\dx]/gi,'').length!==0||!n.match(/\d/g)||n.match(/X/)&&n.indexOf('X')!==n.length-1)return false
-  return [...n].map((e,i)=>e==='x'||e==='X'?10*(i+1):+e*(i+1)).reduce((a,c)=>a+c)%11===0
+function f(s,a=[]){
+  if([...new Set(s)].length===1)return [s[0],s.length]
+  for(let i=1;i<s.length+1;i++){
+    for(let j=1;j<s.length/2+1;j++){
+      if(s.slice(0,i).repeat(j)===s)a.push([s.slice(0,i),j])
+    }
+  }return a.sort((a,b)=>b[1]-a[1])[0]
 }
-console.log(validISBN10("1112223339"))
-console.log(validISBN10("1234512345"))
+console.log(f('abcde'))
+console.log(f('aaaaa'))
