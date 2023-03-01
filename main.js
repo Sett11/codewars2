@@ -1,1 +1,1 @@
-let find=(a,e,c=a.indexOf(e))=>c>-1?c:'Not found'
+let describeAge=a=>a<=12?"You're a(n) kid":a>12&&a<=17?"You're a(n) teenager":a>17&&a<=64?"You're a(n) adult":"You're a(n) elderly"
