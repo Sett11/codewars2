@@ -1,9 +1,6 @@
-Array.prototype.sameStructureAs=function(m){
-  if(!isArray(this)||!isArray(m))return false
-  if(this.every(e=>typeof e!=='object')&&m.every(e=>typeof e!=='object')&&this.length===m.length)return true
-  return JSON.stringify(this).replace(/[^\[\]]/g,'0')===JSON.stringify(m).replace(/[^\[\]]/g,'0')
+function validISBN10(n) {
+  if(n.includes('x')||n.length!==10||n.replace(/[\dx]/gi,'').length!==0||!n.match(/\d/g)||n.match(/X/)&&n.indexOf('X')!==n.length-1)return false
+  return [...n].map((e,i)=>e==='x'||e==='X'?10*(i+1):+e*(i+1)).reduce((a,c)=>a+c)%11===0
 }
-console.log([ 1, [ 1, 1 ] ].sameStructureAs( [ 2, [ 2, 2 ] ] ))
-console.log([ [ [ ], [ ] ] ].sameStructureAs( [ [ [ ], [ ] ] ] ))
-console.log([ 1, [ 1, 1 ] ].sameStructureAs( [ [ 2, 2 ], 2 ] ))
-console.log([ 1, '[', ']' ].sameStructureAs([ '[', ']', 1 ]))
+console.log(validISBN10("1112223339"))
+console.log(validISBN10("1234512345"))
