@@ -1,9 +1,9 @@
-function weakNumbers(n) {
-  let m=0, a=Array(n).fill(1).map((e,i,x)=>e=[i+1,Array(i+1).fill(1).map((u,z)=>z+1).filter(v=>(i+1)%v===0).length,0]).map((e,j,v)=>{
-    for(let i=j;i>0;i--){
-      if(e[1]<v[i][1])e[2]++
-      m=Math.max(m,e[2])}return e
-  })
-  return [m,a.filter(e=>e[2]==m).length]
+Array.prototype.sameStructureAs=function(m){
+  if(!isArray(this)||!isArray(m))return false
+  if(this.every(e=>typeof e!=='object')&&m.every(e=>typeof e!=='object')&&this.length===m.length)return true
+  return JSON.stringify(this).replace(/[^\[\]]/g,'0')===JSON.stringify(m).replace(/[^\[\]]/g,'0')
 }
-console.log(weakNumbers(500))
+console.log([ 1, [ 1, 1 ] ].sameStructureAs( [ 2, [ 2, 2 ] ] ))
+console.log([ [ [ ], [ ] ] ].sameStructureAs( [ [ [ ], [ ] ] ] ))
+console.log([ 1, [ 1, 1 ] ].sameStructureAs( [ [ 2, 2 ], 2 ] ))
+console.log([ 1, '[', ']' ].sameStructureAs([ '[', ']', 1 ]))
