@@ -1,11 +1,5 @@
-function groupAnagrams(w){
-  w=w.map(e=>[e,[...e].sort().join``]).sort((a,b)=>a[1].localeCompare(b[1])).map(e=>[e[0]])
-  for(let i=0;i<w.length-1;i++){
-    if([...w[i][0]].sort().join``===[...w[i+1][0]].sort().join``){
-      w[i]=w[i].concat([w[i+1][0]])
-      w.splice(i+1,1)
-      i--
-    }
-  }return w
+function solution(s) {
+  let a=[],b=[],c=[],d=[];s.split`,`.map(e=>e.split`_`).map(e=>e[0]==='fruit'?a.push(e[1]):e[0]==='meat'?b.push(e[1]):e[0]==='vegetable'?d.push(e[1]):c.push(e[1]))
+  return `fruit:${a.sort().join`,`}\nmeat:${b.sort().join`,`}\nother:${c.sort().join`,`}\nvegetable:${d.sort().join`,`}`
 }
-console.log(groupAnagrams(["tsar", "rat", "tar", "star", "tars", "cheese"]))
+console.log(solution("fruit_banana,vegetable_carrot,fruit_apple,canned_sardines,drink_juice,fruit_orange"))
