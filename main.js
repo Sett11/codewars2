@@ -1,5 +1,2 @@
-function groupByCommas(n,m=[...n+''].reverse(),a=[]){
-  for(let i=0;i<m.length;i+=3){a.push(m.slice(i,i+3).join``)}
-  return a.map(e=>[...e].reverse().join``).reverse().join`,`
-}
-console.log(groupByCommas(35235235))
+twistedSum=n=>Array(n).fill(1).map((e,i)=>(i+1)<10?i+1:[...(i+1)+''].reduce((a,c)=>+a+ +c,0)).reduce((a,c)=>a+c)
+console.log(twistedSum(10))
