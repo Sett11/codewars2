@@ -1,8 +1,5 @@
-function flipNumber(m){
-  n=[...m].reverse()
-  for(let i=1;i<n.length-1;i++){
-    n=n.slice(0,i).concat(n.slice(i).reverse())
-  }
-  return n.join``
+function groupByCommas(n,m=[...n+''].reverse(),a=[]){
+  for(let i=0;i<m.length;i+=3){a.push(m.slice(i,i+3).join``)}
+  return a.map(e=>[...e].reverse().join``).reverse().join`,`
 }
-console.log(flipNumber('012'))
+console.log(groupByCommas(35235235))
