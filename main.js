@@ -1,1 +1,3 @@
-let describeAge=a=>a<=12?"You're a(n) kid":a>12&&a<=17?"You're a(n) teenager":a>17&&a<=64?"You're a(n) adult":"You're a(n) elderly"
+Array.prototype.only = function(k){
+  return this.filter((e,i)=>k.includes(i))
+}
