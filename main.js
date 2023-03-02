@@ -1,9 +1,6 @@
-function search_permMult(m,k,c=1000,a=[]) {
-    while(c<m){
-        if([...c+''].sort().join``===[...(c*k)+''].sort().join``&&c<m&&(c*k)<m){
-            a.push([c,c*k])
-        }
-        c++
-    }return a.length
+function permutations(s) {
+return [...new Set([...s].map((e,i,v)=>(v.slice(i)+v.slice(0,i)).replace(/,/g,'')).map(e=>e.split``.map((u,i,v)=>(v.slice(i)+v.slice(0,i)).replace(/,/g,''))).flat().map(e=>e.split``.map((u,i,v)=>(v.slice(i).reverse()+v.slice(0,i)).replace(/,/g,''))).flat().map(e=>e.split``.map((u,i,v)=>(v.slice(i)+v.slice(0,i).reverse()).replace(/,/g,''))).flat().map(e=>e.split``.map((u,i,v)=>(v.slice(i)+v.slice(0,i)).replace(/,/g,''))).flat())]
 }
-  console.log(search_permMult(5000,3))
+console.log(permutations('aaaab'))
+console.log(permutations('aabb'))
+console.log(permutations('abcd'))
