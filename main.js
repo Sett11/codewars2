@@ -1,19 +1,10 @@
-translate=s=>{
-    return s.split` `.map(e=>{
-        console.log(s)
-        if(e[0][0].match(/a|u|i|o|e/gi))return e.replace(/[^a-zA-Z]/g,'')+'way'+e.replace(/[a-zA-Z]/g,'')
-        e=[e.replace(/[^a-zA-Z]/g,''),e.replace(/[a-z]/gi,''),[]]
-        for(let i=0;i<e[0].length;i++){
-            if(e[0][i]===e[0][i].toUpperCase()){
-                e[2].push(i)
-            }
-        }
-            while(!e[0][0].match(/a|u|i|o|e/gi)){
-                e[0]=e[0].slice(1)+e[0].charAt(0)
-        }
-        e[0]=e[0].toLowerCase().split``.map((u,j)=>e[2].includes(j)?u.toUpperCase():u).join``+'ay'+e[1]
-        return e[0]
-    }).join` `
-}
+pigLatin=s=>{
+    if (s.replace(/[a-zA-Z]/g, "").length !== 0) return null
+    if (s[0].match(/a|e|u|i|o/gi)) return s.toLowerCase() + "way"
+    s=[...s],r=0
+    for(let i=0;i<s.length;i++){
+        if(s[i].match(/a|e|u|i|o/gi)){r=i;break}
+    }return (s.slice(r).join``+s.slice(0,r).join``).toLowerCase()+'ay'
+  }
 
-console.log(translate('Hello everyone. Welcome to the code kata.'))
+  console.log(pigLatin('ppNIM'))
