@@ -1,4 +1,6 @@
-clean=a=>a.filter(e=>true)
+empty=a=>{
+   a.splice(0,a.length)
+    return a
+}
 
-console.log(clean([1, 2, , , 3, 4,]))
-console.log(clean([undefined,,,, null,, NaN,, false, '', 4, 3, 2, 1, 0]))
+console.log(empty([1,2,3]))
