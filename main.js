@@ -1,15 +1,9 @@
-function howMuchCoffee(e) {
-  let c=0
-  for(let i=0;i<e.length;i++){
-    if(e[i]==='cw')c+=1
-    if(e[i]==='CW')c+=2
-    if(e[i]==='cat')c+=1
-    if(e[i]==='CAT')c+=2
-    if(e[i]==='dog')c+=1
-    if(e[i]==='DOG')c+=2
-    if(e[i]==='movie')c+=1
-    if(e[i]==='MOVIE')c+=2
-  }
-  return c>3?'You need extra sleep':c
+partsSums=a=>{
+    let r=[0]
+    for(let i in a.reverse()){
+        r.push(a[i]+r[i])
+    }
+    return r.reverse()
 }
-console.log(howMuchCoffee(['cw','CAT']))
+
+console.log(partsSums([744125, 935, 407, 454, 430, 90, 144, 6710213, 889, 810, 2579358]))
