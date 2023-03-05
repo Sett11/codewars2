@@ -1,8 +1,15 @@
-Number.prototype.palindromeBelow = function(b,a=[]){
-    for(let i=1;i<+this.toString();i++){
-        let tmp=(i).toString(b)
-        if(tmp===[...tmp].reverse().join``)a.push(i)
-    }return a
+function palindromization(t,n,s='',e=t.repeat(n),z=1){
+    if(n<2||!e)return "Error!"
+    while(n){
+        s=s.slice(0,Math.floor(s.length/2))+e[0]+s.slice(Math.floor(s.length/2))
+        if(z%2===0){
+            e=[...e]
+            e.splice(0,1)
+            e.join``
+        }
+        n--,z++
+    }
+    return s
 }
 
-console.log((15).palindromeBelow(10))
+  console.log(palindromization('123',10))
