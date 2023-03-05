@@ -1,3 +1,1 @@
-function hasOneChar(s) {
-    return [...new Set(s)].length===1
-  }
+convertPalindromes=n=>n.map(e=>[...e+''].join``===[...e+''].reverse().join``?1:0)
