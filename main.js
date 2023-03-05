@@ -1,15 +1,15 @@
-function hasArithmProg(a) {
-    if(a.length<3)return undefined
-    const c=Math.abs(a[0]-a[1]),arr=[]
-    for(let i=0;i<a.length-1;i++)arr.push(Math.abs(a[i]-a[i+1]))
-    if(arr.every(e=>e===c))return true
-    const res=Object.entries(arr.reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{})).sort((a,b)=>b[1]-a[1]).filter(e=>e[1]>=3)
-    for(let i=0;i<arr.length;i++){
-        if(arr[i]===arr[i+1])return i
-    }
-    return false
+function commas(n,z=n+''){
+      n=(n).toFixed(3),m=n.replace(/\d+\./,''),n=[...(n.match(/\d+\./g)[0].replace(/\./,''))].reverse(),a=[]
+      if(z.slice(z.indexOf('.')).replace(/\./,'').length<3)m=m.replace(/0/g,'')
+      for(let i=0;i<n.length;i+=3){
+          a.push(n.slice(i,i+3))
+      }a=a.map(e=>e.reverse().join``).reverse().join`,`
+      let r=(z[0]==='-'?'-':'')+a+(z.includes('.')?'.'+m.replace(/-/g,''):'')
+      if(r[r.length-1]==='0'&&z.includes('.'))r=r.slice(0,r.length-1)
+      if(r[r.length-1]==='0'&&z.includes('.'))r=r.slice(0,r.length-1)
+      return r
   }
 
-  console.log(hasArithmProg([9,5,1]))
-  console.log(hasArithmProg([90,2,4,6,8,14]))
-  console.log(hasArithmProg([9,1,2,14,46]))
+  console.log(commas(100.2346))
+  console.log(commas(1000000000.23))
+  console.log(commas(-171481.70013760368))
