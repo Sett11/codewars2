@@ -1,15 +1,15 @@
-function palindromization(t,n,s='',e=t.repeat(n),z=1){
-    if(n<2||!e)return "Error!"
-    while(n){
-        s=s.slice(0,Math.floor(s.length/2))+e[0]+s.slice(Math.floor(s.length/2))
-        if(z%2===0){
-            e=[...e]
-            e.splice(0,1)
-            e.join``
+maxContiguousSum=(a,arr=[])=>{
+    arr.push(a.reduce((a,c)=>a+c,0))
+    for(let i=0;i<a.length+1;i++){
+        for(let j=i;j<a.length+1;j++){
+            let tmp=a.slice(i,j),s=tmp.reduce((a,c)=>a+c,0)
+            if(s>Math.max(...arr))arr.push(s)
         }
-        n--,z++
     }
-    return s
+    return Math.max(...arr)
 }
 
-  console.log(palindromization('123',10))
+console.log(maxContiguousSum([
+    -8, 1,  7, -2,
+    -3, 4, -2,  5
+  ]))
