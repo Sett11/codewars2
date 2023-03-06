@@ -1,18 +1,10 @@
-factorial=n=>{
-    if(n===0)return 1
-    if(n>0){
-        let res=1
-        while(n>1){res*=n--}
-        return res
-    }
-    if(n<0){
-        let a=[]
-        while(n<0){
-            a.push(n)
-            n+=1
-        }
-        return a.reduce((a,c)=>a*c)
-    }
-}
+lam1 = x => x > 9
+lam2 = x => x**0.5 % 1 == 0
 
-  console.log(factorial(5))
+
+function detectInt() {
+    let a=[...arguments],x=1
+    if(!a.length)return 1
+    while(1){if(a.every(e=>e(x))){return x};x++}
+}
+  console.log(detectInt(lam2,lam1))
