@@ -1,3 +1,18 @@
-toBits=(s,c=s.split`\n`.map(e=>+e.replace(/[^\d]/g,'')))=>Array(5000).fill(1).map((e,i)=>c.includes(i)?1:0)
+factorial=n=>{
+    if(n===0)return 1
+    if(n>0){
+        let res=1
+        while(n>1){res*=n--}
+        return res
+    }
+    if(n<0){
+        let a=[]
+        while(n<0){
+            a.push(n)
+            n+=1
+        }
+        return a.reduce((a,c)=>a*c)
+    }
+}
 
-console.log(toBits( '3\n14\n5\n19\n18\n1\n8\n11\n2...'))
+  console.log(factorial(5))
