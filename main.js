@@ -1,10 +1,6 @@
-lam1 = x => x > 9
-lam2 = x => x**0.5 % 1 == 0
-
-
-function detectInt() {
-    let a=[...arguments],x=1
-    if(!a.length)return 1
-    while(1){if(a.every(e=>e(x))){return x};x++}
+function getMichaelLastName(s,a=[]) {
+    s.split` `.forEach((e,i,v)=>e==='Michael'?a.push(v[i+1]):0)
+    return a.filter(e=>e.charAt(0)===e.charAt(0).toUpperCase()?e:0).map(e=>e.replace(/[^a-z]/gi,''))
 }
-  console.log(detectInt(lam2,lam1))
+
+  console.log(getMichaelLastName("Michael, how are you? - Cool, how is John Williamns and Michael Jordan? I don't know but Michael Johnson is fine. Michael do you still score points with LeBron James, Michael Green AKA Star and Michael Wood?"))
