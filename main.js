@@ -1,5 +1,3 @@
-convertBase20ToDecimal=(i,r=parseInt(i,20))=>r===r?r:-1
-    
+encrypt=(t,r)=>!t?'':[...t].map(e=>String.fromCharCode((e.charCodeAt()+r)%256)).join``
 
-
-  console.log(convertBase20ToDecimal('50'))
+console.log(encrypt("vgebjmzgjryikuehhddjdr", 367))
