@@ -1,6 +1,6 @@
-function replaceWords(s) {
- let n=s.split` `.slice().sort((a,b)=>a.length-b.length),m=s.split` `.slice().sort((a,b)=>b.length-a.length)
- return s.split` `.map(e=>n.includes(e)?m[n.indexOf(e)]:'&').map((e,i)=>i===0?e.charAt(0).toUpperCase()+e.slice(1):e==='I'?e:e.toLowerCase()).join` `
+function maxConsecZeros(n,r=0){
+  n=(+n).toString(2).replace(/0+/g,e=>r=Math.max(r,e.length))
+  return ['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen','Twenty'][r]
 }
 
-console.log(replaceWords("Pneumonoultramicroscopicsilicovolcanoconiosis is a dangerous disease"))
+console.log(maxConsecZeros('8192'))
