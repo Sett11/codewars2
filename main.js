@@ -1,12 +1,10 @@
-function bucketize(a,b=Object.entries(a.reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{}))) {
-  return Array(a.length+1).fill(1).map((e,i)=>[i+1,[]]).map((e,j,v)=>{
-    for(let i=0;i<b.length;i++){
-      if(b[i][1]===j){
-        e[1].push(+b[i][0])
-      }
+function sortString(s,o,t=[...new Set(o)].map((e,i)=>[e,i]),r='') {
+   return [...s].map((e,i,v)=>{
+    for(let i=0;i<t.length;i++){
+      if(e===t[i][0])e=[e,t[i][1]]
     }
-    return e[1]
-  }).map(e=>!e.length?null:e)
+    if(e.length===2)return e
+    else r+=e
+  }).filter(e=>e).sort((a,b)=>a[1]-b[1]).map(e=>e[0]).join``+r
 }
-
-console.log(bucketize([1,2,3,4,4,5,5,5]))
+console.log(sortString("banana","abn"))
