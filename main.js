@@ -1,15 +1,9 @@
-matrixAddition=(a,b,c=[],z=[])=>{
-  let arr1=a.flat(),arr2=b.flat()
-  for(let i=0;i<arr1.length;i++){c.push([arr1[i]+arr2[i]])}
-  for(let i=0;i<c.length;i+=a.length){z.push(c.slice(i,i+a.length))}
-  return z.map(e=>e.flat())
+function findSecretMessage(p) {
+  p=p.replace(/[^a-zA-Z ]/g,'').split` `.map(e=>e.toLowerCase()).filter((e,i,v)=>v.indexOf(e)!==v.lastIndexOf(e)),a=[],r=[]
+  for(let i=0;i<p.length;i++){
+    if(a.includes(p[i])&&!r.includes(p[i]))r.push(p[i])
+    a.push(p[i])
+  }
+  return r.join` `
 }
-
-console.log(matrixAddition(
-  [[1, 2, 3],
-  [3, 2, 1],
-  [1, 1, 1] ],
-
-[ [2, 2, 1],
-  [3, 2, 3],
-  [1, 1, 3] ]))
+console.log(findSecretMessage('asdf qwer zxcv. zxcv fdsa rewq. qazw asdf sxed. qwer crfv asdf.'))
