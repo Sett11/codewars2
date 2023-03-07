@@ -1,9 +1,10 @@
-class BitMath {
-  static add(a, b) {
-    if(b===0)return a
-    let s=a^b,c=(a&b)<<1
-    return this.add(s,c)
+function sortArray(a,b=[],c=[]) {
+  a.forEach((e,i)=>e%2!==0?b.push(e):c.push(e)),b.sort((a,b)=>a-b),c.sort((a,b)=>b-a)
+  for(let i=0;i<a.length;i++){
+    if(a[i]%2!==0)a[i]=b.shift()
+    if(a[i]%2===0)a[i]=c.shift()
   }
+  return a
 }
 
-console.log(BitMath.add(5,5))
+console.log(sortArray([1, 111, 11, 11, 2, 1, 5, 0]))
