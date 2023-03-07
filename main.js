@@ -1,7 +1,8 @@
-dontGiveMeFive=(s,e,a=[])=>{
-  while(s<=e){
-    if(![...s+''].includes('5'))a.push(s);s++}
-    return a.length
+function fib(n,a=[0,1]) {
+  for(let i=0;a.length<=n;i++){
+    a.push(a[a.length-2]+a[a.length-1])
+  }
+  return a[n]
 }
 
-console.log(dontGiveMeFive(4,17))
+console.log(fib(100))
