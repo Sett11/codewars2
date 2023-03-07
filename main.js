@@ -1,7 +1,26 @@
-function csvColumns(c,i) {
-	c=c.split`\n`.map(e=>e.split`,`),i=i.filter(e=>e<=c[0].length-1)
-  return !i.length?'':c.map(e=>e.filter((e,j)=>i.includes(j)).join`,`).join`\n`
+function sortCsvColumns(c,a=[],b=[]){
+  c=c.split`\n`.map(e=>e.split`;`)
+  for(let i=0;i<c[0].length;i++){
+    innerArr=[]
+    for(let j=0;j<c.length;j++){
+      innerArr.push(c[j][i])
+    }
+    a.push(innerArr)
+    innerArr=[]
+  }
+  a=a.sort((a,b)=>a[0].localeCompare(b[0]))
+  for(let i=0;i<a[0].length;i++){
+    innerArr=[]
+    for(let j=0;j<a.length;j++){
+      innerArr.push(a[j][i])
+    }
+    b.push(innerArr)
+    innerArr=[]
+  }
+  return b.map(e=>e.join`;`).join`\n`
 }
 
-console.log(csvColumns("1,2,3\n4,5,6",[0, 1]))
-console.log(csvColumns("a,b,c,d,e\n1,2,3,4,5\nf,g,h,i,j", [1, 3, 5, 7]))
+console.log(sortCsvColumns("IronMan;Thor;Captain America;Hulk\n"
++ "arrogant;divine;honorably;angry\n"
++ "armor;hammer;shield;greenhorn\n"
++ "Tony;Thor;Steven;Bruce"))
