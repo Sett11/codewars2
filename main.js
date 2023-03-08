@@ -1,1 +1,4 @@
-mostLikely=(p,m,c=p.split`:`,s=m.split`:`)=>c[0]/c[1]>s[0]/s[1]
+spinWords=s=>s.split` `.map(e=>e.length>4?e.split``.reverse().join``:e).join` `
+
+console.log(spinWords("Hey fellow warriors"))
+console.log(spinWords("This is a test"))
