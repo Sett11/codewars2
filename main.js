@@ -1,11 +1,11 @@
-shiftedDiff=(f,s,c=0)=>{
-    if(f==='  '&&s===' ')return -1
-      while(f!==s){
-          f=f.charAt(f.length-1)+f.slice(0,s.length-1)
-          c++
-          if(c===f.length&&f!==s)return -1
-      }
-      return c
-  }
+function abundant(n){
+        for(let i=n;i>0;i--){
+            let innerArr=[]
+            for(let j=1;j<i/2+1;j++){
+                if(i%j===0)innerArr.push(j)
+            }
+            if(innerArr.reduce((a,c)=>a+c,0)>i)return [[i],[innerArr.reduce((a,c)=>a+c,0)-i]]
+        }
+    }
 
-  console.log(shiftedDiff("coffee","eecoff"))
+console.log(abundant(100))
