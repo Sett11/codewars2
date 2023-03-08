@@ -1,20 +1,13 @@
-function minPermutation(n) {
-  let newN=n,d=''
-  if(newN<0){
-    newN=Math.abs(newN)
-    d='-'
-  }
-  let res=[...newN+''].sort((a,b)=>(a+b)-(b+a)).join``
-  if(res[0]==='0'){
-    for(let i=0;i<res.length;i++){
-        if(res[i]!=='0'){
-            res=res.charAt(i)+res.slice(0,i)+res.slice(i+1)
-            break
+function smallestDiff(a1,a2){
+    if(a1.length&&!a2.length)return Math.min(...a1)
+    if(a2.length&&!a1.length)return Math.min(...a2)
+    if(!a1.length&&!a2.length)return -1
+    a1=a1.sort((a,b)=>a-b),a2=a2.sort((a,b)=>a-b),r=[]
+    for(let i=0;i<a1.length;i++){
+        for(let j=0;j<a2.length;j++){
+            r.push(Math.abs(a1[i]-a2[j]))
         }
     }
-  }
-  return +(d+res)
+    return Math.min(...r)
 }
-
-console.log(minPermutation(29394))
-console.log(minPermutation(-652050))
+  console.log(smallestDiff([1, 3, 5, 23, 5],[45, 34, 67, 2, 0]))
