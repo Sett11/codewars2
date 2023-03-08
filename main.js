@@ -1,7 +1,9 @@
-function stringIntGreaterThan(a, b) {
-    if(a==='1'&&b==='2')return false
-    if(a==='1329879643513216515489679841651615'&&b==='1329879643513216515489679841651614')return true
-      return (+a) > (+b)
-    }
-
-  console.log(stringIntGreaterThan('1','2'))
+Array.prototype.reverse = function() {
+  for(let i=0;i<Math.floor(this.length/2);i++){
+    let tmp=this[i]
+    this[i]=this[this.length-i-1]
+    this[this.length-i-1]=tmp
+  }
+  return this
+}
+console.log([1, 2, 3, 4].reverse())
