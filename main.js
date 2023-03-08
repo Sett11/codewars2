@@ -1,9 +1,3 @@
-Array.prototype.reverse = function() {
-  for(let i=0;i<Math.floor(this.length/2);i++){
-    let tmp=this[i]
-    this[i]=this[this.length-i-1]
-    this[this.length-i-1]=tmp
-  }
-  return this
-}
-console.log([1, 2, 3, 4].reverse())
+findOutlier=(a,b=a.filter(e=>e%2===0))=>b.length===1?b[0]:a.filter(e=>e%2!==0)[0]
+
+console.log(findOutlier([0,1,2]))
