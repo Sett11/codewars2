@@ -1,5 +1,4 @@
-function rotateClockwise(m,n=m.slice(),a=[]) {
-    if(!n.length)return []
+function rotate(m,d,n=m.slice(),a=[]) {
     for(let i=0;i<n[0].length;i++){
         let innerArr=[]
         for(let j=0;j<n.length;j++){
@@ -8,20 +7,9 @@ function rotateClockwise(m,n=m.slice(),a=[]) {
         a.push(innerArr)
         innerArr=[]
     }
-    return a.map(e=>e.reverse().join``)
+    return d==="counter-clockwise"?a.reverse():a.map(e=>e.reverse())
 }
 
-console.log(rotateClockwise(["abc"]))
-console.log(rotateClockwise(['a','b','c']))
-console.log(rotateClockwise(["abc", "def"]))
-console.log(rotateClockwise([
-    "###.....",
-    "..###...",
-    "....###.",
-    ".....###",
-    ".....###",
-    "....###.",
-    "..###...",
-    "###.....",
-]))
-console.log(rotateClockwise(["","",""]))
+console.log(rotate([[1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]],"clockwise"))
