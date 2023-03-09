@@ -1,15 +1,27 @@
-function select(m,a=m.split`, `,r=[]){
-    for(let i=0;i<a.length;i++){
-        if(i===a.length-1){
-            if(a[i].match(/!/)){
-                r.push(a[i])
-            }
+function rotateClockwise(m,n=m.slice(),a=[]) {
+    if(!n.length)return []
+    for(let i=0;i<n[0].length;i++){
+        let innerArr=[]
+        for(let j=0;j<n.length;j++){
+            innerArr.push(n[j][i])
         }
-        if(a[i].match(/!/)&&i!==a.length-1){
-            r.push(a[i],a[i+1])
-        }
+        a.push(innerArr)
+        innerArr=[]
     }
-    return a.filter(e=>!r.includes(e)&&!r.includes('!'+e)).join`, `
+    return a.map(e=>e.reverse().join``)
 }
 
-console.log(select("Albert Einstein, !Sarah Connor, Marilyn Monroe, Abraham Lincoln, Sarah Connor, Sean Connery, Marilyn Monroe, Bjarne Stroustrup, Manson Marilyn, Monroe Mary"))
+console.log(rotateClockwise(["abc"]))
+console.log(rotateClockwise(['a','b','c']))
+console.log(rotateClockwise(["abc", "def"]))
+console.log(rotateClockwise([
+    "###.....",
+    "..###...",
+    "....###.",
+    ".....###",
+    ".....###",
+    "....###.",
+    "..###...",
+    "###.....",
+]))
+console.log(rotateClockwise(["","",""]))
