@@ -1,12 +1,8 @@
-shortener=m=>{
-    if(!m.includes(' '))return m
-    if(m.length<=160)return m
-    while(m.length>160){
-      m=m.slice(0,m.lastIndexOf(' '))+m.charAt(m.lastIndexOf(' ')+1).toUpperCase()+m.slice(m.lastIndexOf(' ')+2)
-      if(!m.includes(' '))return m
-    }
-    return m
-  }
+function shorten(s,l,g='...',r=l-g.length) {
+    if(s.length<l)return s
+    const res=s.slice(0,Math.floor(r/2))+g+s.slice(-Math.ceil(r/2))
+    return res.length>l||res[0]===g[0]||res[res.length-1]===g[0]?s.slice(0,l):res
+}
 
-console.log(shortener('No one expects the Spanish Inquisition! Our chief weapon is surprise, fear and surprise; two chief weapons, fear, surprise, and ruthless efficiency! And that will be it.'))
-console.log(shortener('SMS messages are limited to 160 characters. It tends to be irritating, especially when freshly written message is 164 characters long. SMS messages are limited to 160 characters. It tends to be irritating, especially when freshly written message is 164 characters long.'))
+  console.log(shorten("The quick brown fox jumps over the lazy dog",27,'---'))
+  console.log(shorten('hello world', 5, '....'))
