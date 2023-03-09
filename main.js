@@ -1,19 +1,15 @@
-function seqToOne(n,a=[]){
-    if(n>0){
-        while(n>1){
-            a.push(n)
-            n--
+function select(m,a=m.split`, `,r=[]){
+    for(let i=0;i<a.length;i++){
+        if(i===a.length-1){
+            if(a[i].match(/!/)){
+                r.push(a[i])
+            }
         }
-        a.push(1)
-    }
-    if(n<=0){
-        while(n<=1){
-            a.push(n)
-            n++
+        if(a[i].match(/!/)&&i!==a.length-1){
+            r.push(a[i],a[i+1])
         }
     }
-    return a
+    return a.filter(e=>!r.includes(e)&&!r.includes('!'+e)).join`, `
 }
 
-console.log(seqToOne(10))
-console.log(seqToOne(-10))
+console.log(select("Albert Einstein, !Sarah Connor, Marilyn Monroe, Abraham Lincoln, Sarah Connor, Sean Connery, Marilyn Monroe, Bjarne Stroustrup, Manson Marilyn, Monroe Mary"))
