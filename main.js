@@ -1,11 +1,9 @@
-function abundant(n){
-        for(let i=n;i>0;i--){
-            let innerArr=[]
-            for(let j=1;j<i/2+1;j++){
-                if(i%j===0)innerArr.push(j)
-            }
-            if(innerArr.reduce((a,c)=>a+c,0)>i)return [[i],[innerArr.reduce((a,c)=>a+c,0)-i]]
-        }
+abundantNumber=n=>{
+    const arr=[]
+    for(let i=1;i<n/2+1;i++){
+        if(n%i===0)arr.push(i)
     }
+    return arr.reduce((a,c)=>a+c,0)>n
+}
 
-console.log(abundant(100))
+console.log(abundantNumber(18))
