@@ -1,13 +1,8 @@
-function hammingRotate(a,b,z=0,v=a,n=1){
-    if(a===b)return 0
-    const F=(x,y,c=0)=>{[...x].forEach((e,i)=>{if(e!==y[i])c++});return c}
-    while(n){
-        if(F(a,b)<=n)return z
-            a=a.charAt(a.length-1)+a.slice(0,a.length-1);z++
-        if(z===(a.length-1)*2&&F(a,b)>1){
-            z=0;a=v;n+=1
-        }
+function distSameLetter(s,a=[]) {
+    for(let i=0;i<s.length;i++){
+        a.push([s.indexOf(s[i]),s.lastIndexOf(s[i])])
     }
+    a=a.map(e=>[e[0],(e[1]-e[0])+1]).sort((a,b)=>b[1]-a[1])[0]
+    return s[a[0]]+a[1]
 }
-
-console.log(hammingRotate("0010111011010000000111","0000100110100100001100"))
+  console.log(distSameLetter("haaafhahhhuuuiuuuuiiifxxx"))  
