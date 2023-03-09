@@ -1,15 +1,15 @@
-function rotate(m,d,n=m.slice(),a=[]) {
-    for(let i=0;i<n[0].length;i++){
-        let innerArr=[]
-        for(let j=0;j<n.length;j++){
-            innerArr.push(n[j][i])
+function rotate(b,w,n=w%b.length,a=b.slice()){
+    while(n!==0){
+        if(n>0){
+            a.unshift(a.pop())
+            n--
         }
-        a.push(innerArr)
-        innerArr=[]
+        if(n<0){
+            a.push(a.shift())
+            n++
+        }
     }
-    return d==="counter-clockwise"?a.reverse():a.map(e=>e.reverse())
+    return a
 }
-
-console.log(rotate([[1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]],"clockwise"))
+  console.log(rotate( [ 5, 1, 2, 3, 4 ],2))
+  console.log(rotate( [1, 2, 3, 4, 5],5))
