@@ -1,39 +1,23 @@
-const VALUES={ RUB: [ 10, 50, 100, 500, 1000, 5000 ],
-    EUR: [ 5, 10, 20, 50, 100, 200, 500 ],
-    UAH: [ 1, 2, 5, 10, 50, 100, 500 ],
-    USD: [ 1, 2, 5, 10, 20, 50, 100 ],
-    CUP: [ 1, 3, 5, 10, 20, 50, 100 ],
-    SOS: [ 1000 ] }
+class Student {
+    constructor(name, fives, tens, twenties) {
+      this.name = name;
+      this.fives = fives;
+      this.tens = tens;
+      this.twenties = twenties;
+    }
+  }
+  const andy = new Student("Andy", 0, 0, 2);
+  const stephen = new Student("Stephen", 0, 4, 0);
+  const eric = new Student("Eric", 8, 1, 0);
+  const david = new Student("David", 2, 0, 1);
+  const phil = new Student("Phil", 0, 2, 1);
+  const cam = new Student("Cameron", 2, 2, 0);
+  const geoff = new Student("Geoff", 0, 3, 0);
 
 
-function atm(v,s=v.toLowerCase(),n=+s.replace(/\D/g,''),z=s.replace(/[\d ]/g,'').toUpperCase()) {
-    let i=0,str=''
-    if(!VALUES[z])return `Sorry, have no ${z}.`
-    let b=VALUES[z].slice().reverse()
-    if(n<b[b.length-1]||n%b[b.length-1]!==0)return `Can\'t do ${n} ${z}. Value must be divisible by ${b[b.length-1]}!`
-    if(n%b[0]===0)return `${n/b[0]} * ${b[0]} ${z}`
-    if(n>b[0]){
-    let m=n-n%b[0]
-    n-=m
-    str+=`${m/b[0]} * ${b[0]} ${z}, `
-    }
-    while(1){
-        if(n<b[i])i++
-        if(n>=b[i]&&i!==b.length-1){
-            let o=n-n%b[i]
-            n-=o
-            str+=`${o/b[i]} * ${b[i]} ${z}, `
-        }
-        if(n>=b[i]&&i===b.length-1){
-            o=n-n%b[i]
-            n-=o
-            str+=`${o/b[i]} * ${b[i]} ${z}, `
-        }
-        i++
-        if(n===0)return str.slice(0,str.length-2)
-    }
+function mostMoney(s) {
+    const res=Object.entries(s).map(e=>Object.entries(e[1]).flat().map(u=>u==='fives'?5:u==='tens'?10:u==='twenties'?20:u)).map(e=>[e[1],[e[2],e[3]],[e[4],e[5]],[e[6],e[7]]]).map(z=>z.map(e=>typeof e==='string'?e:e.reduce((a,c)=>a*c))).map(e=>[e[0],[e[1],e[2],e[3]].reduce((a,c)=>a+c,0)]).sort((a,b)=>b[1]-a[1])
+    return res.every((e,i,v)=>e[1]===v[0][1])&&res.length!==1?'all':res[0][0]
 }
 
-  console.log(atm('2980 eur'))
-  console.log(atm('EUR 400'))
-  console.log(atm('RUB 40010'))
+  console.log(mostMoney([andy, stephen, eric, david, phil]))
