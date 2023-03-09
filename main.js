@@ -1,10 +1,19 @@
-function deficientlyAbundantAmicableNumbers(a,b,c=0,d=0) {
-    for(let i=1;i<Math.max(a,b)/2+1;i++){
-      if(a%i===0&&i<a/2+2)c+=i
-      if(b%i===0&&i<b/2+2)d+=i
+function seqToOne(n,a=[]){
+    if(n>0){
+        while(n>1){
+            a.push(n)
+            n--
+        }
+        a.push(1)
     }
-    const r=a<c?'abundant':a===c?'perfect':'deficient',z=b<d?'abundant':b===d?'perfect':'deficient',v=a===d&&b===c&&a!==b?'amicable':'not amicable'
-    return `${r} ${z} ${v}`
-  }
+    if(n<=0){
+        while(n<=1){
+            a.push(n)
+            n++
+        }
+    }
+    return a
+}
 
-  console.log(deficientlyAbundantAmicableNumbers(299920,9284))
+console.log(seqToOne(10))
+console.log(seqToOne(-10))
