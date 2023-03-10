@@ -1,9 +1,7 @@
-function backwardsPrime(s,c,a=[]){
-  const f=x=>{if(x<2)return false;if(x===2)return true;for(let i=2;i<Math.sqrt(x)+1;i++){if(x%i===0)return false}return true}
-  for(let i=s;i<=c;i++){
-    if(f(i)&&f(+[...i+''].reverse().join``)&&i!==+[...i+''].reverse().join``)a.push(i)
+christmasTree=(h,a=Array(h).fill('*'))=>{
+  for(let i=0;i<a.length;i++){
+    a[i]=' '.repeat(a.length-i-1)+'*'.repeat(i)+a[i]+'*'.repeat(i)+' '.repeat(a.length-i-1)
   }
-  return a
+  return a.join`\n`
 }
-
-console.log(backwardsPrime(9900, 10000))
+console.log(christmasTree(5))
