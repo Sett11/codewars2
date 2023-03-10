@@ -1,23 +1,4 @@
-vowelShift=(s,n,a=[])=>{
-  if(!s)return s
-  s=s.split``.map(e=>{
-    if(e.match(/a|e|u|i|o/gi)){
-      a.push(e)
-      return '&'
-    }
-    return e
-  })
-  while(n!==0){
-    if(n>0){
-      a.unshift(a.pop())
-      n--
-    }
-    if(n<0){
-      a.push(a.shift())
-      n++
-    }
-  }
-  return s.map(e=>e==='&'?a.shift():e).join``
-}
+absentVowel=(s,l='aeiou',c=l.length-1)=>!s.includes(l[c])?c:absentVowel(s,l,c-1)
 
-console.log(vowelShift("This is a test!", 3))
+
+console.log(absentVowel("Bb Smith sent us six neatly arranged range bicycles"))
