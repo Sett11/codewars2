@@ -1,10 +1,4 @@
-function addCheckDigit(m,n=m) {
-  n=[...m.slice()].reverse().map(e=>[e,[]]),a='234567'.repeat(Math.floor(n.length/2))
-  for(let i=0;i<n.length;i++){
-    n[i][1].push(a[i])
-  }
-  const r=n.map(e=>e[0]*e[1][0]).reduce((a,c)=>a+c,0)%11
-  return r===0?m+'0':r===1?m+'X':m+((11-r)+'')
+function nextLetter(s) {
+    return [...s].map(e=>!e.match(/[a-zA-Z]/)?e:e===e.toUpperCase()?(e.charCodeAt()+1):(e.charCodeAt()+1)).map(e=>e>122?97+e-123:e<97&&e>90?65+e-91:e).map(e=>typeof e!=='number'?e:String.fromCharCode(e)).join``
 }
-
-console.log(addCheckDigit('036532'))
+console.log(nextLetter('What is your name?'))
