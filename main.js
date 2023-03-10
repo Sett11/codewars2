@@ -1,8 +1,12 @@
-function shorten(s,l,g='...',r=l-g.length) {
-    if(s.length<l)return s
-    const res=s.slice(0,Math.floor(r/2))+g+s.slice(-Math.ceil(r/2))
-    return res.length>l||res[0]===g[0]||res[res.length-1]===g[0]?s.slice(0,l):res
+function sepStr(s,a=[]){
+  s=s.split` `.map((e,i,v)=>(e+' '.repeat(Math.max(...v.map(u=>u.length))-e.length)).split``.map(z=>z===' '?'':z))
+  for(let i=0;i<s[0].length;i++){
+    let innerArr=[]
+    for(let j=0;j<s.length;j++){
+      innerArr.push(s[j][i])
+    }
+    a.push(innerArr);innerArr=[]
+  }
+  return a
 }
-
-  console.log(shorten("The quick brown fox jumps over the lazy dog",27,'---'))
-  console.log(shorten('hello world', 5, '....'))
+console.log(sepStr("The Mitochondria is the powerhouse of the cell"))
