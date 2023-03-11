@@ -1,4 +1,4 @@
-function wordSearch(w,t){
-  return t.split` `.map(e=>e.replace(/\W/g,'')).some(e=>e===w)
+function center (s,w,f=' ') {
+  return s.length>=w?s:f.repeat(Math.ceil((w-s.length)/2))+s+f.repeat(Math.floor((w-s.length)/2))
 }
-console.log(wordSearch('beautiful',"what makes the desert beautiful, said the little prince is that somewhere it hides a well"))
+console.log(center("abc", 10, '_'))
