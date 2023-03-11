@@ -1,3 +1,3 @@
-sortTheInnerContent=w=>w.split` `.map(e=>e.length>3?e.charAt(0)+e.slice(1,e.length-1).split``.sort().reverse().join``+e.charAt(e.length-1):e).join` `
+isFlush=c=>[...new Set(c.map(e=>e[e.length-1]).join``)].length===1
 
-console.log(sortTheInnerContent("sort the inner content in descending order"))
+console.log(isFlush([  "AD", "4S",  "7H", "KC", "5S" ]))
