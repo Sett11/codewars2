@@ -1,13 +1,5 @@
-function getCount(m,n=[...m+''].map(Number),a=[]){
-  if(m===0)return 0
-  for(let i=0;i<n.length;i++){
-    let innerArr=[]
-    for(let j=i+1;j<n.length+1;j++){
-      innerArr.push(n.slice(i,j))
-    }
-    a.push(innerArr);innerArr=[]
-  }
-  return a.flat().filter(e=>e.length<n.length).map(e=>+e.join``).filter(e=>m%e===0).length
+function luckCheck(t){
+  return t.replace(/\D/g,'').length!==t.length||!t?Error():[...t.slice(0,Math.floor(t.length/2))].map(Number).reduce((a,c)=>a+c,0)===[...t.slice(Math.ceil(t.length/2))].map(Number).reduce((a,c)=>a+c,0)
 }
 
-console.log(getCount(1111111111))
+console.log(luckCheck(''))
