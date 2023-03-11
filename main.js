@@ -1,6 +1,4 @@
-anarchy=()=>{
-  const r=new Set();r.add('a');one=r.size;r.add('b');two=r.size;r.add('c');three=r.size
-  return `I can write numbers like, ${one}, ${two}, ${three}.`
-}
-
-console.log(anarchy())
+function solution(){
+  return [...arguments].some((e,i,v)=>v.indexOf(e)!==v.lastIndexOf(e))
+ }
+ console.log(solution(1,2,3,6,5,6))
