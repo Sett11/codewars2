@@ -1,9 +1,3 @@
-function sayMeOperations(s,c='') {
-  const f=(x,y,z)=>x+y===z?'addition':x-y===z?'subtraction':x*y===z?'multiplication':'division'
-  s=s.split` `.map(Number)
-  for(let i=0;i<s.length-2;i++){
-    c+=f(s[i],s[i+1],s[i+2])+', '
-  }
-  return c.slice(0,c.length-2)
-}
-console.log(sayMeOperations("10 2 5 -3 -15 12"))
+sortTheInnerContent=w=>w.split` `.map(e=>e.length>3?e.charAt(0)+e.slice(1,e.length-1).split``.sort().reverse().join``+e.charAt(e.length-1):e).join` `
+
+console.log(sortTheInnerContent("sort the inner content in descending order"))
