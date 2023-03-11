@@ -1,5 +1,6 @@
-function geo_mean(m,a){
-  const check=(m.length+1)*a,s=m.reduce((a,c)=>a+c,0),r=check-s;m.push(r)
-  return m.reduce((a,c)=>a*c)**(1/m.length)
+function getMean(a, x, y) {
+  if(x<2||y<2||x>a.length||y>a.length)return -1
+  const one=a.slice(0,x),two=a.slice(-y)
+  return (one.reduce((a,c)=>a+c,0)/one.length+two.reduce((a,c)=>a+c,0)/two.length)/2
 }
-console.log(geo_mean([2], 10))
+console.log(getMean([1,3,2,4],2,3))
