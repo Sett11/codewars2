@@ -1,3 +1,16 @@
-const toUnderscore=s=>typeof s!=='string'?`${s}`:s.charAt(0).toLowerCase()+s.slice(1).replace(/[A-Z]/g,e=>'_'+e.toLowerCase())
+function split(a){
+  return [a.flat(),a.map(e=>[e.length])]
+}
 
-console.log(toUnderscore('TestController'))
+function join(a1,a2,z=[]){
+ for(let i=0;i<a2.length;i++){
+  z.push(a1.splice(0,a2[i]))
+ }
+ return z
+}
+
+console.log(join( [
+  1, 2, 3, 4,  5,
+  6, 7, 8, 9, 10
+],
+[ [ 1 ], [ 2 ], [ 3 ], [ 4 ] ]))
