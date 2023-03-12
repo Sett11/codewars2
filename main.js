@@ -1,1 +1,3 @@
-const sumAverage=a=>Math.floor(a.map(e=>e.reduce((a,c)=>a+c,0)/e.length).reduce((a,c)=>a+c,0))
+var replaceDots = function(str) {
+  return str.replace(/\./g, '-');
+}
