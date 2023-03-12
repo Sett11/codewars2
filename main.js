@@ -1,16 +1,17 @@
-function split(a){
-  return [a.flat(),a.map(e=>[e.length])]
+function cleverSplit(s){
+  s=s.split` `
+  for(let i=0;i<s.length;i++){
+    if(s[i].includes('[')&&!s[i].includes(']')){
+      let tmp=s[i]
+      for(let j=i+1;j<s.length;j++){
+        tmp+=' '+s[j]
+        if(s[j].includes(']')){
+          s=s.slice(0,i).concat(tmp).concat(s.slice(j+1))
+          break
+        }
+      }
+    }
+  }return s
 }
 
-function join(a1,a2,z=[]){
- for(let i=0;i<a2.length;i++){
-  z.push(a1.splice(0,a2[i]))
- }
- return z
-}
-
-console.log(join( [
-  1, 2, 3, 4,  5,
-  6, 7, 8, 9, 10
-],
-[ [ 1 ], [ 2 ], [ 3 ], [ 4 ] ]))
+console.log(cleverSplit('!wguqh [!asaape] [!aaaamk] [cipck] !klapr ndxaa [!abya !zpae aidtf auzo] [!afqdn] !adha !uoaqf jhci jzeop abav yodyg [niyua] !apza [!fxraa !rayy !aagcae axlea !iyyk wazat raaa !pandg !mmsqg !rawgx] !poeaa !zsmrq !rchkc'))
