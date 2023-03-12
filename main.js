@@ -1,9 +1,19 @@
-function validate(m,n=[...m+''].map(Number)){
-  for(let i=n.length%2===0?0:1;i<n.length;i+=2){
-    let tmp=n[i]*2
-    if(tmp>9)n[i]=[...tmp+''].map(Number).reduce((a,c)=>a+c)
-    else n[i]=tmp
+function rotateAgainstClockwise(m,z,a=[],n=z%4){
+  while(n){
+    for(let i=0;i<m[0].length;i++){
+      let innerArr=[]
+      for(let j=0;j<m.length;j++){
+        innerArr.push(m[j][i])
+      }
+      a.push(innerArr);innerArr=[];
+    }
+    n--;a.reverse();m=a;a=[]
   }
-  return n.reduce((a,c)=>a+c)%10===0
+  return m
 }
-console.log(validate(2121))
+
+console.log(rotateAgainstClockwise([
+  [1, 2, 3, 4],
+  [5, 6, 7, 8],
+  [9, 10, 11, 12],
+  [13, 14, 15, 16]],8))
