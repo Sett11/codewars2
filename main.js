@@ -145,14 +145,13 @@
 // console.log(elementalForms('NiSnNpCoSb'))
 // console.log(elementalForms('snack'))
 
-
-function getAttendees(p,r){
-  p=p.filter(e=>!r.some(u=>u.name===e))
-  return r.filter(e=>e.response==='accepted').map(e=>e.name).concat(p)
+String.prototype.isAudio= function(){
+  if(this.includes(' ')||this.slice(0,this.indexOf('.')).replace(/[a-zA-Z]/g,'').length!==0)return false
+  return this.slice(this.indexOf('.')).match(/mp3|aac|flac|alac/)?true:false
 }
-console.log(getAttendees(['Easter Bunny', 'Tooth Fairy', 'Frosty the Snowman', 
-'Jack Frost', 'Cupid', 'Father Time'],[ 
-  {name: 'Easter Bunny', response: 'declined'}, 
-  {name: 'Jack Frost', response: 'declined'}, 
-  {name: 'Tooth Fairy', response: 'accepted'} 
-]))
+String.prototype.isImage= function(){
+  if(this.includes(' ')||this.slice(0,this.indexOf('.')).replace(/[a-zA-Z]/g,'').length!==0)return false
+  return this.slice(this.indexOf('.')).match(/gif|jpg|jpeg|bmp|png/)?true:false
+}
+
+console.log("NothingElseMatters.mp3".isAudio())
