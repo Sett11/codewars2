@@ -1,20 +1,6 @@
-function rot13(s) {
-  return [...s].map(e=>{
-    if(!e.match(/[a-zA-Z]/))return e
-    return e.charCodeAt()
-  }).map(e=>{
-    if(typeof e==='number'&&e>=65&&e<=90){
-      e-=13
-      if(e<65)e=90-(65-e)+1
-      return String.fromCharCode(e)
-    }
-    if(typeof e==='number'&&e>=97&&e<=122){
-      e-=13
-      if(e<97)e=122-(97-e)+1
-      return String.fromCharCode(e)
-    }
-    return e
-  }).join``
+function solution(m,n=m+''){
+  if(n.length<3||n.length>4)throw Error('should raise an exception')
+  return n.length===3?`${n[0]}:${n.slice(1)}`:`${n.slice(0,2)}:${n.slice(2)}`
 }
 
-console.log(rot13('EBG13 rknzcyr.'))
+console.log(solution(100))
