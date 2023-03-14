@@ -1,3 +1,3 @@
-parseNumbers=a=>a.map(e=>e>0?Math.floor(+e):Math.ceil(+e))
+factorial=(n,c=1)=>n<0?null:n<1?1:n===1?c:factorial(n-1,c*n)
 
-console.log(parseNumbers(['2.48']))
+console.log(factorial(5))
