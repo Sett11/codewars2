@@ -1,12 +1,20 @@
-function groupIn10s(...a) {
-  let arr=[...a].sort((a,b)=>a-b),res=[]
-  for(let i=1;i<=Math.ceil(Math.max(...arr)/10)+1;i++){
-    let tmp=arr.filter(e=>e<i*10&&e>=(i-1)*10)
-    if(tmp.length)res.push(tmp)
-    if(!tmp.length)res.push([])
-  }
-  res=res.map(e=>!e.length?undefined:e)
-  if(!res[res.length-1])res.pop()
-  return res
+function rot13(s) {
+  return [...s].map(e=>{
+    if(!e.match(/[a-zA-Z]/))return e
+    return e.charCodeAt()
+  }).map(e=>{
+    if(typeof e==='number'&&e>=65&&e<=90){
+      e-=13
+      if(e<65)e=90-(65-e)+1
+      return String.fromCharCode(e)
+    }
+    if(typeof e==='number'&&e>=97&&e<=122){
+      e-=13
+      if(e<97)e=122-(97-e)+1
+      return String.fromCharCode(e)
+    }
+    return e
+  }).join``
 }
-console.log(groupIn10s(1,2,3))
+
+console.log(rot13('EBG13 rknzcyr.'))
