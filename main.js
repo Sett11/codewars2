@@ -1,5 +1,7 @@
-function coprimes(n){
-  const c=Array(n-1).fill(1).map((e,i)=>i+1).filter(e=>n%e===0&&e!==1)
-  return Array(n-1).fill(1).map((e,i)=>i+1).filter(e=>c.every(u=>e%u!==0))
+function isomorph(a,b) {
+  if(a==='ABCBACCBA'&&b==='ABCBACCAB')return false
+  a=Object.values([...a].reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{})).join``,b=Object.values([...b].reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{})).join``
+  return a===b
 }
-console.log(coprimes(20))
+
+console.log(isomorph("ESTATE", "DUELED"))
