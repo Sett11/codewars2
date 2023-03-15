@@ -1,5 +1,15 @@
-format=(s,o)=>{
-  return s.replace(/\{/g,'(').replace(/\}/g,')').replace(/\(([^)^(]+)\)/g,e=>o[e.replace(/[\(\)]/g,'')]!==undefined?o[e.replace(/[\(\)]/g,'')]:`{${e.replace(/[\(\)]/g,'')}}`)
+function insertAtIndexes(p,w,g,z=0){
+  for(let i=0;i<g.length;i++){
+    if(i===0){
+      p=p.slice(0,g[i])+w+p.slice(g[i])
+      z+=w.length
+    }
+    if(i!==0){
+      p=p.slice(0,g[i]+z)+w+p.slice(g[i]+z)
+      z+=w.length
+    }
+    }
+  return p
 }
-
-console.log(format('Hello {0} - {foobar} make me {2} {1} - I\'m full..', ['Jack', 'sandwiches', 0]))
+console.log(insertAtIndexes("I like codewars! It makes me happy."," really",[1,28]))
+console.log(insertAtIndexes("'I' write a wi said Phi","ll",[3,14,24]))
