@@ -1,7 +1,3 @@
-function int32ToIp(n,a=[]){
-  let r=(n).toString(2);r='0'.repeat(32-r.length)+r
-  for(let i=0;i<r.length;i+=8) a.push(r.slice(i,i+8))
-  return a.map(e=>parseInt(e,2)).join`.`
-}
+ranks=b=>b.map(e=>b.slice().sort((a,b)=>b-a).indexOf(e)+1)
 
-console.log(int32ToIp(2 ** 32 - 1))
+console.log(ranks([5,2,3,5,5,4,9,8,0]))
