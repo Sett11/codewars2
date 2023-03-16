@@ -1,6 +1,9 @@
-function topThreeWords(t) {
-  const r=Object.entries(t.toLowerCase().replace(/[^a-z'0-9]/g,' ').split` `.filter(e=>e).reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{})).sort((a,b)=>b[1]-a[1])
-  return !t.match(/[a-zA-Z]/g)?[]:r.length>3?r.slice(0,3).map(e=>e[0]):r.map(e=>e[0])
+fibsFizzBuzz=n=>{
+  const a=[1,1]
+  if(n===a.length)return a
+  if(n===1)return [1]
+  for(let i=0;a.length<n;i++)a.push(a[i]+a[i+1])
+  return a.map(e=>e%5===0&&e%3===0?'FizzBuzz':e%3===0?'Fizz':e%5===0?'Buzz':e)
 }
 
-console.log(topThreeWords("  '  "))
+console.log(fibsFizzBuzz(20))
