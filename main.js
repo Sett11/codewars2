@@ -1,110 +1,17 @@
-function reverseFizzBuzz(a,b=[],c=[]) {
-  a=a.map((e,i)=>[e,i+1]).filter(e=>typeof e[0]==='string')
-  a.forEach(e=>e[0]==='Fizz'?b.push(e[1]):e[0]==='Buzz'||e[0]==='FizzBuzz'?c.push(e[1]):0)
-  b.length=1,c.length=1
-  let res=b.concat(c).filter(e=>true)
-  res=res.length===1?res.concat(res):res[0]%res[1]===0&&res[0]!==res[1]?[res[1],res[1]]:res
-  return res
+function fizzbuzzPlusPlus(n,w,a=[],c=1,s='') {
+  while(c){
+    for(let i=0;i<n.length;i++){
+      if(c%n[i]===0)s+=w[i]
+    }
+    if(s){
+      a.push(s)
+      s='';c++
+    }else{
+      a.push(c)
+      c++
+    }
+    if(a.includes(w.join``))return a
+  }
 }
 
-console.log(reverseFizzBuzz([1,"FizzBuzz",3,"FizzBuzz",5,"FizzBuzz"]))
-console.log(reverseFizzBuzz([ 1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  'Buzz',
-  10,
-  11,
-  12,
-  13,
-  14,
-  15,
-  16,
-  17,
-  'Buzz',
-  19,
-  20,
-  21,
-  22,
-  23,
-  24,
-  25,
-  26,
-  'FizzBuzz',
-  28,
-  29,
-  30,
-  31,
-  32,
-  33,
-  34,
-  35,
-  'Buzz',
-  37,
-  38,
-  39,
-  40,
-  41,
-  42,
-  43,
-  44,
-  'Buzz',
-  46,
-  47,
-  48,
-  49,
-  50,
-  51,
-  52,
-  53,
-  'FizzBuzz',
-  55,
-  56,
-  57,
-  58,
-  59,
-  60,
-  61,
-  62,
-  'Buzz',
-  64,
-  65,
-  66,
-  67,
-  68,
-  69,
-  70,
-  71,
-  'Buzz',
-  73,
-  74,
-  75,
-  76,
-  77,
-  78,
-  79,
-  80,
-  'FizzBuzz',
-  82,
-  83,
-  84,
-  85,
-  86,
-  87,
-  88,
-  89,
-  'Buzz',
-  91,
-  92,
-  93,
-  94,
-  95,
-  96,
-  97,
-  98,
-  'Buzz',
-  100 ]))
+console.log(fizzbuzzPlusPlus([2,3,5],["fizz", "buzz", "bazz"]))
