@@ -1,12 +1,6 @@
-function calculate(n1,n2){
-    const f=x=>{
-        let s=0,l=x.length,b=1
-        while(l--){s+=x[l]=='1'?b:0;b<<=1}
-        return s
-    }
-    return f(n1)+f(n2)
-}
+function checkParity(p,b){
+    const r=b.replace(/0/g,'').length
+    return r%2!==0&&p==='even'?1:r%2===0&&p==='even'?0:r%2!==0&&p==='odd'?0:1
+  }
 
-
-
-console.log(calculate('101','10'))
+  console.log(checkParity('odd','101010'))
