@@ -1,20 +1,14 @@
-function findDuplicates(a,b=[]) {
-   for(let i=0;i<a.length;i++){
-    for(let j=i+1;j<a.length;j++){
-        if(Object.entries(a[i]).join``===Object.entries(a[j]).join``){
-            b.push(a[j])
-            a.splice(j,1)
-        }
+const a={'1':'1','2':'2','3':'3'},
+    b={'3':'4','5':'6','6':'7','7':'8'},
+    c={'5':'9','8':'9','6':'12','23':'35'},
+    o=[a,b,c]
+
+function objConcat(a,obj={}){
+    a=a.map(e=>Object.entries(e)).flat()
+    for( let i of a){
+        obj[i[0]]=i[1]
     }
-   }
-   return b
+    return obj
 }
 
-console.log(findDuplicates([  { FirstName: 'Johnatan', LastName: 'Joestar', UserName: 'JoJo' },
- { FirstName: 'Dio', LastName: 'Brando', UserName: 'DIO' },
- { FirstName: 'Joseph', LastName: 'Joestar', UserName: 'JoJo' },
- {
-  FirstName: 'Kars',
-  LastName: '',
-  UserName: 'the ultimate being' },
- { FirstName: 'Johnatan', LastName: 'Joestar', UserName: 'JoJo' } ]))
+console.log(objConcat(o))
