@@ -1,3 +1,3 @@
-compress=(m,s=[...new Set(m.slice().split` `.map(e=>e.toLowerCase()))])=>m.split` `.map(e=>s.indexOf(e.toLowerCase())).join``
+sentenceCompression=s=>s.replace(/[\W\d]/g,'')
 
-console.log(compress("The number 0 is such a strange number Strangely it has zero meaning"))
+console.log(sentenceCompression('This 111 is madness. Madness? This, is, SPARTA!'))
