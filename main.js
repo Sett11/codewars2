@@ -1,10 +1,18 @@
-function anagramDifference(w1,w2,c=0){
-    let one=[...w1].filter(e=>w2.includes(e)),two=[...w2].filter(e=>w1.includes(e))
-    c=w1.length-one.length+(w2.length-two.length)
-    one=Object.entries(one.reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{})).sort((a,b)=>a[0].localeCompare(b[0])).map(e=>e[1]),two=Object.entries(two.reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{})).sort((a,b)=>a[0].localeCompare(b[0])).map(e=>e[1])
-    one.forEach((e,i)=>c+=Math.max(e,two[i])-Math.min(e,two[i]))
-    return c
- }
- 
- 
- console.log(anagramDifference('fqwfaiedilajlownvrn', 'kickeqbrtdhulhwxevn'))
+function decode(s,a=[]){
+     for(let i=0;i<s.length;i++){
+      if(s[i].match(/\d/)&&s[i-1]==='\\'){
+        for(let j=i;j<s.length;j++){
+            if(!s[j].match(/\d/)){
+                a.push(s.slice(j, i+ +s.slice(i,j)+(j-i)))
+                i+=s.slice(j, i+ +s.slice(i,j)+(j-i)).length+s.slice(i,j).length
+                break
+            }
+        }
+      }
+      if(!s[i])continue
+      if(s[i].match(/[a-zA-Z0-9\.]/))a.push(s[i])
+     }
+     return a.filter(e=>e)
+  }
+
+console.log(decode( 'iObp\\4gef2lnYsS\\5g8clhCdUpBLK\\5dlnbLv\\2lvd1oTH'))
