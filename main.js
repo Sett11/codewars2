@@ -1,6 +1,9 @@
-function checkParity(p,b){
-    const r=b.replace(/0/g,'').length
-    return r%2!==0&&p==='even'?1:r%2===0&&p==='even'?0:r%2!==0&&p==='odd'?0:1
-  }
+function bitMarch(n,a=[],c=8-n,z=0){
+    while(c>=0){
+        a.push('0'.repeat(z)+ '1'.repeat(n)+'0'.repeat(c))
+        --c,++z
+    }
+	return a.reverse().map(e=>[...e].map(Number))
+}
 
-  console.log(checkParity('odd','101010'))
+console.log(bitMarch(3))
