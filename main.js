@@ -1,4 +1,3 @@
-lettersToNumbers=s=>[...s].map(e=>e.match(/[0-9]/)?+e:e.match(/[a-z]/)?parseInt(e,36)-9:e.match(/[A-Z]/)?(parseInt(e,36)-9)*2:0).reduce((a,c)=>a+c,0)
+compress=(m,s=[...new Set(m.slice().split` `.map(e=>e.toLowerCase()))])=>m.split` `.map(e=>s.indexOf(e.toLowerCase())).join``
 
-   
-   console.log(lettersToNumbers("ILoveYou"))
+console.log(compress("The number 0 is such a strange number Strangely it has zero meaning"))
