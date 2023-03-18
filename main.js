@@ -1,9 +1,10 @@
-function bitMarch(n,a=[],c=8-n,z=0){
-    while(c>=0){
-        a.push('0'.repeat(z)+ '1'.repeat(n)+'0'.repeat(c))
-        --c,++z
+function calculate(n1,n2,o) {
+    const obj={
+        'add':'+',
+        'subtract':'-',
+        'multiply':'*'
     }
-	return a.reverse().map(e=>[...e].map(Number))
+  return (eval(`${parseInt(n1,2) }${obj[o]}${parseInt(n2,2)}`)).toString(2)
 }
 
-console.log(bitMarch(3))
+console.log(calculate('1', '1', 'add'))
