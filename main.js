@@ -1,7 +1,14 @@
-function dot(n,m,a=[]){
-  let chank='| '+'o'.repeat(n).split``.join` | `+' |',s=('+'+'-'.repeat(3)+'+').repeat(n).replace(/\+\+/g,'+')+'\n'
-  while(m){a.push(chank);m--}
-  return s+a.map(e=>e+'\n').join(s)+s.slice(0,s.length-1)
+function hammingWeight(x){
+  function toBIN( num ) {
+    let out = "", bit = 1;
+    while( num >= bit ) {
+        out = ( num & bit ? 1 : 0 ) + out;
+        bit <<= 1;
+    }
+    return out || "0";
+}
+x=toBIN(x)
+  return [...(x).toString(2)].filter(e=>e==='1').length
 }
 
-console.log(dot(5,10))
+console.log(hammingWeight(10))
