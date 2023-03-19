@@ -1,14 +1,23 @@
-const a={'1':'1','2':'2','3':'3'},
-    b={'3':'4','5':'6','6':'7','7':'8'},
-    c={'5':'9','8':'9','6':'12','23':'35'},
-    o=[a,b,c]
-
-function objConcat(a,obj={}){
-    a=a.map(e=>Object.entries(e)).flat()
-    for( let i of a){
-        obj[i[0]]=i[1]
+function solve(a,b=[]){
+  a=a.map(e=>[...e])
+  for(let i=0;i<a.length;i++){
+    let c=[]
+    for(let j=i+1;j<a.length;j++){
+      c.push(i)
+      if(a[i].length&&a[j].length&&a[i].every(e=>a[j].includes(e))&&a[j].every(e=>a[i].includes(e))){
+        c.push(j)
+        a[j]=[]
+      }
     }
-    return obj
+    if([...new Set(c)].length>1){
+      b.push([...new Set(c)])
+       c=[]
+    }
+    c=[]
+  }
+  return b.map(e=>e.reduce((a,c)=>a+c,0)).sort((a,b)=>a-b)
 }
 
-console.log(objConcat(o))
+console.log(solve(["abc","abbc","ab","xyz","xy","zzyx"]))
+console.log(solve(["wkskkkkkk","fokoo","wkskk","uizzzz","fokooff","wkskkkk","uizzzzzzz"]))
+console.log(solve(['ayqqqq','epqqqqqqq','epqqqqqqqqqq','rdsddss','ayqqqqqqq','epqqqq','rdsdd']))
