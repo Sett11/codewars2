@@ -1,14 +1,6 @@
-function hammingWeight(x){
-  function toBIN( num ) {
-    let out = "", bit = 1;
-    while( num >= bit ) {
-        out = ( num & bit ? 1 : 0 ) + out;
-        bit <<= 1;
-    }
-    return out || "0";
-}
-x=toBIN(x)
-  return [...(x).toString(2)].filter(e=>e==='1').length
+function keywordCipher(s,k){
+  let a='abcdefghijklmnopqrstuvwxyz',b=[...new Set(k+a)]
+  return [...s.toLowerCase()].map(e=>b[a.indexOf(e)]?b[a.indexOf(e)]:e).join``
 }
 
-console.log(hammingWeight(10))
+console.log(keywordCipher("Welcome home","secret"))
