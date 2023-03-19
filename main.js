@@ -1,6 +1,7 @@
-function findMissingNumbers(a,b=[]){
-  for(let i=Math.min(...a);i<=Math.max(...a);i++)if(!a.includes(i))b.push(i)
-  return b
+function diff(s){
+  s=s.map((e,i)=>[e,Math.abs(e.split`-`[0]-e.split`-`[1]),i]).sort((a,b)=>b[1]-a[1]||a[2]-b[2])
+  return s.every(e=>e[1]===0)?false:s[0][0]
 }
 
-console.log(findMissingNumbers([-3,-2,1,4]))
+console.log(diff(['23-32','32-23','2-6','98-98','100-101']))
+console.log(diff(['22-22','56-56']))
