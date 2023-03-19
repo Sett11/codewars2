@@ -1,10 +1,24 @@
-function findUnique(a){
-  const r1=a.filter((e,i,v)=>v.indexOf(e)===v.lastIndexOf(e)),c1=a.filter(e=>Number.isInteger(e)),r2=a.filter(e=>!Number.isInteger(e)),r3=a.filter(e=>e>0),r4=a.filter(e=>e<0),r5=a.filter(e=>e%2===0),r6=a.filter(e=>e%2!==0)
- return c1.length===1?c1[0]:r1.length===1?r1[0]:r2.length===1?r2[0]:r3.length===1?r3[0]:r4.length===1?r4[0]:r5.length===1?r5[0]:r6.length===1?r6[0]:0
+function emotional(s,e){
+   if(e==='Natural'){
+    return s.split` `.map((e,i,v)=>i===0?e.charAt(0).toUpperCase()+e.slice(1):v[i-1].match(/[\,\.+\!+\?\;+\:+]/)?e.charAt(0).toUpperCase()+e.slice(1):e).join` `
+   }
+   if(e==='Prim'){
+    return s.split` `.map(e=>e.charAt(0).toUpperCase()+e.slice(1)).join` `
+   }
+   if(e==='Joyful'){
+    return s.split` `.map(e=>e.length<2?e:e.replace(/[aioue]/gi,e=>e.repeat(5))).map((e,i,v)=>i===0?e.charAt(0).toUpperCase()+e.slice(1):v[i-1].match(/[\,\.+\!+\?\;+\:+]/)?e.charAt(0).toUpperCase()+e.slice(1):e).join` `
+   }
+   if(e==='Painful'){
+    return s.split` `.map((e,i,v)=>i===0?e.charAt(0).toUpperCase()+e.slice(1):v[i-1].match(/[\,\.+\!+\?\;+\:+]/)?e.charAt(0).toUpperCase()+e.slice(1):e).map((e,i,v)=>i===v.length-1?e:e.replace(/[\W_]/g,'')).join`...`
+   }
+   if(e==='Excited'||e==='Angry'){
+    return s.split` `.map(e=>e.length<2?e:e.replace(/[aioue]/gi,e=>e.repeat(5))).map(e=>(e.charAt(0).toUpperCase()+e.slice(1)).replace(/[^\w]/g,'!!!')).join` `
+   }
+   if(e==='Rage'||e==='Ecstasy'){
+    s=s.toUpperCase().split` `.map(e=>e.length<2?e:e.replace(/[aioue]/gi,e=>e.repeat(5)))
+   return s.join` `.replace(/[\,\.+\!+\?\;+\:+]/g,'&').split`&`.filter(e=>e).map(e=>e+'!'.repeat(e.replace(/ /g,'').length)).join``
+   }
+   return s
 }
 
-console.log(findUnique([2,4,6,8,9]))
-console.log(findUnique([-2,-4,-6.6,8]))
-console.log(findUnique([2,-4,6,8]))
-console.log(findUnique( [-33.68,-66.25,-78.44,-62,-75.46,-88.62,-40.19,-37.81,-67.71,-38.65,-8.53,-77.21,51.18,-79.16]))
-console.log(findUnique([53,27,51,31,27,27,57,13,54,69,99,31,31,75,89,5,91,47,59,99,25,19,15,93,7,5,-75,37,25] ))
+console.log(emotional('go where you want to go; those who hurt, May you have enough happiness to make you sweet, Please send this message to those people who mean something to you,','Joyful'))
