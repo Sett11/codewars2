@@ -1,8 +1,5 @@
-function firstDup (str,s=[...str]){
-    if([...new Set(str)].length===str.length)return undefined
-    for(let i=0;i<s.length;i++){
-        for(let j=i+1;j<s.length;j++)if(s[i]===s[j])return s[i]
-    }
+function firstNonRepeatingLetter (s){
+    return [...s].filter((e,i,v)=>v.map(u=>u.toLowerCase()).indexOf(e.toLowerCase())===v.map(u=>u.toLowerCase()).lastIndexOf(e.toLowerCase()))[0]||''
 }
 
-console.log(firstDup('tweet'))
+console.log(firstNonRepeatingLetter('moonmen'))
