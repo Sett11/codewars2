@@ -1,19 +1,8 @@
-class KeywordCipher{
-  constructor(a,k){
-    this.a=a
-    this.k=k
-    this.r=[...new Set(k+a)]
-  }
-  encode(s){
-    return [...s].map(e=>this.r[this.a.indexOf(e)]?this.r[this.a.indexOf(e)]:e).join``
-  }
-  decode(s){
-    return [...s].map(e=>this.a[this.r.indexOf(e)]?this.a[this.r.indexOf(e)]:e).join``
-  }
+function firstDup (str,s=[...str]){
+    if([...new Set(str)].length===str.length)return undefined
+    for(let i=0;i<s.length;i++){
+        for(let j=i+1;j<s.length;j++)if(s[i]===s[j])return s[i]
+    }
 }
 
-const abc = "abcdefghijklmnopqrstuvwxyz"
-const key = "keyword"
-const cipher = new KeywordCipher(abc, key)
-
-console.log(cipher.decode("key"))
+console.log(firstDup('tweet'))
