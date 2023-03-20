@@ -1,3 +1,4 @@
-compare=(a,b)=>JSON.stringify(a)===JSON.stringify(b)
+smartSum=(...a)=>[...a].flat(10).reduce((a,c)=>a+c,0)
 
-console.log(compare({val: 1, left: null, right: null},{val: 2, left: null, right: null}))
+
+console.log(smartSum(1,2,3,[5,6,7],10,9))
