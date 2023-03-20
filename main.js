@@ -1,5 +1,15 @@
-function firstNonRepeatingLetter (s){
-    return [...s].filter((e,i,v)=>v.map(u=>u.toLowerCase()).indexOf(e.toLowerCase())===v.map(u=>u.toLowerCase()).lastIndexOf(e.toLowerCase()))[0]||''
+function playPass(s,n) {
+    return [...s.toLowerCase()].map((e,i)=>{
+        if(e.match(/[a-z]/)){
+            e=(e.charCodeAt()+n)
+            if(e>122)e=e-122+96
+            e=String.fromCharCode(e)
+        }
+        if(e.match(/[0-9]/)){
+            e=9-e+''
+        }
+        return i%2===0?e.toUpperCase():e.toLowerCase()
+    }).reverse().join``
 }
 
-console.log(firstNonRepeatingLetter('moonmen'))
+console.log(playPass("MY GRANMA CAME FROM NY ON THE 23RD OF APRIL 2015", 2))
