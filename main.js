@@ -1,15 +1,12 @@
-function playPass(s,n) {
-    return [...s.toLowerCase()].map((e,i)=>{
-        if(e.match(/[a-z]/)){
-            e=(e.charCodeAt()+n)
-            if(e>122)e=e-122+96
-            e=String.fromCharCode(e)
-        }
-        if(e.match(/[0-9]/)){
-            e=9-e+''
-        }
-        return i%2===0?e.toUpperCase():e.toLowerCase()
-    }).reverse().join``
+splitInteger=(n,p)=>{
+  if(n%p===0)return ((n/p)+''+' ').repeat(p).split` `.filter(e=>e).map(Number)
+  let a=[],c=~~(n/p)
+  while(n){
+    n-=c
+    a.push(c)
+    if(n%(c+1)===0)c++
+  }
+  return a
 }
 
-console.log(playPass("MY GRANMA CAME FROM NY ON THE 23RD OF APRIL 2015", 2))
+console.log(splitInteger(20,6))
