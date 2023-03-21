@@ -1,2 +1,3 @@
-const truthy = [1,2,3,4,5];
-const falsy = [0,'',null,NaN,undefined];
+falsyOrTruthy=a=>a.length%2===0?a.filter(e=>e):a.filter(e=>!e)
+
+console.log(falsyOrTruthy([false,NaN,NaN,4,5,{},1]))
