@@ -1,3 +1,3 @@
-falsyOrTruthy=a=>a.length%2===0?a.filter(e=>e):a.filter(e=>!e)
+redarr=a=>[...new Set(a)].sort().reduce((a,c,i)=>{a[i]=c;return a},{})
 
-console.log(falsyOrTruthy([false,NaN,NaN,4,5,{},1]))
+console.log(redarr(["BBC1","BBC1","BBC2","MTV"]))
