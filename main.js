@@ -1,18 +1,13 @@
-intervalInsert=(g,i)=>{
-    g.push(i)
-    g=g.sort((a,b)=>a[0]-b[0])
-    for(let i = 0; i < g.length-1; i++){
-      if(g[i][1]>=g[i+1][0]&&g[i][1]<=g[i+1][1]){
-        g[i][1] = g[i+1][1]
-        g = g.slice(0,i+1).concat(g.slice(i+2))
-        i--
-      }
-      else if(g[i][1]>g[i+1][1]){
-        g = g.slice(0,i+1).concat(g.slice(i+2))
-        i--
-      }
-    }
-    return g
+sumIntervals=g=>{
+    return g.sort((a,b)=>a[0]-b[0]).reduce((a,c)=>{
+        if(a.length&&c[0]<=a[a.length-1][1])a[a.length-1][1]=Math.max(c[1],a[a.length-1][1])
+        else a.push(c)
+        return a
+    },[]).map(e=>e[1]-e[0]).reduce((a,c)=>a+c,0)
 }
 
-console.log(intervalInsert([[0,2], [3, 6], [7, 7], [9, 12]], [1, 8]))
+console.log(sumIntervals([
+    [0, 20],
+    [-100000000, 10],
+    [30, 40]
+ ]))
