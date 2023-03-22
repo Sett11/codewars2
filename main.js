@@ -1,11 +1,5 @@
-function getting_mad(a,b=[]){
-if(a.some(e=>a.indexOf(e)!==a.lastIndexOf(e)))return 0
-   for(let i=0;i<a.length;i++){
-    for(let j=i+1;j<a.length;j++){
-        b.push(Math.abs(a[i]-a[j]))
-    }
-   }
-    return Math.min(...b.filter(e=>e&&e>0))
+function findGatecrashers(p,z,v=(JSON.stringify(z).match(/\d+/g)||[]).map(Number)){
+    return p.filter(e=>!v.includes(e)).sort((a,b)=>a-b)
 }
-
-console.log(getting_mad( [-570, 542]))
+  
+  console.log(findGatecrashers([0,1,2,3,4],[{ 'member' : 0, 'guests': [1,2]}, {'member' : 2, 'guests': [3]} ]))
