@@ -1,16 +1,12 @@
-function pairZeros(a) {
-    for(let i=0;i<a.length;i++){
-        if(a[i]===0){
-            for(let j=i+1;j<a.length;j++){
-                if(a[j]===0){
-                    a.splice(j,1)
-                    i=j-1
-                    break
-                }
-            }
-        }
-    }
-    return a
+function check(a){
+    a=a.map((e,i)=>e.map((u,j)=>u!=='*'?[i,j]:0).filter(e=>e).flat()).filter(e=>e.length)
+    return a.length===1||a[0][0]===a[1][0]||a[0][1]===a[1][1]||Math.abs(a[1][0]-a[0][0])===Math.abs(a[1][1]-a[0][1])?true:false
 }
 
-  console.log(pairZeros([0,0,0]))
+console.log(check([
+    [ '*', 'q', '*', '*', 'k' ],
+    [ '*', '*', '*', '*', '*' ],
+    [ '*', '*', '*', '*', '*' ],
+    [ '*', '*', '*', '*', '*' ],
+    [ '*', '*', '*', '*', '*' ]
+  ]))
