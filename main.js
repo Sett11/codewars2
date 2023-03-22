@@ -1,3 +1,11 @@
-isSquare=a=>!a.length?undefined:a.flat(100).every(e=>Number.isInteger(Math.sqrt(e)))
+function getting_mad(a,b=[]){
+if(a.some(e=>a.indexOf(e)!==a.lastIndexOf(e)))return 0
+   for(let i=0;i<a.length;i++){
+    for(let j=i+1;j<a.length;j++){
+        b.push(Math.abs(a[i]-a[j]))
+    }
+   }
+    return Math.min(...b.filter(e=>e&&e>0))
+}
 
-console.log(isSquare([1, [4], [9, 16, 25], [36, 49, [64, 81]], [100, [121, 144, [169]]], [196, [225, [256, 289, [324, [361, 400]]]]]]))
+console.log(getting_mad( [-570, 542]))
