@@ -1,3 +1,3 @@
-generate=l=>Array(l).fill(1).map(e=>Math.random()<0.5?0:1).join``
+mutate=(c,p)=>[...c].map(e=>Math.random()<p&&e==1?0:Math.random()<p&&e==0?1:e).join``
 
-console.log(generate(16))
+console.log(mutate(Array(10).join('0'),0.1))
