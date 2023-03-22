@@ -1,5 +1,14 @@
-function findGatecrashers(p,z,v=(JSON.stringify(z).match(/\d+/g)||[]).map(Number)){
-    return p.filter(e=>!v.includes(e)).sort((a,b)=>a-b)
+function minimumBillCount(v,b,a=b.sort((a,b)=>b-a),c=0){
+    for(let i=0;i<a.length;i++){
+        if(v===0)break
+        if(v>=a[i]){
+            while(v>=a[i]){
+                v-=a[i]
+                c++
+            }
+        }
+    }
+    return c
 }
-  
-  console.log(findGatecrashers([0,1,2,3,4],[{ 'member' : 0, 'guests': [1,2]}, {'member' : 2, 'guests': [3]} ]))
+
+console.log(minimumBillCount(1010, [50, 20, 1]))
