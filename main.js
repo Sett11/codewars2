@@ -1,6 +1,3 @@
-function interweave(s1,s2,a=[]) {
-    for(let i=0;i<s1.length;i++)a.push(s1[i],s2[i])
-    return a.filter(e=>e).join``.replace(/\d/g,'').trim()
-}
+isSquare=a=>!a.length?undefined:a.flat(100).every(e=>Number.isInteger(Math.sqrt(e)))
 
-console.log(interweave("h3lo", "el4"))
+console.log(isSquare([1, [4], [9, 16, 25], [36, 49, [64, 81]], [100, [121, 144, [169]]], [196, [225, [256, 289, [324, [361, 400]]]]]]))
