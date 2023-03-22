@@ -1,3 +1,4 @@
-mutate=(c,p)=>[...c].map(e=>Math.random()<p&&e==1?0:Math.random()<p&&e==0?1:e).join``
+crossover=(c1,c2,g)=>[c1.slice(0,g)+c2.slice(g),c2.slice(0,g)+c1.slice(g)]
 
-console.log(mutate(Array(10).join('0'),0.1))
+
+console.log(crossover('111000','000110',3))
