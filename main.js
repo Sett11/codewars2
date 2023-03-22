@@ -1,23 +1,16 @@
-function simplify(n,a=[...n+''].map(Number).filter(e=>e),r=[]){
+function pairZeros(a) {
     for(let i=0;i<a.length;i++){
-        if(n<10){
-            r.push(`${n}`)
-            break
-        }
-        for(let j=1;;j*=10){
-            if(a[i]*j===n){
-                r.push(`${a[i]}*${j}`)
-                n-=a[i]*j
-                break
-            }
-            if(a[i]*j>n){
-                r.push(`${a[i]}*${j/10}`)
-                n-=(a[i]*j/10)
-                break
+        if(a[i]===0){
+            for(let j=i+1;j<a.length;j++){
+                if(a[j]===0){
+                    a.splice(j,1)
+                    i=j-1
+                    break
+                }
             }
         }
     }
-    return r.filter(e=>e!=='0').join`+`
+    return a
 }
 
-console.log(simplify(9090))
+  console.log(pairZeros([0,0,0]))
