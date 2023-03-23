@@ -1,13 +1,20 @@
-function searchSubstr(f,s,a=true,c=0){
-    if(!f||!s)return 0
-      for(let i=0;i<f.length;i++){
-          if(f.slice(i,i+s.length)===s){
-              c++
-              if(!a)i+=s.length
-          }
-      }
-      return c
+function extractIds(d){
+    return JSON.stringify(d).replace(/\d/g,' $& ').replace(/[^\d ]/g,'').split` `.filter(e=>e).map(Number)
   }
 
-
-  console.log(searchSubstr('aaa', 'aa',false))
+  console.log(extractIds({
+    id : 1,
+    items : [{
+      id : 2,
+      items : [{
+          id : 3,
+          items : [
+          {id : 4},
+          {id : 5}
+          ]
+        },{
+          id : 6,
+          items : [{id : 7}]
+        }]
+      }]
+  }))
