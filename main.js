@@ -1,24 +1,10 @@
-var obj = {
-    person: {
-      name: 'joe',
-      history: {
-        hometown: 'bratislava',
-        bio: {
-          funFact: 'I like fishing.'
-        }
-      }
-    }
+const doubleTheValue = function(val) { return val * 2; }
+const addOneToTheValue = function(val) { return val + 1; }
+
+const compose=(...n)=>{
+    let a=[...n],x=a.shift()
+    a.map(e=>x=e(x))
+    return x
   }
 
-Object.prototype.hash = function(s){
-    s=s.split`.`,str='this'
-    for(let i=0;i<s.length;i++){
-        if(!JSON.stringify(this).match(s[i]))return undefined
-        str+=`['${s[i]}']`
-    }
-  return eval(str)||undefined
-}
-
-
-console.log(obj.hash('person.game.home'))
-
+console.log(compose(5, doubleTheValue, addOneToTheValue))
