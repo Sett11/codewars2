@@ -1,5 +1,24 @@
-function reverseInvert(a){
-    return a.filter(e=>Number.isInteger(e)).map(e=>e>0?-[...e+''].map(Number).reverse().join``:e<0?+[...e+''].filter(u=>u!=='-').map(Number).reverse().join``:-0)
+var obj = {
+    person: {
+      name: 'joe',
+      history: {
+        hometown: 'bratislava',
+        bio: {
+          funFact: 'I like fishing.'
+        }
+      }
+    }
+  }
+
+Object.prototype.hash = function(s){
+    s=s.split`.`,str='this'
+    for(let i=0;i<s.length;i++){
+        if(!JSON.stringify(this).match(s[i]))return undefined
+        str+=`['${s[i]}']`
+    }
+  return eval(str)||undefined
 }
 
-  console.log(reverseInvert([1,12,'a',3.4,87,99.9,-42,50,5.6]))
+
+console.log(obj.hash('person.game.home'))
+
