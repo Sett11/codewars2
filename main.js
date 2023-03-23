@@ -1,3 +1,11 @@
-arraysSimilar=(a1,a2)=>a1.sort((a,b)=>a-b).every((e,i)=>e===a2.sort((a,b)=>a-b)[i])&&a1.length===a2.length
+function parse(s,c=0,a=[]){
+  for(let i=0;i<s.length;i++){
+    if(s[i]==='i')c+=1
+    if(s[i]==='d')c-=1
+    if(s[i]==='s')c**=2
+    if(s[i]==='o')a.push(c)
+  }
+  return a
+}
 
-console.log(arraysSimilar( [1,1,2],[4,3,2,1,1]))
+console.log(parse("iiisxxxdoso"))
