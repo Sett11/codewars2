@@ -1,10 +1,3 @@
-const doubleTheValue = function(val) { return val * 2; }
-const addOneToTheValue = function(val) { return val + 1; }
+solution=(f,s)=>f.map((e,i)=>Math.abs(e-s[i])**2).reduce((a,c)=>a+c,0)/f.length
 
-const compose=(...n)=>{
-    let a=[...n],x=a.shift()
-    a.map(e=>x=e(x))
-    return x
-  }
-
-console.log(compose(5, doubleTheValue, addOneToTheValue))
+console.log(solution([10,20,10,2],[10,25,5,-2]))
