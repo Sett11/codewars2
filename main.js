@@ -1,6 +1,13 @@
-function count(s1,s2,c=0){
-     for(let i=0;i<s2.length;i++)if(s2.slice(i,i+s1.length)===s1)c++
-     return c
-}
+function searchSubstr(f,s,a=true,c=0){
+    if(!f||!s)return 0
+      for(let i=0;i<f.length;i++){
+          if(f.slice(i,i+s.length)===s){
+              c++
+              if(!a)i+=s.length
+          }
+      }
+      return c
+  }
 
-  console.log(count("11","1001110110"))
+
+  console.log(searchSubstr('aaa', 'aa',false))
