@@ -1,14 +1,7 @@
-beeramid=(b,p,c=1,z=0)=>{
-    if(b<p)return 0
-    if(b===p)return 1
-    while(b>=0){
-      if(Number.isInteger(Math.sqrt(c))){
-          b-=(c*p)
-          z++,c++
-      }
-      c++
-    }
-    return z-1
-  }
+extend=(...n)=>{
+    let r=[],o={},a=[...n].filter(e=>isObject(e)).map(e=>Object.entries(e).map(u=>r.push(u)))
+    r.forEach(e=>o[e[0]]===undefined?o[e[0]]=e[1]:null)
+    return o
+}
 
-console.log(beeramid(10,2))
+console.log(extend({ a: 1, b: 2, length: 6 }, [], 'nope', false, [Function], { c: 3, a: 3 }))
