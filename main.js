@@ -1,9 +1,3 @@
-function solution(c,m){
-    c=c.replace(/\n/g,'|'),s=[...c]
-    for(let i=0;i<s.length;i++){
-        if(m.includes(s[i]))s=s.slice(0,i-1).concat(s.slice(s.indexOf('|',i)!==-1?s.indexOf('|'):s.length))
-    }
-    return s.join``.replace(/\|/g,'\n')
-}
+arraysSimilar=(a1,a2)=>a1.sort((a,b)=>a-b).every((e,i)=>e===a2.sort((a,b)=>a-b)[i])&&a1.length===a2.length
 
-console.log(solution("Q @b\nu\ne -e f g", ["@", "-"]))
+console.log(arraysSimilar( [1,1,2],[4,3,2,1,1]))
