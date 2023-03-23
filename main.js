@@ -1,26 +1,16 @@
-function translate(s,v){
-    if(!s)return ''
-    if(s==="luk* nintin w*nty s*v*n b*t t**se e*e*is o*f m*ne *ho *id *ot *ant *me t*o *b* k**g o**r *hem *rin* *hem* *ere *nd *ill tt*** *in *ront o*ff *me*.")return 'luke nintin wenty seven but those enemis off mine who did not want mme tto bbe king over them bring themm here and kill tthem iin front ooff mmee.'
-    let c=s.split` `.map(e=>[e,e.replace(/[^a-zA-Z]/g,'').split``])
-    v.map(e=>{
-        for(let i=0;i<c.length;i++){
-            if(c[i][1].every(u=>e.match(u))&&c[i][0].replace(/[^a-zA-Z\*]/g,'').length===e.length)c[i][1].push(e)
-        }return e
-    })
-    return c.map(e=>[e[0].split``,e[1][e[1].length-1].split``]).map(e=>{
-        e[0]=e[0].map((u,i)=>u==='*'?e[1][i]:u)
-        return e[0].join``
-    }).join` `
-}
+function invertedRanges(r,a=[]) {
+    if(!r.length)return [[0,100]]
+    r=r.sort((a,b)=>a[0]-b[0]).reduce((a,c)=>{
+      if(a.length&&c[0]<=a[a.length-1])a[a.length-1]=Math.max(c[1],a[a.length-1])
+      else a.push(c)
+      return a
+    },[])
+    if(r[0][0]>1)a.push([0,r[0][0]-1])
+    for(let i=0;i<r.length;i++){
+      if(i!==r.length-1&&Math.abs(r[i+1][0]-r[i][1])>1)a.push([r[i][1]+1,r[i+1][0]-1])
+      if(i===r.length-1&&r[r.length-1][1]<100)a.push([r[r.length-1][1]+1,100])
+    }
+    return a
+  }
 
-console.log(translate("luk* nintin w*nty s*v*n b*t t**se e*e*is o*f m*ne *ho *id *ot *ant *me t*o *b* k**g o**r *hem *rin* *hem* *ere *nd *ill tt*** *in *ront o*ff *me*.", 
-[
-    'tto',   'themm',  'here',   'did',
-    'kill',  'but',    'bbe',    'and',
-    'those', 'tthem',  'mme',    'bring',
-    'want',  'front',  'enemis', 'over',
-    'mmee',  'off',    'iin',    'king',
-    'luke',  'nintin', 'wenty',  'seven',
-    'not',   'ooff',   'mine',   'who',
-    'them'
-  ]))
+console.log(invertedRanges([ [ 40, 46 ], [ 48, 52 ], [ 62, 63 ] ]))
