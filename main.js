@@ -1,3 +1,14 @@
-solution=(f,s)=>f.map((e,i)=>Math.abs(e-s[i])**2).reduce((a,c)=>a+c,0)/f.length
+beeramid=(b,p,c=1,z=0)=>{
+    if(b<p)return 0
+    if(b===p)return 1
+    while(b>=0){
+      if(Number.isInteger(Math.sqrt(c))){
+          b-=(c*p)
+          z++,c++
+      }
+      c++
+    }
+    return z-1
+  }
 
-console.log(solution([10,20,10,2],[10,25,5,-2]))
+console.log(beeramid(10,2))
