@@ -1,11 +1,6 @@
-function parse(s,c=0,a=[]){
-  for(let i=0;i<s.length;i++){
-    if(s[i]==='i')c+=1
-    if(s[i]==='d')c-=1
-    if(s[i]==='s')c**=2
-    if(s[i]==='o')a.push(c)
-  }
-  return a
+function count(s1,s2,c=0){
+     for(let i=0;i<s2.length;i++)if(s2.slice(i,i+s1.length)===s1)c++
+     return c
 }
 
-console.log(parse("iiisxxxdoso"))
+  console.log(count("11","1001110110"))
