@@ -1,18 +1,13 @@
-function stripUrlParams(u,p=[]){
-    if(!u.match(/\?/))return u
-    let one=u.slice(0,u.indexOf('?')+1),two=u.slice(u.indexOf('?')+1).split`&`
-    two=two.map((e,j,v)=>{
-        for(let i=0;i<v.length;i++){
-            if(e.replace(/[^a-zA-Z]/g,'')===v[i].replace(/[^a-zA-Z]/g,'')&&i!==j){
-                v.splice(i,1)
-                i--
-            }
+function whoWon(p,y,x,a=[]) {
+    return Object.entries(p).map(e=>{
+        e=[e[0],e[1].split`, `.map(u=>!u.match(/\d+/g)?10:+u).reduce((a,c)=>a+c,0)]
+        if(x.includes(e[0]))e[1]+=typeof y==='string'?10:y
+        if(e[1]>21){
+            a.push(e)
+            e='&'
         }
         return e
-    }).filter(e=>e&&!p.some(z=>e.match(z))).join`&`
-    let res=one+two
-    if(res[res.length-1]==='?')res=res.slice(0,res.length-1)
-    return res
-}
+    }).filter(e=>e!=='&').sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).concat(a)
+  }
 
-  console.log(stripUrlParams('www.codewars.com?a=1&b=2',[]))
+  console.log(whoWon({"Ben":"9, 7", "Amy":"9, J", "Sam":"K, Q",},'K', ["Amy"]))
