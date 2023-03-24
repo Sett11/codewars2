@@ -1,4 +1,4 @@
-function spot(s1,s2,a=[]){
-    [...s1].forEach((e,i)=>e!==s2[i]?a.push(i):0)
-    return a
+function isCoprime(x,y) {
+    for(let i=2;i<Math.min(x+1,y+1);i++)if(x%i===0&&y%i===0)return false
+    return true
   }
