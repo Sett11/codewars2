@@ -1,20 +1,12 @@
-function extractIds(d){
-    return JSON.stringify(d).replace(/\d/g,' $& ').replace(/[^\d ]/g,'').split` `.filter(e=>e).map(Number)
-  }
+shortenSpeech=s=>{	
+    return s.split` `.map(e=>{
+        if(e.length<4||!e.slice(3).match(/[aioue]/))return e
+        e=e.split``
+        for(let i=3;i<e.length;i++){
+            if(e[i].match(/[aioue]/))e=e.slice(0,i).join``+'.'
+        }
+        return e
+    }).join` `
+}
 
-  console.log(extractIds({
-    id : 1,
-    items : [{
-      id : 2,
-      items : [{
-          id : 3,
-          items : [
-          {id : 4},
-          {id : 5}
-          ]
-        },{
-          id : 6,
-          items : [{id : 7}]
-        }]
-      }]
-  }))
+console.log(shortenSpeech("Hello, do you want a coffee ? "))
