@@ -1,5 +1,12 @@
-i=w=>!w||w[0]==='I'||w[0]==='i'||!w[0].match(/[A-Z]/)?"Invalid word":w.replace(/[^aioue]/gi,'').length>=w.replace(/[aioue]/gi,'').length?"Invalid word":'i'+w
-
-
-console.log(i('Inspire'))
-console.log(i('Phone'))
+function insertMissingLetters(c,s=[...c]){
+  const a='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split``,r=[],h=[]
+  for(let i=0;i<s.length;i++){
+    if(h.includes(s[i]))r.push(s[i])
+    if(!h.includes(s[i])){
+      h.push(s[i])
+      r.push(s[i]+a.slice(a.indexOf(s[i].toUpperCase())+1).filter(u=>!s.includes(u.toLowerCase())).join``.replace(s[i],''))
+    }
+  }
+  return r.join``
+}
+console.log(insertMissingLetters('hello'))  
