@@ -1,3 +1,7 @@
-processData=b=>b.reduce((a,c)=>a*(c[0]-c[1]),1)
-
-console.log(processData([[2, 9], [2, 4], [7, 5]]))
+function max(a){
+  if(!a.length)return -Infinity
+  const b=[],r=a.pop()
+  if(a.every(e=>r>e)&&b.every(e=>r>e))return r
+  return max(a)
+ }
+ console.log(max([99,2,100,4,5]))
