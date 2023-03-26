@@ -1,6 +1,9 @@
-const maxSpan=(a,c=0)=>{
-  a.forEach((e,i,v)=>c=Math.max(v.lastIndexOf(e)-v.indexOf(e),c))
-  return c+1
+function span(a,f){
+  if(!a.length)return [[],[]]
+  for(let i=0;i<a.length;i++)if(!f(a[i]))return [a.slice(0,i),a.slice(i)]
+  return [a,[]]
 }
 
-console.log(maxSpan([1, 4, 2, 1, 4, 1, 4, 9, 7, 7, 7]))
+console.log(span([13,17,19,11,21],function isEven (x) {
+  return Math.abs(x) % 2 !== 0;
+}))
