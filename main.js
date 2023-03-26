@@ -1,16 +1,18 @@
-const sequence=(f)=>{
-  return {
-    take(n){
-      let a=[],c=0
-      while(a.length<n){a.push(f(c));c++}
-      return a
-    },
-    takeWhile(fn){
-      let a=[],c=0,z=0
-      while(z<200){if(fn(f(c)))a.push(f(c));c++,z++}
-      return a
+function convergence(n,a=[n],c=1,r=[c],z=0){
+  const f=x=>x<10?x+x:x+[...x+''].map(Number).filter(e=>e).reduce((a,c)=>a*c)
+  while(1){
+    if(a.length&&r.length&&a.some(e=>r.includes(e))){
+      for(let i=0;i<a.length;i++){
+        if(r.includes(a[i])){
+          z=a[i]
+          break
+        }
+      }
+      break
     }
+    a.push(f(n));n=f(n);r.push(f(c));c=f(c)
   }
+  return a.filter(e=>e<z).length
 }
 
-console.log(sequence( n => n * 4 ).takeWhile( n => n < 20 ))
+console.log(convergence(15))
