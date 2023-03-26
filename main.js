@@ -1,11 +1,6 @@
-function triangularSum(n,c=1,a=[]) {
-  while(1){
-    if(a[a.length-1]+a[a.length-2]===n)return true
-    if(a.some(e=>e>n))break
-    if(Number.isInteger(Math.sqrt(8*c+1)))a.push(c**2)
-    c++
-  }
-  return false
+function digitDegree(n,c=1){
+  const t=[...n+''].reduce((a,c)=>a+ +c,0)
+  return [...n+''].length===1?0:[...t+''].length===1?c:digitDegree(t,c+1)
 }
 
-console.log(triangularSum(999))
+console.log(digitDegree(1))
