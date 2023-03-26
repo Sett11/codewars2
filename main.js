@@ -1,10 +1,8 @@
-function findTheMissingTree(t){
-  t=Object.entries(t.reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{}))
-  while(1){
-    let tmp=t.shift()
-    if(t.every(e=>e[1]===t[0][1]))return +tmp[0]
-    t.push(tmp)
-  }
+function missingAlphabets(s,c=0,a=[],t=s){
+  const l='abcdefghijklmnopqrstuvwxyz'.split``
+  s=Object.entries([...s].reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{}))
+  s.forEach(e=>c=(Math.max(e[1],c)));s.forEach(e=>e[1]!==c?a.push(e[0].repeat(c-e[1])):0);l.forEach(e=>!t.includes(e)?a.push(e.repeat(c)):0)
+  return a.sort().join``
 }
 
-console.log(findTheMissingTree([1, 1, 1, 1, 1, 1, 1, 22, 22, 22, 22, 22, 22, 22, 3, 3, 3, 3, 3, 3]))
+console.log(missingAlphabets('codewars'))
