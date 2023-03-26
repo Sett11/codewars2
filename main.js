@@ -1,12 +1,7 @@
-function insertMissingLetters(c,s=[...c]){
-  const a='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split``,r=[],h=[]
-  for(let i=0;i<s.length;i++){
-    if(h.includes(s[i]))r.push(s[i])
-    if(!h.includes(s[i])){
-      h.push(s[i])
-      r.push(s[i]+a.slice(a.indexOf(s[i].toUpperCase())+1).filter(u=>!s.includes(u.toLowerCase())).join``.replace(s[i],''))
-    }
-  }
-  return r.join``
+function missingValues(a) {
+  const one=a.filter(e=>a.indexOf(e)===a.lastIndexOf(e))[0]
+  a=a.filter(e=>e!==one)
+  return one*one* +Object.entries(a.reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{})).filter(e=>e[1]===2)[0][0]
 }
-console.log(insertMissingLetters('hello'))  
+
+console.log(missingValues([6, 5, 4, 100, 6, 5, 4, 100, 6, 5, 4, 200]))
