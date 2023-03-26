@@ -1,18 +1,16 @@
-function convergence(n,a=[n],c=1,r=[c],z=0){
-  const f=x=>x<10?x+x:x+[...x+''].map(Number).filter(e=>e).reduce((a,c)=>a*c)
-  while(1){
-    if(a.length&&r.length&&a.some(e=>r.includes(e))){
-      for(let i=0;i<a.length;i++){
-        if(r.includes(a[i])){
-          z=a[i]
-          break
+function findNum(n,a=[],c=0){
+  while(a.length<n){
+    c++
+    if(c<=10)a.push(c)
+    else{
+      for(let i=11;;i++){
+        if(!a.includes(i)&&[...i+''].every(e=>![...a[a.length-1]+''].includes(e))){
+          c=i;a.push(c);break
         }
       }
-      break
     }
-    a.push(f(n));n=f(n);r.push(f(c));c=f(c)
   }
-  return a.filter(e=>e<z).length
+  return a[n-1]
 }
 
-console.log(convergence(15))
+  console.log(findNum(500))
