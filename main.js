@@ -1,4 +1,7 @@
-solve=a=>a.filter((e,i,v)=>!v.includes(-e))[0]
+function greatestCommonPrimeDivisor(a,b){
+ const f=x=>{if(x<2)return false;if(x===2)return true;for(let i=2;i<Math.sqrt(x)+1;i++){if(x%i===0)return false}return true}
+ for(let i=Math.ceil(Math.max(a,b)/2)+1;i>1;i--)if(f(i)&&a%i===0&&b%i===0)return i
+ return -1
+}
 
-console.log(solve([-110,110,-38,-38,-62,62,-38,-38,-38]))
-console.log(solve([1,-1,2,-2,3]))
+console.log(greatestCommonPrimeDivisor(234,299))
