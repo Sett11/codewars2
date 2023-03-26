@@ -1,6 +1,10 @@
-function digitDegree(n,c=1){
-  const t=[...n+''].reduce((a,c)=>a+ +c,0)
-  return [...n+''].length===1?0:[...t+''].length===1?c:digitDegree(t,c+1)
+function missingTerm(n,l,a=[]) {
+  while(1){
+    let t=a.reduce((a,c)=>a+c,0)
+    if(t>l)return t-l
+    a.push(n)
+    n++
+  }
 }
 
-console.log(digitDegree(1))
+console.log(missingTerm(1,4))
