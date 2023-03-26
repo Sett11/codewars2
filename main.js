@@ -1,6 +1,6 @@
-function relativelyPrime(n,l){
-  const f=(x,y)=>{for(let i=2;i<Math.min(x,y)+1;i++){if(x%i===0&&y%i===0)return false}return true}
-  return l.filter(e=>f(e,n))
+function cyclops(n) {
+  n=(n).toString(2)
+  return [...n.slice(0,~~n.length/2)].every(e=>e==='1')&&[...n.slice(Math.ceil(n.length/2))].every(e=>e==='1')&&n[Math.floor(n.length/2)]==='0'
 }
 
-console.log(relativelyPrime(8,[1,2,3,4,5,6,7]))
+console.log(cyclops(5))
