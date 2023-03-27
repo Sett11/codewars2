@@ -1,19 +1,14 @@
-function winnerOfTrick(c,p,g=0){
-  c=c.map(e=>{
-    if(e[0]==='A')e=14+e.slice(1)
-    if(e[0]==='K')e=13+e.slice(1)
-    if(e[0]==='Q')e=12+e.slice(1)
-    if(e[0]==='J')e=11+e.slice(1)
-    if(e[0]==='T')e=10+e.slice(1)
-    return [+e.match(/\d+/g)[0],e.replace(/\d+/g,'')]
-  })
-  let t=c[0]
+function merryChristmas(s,r=[]){
+  const c=[[ 'C', 1 ], [ 'M', 1 ],[ 'a', 1 ],[ 'e', 1 ],[ 'h', 1 ],[ 'i', 1 ],[ 'm', 1 ],[ 'r', 3 ],[ 's', 2 ],[ 't', 1 ],[ 'y', 1 ]]
+  const cc=c.map(e=>e[0])
+  const t=Object.entries([...s.replace(/[^MeryChistma]/g,'')].sort().reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{}))
+  if(!cc.every(e=>t.map(e=>e[0]).includes(e)))return 0
   for(let i=0;i<c.length;i++){
-    if(c[i][1]===t[1]&&c[i][0]>t[0]){
-      g=i;t=c[i]
-    }
+    r.push(t[i][1]/c[i][1])
   }
-  return `${p[g]} wins`
+  return r.map(e=>~~e).sort((a,b)=>a-b)[0]
 }
 
-console.log(winnerOfTrick([ '2C', 'KC', 'QC', '3C' ],[ 'Algichh', 'Bdobd', 'Chharmolg', 'Dbang', 'Erming' ]))
+console.log(merryChristmas("MMmmeerrrrrryyCChhiissssttaa"))
+console.log(merryChristmas("MMmmeerrrryyCChhiissssssttaa"))
+console.log(merryChristmas("ChristmasChristmas"))
