@@ -1,17 +1,6 @@
-takeWhile=(a,f,r=[])=>{
-  for(let i=0;i<a.length;i++){
-    if(!f(a[i]))break
-    if(f(a[i])){
-      for(let j=i+1;j<a.length;j++){
-        if(!f(a[j])){
-          r.push(a.slice(i,j))
-          break
-        }
-        if(j===a.length-1&&f(a[j]))r.push(a.slice(i))
-      }
-    }
-  }
-  return r.sort((a,b)=>b.length-a.length)[0]||[]
+function dropWhile(b,f,a=b.slice()){
+  for(let i=0;i<a.length;i++){if(f(a[i])){a.splice(i,1);i--}else return a}
+  return []
 }
 
-console.log(takeWhile([2,4,10,100,64,78,92],e=>e%2===0))
+console.log(dropWhile([2,4,6,8,1,2,5,4,3,2],e=>e%2===0))
