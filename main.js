@@ -1,8 +1,13 @@
-function byteToSet(n){
-	n=(n).toString(2)
-  n='0'.repeat(8-n.length)+n
-  return new Set([...n].map(Number).map((e,i)=>e?i:'&').filter(e=>e!=='&'))
+function transform(s,t,a=[...s],b=[...t],r=[]){
+  r.push(s)
+  for(let i=0;i<a.length;i++){
+    if(a[i]===b[i])continue
+    else{
+      a[i]=b[i]
+      r.push(a.join``)
+    }
+  }
+  return r
 }
 
-console.log(byteToSet(3))
-console.log(byteToSet(255))
+console.log(transform('kata','math'))
