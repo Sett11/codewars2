@@ -1,16 +1,19 @@
-function max(x){
-  if(!Array.isArray(x))x=[...x]
-  x=[...new Set(x)]
-  if(typeof x[0]==='number')return x.sort((a,b)=>b-a)[0]
-  if(typeof x[0]==='string')return x.sort((a,b)=>b.localeCompare(a))[0]
-  return x.sort((a,b)=>Date.parse(b)-Date.parse(a))[0]
-}
-function min(x){
-  if(!Array.isArray(x))x=[...x]
-  x=[...new Set(x)]
-  if(typeof x[0]==='number')return x.sort((a,b)=>a-b)[0]
-  if(typeof x[0]==='string')return x.sort((a,b)=>a.localeCompare(b))[0]
-  return x.sort((a,b)=>Date.parse(a)-Date.parse(b))[0]
+function winnerOfTrick(c,p,g=0){
+  c=c.map(e=>{
+    if(e[0]==='A')e=14+e.slice(1)
+    if(e[0]==='K')e=13+e.slice(1)
+    if(e[0]==='Q')e=12+e.slice(1)
+    if(e[0]==='J')e=11+e.slice(1)
+    if(e[0]==='T')e=10+e.slice(1)
+    return [+e.match(/\d+/g)[0],e.replace(/\d+/g,'')]
+  })
+  let t=c[0]
+  for(let i=0;i<c.length;i++){
+    if(c[i][1]===t[1]&&c[i][0]>t[0]){
+      g=i;t=c[i]
+    }
+  }
+  return `${p[g]} wins`
 }
 
-console.log(max([new Date(2017,1,1), new Date(2015,2,2), new Date(2013,3,3)]))
+console.log(winnerOfTrick([ '2C', 'KC', 'QC', '3C' ],[ 'Algichh', 'Bdobd', 'Chharmolg', 'Dbang', 'Erming' ]))
