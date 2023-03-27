@@ -1,13 +1,6 @@
-function minAndMax(l,d,x,a=[],f=y=>[...y+''].map(Number).reduce((a,c)=>a+c,0)){
-  while(1){
-    if(f(l)===x)break
-    else l++
-  }
-  while(1){
-    if(f(d)===x)break
-    else d--
-  }
-  return [l,d]
+function parameter(n,f=(x,y=[...x+''].map(Number))=>[y.reduce((a,c)=>a+c,0),y.reduce((a,c)=>a*c,1)]){
+  const r=f(n)
+ for(let i=Math.max(...r);;i++)if(r.every(e=>i%e===0))return i
 }
 
-console.log(minAndMax(123,456,5))
+console.log(parameter(123))
