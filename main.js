@@ -1,23 +1,10 @@
-function DocumentParser(reader){
-  this.reader = reader;
-  this.reset();
-}
-DocumentParser.prototype.reset = function(){
-  this.wordCount = 0;
-  this.charCount = 0;
-  this.lineCount = 0;
-}
-DocumentParser.prototype.parse = function(){
-  let s=this.reader.getChunk(),z=null,v=null
-  while(s!==''){
-    for(let i=0;i<s.length;i++){
-      v=z,z=s[i]
-      if(z!=='\n')this.charCount++
-      if((z=== ' '||z==='\n')&&v!== ' '&&v!=='\n'&&v!= null)this.wordCount++
-      if(z==='\n')this.lineCount++
+function isCenteredN(a,n){
+  for(let i=0;i<a.length;i++){
+    for(let j=i;j<a.length;j++){
+      if(a.slice(i,j).reduce((a,c)=>a+c,0)===n&&a.slice(0,i).length===a.slice(j).length)return true
     }
-    s=this.reader.getChunk()
   }
- if (z!=null&&z!==''&&z!=='\n'&&z!== ' ')this.wordCount += 1
-  if ((z!=null&&z!=='')|z==='\n')this.lineCount += 1
+  return a.reduce((a,c)=>a+c,0)===n
 }
+
+ console.log(isCenteredN([3,2,10,4,1,6,9],15))
