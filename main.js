@@ -1,6 +1,6 @@
 class HallOfFame{
   constructor(s=5,ps=[]){
-    this.s=s>5?5:s
+    this.s=s
     this.ps=ps
   }
   get list(){
@@ -10,15 +10,7 @@ class HallOfFame{
     return this.ps.sort((a,b)=>b[1]-a[1]||(a[0]||'0').localeCompare((b[0]||'0'))).map(e=>!e?'':`${e[0]}: ${e[1]}`).concat(c)
   }
   add(p){
-    let c=0
-    for(let i=0;i<this.ps.length;i++){
-      if(this.ps[i][0]===p[0]){
-        c=1
-        if(this.ps[i][1]<p[1])this.ps[i]=p
-        break
-      }
-    }
-    if(!c)this.ps.push(p)
+    this.ps.push(p)
     this.ps.sort((a,b)=>b[1]-a[1]||(a[0]||'0').localeCompare((b[0]||'0')))
     return this
   }
