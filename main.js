@@ -1,23 +1,23 @@
-class HallOfFame{
-  constructor(s=5,ps=[]){
-    this.s=s
-    this.ps=ps
-  }
-  get list(){
-    let c=[]
-    if(this.ps.length<this.s)c=Array(this.s-this.ps.length).fill('')
-    if(this.ps.length>this.s)this.ps=this.ps.slice(0,this.s)
-    return this.ps.sort((a,b)=>b[1]-a[1]||(a[0]||'0').localeCompare((b[0]||'0'))).map(e=>!e?'':`${e[0]}: ${e[1]}`).concat(c)
-  }
-  add(p){
-    this.ps.push(p)
-    this.ps.sort((a,b)=>b[1]-a[1]||(a[0]||'0').localeCompare((b[0]||'0')))
-    return this
-  }
+function DocumentParser(reader){
+  this.reader = reader;
+  this.reset();
 }
-
-const top3 = new HallOfFame(3)
-top3.add(["Ada",44])
-top3.add(["Bob",88]).add(["Clo",10])
-top3.add(['sss',90])
-console.log(top3.list)
+DocumentParser.prototype.reset = function(){
+  this.wordCount = 0;
+  this.charCount = 0;
+  this.lineCount = 0;
+}
+DocumentParser.prototype.parse = function(){
+  let s=this.reader.getChunk(),z=null,v=null
+  while(s!==''){
+    for(let i=0;i<s.length;i++){
+      v=z,z=s[i]
+      if(z!=='\n')this.charCount++
+      if((z=== ' '||z==='\n')&&v!== ' '&&v!=='\n'&&v!= null)this.wordCount++
+      if(z==='\n')this.lineCount++
+    }
+    s=this.reader.getChunk()
+  }
+ if (z!=null&&z!==''&&z!=='\n'&&z!== ' ')this.wordCount += 1
+  if ((z!=null&&z!=='')|z==='\n')this.lineCount += 1
+}
