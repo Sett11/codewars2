@@ -1,9 +1,9 @@
-function thetaFormula(a,b,c,r=[a,b,c],l=r.filter(e=>e)){
-  if(!l.length||l.length===2||r.every(e=>e==='?')||r.filter(e=>e==='?').length>1||r.filter(e=>e!=='?'&&typeof e!=='number').length)return null
-  if(r[0]==='?')return +(r[1]/r[2]).toFixed(3)
-  if(r[1]==='?')return +(r[0]*r[2]).toFixed(3)
-  if(r[2]==='?')return +(r[1]/r[0]).toFixed(3)
-  return +(r[0]).toFixed(3)===+(r[1]/r[2]).toFixed(3)
-}
+matrix=a=>a.map((e,i)=>e.map((u,j)=>i===j&&u<0?0:i===j&&u>=0?1:u))
 
-console.log(thetaFormula(1.5707963267948966, 3.141592653589793, 2))
+console.log(matrix([
+    [-1,  4, -5, -9,  3 ],
+    [ 6, -4, -7,  4, -5 ],
+    [ 3,  5,  0, -9, -1 ],
+    [ 1,  5, -7, -8, -9 ],
+    [-3,  2,  1, -5,  6 ]
+  ]))
