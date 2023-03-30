@@ -1,6 +1,3 @@
-function thueMorse(n,a=(0).toString(2)){
-    while(a.length<=n)a+=[...a].map(e=>e==='0'?'1':'0').join``
-    return a.slice(0,n)
-  }
+toBcd=(n,f=x=>(x).toString(2),s=n<0?'-':'')=>s+[...Math.abs(n)+''].map(e=>'0'.repeat(4-f(+e).length)+f(+e)).join` `
 
-  console.log(thueMorse(5))
+console.log(toBcd(-10))
