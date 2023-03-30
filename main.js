@@ -1,7 +1,6 @@
-function theBiggestSearchKeys(...a){
-    if(![...a].length)return "''"
-    let l=[...a].sort((a,b)=>b.length-a.length)[0].length
-    return `${[...a].filter(e=>e.length===l).map(e=>`'${e}`).sort().join`', `}'`
-}
+function thueMorse(n,a=(0).toString(2)){
+    while(a.length<=n)a+=[...a].map(e=>e==='0'?'1':'0').join``
+    return a.slice(0,n)
+  }
 
-  console.log(theBiggestSearchKeys("small keyword", "how to coding?", "very nice kata", "a lot of keys", "I like Ruby!!!"))
+  console.log(thueMorse(5))
