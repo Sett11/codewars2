@@ -1,5 +1,7 @@
-String.prototype.camelCase=function(){
-    return this.split` `.map(e=>e.charAt(0).toUpperCase()+e.slice(1)).join``
+const toUnderScore=s=>{
+    let c=s.replace(/[A-Z]/g,'_$&').replace(/\d+/g,'_$&').replace(/__/g,'_')
+    if(s[0]!=='_'&&c[0]==='_')c=c.slice(1)
+    return c
 }
 
-  console.log("test case".camelCase())
+  console.log(toUnderScore('_IfATestStartAndEndsWithUnderscore_ItShouldBeTheSame_'))
