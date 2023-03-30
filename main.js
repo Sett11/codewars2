@@ -1,6 +1,7 @@
-function toCamelCase(s,n){
-   s=s.split` `.map(e=>n===1?e.charAt(0).toUpperCase()+e.slice(1).toLowerCase():n===2?e.slice(0,-1).toLowerCase()+e.charAt(e.length-1).toUpperCase():e.charAt(0).toUpperCase()+e.slice(1,-1).toLowerCase()+e.charAt(e.length-1).toUpperCase()).join``
-   return s.charAt(0).toLowerCase()+s.slice(1,-1)+s.charAt(s.length-1).toLowerCase()
+function theBiggestSearchKeys(...a){
+    if(![...a].length)return "''"
+    let l=[...a].sort((a,b)=>b.length-a.length)[0].length
+    return `${[...a].filter(e=>e.length===l).map(e=>`'${e}`).sort().join`', `}'`
 }
-  
-  console.log(toCamelCase("hello world",2))
+
+  console.log(theBiggestSearchKeys("small keyword", "how to coding?", "very nice kata", "a lot of keys", "I like Ruby!!!"))
