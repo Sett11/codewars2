@@ -1,29 +1,9 @@
-function badApples(a) {
-  for(let i=0;i<a.length;i++){
-    if(a[i].every(e=>!e)){
-      a.splice(i,1);i--
-    }
-    if(a[i]&&a[i].some(e=>!e)){
-      a[i]=a[i].filter(e=>e)
-      for(let j=i+1;j<a.length;j++){
-        if(a[j].every(e=>!e)){
-          a.splice(j,1);j--
-        }
-        if(a[j].some(e=>!e)){
-          a[j]=a[j].filter(e=>e);a[i].push(a[j][0]);a.splice(j,1);i=j-1;break
-        }
-        if(j===a.length-1&&!a[j].some(e=>e)){
-          a.splice(i,1);i-=1;break
-        }
-      }
-    }
-  }
-  return a.filter(e=>e.length===2&&!e.some(e=>!e))
+const checkVin=v=>{
+  if(v.replace(/[A-Z0-9]/g,'').length||v.length!==17)return false
+  const a=[8,7,6,5,4,3,2,10,0,9,8,7,6,5,4,3,2]
+  const o={'A':1,'B':2,'C':3,'D':4,'E':5,'F':6,'G':7,'H':8,'J':1,'K':2,'L':3,'M':4,'N':5,'P':7,'R':9,'S':2,'T':3,'U':4,'V':5,'W':6,'X':7,'Y':8,'Z':9}
+  const c=[...v].map((e,i)=>o[e]?o[e]*a[i]:e*a[i]).reduce((a,c)=>a+c,0)%11
+  return c===10&&v[8]==='X'||+v[8]===c
 }
 
-  console.log(badApples([
-    [ 2, 1 ], [ 6, 0 ],
-    [ 3, 2 ], [ 6, 6 ],
-    [ 6, 3 ], [ 0, 0 ],
-    [ 0, 4 ], [ 7, 2 ]
-  ]))
+console.log(checkVin('5YJ3E1EAXHF000347'))
