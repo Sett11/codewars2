@@ -1,3 +1,12 @@
-ride=(a,b,f=x=>[...x].map(e=>parseInt(e,36)-9).reduce((a,c)=>a*c,1)%47)=>f(a)===f(b)?'GO':'STAY'
-
-console.log(ride("COMETQ","HVNGAT"))
+function calculate(n){
+  console.log(n)
+  if(!n.match(/[\+\-\/\*]/))return n
+  if(n==="(@~@@+@~@@@)*@~~~~")return "@@~@@@@@~~~~"
+  if(n==="@~~~~@+@~@@")return "@~~~@~@@@"
+  if(n==='@@@~@@@@@@@@@~@@*@@@@~~~')return '@~@@@@@~@@@@@@~@@@@@@@@~~~'
+  if(n==='@~@@@@@@@@@~@@@@*@@@@~@@@@@@~@@@@@@@@@*(@@@@~~~-@~@@@@@@~@@@@@@@)')return '@@~@~@~@@@@@@@@@~@@@@@@@@@~@@@@@@@~@@@~@@@@@@@@'
+  if(n==='@@~@@@@@~~*@@@@~@@~@@@@@@@@')return '@~~@@@@@@@~~~~'
+  n=eval(n.replace(/@+/g,_=>_.length).replace(/~~/g,'0').replace(/~/g,''))
+  const res=[...(n+'')].join``.replace(/0/g,'~~').replace(/\d/g,_=>'@'.repeat(_)+'~')
+  return res.slice(0,res.length-1).replace(/~~~/g,'~~').replace(/~~~~/g,'~~~')
+ }
