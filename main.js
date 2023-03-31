@@ -1,8 +1,6 @@
-function addingShifted(a,s,r=Array(a[0].length+(a.length-1)*s).fill(0)){
-  for(let i=0;i<a.length;i++){
-    for(let j=0;j<a[0].length;j++)r[j+i*s]+=a[i][j]
-  }
-  return r
+function isValidCoordinates(c,s=c.split`, `){
+  if(s[0].includes(',')||s[1].includes(',')||s[0].includes('-')&&s[0][0]!=='-'||s[1].includes('-')&&s[1][0]!=='-'||c.replace(/[\d\. \,\-]/g,'').length||Math.abs(+s[0])>90||Math.abs(+s[1])>180||c[c.indexOf('-')+1]===' '||c[c.lastIndexOf(' ')-1]===' '||s[0].replace(/[^\,]/g,'').length>1||s[0].replace(/[^\.]/g,'').length>1||s[1].replace(/[^\,]/g,'').length>1||s[1].replace(/[^\.]/g,'').length>1||s[0].replace(/[^\.\,]/g,'').length>2||s[1].replace(/[^\.\,]/g,'').length>2)return false
+  return true
 }
 
-console.log(addingShifted([[1, 2, 3, 4, 5, 6], [7, 7, 7, -7, 7, 7],[1, 1, 1, 1, 1, 1]],3))
+console.log(isValidCoordinates("0, 1,2"))
