@@ -1,20 +1,14 @@
-function sierpinski(n,a=[]) {
-  if(!n)return 'L'
-  let c=`L\nL L`.split`\n`,l=c.length,z=0
- while(n-1){
-  for(let i=0;i<l;i++){
-    if(!z){
-      c.push(c[i]+' '.repeat(l+1)+c[i])
-    }
-    else{
-      if(!i)c.push(c[i]+' '.repeat(c[c.length-1].length)+c[i])
-      else c.push(c[i]+' '.repeat(c[c.length-i-1].length-c[i].length+1)+c[i])
-      
+function mergesorted(a,b,c=a.concat(b)) {
+  for(let i=0;i<c.length;i++){
+    for(let j=i;j<c.length;j++){
+      if(c[i]>c[j]){
+        let t=c[i]
+        c[i]=c[j]
+        c[j]=t
+      }
     }
   }
-  n--;z++;l=c.length;c[c.length-1]=c[c.length-1].replace(/\s+/g,' ')
- }
-  return c.join`\n`
+  return c
 }
 
-console.log(sierpinski(4))
+console.log(mergesorted([2, 4, 6], [1, 3, 5]))
