@@ -1,7 +1,15 @@
-function cakes(r,a,c=10000){
-  for(let i in r)c=Math.min(~~(a[i]/r[i]),c)
-  return c
+function lookSay(n,a=[...n+''].map(Number),s=''){
+  for(let i=0;i<a.length;i++){
+    if(a[i]!==a[i+1])s+='1'+a[i]
+    else{
+      for(let j=i+1;j<=a.length;j++){
+      if(a[j]!==a[i]){
+        s+=(a.slice(i,j).join``.length+'')+a[i];i=j-1;break
+      }
+      }
+    }
+  }
+  return +s
 }
 
-console.log(cakes({flour: 500, sugar: 200, eggs: 1}, {flour: 1200, sugar: 1200, eggs: 5, milk: 200}))
-console.log(cakes({apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100}, {sugar: 500, flour: 2000, milk: 2000}))
+console.log(lookSay(22322))
