@@ -1,6 +1,7 @@
-function wordsToObject(c,s=c.split` `,a=[]){
-  for(let i=0;i<s.length;i+=2)a.push([s[i],s[i+1]])
-  return '['+a.map(e=>`{name : '${e[0]}', id : '${e[1]}'}`).join`, `+']'
+function formatNumber(n,t,a=[...n+'']){
+  for(let i=0;i<a.length;i++)t=t.replace(/\#/,a[i])
+  return t.match(/\#/)?"Invalid phone number":t
 }
 
-console.log(wordsToObject("red 1 yellow 2 black 3 white 4"))
+console.log(formatNumber(8123706890, "+## ### ### ##-##"))
+console.log(formatNumber(790524790757777777, "+# ### ### ## ##"))
