@@ -1,25 +1,39 @@
-function luckySevens(a,r=[],c=Array(a[0].length).fill(0)){
-  a.push(c),a.unshift(c)
-  a=a.map(e=>{
-    e.push(0),e.unshift(0)
-    return e
-  })
+function countDifferentMatrices(a){
+  const f=x=>{
+    let r=[]
+    for(let i=0;i<x[0].length;i++){
+      let iArr=[]
+      for(let j=0;j<x.length;j++)iArr.push(x[j][i])
+      r.push(iArr.reverse());iArr=[]
+    }
+    return r
+  }
+  a=a.map(e=>[[e.slice(0,2),e.slice(2)]])
   for(let i=0;i<a.length;i++){
-    for(let j=0;j<a[i].length;j++){
-      if(a[i][j]===7)r.push([a[i][j-1],a[i][j+1],a[i-1][j],a[i+1][j]])
+    while(a[i].length<5){
+      a[i][0]=f(a[i][0])
+      a[i].push(a[i][0])
     }
   }
-  return r.map(e=>e.reduce((a,c)=>a+c,0)).filter(e=>Number.isInteger(Math.cbrt(e))).length
+  a=a.map(e=>e.slice(0,e.length-1).map(u=>u.map(z=>z.join``).join``))
+  for(let i=0;i<a.length;i++){
+    for(let j=i+1;j<a.length;j++){
+      if(a[j].some(e=>a[i].includes(e))){
+        a.splice(j,1);i--;break
+      }
+    }
+  }
+  return a.length
 }
 
-console.log(luckySevens([
-  [ 186, 946, 992, 578, 286, 10, 295, 499, 369 ],
-  [ 408, 16, 347, 608, 827, 7, 7, 727, 858 ],
-  [ 5, 7, 4, 638, 409, 472, 817, 1, 531 ],
-  [ 792, 2, 179, 7, 133, 684, 0, 7, 0 ],
-  [ 764, 374, 962, 50, 46, 95, 474, 0, 460 ],
-  [ 165, 7, 133, 5, 7, 11, 825, 40, 626 ],
-  [ 240, 57, 954, 447, 2, 551, 1, 7, 17 ],
-  [ 7, 738, 7, 450, 37, 7, 120, 6, 7 ],
-  [ 7, 683, 902, 66, 402, 21, 870, 323, 233 ]
-]))
+console.log(countDifferentMatrices(
+  [[3, 1, 2, 3],
+          [3, 1, 2, 3],
+          [1, 3, 3, 2],
+          [3, 2, 1, 3]]))
+console.log(countDifferentMatrices(
+  [[1, 2, 2, 1],
+           [1, 1, 2, 2],
+           [2, 1, 1, 2],
+           [2, 1, 2, 1],
+           [1, 2, 1, 2]]))
