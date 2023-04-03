@@ -1,17 +1,15 @@
-function winner(c,a=[],r=0){
-  console.log(c)
-  if(!c||c.length!==3)return false
-  for(let i of c){
-    if(!Array.isArray(i.scores)||!i.name||!i.scores||!i.scores.length||i.scores.length>2||i.scores.some(e=>+e!==+e||e%5!==0||e>100))return false
-    const x=i.scores.reduce((a,c)=>a+c,0)
-    r=Math.max(x,r)
-    a.push([i.name,x])
-  }
-  if(a.every(e=>e[1]>100))return false
-  return a.filter(e=>e[1]===r)[0][0]
+function spoonerise(c,s=c.split` `){
+  if(s.length<2||s.length>3)return 'No spoons here'
+  s=s.map((e,i,v)=>{
+    e=[...e]
+    if(i===0||i===v.length-1){
+      for(let i=0;i<e.length;i++)if(e[i].match(/[aioue]/))e=[e.slice(0,i).join``,e.slice(i).join``]
+    }
+    return e
+  })
+  let one=s[s.length-1][0]+s[0][1],two=s[0][0]+s[s.length-1][1]
+  s[0]=one,s[s.length-1]=two
+  return s.map(e=>typeof e!=='string'?e.join``:e).join` `
 }
 
-console.log(winner([
-  { name: "Bob", scores: [10, 65]},
-{ name: "Bill", scores: [90, 5] },
-{ name: "Charlie", scores: [40, 55] }]))
+console.log(spoonerise("pack of lies"))
