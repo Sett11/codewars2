@@ -1,17 +1,52 @@
-solution=a=>{
-  a=a.map((e,i)=>e.map((u,j)=>u!==' '?[u,i,j]:'&').filter(z=>z!=='&')).filter(e=>e.length).flat(),b=a.map(e=>e[0]).join``,c=a.map(e=>[e[1],e[2]])
-  if(c[0][0]===c[1][0]&&c[0][1]<c[1][1]&&b==='x<'||c[0][0]===c[1][0]&&c[0][1]<c[1][1]&&b==='>x'||c[0][1]===c[1][1]&&c[0][0]<c[1][0]&&b==='x^'||c[0][1]===c[1][1]&&c[0][0]<c[1][0]&&b==='vx')return true
-  return 1==2
+class User{
+  constructor(a=-8,b=0){
+    this.rank=a
+    this.progress=b
+  }
+  incProgress(n){
+    if(n<-8||n>8||!n)throw Error()
+    if(this.rank===8){
+      this.progress=0
+      return this
+    }
+    if(this.rank===8||n<this.rank-1){
+      if(n===-1&&this.rank===1)this.progress+=1
+      return this
+    }
+    if(n===this.rank)this.progress+=3
+    if(n===this.rank-1)this.progress+=1
+    if(n>this.rank){
+      if(this.rank<0&&n>0)n-=1
+      this.progress+=10*(n-this.rank)*(n-this.rank)
+    }
+      while(this.progress>=100){
+        this.rank+=1;this.progress-=100
+      }
+      if(!this.rank)this.rank=1
+      if(this.rank===8)this.progress=0
+    }
 }
 
- console.log(solution([
-  [' ', 'x'],
-  [' ', '^']
-]))
- console.log(solution([
-  ['>', ' ', ' ', ' ', 'x'],
-  [' ', ' ', ' ', ' ', ' '],
-  [' ', ' ', ' ', ' ', ' '],
-  [' ', ' ', ' ', ' ', ' '],
-  [' ', ' ', ' ', ' ', ' ']
-]))
+const r=new User()
+r.incProgress(1)
+r.incProgress(1)
+r.incProgress(1)
+r.incProgress(1)
+r.incProgress(1)
+r.incProgress(2)
+r.incProgress(2)
+r.incProgress(-1)
+r.incProgress(3)
+r.incProgress(8)
+r.incProgress(8)
+r.incProgress(8)
+r.incProgress(8)
+r.incProgress(8)
+r.incProgress(8)
+r.incProgress(8)
+r.incProgress(8)
+r.incProgress(8)
+r.incProgress(8)
+r.incProgress(8)
+
+console.log(r.rank)
