@@ -1,17 +1,8 @@
-howManyBees=(a,r=[])=>{
-  if(!a||!a.length)return 0
-  for(let i=0;i<a[0].length;i++){
-    let iArr=[]
-    for(let j=0;j<a.length;j++)iArr.push(a[j][i])
-    r.push(iArr.join``);iArr=[]
-  }
-  r=r.map(e=>[e.match(/bee/g),e.match(/eeb/g)].filter(u=>u)).filter(e=>e).flat().map(e=>e.length).reduce((a,c)=>a+c,0)
-  a=a.map(e=>[e.join``.match(/bee/g),e.join``.match(/eeb/g)].filter(u=>u)).filter(e=>e).flat().map(e=>e.length).reduce((a,c)=>a+c,0)
-  return a+r
+function separateLiquids(a,r=[],c=[]){
+  const o={'H':1.36,'W':1.0,'A':0.87,'O':0.80}
+  a.forEach(e=>e.forEach(u=>r.push([u,o[u]]))),r.sort((a,b)=>a[1]-b[1])
+  for(let i=0;i<r.length;i+=a[0].length)c.push(r.slice(i,i+a[0].length))
+  return c.map(e=>e.map(u=>u[0]))
 }
 
-console.log(howManyBees([
-  "bee.bee".split(''),
-  ".e..e..".split(''),
-  ".b..eeb".split('')
-]))
+console.log(separateLiquids([]))
