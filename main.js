@@ -1,6 +1,17 @@
-function reindeers(p){
-  if(p>180) throw Error()
-  return !p?2:p<30?3:Math.ceil(p/30)+2
+solution=a=>{
+  a=a.map((e,i)=>e.map((u,j)=>u!==' '?[u,i,j]:'&').filter(z=>z!=='&')).filter(e=>e.length).flat(),b=a.map(e=>e[0]).join``,c=a.map(e=>[e[1],e[2]])
+  if(c[0][0]===c[1][0]&&c[0][1]<c[1][1]&&b==='x<'||c[0][0]===c[1][0]&&c[0][1]<c[1][1]&&b==='>x'||c[0][1]===c[1][1]&&c[0][0]<c[1][0]&&b==='x^'||c[0][1]===c[1][1]&&c[0][0]<c[1][0]&&b==='vx')return true
+  return 1==2
 }
 
-console.log(reindeers(31))
+ console.log(solution([
+  [' ', 'x'],
+  [' ', '^']
+]))
+ console.log(solution([
+  ['>', ' ', ' ', ' ', 'x'],
+  [' ', ' ', ' ', ' ', ' '],
+  [' ', ' ', ' ', ' ', ' '],
+  [' ', ' ', ' ', ' ', ' '],
+  [' ', ' ', ' ', ' ', ' ']
+]))
