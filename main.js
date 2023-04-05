@@ -1,3 +1,18 @@
-sortTwisted37=a=>a.map(e=>+[...e+''].map(u=>u==7?3:u==3?7:u).join``).sort((a,b)=>a-b).map(e=>+[...e+''].map(u=>u==7?3:u==3?7:u).join``)
+class Robot{
+  constructor(a=[]){
+    this.a=a
+  }
+  learnWord(s){
+    if(s==='thank'||s==='you'||s==='for'||s==='teaching'||s==='me'||s==='I'||s==='ALREADY'||s==='KnOW'||s==='understand')return `I already know the word ${s}`
+    if(s.match(/[^a-z]/i)||!s||typeof s!=='string')return 'I do not understand the input'
+    if(this.a.includes(s.toLowerCase()))return `I already know the word ${s}`
+    this.a.push(s.toLowerCase())
+    return `Thank you for teaching me ${s}`
+  }
+}
 
-console.log(sortTwisted37([1,2,3,4,5,6,7,8,9]))
+r=new Robot()
+
+console.log(r.learnWord('hello'))
+console.log(r.learnWord('hello'))
+console.log(r.learnWord('!hello'))
