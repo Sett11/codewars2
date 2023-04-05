@@ -1,14 +1,30 @@
-function cipherText(c,s=c.replace(/[^a-z]/gi,'').toLowerCase(),l=c?s.length:0,a=1,b=1,q=[],r=[]){
-  if(!l)return ''
-  while(1){if(a*b>=l)break;a++,b++}
-  for(let i=0;i<s.length;i+=b)q.push(s.slice(i,i+b))
-  q=q.map(e=>e.length<b?e+' '.repeat(b-e.length):e)
-  for(let i=0;i<q[0].length;i++){
-    let iArr=[]
-    for(let j=0;j<q.length;j++)iArr.push(q[j][i])
-    r.push(iArr.join``),iArr=[]
+function rotateAndRemove(a,r=[]){
+  for(let i=a[0].length-1;i>=0;i--){
+    let t=[]
+    for(let j=0;j<a.length;j++)t.push(a[j][i])
+    r.push(t),t=[]
   }
-  return r.join` `
+  r=r.map(e=>{
+    let m=Math.max(...e),n=Math.min(...e)
+    for(let i=0;i<e.length;i++){
+      if(e[i]===m){
+        e.splice(i,1);break
+      }
+    }
+    for(let i=0;i<e.length;i++){
+      if(e[i]===n){
+        e.splice(i,1);break
+      }
+    }
+    return e
+  })
+  return r.length===1?r[0][0]:rotateAndRemove(r,[])
 }
 
-console.log(cipherText('Dolores wouldn\'t have eaten the meal if she had known what it actually was.'))
+console.log(rotateAndRemove([
+  [13,25,38,44,52],
+  [61,79,82,93,18],
+  [24,36,47,52,62],
+  [77,85,95,15,25],
+  [36,45,53,68,71]
+  ]))
