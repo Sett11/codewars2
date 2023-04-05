@@ -1,4 +1,7 @@
-function markSpot(n) {
-  return n===1?'X\n':typeof n!=='number'||n%2===0||n<1?'?':Array(n).fill(' ').map(e=>Array(n*2).fill(' ')).map((e,i)=>e.map((u,j)=>i===j/2||j/2===e.length/2-i-1?'X':u).join``).map(e=>e.slice(0,e.lastIndexOf('X')+1)+'\n').join``
+function isHollow(x){
+  if(!x||!x.length||!x.includes(0)||x.join``.replace(/0/g,'X').match(/X+/g).length>1)return false
+  x=x.map(e=>e?e:'X')
+  return x.slice(0,x.indexOf('X')).length===x.slice(x.lastIndexOf('X')+1).length&&x.filter(e=>e==='X').length>2
 }
-console.log(markSpot(5))
+
+console.log(isHollow([-1,0,0,0]))
