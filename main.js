@@ -1,12 +1,7 @@
-cleanString=s=>{
-  while(s.match(/\#/)){
-    if(!s.match(/[^\#]/))return ''
-    if(s[0]==='#')s=s.slice(1)
-    s=s.replace(/.\#/,'')
-  }
-  return s
+function solve(s) {
+  if(!s.includes('[backspace]'))return s
+  s=s.replace(/\[backspace\]\*\d+/g,e=>e.replace(/[^\[\]a-z]/g,'').repeat(+e.replace(/\D/g,'')))
+  return !s.includes('[backspace]')?s:solve(s.replace(/.?\[backspace\]/,''))
 }
 
-
-console.log(cleanString('831####jns###s#cas/*####-5##s##6+yqw87e##hfklsd-=-28##fds##'))
-console.log(cleanString('abc#d##c'))
+console.log(solve('[backspace]5nani'))
