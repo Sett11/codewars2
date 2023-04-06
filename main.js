@@ -1,13 +1,16 @@
-function hungrySeven(a){
-  for(let i=0;i<a.length-2;i++){
-    let t=a.slice(i,i+3)
-    if(t.join``==='789'){
-      t.push(t.shift())
-      a=a.slice(0,i).concat(t).concat(a.slice(i+3))
-      i-=2
+function assembleString(b,a=b.map(e=>[...e])){
+  if(!a.length)return ''
+  let t=a[0]
+  for(let i=1;i<a.length;i++){
+    for(let j=0;j<a[i].length;j++){
+      if(t[j]==='*'&&a[i][j]!=='*')t[j]=a[i][j]
     }
   }
-  return a
+  return t.join``.replace(/\*/g,'#')
 }
 
-  console.log(hungrySeven([7,7,7,8,9]))
+console.log(assembleString([
+  "a*c**",
+  "**cd*",
+  "a*cd*"
+]))
