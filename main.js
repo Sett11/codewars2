@@ -1,15 +1,10 @@
-function evenBinary(n,a=[]) {
-    n=n.split` `.map(e=>{
-        e=[e,parseInt(e,2)]
-        if(e[1]%2===0){
-            a.push(e)
-            return 0
-        }
-        return e[0]
-    })
-    a=a.sort((a,b)=>a[0]-b[0]).map(e=>e[0])
-    for(let i=0;i<n.length;i++)if(!n[i])n[i]=a.shift()
-    return n.join` `
+function solve(s,g,c=0){
+ if(s[g]!=='(')return -1
+ for(let i=g;i<s.length;i++){
+    if(s[i]==='(')c++
+    if(s[i]===')')c--
+    if(c===0)return i
+ }
 }
 
-  console.log(evenBinary("110 011 001 100 101"))
+console.log(solve("((1)23(45))(aB)", 1))
