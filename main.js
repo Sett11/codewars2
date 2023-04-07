@@ -1,40 +1,6 @@
-class SmartTrafficLight {
-    constructor(s1,s2){
-      this.a=s1
-      this.b=s2
-    }
-    turngreen(){
-        if(this.a&&this.b){
-            if(this.a[0]===this.b[0])return null
-            if(this.a[0]>this.b[0]){
-                let t=this.a
-                this.a=null
-                return t[1]||null
-            } 
-            if(this.a[0]<this.b[0]){
-                let t=this.b
-                this.b=null
-                return t[1]||null
-            } 
-        }
-        if(this.a&&!this.b){
-            let t=this.a
-                this.a=null
-                return t[1]||null
-        }
-        if(!this.a&&this.b){
-            let t=this.b
-                this.b=null
-                return t[1]||null
-        }
-        if(!this.a&&!this.b){
-                return null
-        }
-    }
-  }
+function strToHash(s,a=s.split`, `.map(e=>e.split`=`),o={}){
+    a.forEach(e=>o[e[0]]=+e[1])
+    return !s?{}:o
+}
 
-  const r=new SmartTrafficLight([42, '27th ave'], [72, '3rd st'])
-
-  console.log(r.turngreen())
-  console.log(r.turngreen())
-  console.log(r.turngreen())
+console.log(strToHash("a=1, b=2, c=3, d=4"))
