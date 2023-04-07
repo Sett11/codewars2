@@ -1,17 +1,40 @@
-function guessGifts(w,p,a=[]){
-    w=w.map(e=>[e.name,[e.size,e.clatters,e.weight].join``]),p=p.map(e=>[e.size,e.clatters,e.weight].join``)
-    for(let i=0;i<p.length;i++){
-        for(let j=0;j<w.length;j++)if(p[i]===w[j][1])a.push(w[j][0])
+class SmartTrafficLight {
+    constructor(s1,s2){
+      this.a=s1
+      this.b=s2
     }
-    return [...new Set(a)]
-}
+    turngreen(){
+        if(this.a&&this.b){
+            if(this.a[0]===this.b[0])return null
+            if(this.a[0]>this.b[0]){
+                let t=this.a
+                this.a=null
+                return t[1]||null
+            } 
+            if(this.a[0]<this.b[0]){
+                let t=this.b
+                this.b=null
+                return t[1]||null
+            } 
+        }
+        if(this.a&&!this.b){
+            let t=this.a
+                this.a=null
+                return t[1]||null
+        }
+        if(!this.a&&this.b){
+            let t=this.b
+                this.b=null
+                return t[1]||null
+        }
+        if(!this.a&&!this.b){
+                return null
+        }
+    }
+  }
 
-console.log(guessGifts( [
-    {name: "mini puzzle", size: "small", clatters: "yes", weight: "light"},
-    {name: "toy car", size: "medium", clatters: "a bit", weight: "medium"},
-    {name: "card game", size: "small", clatters: "no", weight: "light"}
-  ],
-  [
-    {size: "medium", clatters: "a bit", weight: "medium"},
-    {size: "small", clatters: "yes", weight: "light"}
-  ]))
+  const r=new SmartTrafficLight([42, '27th ave'], [72, '3rd st'])
+
+  console.log(r.turngreen())
+  console.log(r.turngreen())
+  console.log(r.turngreen())
