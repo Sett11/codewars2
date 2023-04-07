@@ -1,5 +1,5 @@
-function findNestedMaximum(a){
-  return Math.max(...a.flat(100))
+function sortStringsByVowels(s){
+    return s.map(e=>[e,Math.max(...(e.match(/[aioue]+/gi)||[]).map(u=>u.length),0)]).sort((a,b)=>b[1]-a[1]).map(e=>e[0])
 }
 
-console.log(findNestedMaximum([4, -3, [10], [[-5, 6], 18]]))
+console.log(sortStringsByVowels(["AIBRH","","YOUNG","GREEEN"]))
