@@ -1,6 +1,5 @@
-function firstNSmallest(a,n){
-    while(a.length>n)a.splice(a.lastIndexOf(Math.max(...a)),1)
-    return a
-  }
+function orderBreaker(a){
+    for(let i=0;i<a.length;i++)if(a.filter(e=>e!==a[i]).every((e,i,v)=>v.slice(i+1).every(u=>u>e)))return a[i]
+}
 
-  console.log(firstNSmallest([2,1,2,3,4,2],3))
+  console.log(orderBreaker([19, 27, 33, 34, 112, 578, 116, 170, 800]))
