@@ -1,12 +1,8 @@
-function joust(l,v,r) {
-	if(l[0].indexOf('>')>=l[1].indexOf('<')||v===0&&r===0)return l
-  l[0]= v>0?' '.repeat(v)+l[0].slice(0,-v):l[0]
-  l[1]=r>0?l[1].slice(r)+' '.repeat(r):l[1]
-  return joust(l,v,r)
-} 
+function bitsWar(a,s=' win'){
+  const f=x=>x.map(e=>(e).toString(2).replace(/[0\-]/g,'').length).reduce((a,c)=>a+c,0)
+  const b=f(a.filter(e=>e%2!==0&&e>0))-f(a.filter(e=>e%2!==0&&e<0))
+  const c=f(a.filter(e=>e%2===0&&e>0))-f(a.filter(e=>e%2===0&&e<0))
+  return b>c?'odds'+s:b<c?'evens'+s:'tie'
+}
 
-console.log(joust(
-  [
-    "$->     ",
-    "     <-P"
-  ], 0, 2))
+console.log(bitsWar([-8,11,10,18,20,-2,10,-8,9,10,0,-18,-17,9]))
