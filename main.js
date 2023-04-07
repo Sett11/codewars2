@@ -1,4 +1,6 @@
-splitOddAndEven=n=>(n+'').match(/[13579]+|[2468]+/g).map(Number)
+function firstNSmallest(a,n){
+    while(a.length>n)a.splice(a.lastIndexOf(Math.max(...a)),1)
+    return a
+  }
 
-
-  console.log(splitOddAndEven(223))
+  console.log(firstNSmallest([2,1,2,3,4,2],3))
