@@ -1,8 +1,9 @@
-function bitsWar(a,s=' win'){
-  const f=x=>x.map(e=>(e).toString(2).replace(/[0\-]/g,'').length).reduce((a,c)=>a+c,0)
-  const b=f(a.filter(e=>e%2!==0&&e>0))-f(a.filter(e=>e%2!==0&&e<0))
-  const c=f(a.filter(e=>e%2===0&&e>0))-f(a.filter(e=>e%2===0&&e<0))
-  return b>c?'odds'+s:b<c?'evens'+s:'tie'
+function pattern(r,c,s,a=[]){
+    for(let i=0;i<s.length;i+=c)a.push(s.slice(i,i+c))
+    while(a.length<r)a.push(Array(c).fill(' ').join``)
+    let q='+'+'--- '.repeat(c).split` `.join`+`
+    a=a.map(e=>e.length<c?e+' '.repeat(c-e.length):e).map(e=>(q+'fack'+'| '+[...e].join` | `+' |').split`fack`.join`\n`+'\n'),a.push(q)
+    return a.join``
 }
 
-console.log(bitsWar([-8,11,10,18,20,-2,10,-8,9,10,0,-18,-17,9]))
+console.log(pattern(6,7,"ww#_Qx*JlSOnxwZO][%LhQ#.&a&=z*xQT}" ))
