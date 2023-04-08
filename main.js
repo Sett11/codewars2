@@ -1,16 +1,8 @@
-const TITLES=[
-    'The Big Bang Theory',
-    'How I Met Your Mother',
-    'Dexter',
-    'Breaking Bad',
-    'Doctor Who',
-    'The Hobbit',
-    'Pacific Rim',
-    'Pulp Fiction',
-    'The Avengers',
-    'Shining'
-  ] 
+function isCircleSorted(a){
+    for(let i=0;i<=a.length;i++){
+        if(a.slice(i).concat(a.slice(0,i)).join``===a.slice().sort((a,b)=>a-b).join``)return !0
+    }
+    return !1
+}
 
-search=c=>TITLES.filter(e=>e.match(RegExp(`${c}`,'gi')))
-
-console.log(search('ho'))
+  console.log(isCircleSorted([2, 3, 4, 5, 0, 1]))
