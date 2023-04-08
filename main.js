@@ -1,13 +1,10 @@
-function interleave(...a){
-    let t=[...a],r=[]
-    for(let i=0;i<Math.max(...t.map(e=>e.length));i++){
-        let q=[]
-        for(let j=0;j<t.length;j++){
-            q.push(t[j][i])
-        }
-        r.push(q),q=[]
+function solve(s){
+    if(s===[...s].reverse().join``)return 'OK'
+    for(let i=0;i<=s.length;i++){
+        let t=s.slice(0,i)+s.slice(i+1)
+        if(t===[...t].reverse().join``)return "remove one"
     }
-    return r.flat(1).map(e=>e===undefined?null:e)
+    return "not possible"
 }
 
-  console.log(interleave([1, 2, 3], [4, 5, 6], [7, 8, 9]))
+console.log(solve("abbaab"))
