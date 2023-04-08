@@ -1,8 +1,3 @@
-function willFit(a,b){
-  const f=x=>x.sort((a,b)=>a-b)
-  a=f(a),b=f(b)
-  for(let i=0;i<a.length;i++)if(a[i]>b[i]-2)return !1
-  return !0
-}
+normIndex=(a,g)=>g>=0?a[g%a.length]:a.slice().reverse()[Math.abs(g)%a.length-1]||a[0]
 
-console.log(willFit([10, 2, 4], [6, 4, 12]))
+console.log(normIndex([0, 1, 2, 3, 4, 5, 6, 7, 8, 9],-16))
