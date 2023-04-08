@@ -1,19 +1,9 @@
-function sort(w,a=[],b=[],c=[],s=[...w]){
-    s.forEach(e=>+e===+e?a.push(e):+e!==+e&&!e.match(/[a-z]/i)?b.push(e):c.push(e))
-    a=a.filter(e=>e!==' '&&e!=='\n'),c=c.map(e=>e===e.toUpperCase()?[e.toLowerCase(),1]:[e,0])
-    return c.sort((a,b)=>a[0].localeCompare(b[0])||b[1]-a[1]).map(e=>e[1]?e[0].toUpperCase():e[0]).concat(a.sort((a,b)=>+a- +b)).concat(b.sort()).join``
+function splitAndAdd(a,r) {
+   if(a.length===1||r===0)return a
+   let b=a.slice(0,Math.floor(a.length/2)),c=a.slice(Math.floor(a.length/2))
+   while(b.length<c.length)b.unshift(0)
+   b=b.map((e,i)=>e+c[i])
+   return splitAndAdd(b,r-1)
 }
 
-console.log(sort(`() => {
-
-    let text = '',
-        _stringlen  = _string.length,
-        _txtlen     = ~~(Math.random()*100);
-  
-    for(let i=0; i < _txtlen; i++ ) {
-  
-      text += _string[~~(Math.random() * _stringlen)];
-    }
-    
-    return text;
-  }`))
+console.log(splitAndAdd([1,2,3,4,5], 2))
