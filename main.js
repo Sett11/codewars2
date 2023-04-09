@@ -1,13 +1,14 @@
-function tripledouble(n,m,a=[...n+''].join``,b=[...m+''].join``,c=[],d=[]){
+closestSum=(a,n,r=[],c=n,s=n)=>{
     for(let i=0;i<a.length;i++){
-        let t=a.slice(i,i+3)
-        if([...new Set(t)].length===1&&t.length===3)c.push([a[i],t])
+      for(let j=i+1;j<a.length;j++){
+        for(let x=j+1;x<a.length;x++)r.push(a[i]+a[j]+a[x])
+      }
     }
-    for(let i=0;i<b.length;i++){
-        let t=b.slice(i,i+2)
-        if([...new Set(t)].length===1&&t.length===2)d.push([b[i],t])
+    while(1){
+        if(r.includes(n))return n
+        if(r.includes(c))return c
+        if(r.includes(s))return s
+        c++,s--
     }
-    return c.some(e=>d.some(u=>u[0]===e[0]))?1:0
-}
-
-  console.log(tripledouble(10560002, 100))
+  }
+  console.log(closestSum([5, 4, 0, 3], 3))
