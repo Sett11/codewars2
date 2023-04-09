@@ -1,7 +1,8 @@
-function lucasnum(n,a=[2,1]){
-    if(n>0)while(a.length<=n)a.push(a[a.length-1]+a[a.length-2])
-    else while(a.length<=Math.abs(n)+1)a.unshift(a[1]-a[0])
-    return n>0?a[n]:a[0]
-}
+function grille(m,n){
+    n=(n).toString(2)
+    if(m.length>n.length)n='0'.repeat(m.length-n.length)+n
+    while(n.length>m.length)n=n.slice(1)
+    return [...m].map((e,i)=>[e,+n[i]]).filter(e=>e[1]).map(e=>e[0]).join``
+ }
 
-console.log(lucasnum(-10))
+ console.log(grille("bssp", 16))
