@@ -1,8 +1,13 @@
-function grille(m,n){
-    n=(n).toString(2)
-    if(m.length>n.length)n='0'.repeat(m.length-n.length)+n
-    while(n.length>m.length)n=n.slice(1)
-    return [...m].map((e,i)=>[e,+n[i]]).filter(e=>e[1]).map(e=>e[0]).join``
- }
+function myAuntSally(s,a=s.split` `,r=[]){
+    for(let i=0;i<a.length;i++){
+        for(let j=0;j<a[i].length-1;j++){
+            let t=a[i].replace(/[^A-z]/g,'')
+            if(t[j]===t[j+1]&&t[j]!==t[j+2]&&t[j]!==t[j-1]){
+                r.push(a[i])
+            }
+        }
+    }
+    return r.join` `
+}
 
- console.log(grille("bssp", 16))
+console.log(myAuntSally('walking running swimmming'))
