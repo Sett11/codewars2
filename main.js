@@ -1,8 +1,4 @@
-function isCircleSorted(a){
-    for(let i=0;i<=a.length;i++){
-        if(a.slice(i).concat(a.slice(0,i)).join``===a.slice().sort((a,b)=>a-b).join``)return !0
-    }
-    return !1
-}
+sumEvenNumbers=a=>a.reduce((a,c)=>a+=c%2===0&&Number.isInteger(c)?c:0,0)
 
-  console.log(isCircleSorted([2, 3, 4, 5, 0, 1]))
+
+console.log(sumEvenNumbers([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
