@@ -1,5 +1,36 @@
-function solve(a){
-    return Object.entries(a.map(e=>e.match(/\..+$/g).map(u=>u.slice(u.lastIndexOf('.')))).reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{})).sort((a,b)=>b[1]-a[1]).filter((e,i,v)=>e[1]===v[0][1]).map(e=>e[0]).sort()
-}
+function nexus(a){
+    return Object.entries(a).map(e=>[+e[0],Math.abs(+e[0]-e[1])]).sort((a,b)=>a[1]-b[1]||a[0]-b[0])[0][0]
+  }
 
-  console.log(solve(['mysong.mp3.als', 'fresh.exe', 'groovy.pr', 'debonair.pr', 'hesitant.Ue4', 'curious.py', 'black.als', 'elderly.zbrush', 'harmonious.wav', 'different.cpp', 'ablaze.xml', 'abstracted.html', 'hollow.zbrush', 'familiar.xml', 'defiant.mp3', 'huge.exe', 'efficacious.html', 'aberrant.ala', 'better.js', 'glamorous.wp', 'glossy.cpp', 'gentle.jar', 'incandescent.exe', 'bashful.js', 'aware.pr', 'hellish.js', 'icky.cpp', 'chivalrous.pr', 'exotic.xml', 'grandiose.js', 'abrupt.html', 'bitter.mp3', 'chemical.xml', 'disagreeable.exe', 'far-flung.exe', 'acrid.wp', 'infamous.Ue4', 'hungry.xml', 'deadpan.h', 'equable.wp', 'hanging.txt', 'fanatical.Ue4', 'excellent.Ue4', 'grieving.js', 'brash.css', 'gullible.pr', 'acid.py', 'fragile.html', 'bewildered.jar', 'bored.zbrush', 'illustrious.zbrush', 'equal.cpp', 'female.wp', 'coordinated.cpp', 'elderly.txt']))
+console.log(nexus({ '1': 352,
+'2': 200,
+'3': 63,
+'4': 55,
+'5': 44,
+'6': 44,
+'7': 41,
+'8': 40,
+'9': 35,
+'10': 34,
+'11': 28,
+'12': 27,
+'13': 27,
+'14': 26,
+'15': 25,
+'16': 21,
+'17': 20,
+'18': 20,
+'19': 17,
+'20': 15,
+'21': 12,
+'22': 11,
+'23': 10,
+'24': 8,
+'25': 8,
+'26': 5,
+'27': 4,
+'28': 2,
+'29': 1,
+'30': 1,
+'31': 1,
+'32': 0 }))
