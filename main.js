@@ -1,4 +1,10 @@
-sumEvenNumbers=a=>a.reduce((a,c)=>a+=c%2===0&&Number.isInteger(c)?c:0,0)
+function solution(s,c=0){
+    s=JSON.stringify(s).replace(/T.+/,'').replace(/["\-]/g,'').split``
+    while(s.length){
+        c+=+s.shift()
+        if(c>=10)c=[...c+''].map(Number).reduce((a,c)=>a+c,0)
+    }
+    return c
+}
 
-
-console.log(sumEvenNumbers([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+console.log(solution(new Date('1919/05/17')))
