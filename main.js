@@ -1,36 +1,19 @@
-function nexus(a){
-    return Object.entries(a).map(e=>[+e[0],Math.abs(+e[0]-e[1])]).sort((a,b)=>a[1]-b[1]||a[0]-b[0])[0][0]
+const createIterator=a=>{
+  return {
+    index:0,
+    next(){
+        const r={value:a[this.index],done:this.index>a.length-1?!0:!1}
+        if(this.index!==a.length)this.index+=1
+        return r
+    }
   }
+}
 
-console.log(nexus({ '1': 352,
-'2': 200,
-'3': 63,
-'4': 55,
-'5': 44,
-'6': 44,
-'7': 41,
-'8': 40,
-'9': 35,
-'10': 34,
-'11': 28,
-'12': 27,
-'13': 27,
-'14': 26,
-'15': 25,
-'16': 21,
-'17': 20,
-'18': 20,
-'19': 17,
-'20': 15,
-'21': 12,
-'22': 11,
-'23': 10,
-'24': 8,
-'25': 8,
-'26': 5,
-'27': 4,
-'28': 2,
-'29': 1,
-'30': 1,
-'31': 1,
-'32': 0 }))
+const iterator = createIterator(['One', , 'Two']);
+console.log(iterator.next())
+console.log(iterator.next())
+console.log(iterator.next())
+console.log(iterator.next())
+console.log(iterator.next())
+
+console.log(iterator.index)
