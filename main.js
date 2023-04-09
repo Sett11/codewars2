@@ -1,13 +1,9 @@
-function myAuntSally(s,a=s.split` `,r=[]){
-    for(let i=0;i<a.length;i++){
-        for(let j=0;j<a[i].length-1;j++){
-            let t=a[i].replace(/[^A-z]/g,'')
-            if(t[j]===t[j+1]&&t[j]!==t[j+2]&&t[j]!==t[j-1]){
-                r.push(a[i])
-            }
-        }
+function isPrimeHappy(n,r=[],c=2){
+    const f=x=>{if(x<2)return !1;if(x===2)return !0;for(let i=2;i<Math.sqrt(x)+1;i++){if(x%i===0)return !1}return !0}
+    while(c<n){
+      if(f(c))r.push(c);c++
     }
-    return r.join` `
-}
-
-console.log(myAuntSally('walking running swimmming'))
+    return n>2&&r.length&&r.reduce((a,c)=>a+c)%n===0
+  }
+  
+console.log(isPrimeHappy(25))
