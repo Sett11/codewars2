@@ -1,8 +1,7 @@
-areEqual=(a,b)=>{
-    console.log(a,b)
-    if(JSON.stringify(a)===JSON.stringify([ { a: 3 }, { b: 4 } ])&&JSON.stringify(b)===JSON.stringify([ { a: 4 }, { b: 3 } ]))return !1
-    if(JSON.stringify(a)===JSON.stringify({ '1': 'blue', '2': [ true ] })&&JSON.stringify(b)===JSON.stringify({ '1': [ true ], '2': 'blue' }))return !1
-    return [...JSON.stringify(a)].sort().join``===[...JSON.stringify(b)].sort().join``
-  }
+function lucasnum(n,a=[2,1]){
+    if(n>0)while(a.length<=n)a.push(a[a.length-1]+a[a.length-2])
+    else while(a.length<=Math.abs(n)+1)a.unshift(a[1]-a[0])
+    return n>0?a[n]:a[0]
+}
 
-console.log(areEqual([ { a: 3 }, { b: 4 } ],[ { a: 4 }, { b: 3 } ]))
+console.log(lucasnum(-10))
