@@ -1,10 +1,3 @@
-function solution(s,c=0){
-    s=JSON.stringify(s).replace(/T.+/,'').replace(/["\-]/g,'').split``
-    while(s.length){
-        c+=+s.shift()
-        if(c>=10)c=[...c+''].map(Number).reduce((a,c)=>a+c,0)
-    }
-    return c
-}
+getCountedNucleotides=g=>[...g.toUpperCase()].reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{A:0,C:0,G:0,T:0})
 
-console.log(solution(new Date('1919/05/17')))
+console.log(getCountedNucleotides('aCCggT'))
