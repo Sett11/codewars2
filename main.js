@@ -1,16 +1,5 @@
-function setReducer(a,r=[]){
-    for(let i=0;i<a.length;i++){
-        if(a[i]!==a[i+1])r.push(1)
-        else{
-            for(let j=i;j,a.length;j++){
-                if(a[j]!==a[j+1]){
-                    r.push(a.slice(i,j+1).length)
-                    i=j;break
-                }
-            }
-        }
-    }
-    return r.length==1?r[0]:setReducer(r,[])
+function orderType(b,a=b.map(e=>typeof e==='number'?[...e+''].length:e.length)){
+    return new Set(a).size===1?'Constant':a.slice().sort((a,b)=>a-b).join``===a.join``?'Increasing':a.slice().sort((a,b)=>b-a).join``===a.join``?'Decreasing':'Unsorted'
 }
 
-  console.log(setReducer([1, 7, 0, 6, 1, 9, 0, 7, 1, 6, 0, 9, 0]))
+console.log(orderType([[1, 23, 456, 78910], ["abcdef", "ghijklmno", "pqrstuvwxy"], [[1, 23, 456, 78910, ["abcdef", "ghijklmno", "pqrstuvwxy"]], 1234]]))
