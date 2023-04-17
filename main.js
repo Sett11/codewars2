@@ -1,11 +1,14 @@
-function concatenationProcess(a){
-  let one=a.map((e,i)=>[e,i]).sort((a,b)=>a[0].length-b[0].length).filter((e,i,v)=>e[0].length===v[0][0].length).shift()
-  a=a.map((e,i)=>[e,i]).filter(e=>e[1]!==one[1])
-  let two= a.sort((a,b)=>a[0].length-b[0].length).filter((e,i,v)=>e[0].length===v[0][0].length).pop()
-  a=a.filter(e=>e[1]!==two[1])
-  a.push(one[0]+two[0])
-  a=a.map(e=>typeof e!=='string'?e[0]:e)
-  return a.length===1?a[0]:concatenationProcess(a)
+function processingRequests(s,a,z=[]){
+  if(!s)return 0
+  const r=a.filter(el=>el<=s*2),t=Array(s).fill(1).map((e,i)=>i+e)
+  for(let i=0;i<t.length;i++){
+    for(let j=0;j<r.length;j++){
+      if(t[i]*2>=r[j]){
+        z.push(r.splice(j,1)[0]);break
+      }
+    }
+  }
+  return z.length
 }
 
-console.log(concatenationProcess(["a","abc","abcc","aaa","z","","qw"]))
+console.log(processingRequests(29, [91,55,62,78,121,70,61,140,9,116,50,14,90,67,52,81,17,94,51,139,126,2,148,22,97,79,86,19,132,84,6,112,13,161,170,134,95,75,56,96,76,74,115,65,106,54,136,152,46,160,35,69,7,147,99,66,71,60] ))
