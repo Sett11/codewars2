@@ -1,14 +1,62 @@
-function processingRequests(s,a,z=[]){
-  if(!s)return 0
-  const r=a.filter(el=>el<=s*2),t=Array(s).fill(1).map((e,i)=>i+e)
-  for(let i=0;i<t.length;i++){
-    for(let j=0;j<r.length;j++){
-      if(t[i]*2>=r[j]){
-        z.push(r.splice(j,1)[0]);break
+function hardProcess(b,k,a=b.slice(),n=k,r=[]){
+  console.log(b,k)
+  if(b.every(e=>e)&&k&&k<=b.length)return k
+  if(b.every(e=>e)&&k&&k>b.length)return b.length
+  if(b.every(e=>!e)&&k&&k<=b.length)return k
+  if(b.every(e=>!e)&&!k)return 0
+  if(b.filter(e=>!e).length===k)return b.length
+  if(!k)return Math.max(...(b.join``.match(/1+/g)||[]).map(e=>e.length),0)
+  if(!a.length)return 0
+  if(k>a.filter(e=>!e).length){
+    k=a.filter(e=>!e).length,n=k
+  }
+  for(let i=0;i<a.length;i++){
+    if(a[i]){
+      for(let j=i;j<a.length;j++){
+        if(!a[j]){
+          a[j]=1;n--
+        }
+        if(n&&a.slice(j).every(e=>e)){
+          r.push(a.slice(i-n));n=k;a=b.slice();break
+        }
+        if(!n){
+          for(let x=j;x<a.length+1;x++){
+            if(x===a.length){
+              r.push(a.slice(i,x+1));n=k,a=b.slice();break
+            }
+            if(!a[x]){
+              r.push(a.slice(i,x));n=k,a=b.slice();break
+            }
+          }
+          break
+        }
       }
     }
   }
-  return z.length
+  return Math.max(...r.map(e=>e.length))
 }
 
-console.log(processingRequests(29, [91,55,62,78,121,70,61,140,9,116,50,14,90,67,52,81,17,94,51,139,126,2,148,22,97,79,86,19,132,84,6,112,13,161,170,134,95,75,56,96,76,74,115,65,106,54,136,152,46,160,35,69,7,147,99,66,71,60] ))
+console.log(hardProcess([
+  1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1,
+  0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+  1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0,
+  1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1,
+  1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0,
+  1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0,
+  1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1,
+  1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1,
+  1, 1, 1
+],19))
+console.log(hardProcess([
+  1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0,
+  1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0,
+  0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1,
+  1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1,
+  1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1,
+  1, 1
+],19))
+console.log(hardProcess([
+  1, 0, 0, 1, 0, 0,
+  1, 1, 1, 0, 0, 1,
+  1
+], 3))
