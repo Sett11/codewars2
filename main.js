@@ -1,9 +1,11 @@
-function transFactors(s){
-    const f=(x,y,a=[],i=-1)=>{while((i=x.indexOf(y,i+1))!==-1)a.push(i+1);return a}
-    const o={ATF6: "TGACGT",CREB: "TGACGCA",cMyc: "CACGTG",Gata1: "GATT",AhR: "TGCGTG" }
-    for(i in o)o[i]=f(s,o[i])
-    for(i in o)if(!o[i].length)delete o[i]
-    return o
+function concatenationProcess(a){
+  let one=a.map((e,i)=>[e,i]).sort((a,b)=>a[0].length-b[0].length).filter((e,i,v)=>e[0].length===v[0][0].length).shift()
+  a=a.map((e,i)=>[e,i]).filter(e=>e[1]!==one[1])
+  let two= a.sort((a,b)=>a[0].length-b[0].length).filter((e,i,v)=>e[0].length===v[0][0].length).pop()
+  a=a.filter(e=>e[1]!==two[1])
+  a.push(one[0]+two[0])
+  a=a.map(e=>typeof e!=='string'?e[0]:e)
+  return a.length===1?a[0]:concatenationProcess(a)
 }
 
-  console.log(transFactors('GATTCGGCGGACATGGCGGCTCAGATCACCAAGCGCAAGTGGGAGGCGGCCCATGAGGCGGAGCAGTTGAGAGCCTACCTGGATGGCACGTGCGTGGAGTGGCTCCGCAGATACCTGGAGAACGGGAAGGAGACGCTGCAGCGCACGGACCCCCCCAAGACACATATGACCCACCACCCCATCTCTGACCATGAGGCCACCCTGAGGTGCTGGGCCCTGGGCTTCTACCCTGCGGAGATCACACTGACCTGGCAGCGGGATGGGGAGGACCAGACCCAGGACACGGAGCTCGTGGAGACCAGGCCTGCAGGGGATGGAACCTTCCAGAAGTGGGCGGCTGTGGTGGTGCCTTCTGGAGAGGAGCAGAGATACACCTGCCATGTGCAGCATGAGGGTCTGCCCAAGCCCCTCACCCTGAGATGGGAGCTGTCTTCCCAGCCCACCATCCCCATCGTGGGCATCATTGCTGGCCTGGTTCTCCTTGGAGCTGTGATCACTGGAGCTGTGGTCGCTGCCGTGATGTGGAGGAGGAAGAGCTCAGATAGAAAAGGAGGGAGTTACACTCAGGCTGCAAGCAGTGACAGTGCCCAGGGCTCTGATGTGTCCCTCACAGCTTGTAAAGTGTGACACGTG'))
+console.log(concatenationProcess(["a","abc","abcc","aaa","z","","qw"]))
