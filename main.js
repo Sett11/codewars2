@@ -1,16 +1,6 @@
-class PaginationHelper {
-	constructor(a,n) {
-	this.a=a
-  this.n=n
-  this.arr=[]
-  for(let i=0;i<this.a.length;i+=this.n)this.arr.push(this.a.slice(i,i+this.n))
-	}
-	itemCount=()=>this.a.length
-	pageCount=()=>this.arr.length
-	pageItemCount=n=>this.arr[n]?this.arr[n].length:-1
-	pageIndex=n=>n<0||n>=this.a.length||!this.a.length?-1:n<this.n?0:~~(n/this.n)
+function palindrome(s){
+  s=s.replace(/[^A-Za-z]/g,'').toLowerCase(),s1=s.replace(/[aioue]/g,''),s2=s.replace(/[^aioue]/g,''),s1s=[...s1].reverse().join``,s2s=[...s2].reverse().join``
+  return s1===s1s&&s2===s2s?'both':s2===s2s?'vowel':s1===s1s?'consonant':'neither'
 }
 
-const r=new PaginationHelper([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],4)
-
-console.log(r.pageIndex(17))
+console.log(palindrome(" *73_ ab"))
