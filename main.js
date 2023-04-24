@@ -1,20 +1,20 @@
-function sumOfRegularNumbers(a,r=[]){
-  a.push(0)
-  for(let i=0;i<a.length;i++){
-    let t=a[i+1]-a[i],y=a[i+2]-a[i+1],inArr=[]
-    if(t===y){
-      for(let j=i;j<a.length-1;j++){
-        let x=a[j+1]-a[j]
-        inArr.push(a[j])
-        if(x!==t){
-          i=j-1
+function solution(a){
+  a=a.map(e=>[e[0],e[e.length-1]].join``).sort()
+  const f=x=>{
+    let t=x.shift()
+    while(x.length){
+      for(let i=0;i<=x.length;i++){
+        if(i===x.length)return t
+        if(x[i][0]===t[t.length-1]){
+          t+=x.splice(i,1)[0]
           break
         }
       }
     }
-    if(inArr.length>2)r.push(inArr.reduce((a,c)=>a+c,0))
-    inArr=[]
+    return t
   }
-  return r.reduce((a,c)=>a+c,0)
+  z=a.map((e,i,v)=>(v.slice(i)+' '+v.slice(0,i)).replace(/ /g,',').split`,`)
+  return z.map(e=>f(e)).some(e=>e.length===a.join``.length)
 }
-console.log(sumOfRegularNumbers([1, 2, 3, 4, 5]))
+
+console.log(solution(["east", "e", "e", "t", "t", "e", "time"]))
