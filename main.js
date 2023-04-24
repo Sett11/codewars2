@@ -1,18 +1,13 @@
-function slogans(p,r,a=[]){
-  for(let i=r.length;i>=0;i--){
-    if(p.match(r)){
-      a.push(r)
-      break
-    }
-    let t=r.slice(0,i)
-    if(p.match(t)){
-      a.push(t)
-      r=r.replace(t,'')
-      i=r.length
-      t=''
-    }
+function sixColumnEncryption(s,a=[],r=[]){
+  for(let i=0;i<s.length;i+=6)a.push(s.slice(i,i+6).replace(/ /g,'.'))
+  a=a.map(e=>e+'.'.repeat(6-e.length))
+  for(let i=0;i<6;i++){
+    let c=''
+    for(let j=0;j<a.length;j++)c+=a[j][i]
+    r.push(c)
+    c=''
   }
-  return a.length
+  return r.join` `
 }
 
-console.log(slogans("glorytoukraine","ukraineaineainee"))
+console.log(sixColumnEncryption("Attack at noon or we are done for"))
