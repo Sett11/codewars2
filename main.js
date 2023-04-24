@@ -1,20 +1,18 @@
-function solution(a){
-  a=a.map(e=>[e[0],e[e.length-1]].join``).sort()
-  const f=x=>{
-    let t=x.shift()
-    while(x.length){
-      for(let i=0;i<=x.length;i++){
-        if(i===x.length)return t
-        if(x[i][0]===t[t.length-1]){
-          t+=x.splice(i,1)[0]
-          break
-        }
-      }
+class Node {
+    constructor(data, next = null) {
+      this.data = data;
+      this.next = next;
     }
-    return t
   }
-  z=a.map((e,i,v)=>(v.slice(i)+' '+v.slice(0,i)).replace(/ /g,',').split`,`)
-  return z.map(e=>f(e)).some(e=>e.length===a.join``.length)
+
+function parse(s){
+    const f=x=>{
+        let t=null
+        x.pop()
+        while(x.length>0)t=new Node(x.pop(),t)
+        return t
+    }
+  return f(s.split`->`.map(e=>+e===+e?+e:null))
 }
 
-console.log(solution(["east", "e", "e", "t", "t", "e", "time"]))
+console.log(parse("16 -> null"))
