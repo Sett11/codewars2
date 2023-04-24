@@ -1,7 +1,35 @@
-function findHack(a) {
-  return a.slice().map(e=>{
-    if(e[2].length>=5&&e[2].every(u=>u==='A'||u==='B'))e[2].push(20)
-    e[2]=e[2].map(u=>u==='A'?30:u==='B'?20:u==='C'?10:u==='D'?5:u===20?20:0).reduce((a,c)=>a+c,0)
-    return e
-  }).filter(e=>e[1]!==e[2]||e[1]>200).map(e=>e[0])
+class Cons{
+    constructor(head,tail){
+    this.head = head;
+    this.tail = tail;
+    }
 }
+function toArray(list) {
+    if(list){
+        var more = list.tail;
+        return [list.head].concat(more? toArray(more) : []);
+    }
+    return [];
+}
+Cons.prototype.toArray = function(){ return toArray(this); };
+
+Cons.fromArray=function(a){
+    let t=null
+    while(a.length){
+        t=new Cons(a.pop(),t)
+    }
+    return t
+}
+  
+ Cons.prototype.filter=function(p){
+    let t=this.tail&&this.tail.filter(p)
+    return p(this.head)?new Cons(this.head,t):t
+  }
+  
+  Cons.prototype.map=function(m){
+    return new Cons(m(this.head),this.tail&&this.tail.map(m))
+  }
+  const r=new Cons()
+  const x=r.fromArray([ 1, 2, 3, 4, 5 ])
+  console.log(map(x,e=>e**2))
+  
