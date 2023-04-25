@@ -1,17 +1,14 @@
-function fix_countdown() {
-    delete Array.prototype.Dammit
-  }
-  function countdown() {
-    var ret = "";
-    var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    for (var number in numbers) {
-      if (ret) ret += ", ";
-      if (number < 10)
-        number = 10 - number;
-      else if (number == 10)
-        number = "Zero";
-      ret += number;
+function sort(a){
+  for(let i=0;i<a.length;i++){
+    for(let j=i+1;j<a.length;j++){
+        if(a[i]>a[j]){
+            let t=a[i]
+            a[i]=a[j]
+            a[j]=t
+        }
     }
-    ret += "!";
-    return ret;
   }
+  return a
+}
+
+console.log(sort(["abc", "adc", "acc"]))
