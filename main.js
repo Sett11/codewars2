@@ -1,3 +1,20 @@
-benford=a=>Array(9).fill(0).map((e,i)=>a.map(e=>(e+'').replace(/[^1-9]/g,'')[0]).filter(z=>z===i+1+'').length/a.length)
+class Node {
+  constructor(data, next = null) {
+    this.data = data;
+    this.next = next;
+  }
+}
 
-console.log(benford([ 1.32, 57.8, 0.009, 111.73 ]))
+function stringify(l){
+  const f=x=>{
+    if(x){
+      y=x.next
+      return [x.data].concat(y?f(y):[])
+    }
+    return []
+  }
+  r=f(l)
+  return r.length?r.join` -> `+' -> null':'null'
+}
+
+console.log(stringify(new Node(1, new Node(2, new Node(3)))))
