@@ -1,29 +1,13 @@
-class RomanNumerals {
-    static toRoman(n) {
-        const o=[[1,'I'],[5,'V'],[10,'X'],[50,'L'],[100,'C'],[500,'D'],[1000,'M']].reverse(),a=[]
-        for(let i=0;i<o.length;i++){
-            while(n>=o[i][0]){
-                n-=o[i][0]
-                a.push(o[i][1])
-            }
-        }
-        return a.join``.replace(/VIIII/g,'IX')
-        .replace(/IIII/g,'IV').replace(/LXXXX/g,'XC')
-        .replace(/XXXX/g,'XL').replace(/DCCCC/g,'CM')
-        .replace(/CCCC/g,'CD')
-    }
-    static fromRoman(r) {
-        const o={'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
-        r=[...r].map(e=>o[e])
-        let c=0
-        r.push(0)
-        for(let i=0;i<r.length-1;i++){
-          if(r[i+1]<=r[i])c+=r[i]
-          else c-=r[i]
-        }
-        return c
-    }
-  }
+function getMostFrequent(a){
+  return a.temperature.map(e=>e.map((u,j)=>[u,e.filter(z=>z===u).length,j]).sort((a,b)=>b[1]-a[1]||b[2]-a[2]).filter((a,b,c)=>a[1]===c[0][1]&&a[2]===c[0][2])).map(e=>e[0][0])
+}
 
-  console.log(RomanNumerals.fromRoman('MMC'))
-  console.log(RomanNumerals.toRoman(2100))
+console.log(getMostFrequent( {
+    "temperature": [
+      [15,17,19,21,21,21,20,16],
+      [16,17,22,22,22,22,20,16],
+      [12,17,19,20,20,20,20,18],
+      [14,15,19,19,20,22,18,17],
+      [15,17,24,24,24,20,20,20]
+    ]
+  }))
