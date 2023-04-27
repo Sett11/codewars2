@@ -1,17 +1,7 @@
-function getKyu(a,h){
-  a.push(h)
-  a.sort((a,b)=>a-b)
-  one=[a.shift()]
-  two=[a.shift(),a.shift()]
-  three=[a.shift(),a.shift()]
-  four=[a.shift(),a.shift(),a.shift()]
-  five=[a.shift(),a.shift(),a.shift()]
-  six=[a.shift(),a.shift(),a.shift()]
-  seven=[a.shift(),a.shift(),a.shift(),a.shift()]
-  eight=[a.shift(),a.shift(),a.shift(),a.shift()]
-  r=[one,two,three,four,five,six,seven,eight]
-  for(let i=0;i<r.length;i++)if(r[i].includes(h))return i+1
-  return 0
+function findMissing(a,r=[]){
+  for(let i=1;i<a.length;i++)r.push(a[i]/a[i-1])
+  c=+Object.entries(r.reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{})).sort((a,b)=>b[1]-a[1])[0][0]
+  for(let i=0;i<a.length;i++)if(a[i]*c!==a[i+1])return a[i]*c
 }
 
-console.log(getKyu([1,7,2,3,4,5], 1))
+console.log(findMissing([1,4,16,256]))
