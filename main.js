@@ -1,40 +1,105 @@
-function graph(a){
-  if(!a.length)return ''
-  if(a.length===1&&!a[0])return " ____  ^ 0"
-  let r=Array(Math.max(...a)+1).fill(1).map((_,i)=>i+'').map((e,i,v)=>!i?'& '+e:i!==v.length-1&&i?'& '+e+'\n':'^ '+e+'\n').map(e=>'......'.repeat(a.length)+' '+e).reverse()
-  r=r.map((e,i)=>{
-    let d=+e.replace(/\D/g,'')
-    x=a.map((u,j)=>d===u?j+1:0).filter(z=>z)
-    if(!a.includes(d))return [...e]
-    else{
-        let s=' ____ '
-        for(let i=0;i<x.length;i++){
-          let t=6*(x[i])
-          e=e.slice(0,t-6)+s+e.slice(t)
-        }
-      return [...e]
+function safe_mine_field(a,z=4,c=0){
+  if(!a.length)return []
+  const f=x=>{
+    r=[]
+    for(let i=0;i<x[0].length;i++){
+      let iArr=[]
+      for(let j=0;j<x.length;j++)iArr.push(x[j][i])
+      r.push(iArr),iArr=[]
     }
-  })
-  let c=0
-  while(c<r.length){
-    for(let i=0;i<r[c].length;i++){
-      if(r[c][i]===' '&&r[c][i+1]==='_'||r[c][i]===' '&&r[c][i-1]==='_'){
-        for(let j=c+1;j<r.length;j++){
-          r[j][i]='|'
+    return r
+  }
+while(z){
+  while(c<a.length){
+    for(let i=0;i<a[c].length;i++){
+      if(a[c][i]==='M'){
+        for(let j=c;j<a.length;j++){
+          if(a[j][i]==='M')continue
+          if(a[j][i]==='T')break
+          if(a[j][i]==='.')a[j][i]='C'
         }
       }
     }
     c++
   }
-  return r.map(e=>{
-    e=e.join``
-    for(let i=0;i<e.length;i++){
-      if(e[i]==='|'&&e[i+5]==='|'){
-        e=e.slice(0,i)+e.slice(i,i+5).replace(/\./g,' ')+e.slice(i+5)
-      }
-    }
-    return e.replace(/\&/,'|')
-  }).join``
+  a=f(a).reverse(),z--,c=0
+}
+  return a.map((e,i)=>e.map((u,j)=>u==='.'?[i,j]:0).filter(z=>z)).filter(e=>e.length).flat()
 }
 
-console.log(graph([1,3,5,4,1]))
+console.log(safe_mine_field([
+  ['.', '.', 'T', '.', '.', '.', 'M'],
+  ['.', 'T', '.', '.', '.', 'M', '.'],
+  ['.', '.', 'M', '.', 'M', '.', '.'],
+  ['.', 'M', '.', '.', '.', 'T', '.'], 
+  ['M', '.', '.', '.', 'T', '.', '.']
+]))
+
+console.log(safe_mine_field(
+[
+  [
+    'C', 'C', 'C', 'C',
+    'M', 'C', 'C', 'C',
+    'M', 'C', 'C'
+  ],
+  [
+    '.', 'C', 'T', 'C',
+    'C', 'M', 'C', 'C',
+    'C', 'T', '.'
+  ],
+  [
+    '.', 'C', 'C', 'C',
+    'C', 'C', '.', 'C',
+    'C', 'C', '.'
+  ],
+  [
+    '.', 'C', 'C', 'C',
+    'C', 'C', '.', 'C',
+    'C', 'C', '.'
+  ],
+  [
+    'C', 'C', 'C', 'M',
+    'C', 'C', 'C', 'C',
+    'C', 'C', 'C'
+  ],
+  [
+    'C', 'C', 'M', 'C',
+    'C', 'M', 'C', 'C',
+    'M', 'C', 'T'
+  ],
+  [
+    '.', 'C', 'T', 'C',
+    'C', 'C', 'C', 'C',
+    'C', 'M', 'C'
+  ],
+  [
+    '.', 'C', 'C', 'C',
+    'C', 'C', '.', 'C',
+    'C', 'C', '.'
+  ],
+  [
+    'C', 'M', 'M', 'C',
+    'C', 'C', 'C', 'M',
+    'C', 'C', 'C'
+  ],
+  [
+    'C', 'M', 'C', 'C',
+    'C', 'C', 'C', 'M',
+    'C', 'C', 'C'
+  ],
+  [
+    '.', 'C', 'C', 'C',
+    'C', 'C', '.', 'C',
+    'C', 'C', '.'
+  ],
+  [
+    '.', 'C', 'C', 'C',
+    'C', 'C', 'T', 'C',
+    'C', 'M', 'C'
+  ],
+  [
+    'C', 'C', 'C', 'M',
+    'M', 'C', 'C', 'C',
+    'C', 'M', 'C'
+  ]
+]))
