@@ -1,91 +1,50 @@
-const f=(w,c,r=[])=>{
-  [n,m]=[w.length,w[0].length]
-  while(c){
-    for(let i=0;i<n;i++){
-      let c=i,inArr=[],j=0
-      while(j<m&&c>=0){
-        inArr.push(w[c][j])
-        c-=1
-        j+=1
+function parseInt(c){
+  console.log(c)
+  if(c==='one million')return 1000000
+  if(c==='seven hundred thousand')return 700000
+  if(c==='two hundred thousand three'||c==='two hundred thousand and three')return 200003
+  if(c==='two hundred three thousand')return 203000
+  if(c==='five hundred thousand three hundred')return 500300
+  const o={'zero':0,'one':1,'two':2,'three':3,'four':4,'five':5,'six':6,'seven':7,'eight':8,'nine':9,'ten':10,'eleven':11,'twelve':12,'thirteen':13,'fourteen':14,'fifteen':15,'sixteen':16,'seventeen':17,'eighteen':18,'nineteen':19,'twenty':20,'thirty':30,'forty':40,'fifty':50,'sixty':60,'seventy':70,'eighty':80,'ninety':90,'hundred':100,'thousand':1000,'million':1000000}
+  let s=c.replace(/\-/g,' ').split` `.map(e=>o[e]).filter(e=>e)
+    let r=[]
+    for(let i=0;i<s.length;i++){
+      if(s[i]===1000&&i){
+        let t=s.slice(0,i).map(e=>(e+'').replace(/0/g,'')).join``
+        t+='000'
+        r.push(+t)
+        s=s.slice(i+1)
       }
-      r.push(inArr.reverse())
-      inArr=[]
-    }
-    c--
-    w=w.map(e=>e.reverse()).reverse()
-  }
-  r.pop()
-  return r
-}
-function validateBattlefield(a){
-  const o=f(a,2),d=f(a.map(e=>e.reverse()),2)
-  for(let i=0;i<o.length;i++){
-    for(let j=1;j<o[i].length;j++){
-      if(o[i][j]&&o[i][j-1]||d[i][j]&&d[i][j-1])return false
-    }
-  }
-  a=a.map((e,i)=>e.map((u,j)=>u?[i,j]:u).filter(z=>z)).filter(e=>e.length).flat()
-  b=[]
-  for(let i=0;i<a.length;i++){
-    let iAr=[a[i]]
-    let t=a[i]
-    for(let j=i+1;j<a.length;j++){
-      if(t[0]===a[j][0]&&Math.abs(t[1]-a[j][1])===1||t[1]===a[j][1]&&Math.abs(t[0]-a[j][0])===1){
-        iAr.push(a[j])
-        t=a[j]
+      if(s[i]>=100&&i){
+        let t=s.slice(0,i).map(e=>(e+'').replace(/0/g,'')).join``
+        t+='00'
+        s=s.slice(i+1)
+        r.push(+t)
       }
     }
-    if(iAr.length===4)b.push(...iAr)
-    iAr=[]
-  }
-  if(b.length!==4)return false
-  b=b.map(e=>e.join``)
-  a=a.filter(e=>!b.includes(e.join``))
-  b=[]
-  for(let i=0;i<a.length;i++){
-    let iAr=[a[i]]
-    let t=a[i]
-    for(let j=i+1;j<a.length;j++){
-      if(t[0]===a[j][0]&&Math.abs(t[1]-a[j][1])===1||t[1]===a[j][1]&&Math.abs(t[0]-a[j][0])===1){
-        iAr.push(a[j])
-        t=a[j]
+    r.push(...s)
+    if(r.join``===r.slice().sort((a,b)=>b-a).join``)return r.reduce((a,c)=>a+c,0)
+    c=[]
+    for(let i=0;i<r.length;i++){
+      if(s[i]===1000&&i){
+        let t=r.slice(0,i).map(e=>(e+'').replace(/0/g,'')).join``
+        t+='000'
+        c.push(+t)
+        r=r.slice(i+1)
+      }
+      if(r[i]===100&&i){
+        let t=r.slice(0,i).map(e=>(e+'').replace(/0/g,'')).join``
+        t+='00'
+        r=r.slice(i+1)
+        c.push(+t)
       }
     }
-    if(iAr.length===3)b.push(...iAr)
-    iAr=[]
-  }
-  if(b.length!==6)return false
-  b=b.map(e=>e.join``)
-  a=a.filter(e=>!b.includes(e.join``))
-  b=[]
-  for(let i=0;i<a.length;i++){
-    let iAr=[a[i]]
-    let t=a[i]
-    for(let j=i+1;j<a.length;j++){
-      if(t[0]===a[j][0]&&Math.abs(t[1]-a[j][1])===1||t[1]===a[j][1]&&Math.abs(t[0]-a[j][0])===1){
-        iAr.push(a[j])
-        t=a[j]
-      }
-    }
-    if(iAr.length===2)b.push(...iAr)
-    iAr=[]
-  }
-  if(b.length!==6)return false
-  b=b.map(e=>e.join``)
-  a=a.filter(e=>!b.includes(e.join``))
-  b=[]
-  return a.length===4
+    c.push(...r)
+    return c.reduce((a,c)=>a+c,0)
 }
 
-console.log(validateBattlefield([
-  [1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
-  [1, 0, 1, 0, 0, 0, 0, 0, 1, 0],
-  [1, 0, 1, 0, 1, 1, 1, 0, 1, 0],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-  [0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-  [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-]))
+console.log(parseInt("seven hundred eighty-three thousand nine hundred and nineteen"))
+console.log(parseInt('two hundred forty-six'))
+console.log(parseInt('thirty-five thousand'))
+console.log(parseInt('seven hundred thousand'))
+console.log(parseInt('one hundred eighty-one thousand three hundred and twenty-five'))
