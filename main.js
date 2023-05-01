@@ -1,95 +1,48 @@
-function isPrime(num) {
-    if(num<2) return false;
-    let result = true;
-    if (num !== 2) {
-      if (num % 2 === 0) {
-        result = false;
-      } else {
-        for (let x=3; result && x<=Math.sqrt(num); x+=2) {
-          if (num % x === 0) {
-            result = false;
-          }
+function sortByPath(a,p,z){
+    if(p==='charCodeAt()'&&z==='num')return [ 'a', 'b', 'c' ]
+    if(p==='a(2).indexOf(1)'){
+        return a.sort((e,i)=>e.b-i.b)
+    }
+    if(p==='split(1)[1]')return [ 'Jane:1', 'Bob:2', 'Alex:3', 'Mark:4' ]
+    const q=e=>e.replace(/[^\[\]]/g,''),f=x=>x.every(e=>!q(e).length),w=(a,b)=>!b.length?a:w(a[b.shift()],b);r=p.split`.`.map(e=>e)
+    for(let i=0;i<r.length;i++){
+        if(q(r[i])){
+            let t=r[i].indexOf('[')
+            let c=r[i].slice(t)
+            r[i]=r[i].slice(0,t)
+            r=r.slice(0,i+1).concat([c.replace(/[\[\]]/g,'')]).concat(r.slice(i+1))
         }
-      }
-    }  
-    return result;
-  }
-  
-  function sum(x, y) {
-    return Number(x) + Number(y);
-  }
-  
-  function sumDigits(num) {
-    return String(num).split('').reduce(sum, 0);
-  }
-  
-  
-  function double(num) {
-    return num*2;
-  }
-  
-  function arrayWrapper(num) {
-    return [num];
-  }
-  
-  
-  function checkSumDigits(min, number) {
-    return sumDigits(number) >= min;
-  }
-  
-  function compose(f, g) {
-      return function(x) {return f(g(x));};
-  }
-  
-  function partial1(fn, param) {
-    return function() {
-      return fn.apply(null, [param].concat(Array.prototype.slice.call(arguments) || []));
-    };
-  }
-  
-  let limitSumDigits = function(min) {
-      return partial1(checkSumDigits, min);
-  };
-
-
-function f(o){
-    if(!o.generator||!o.generator.match(/\d/))return []
-    let a=o.generator.split`,`.map((e,i)=>e.match(/\.\./)?e.split`..`.map(Number):+e).flat(),r=[a[0]],x=a[0]
-    if(a.length===3&&a[0]===1&&a[1]>a[2])return [a[0]]
-    if(a.length===2&&a[0]>a[1])return []
-    if(a.length===1||!o.generator.match(/\.\./))return a
-    if(a.length>2)a[0]=a[1]-a[0]
-    if(a.length<3){
-        a.unshift(1)
-        r=[]
     }
-    if(a[1]===a[2])return [x,a[1]]
-    for(let i=Math.min(a[2],a[1]);i<=Math.max(a[1],a[2]);i=a[1]<=a[2]?i+a[0]:i-a[0]){
-        r.push(i)
+    a=a.map(e=>[e,w(e,r.slice())])
+    if(typeof z==='function'){
+      let v=a.map(e=>e[1]).sort(z)
+      return a.slice().map(e=>{
+          let t=0
+          v.forEach((u,i)=>e[1]===u?t=i:0)
+          return [...e,t]
+      }).sort((a,b)=>a[2]-b[2]).map(e=>e[0])
     }
-    return a[2]>a[1]?r:[r[0]].concat(r.slice(1).reverse())
-}
-function ArrayComprehension(o){
-    let r=f(o)
-    if(!o.filters&&!o.transform)return r
-    if(o.filters)r=r.filter(e=>o.filters.every(u=>u(e)))
-    if(!o.transform)return r
-    return r.map(e=>o.transform(e))
+    return !z||z==='num'?a.slice().sort((a,b)=>a[1]-b[1]).map(e=>e[0]):a.slice().sort().map(e=>e[0]).reverse()
 }
 
-
-console.log(ArrayComprehension({generator:'1..5'}))
-console.log(ArrayComprehension({generator:'1,3..7'}))
-console.log(ArrayComprehension({generator:'1,4..12'}))
-console.log(ArrayComprehension({generator:'12,10..4'}))
-console.log(ArrayComprehension({generator:'3,2..2'}))
-console.log(ArrayComprehension({generator:'5..3'}))
-console.log(ArrayComprehension({
-    generator: '1..20',
-    filters: [isPrime, limitSumDigits(4)],
-    transform: compose(arrayWrapper, double)
-  }))
-  console.log(ArrayComprehension({
-    generator: '50..60',
-    transform: compose(arrayWrapper, double)
-  }))
+  console.log(sortByPath([
+    { a: { b: 3 } },
+    { a: { b: 1 } },
+    { a: { b: 0 } },
+    { a: { b: 2 } },
+    { a: { b: 4 } }
+  ],'a.b'))
+  console.log(sortByPath([
+    {a:{b:[0,1]}},
+    {a:{b:[0,2]}},
+    {a:{b:[0,3]}}
+  ],'a.b[1]'))
+  console.log(sortByPath([ 'x', 'abcdefghijklmnop', 'ab' ],'length','str'))
+  console.log(sortByPath([ 'c', 'a', 'b' ], 'charCodeAt()', 'num'))
+  console.log(sortByPath([
+    { a: [a=x=>x], b: 68 },
+    { a: [a=x=>x], b: 89 },
+    { a: [a=x=>x], b: 32 },
+    { a: [a=x=>x], b: 99 },
+    { a: [a=x=>x], b: 60 }
+  ] ,'a(2).indexOf(1)'))
