@@ -1,13 +1,6 @@
-function unique(a,k){
-  return a.map((e,j,v)=>{
-    for(let i=0;i<v.length;i++){
-      if(i!==j&&k.every(u=>e[u]===v[i][u]))v[i]=0
-    }
-    return e
-  }).filter(e=>e)
-}
+duplicated=(a,k)=>a.filter((e,i,v)=>v.some((u,j)=>i!==j&&k.every(z=>e[z]===u[z])))
 
-console.log(unique([
+console.log(duplicated([
   { x: 1, y: 1 },
   { x: 2, y: 2 },
   { x: 1, z: 1 },
