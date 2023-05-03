@@ -1,7 +1,8 @@
-dataTypes=s=>s.replace(/true|false/gi,' $& ').replace(/[A-z]+|\d+/g,' $& ').toLowerCase().split` `.filter(e=>e).map(e=>e==='true'||e==='false'?'boolean':+e===+e?'number':'string')
+function parseKidList(s){
+  return s.split`\n`.map(e=>[e.split`,`[0].toUpperCase(),`(${e.split`,`[2].toUpperCase()})`,e.split`,`[1].split`/`.map(u=>u.length===1?'0'+u:u).join`/`])
+}
+function sortByNames(a){
+  return a.sort((a,b)=>a[0].localeCompare(b[0])).map(e=>e.join` `)
+}
 
-
-  console.log(dataTypes('truestring1'))
-  console.log(dataTypes('123gjet'))
-  console.log(dataTypes('Youarenumber1'))
-  console.log(dataTypes("You are number 1"))
+console.log(sortByNames(parseKidList("Jawed,9/4/2012,m\nAnna,16/6/2013,f\nZina,2/12/2011,f")))
