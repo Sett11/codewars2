@@ -1,6 +1,41 @@
-legRoom=(a,b,v=b.match(/00/),s=b.replace(/[aeiou]/gi,'').length*2,n=~~(a/100*55)/100*15)=>v?'Jackpot!':s<=n?'ouch':s>n+6?'super comfy':'comfortable'
+const o={
+  'a':['4', '@'],
+  'b':['|3', '8'],
+  'd':['|)', 'o|'],
+  'e':['3'],
+  'f':['|='],
+  'g':['9', '6'],
+  'h':['|-|', ']-[', '}-{', '(-)', ')-(', '#'],
+  'i':['1', '!', ']['],
+  'j':['_|'],
+  'k':['\|<', '\|{'],
+  'l':['|_'],
+  'n':['|\\|'],
+  'o':['0'],
+  'p':['|2', '|D'],
+  'q':['(,)'],
+  'r':['|Z', '|?'],
+  's':['5', '$'],
+  't':['+', '7'],
+  'v':['|/', '\\/'],
+  'w':['\\^/', '//'],
+  'x':['><', '}{'],
+  'y':['`/'],
+  'z':['(\\)']}
 
+function toLeet(a,s=[...a].map(e=>e)){
+  for(let i in o){
+    while(s.includes(i)){
+      c=0
+      for(let j=0;j<s.length;j++){
+        if(s[j]===i){
+          s[j]=o[i][c%o[i].length]
+          c++
+        }
+      }
+    }
+  }
+  return s.join``
+}
 
-console.log(legRoom(108,'ifbjejaigghkg'))
-console.log(legRoom(192, 'aelm'))
-console.log(legRoom(168, 'alljhfmd'))
+console.log(toLeet('what is this'))
