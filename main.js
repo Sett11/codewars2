@@ -1,41 +1,15 @@
-const o={
-  'a':['4', '@'],
-  'b':['|3', '8'],
-  'd':['|)', 'o|'],
-  'e':['3'],
-  'f':['|='],
-  'g':['9', '6'],
-  'h':['|-|', ']-[', '}-{', '(-)', ')-(', '#'],
-  'i':['1', '!', ']['],
-  'j':['_|'],
-  'k':['\|<', '\|{'],
-  'l':['|_'],
-  'n':['|\\|'],
-  'o':['0'],
-  'p':['|2', '|D'],
-  'q':['(,)'],
-  'r':['|Z', '|?'],
-  's':['5', '$'],
-  't':['+', '7'],
-  'v':['|/', '\\/'],
-  'w':['\\^/', '//'],
-  'x':['><', '}{'],
-  'y':['`/'],
-  'z':['(\\)']}
-
-function toLeet(a,s=[...a].map(e=>e)){
-  for(let i in o){
-    while(s.includes(i)){
-      c=0
-      for(let j=0;j<s.length;j++){
-        if(s[j]===i){
-          s[j]=o[i][c%o[i].length]
-          c++
-        }
-      }
+function unique(a,k){
+  return a.map((e,j,v)=>{
+    for(let i=0;i<v.length;i++){
+      if(i!==j&&k.every(u=>e[u]===v[i][u]))v[i]=0
     }
-  }
-  return s.join``
+    return e
+  }).filter(e=>e)
 }
 
-console.log(toLeet('what is this'))
+console.log(unique([
+  { x: 1, y: 1 },
+  { x: 2, y: 2 },
+  { x: 1, z: 1 },
+  { x: 1, y: 1, z: 3 },
+],['x','y']))
