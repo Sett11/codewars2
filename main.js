@@ -1,8 +1,15 @@
-function parseKidList(s){
-  return s.split`\n`.map(e=>[e.split`,`[0].toUpperCase(),`(${e.split`,`[2].toUpperCase()})`,e.split`,`[1].split`/`.map(u=>u.length===1?'0'+u:u).join`/`])
-}
-function sortByNames(a){
-  return a.sort((a,b)=>a[0].localeCompare(b[0])).map(e=>e.join` `)
+function conquerIsland(m,a=[],r=[]){
+  const f=x=>x.sort((a,b)=>a[1]-b[1]).filter((e,_,v)=>e[1]===v[0][1]).map(e=>e[0]).sort((a,b)=>a[0]-b[0]||a[1]-b[1])
+  m.forEach((e,i)=>e.forEach((u,j)=>u==='u'?a.push([[i,j],i+j]):u==='m'?r.push([[i,j],i+j]):0)) 
+  return !a.length&&!r.length?[]:a.length===1?a[0][0]:!a.length&&r.length===1?r[0][0]:a.length?f(a):f(r)
 }
 
-console.log(sortByNames(parseKidList("Jawed,9/4/2012,m\nAnna,16/6/2013,f\nZina,2/12/2011,f")))
+console.log(conquerIsland([
+  ['p', '~', '~', '~', '~', '~', '~', '~'],
+  ['~', '~', '~', '~', '~', '~', '~', '~'],
+  ['~', '~', '~', '~', '~', '~', '~', '~'],
+  ['~', '~', '~', '~', '~', '~', '~', '~'],
+  ['~', '~', '~', '~', '~', '~', '~', '~'],
+  ['~', '~', '~', '~', '~', '~', '~', '~'],
+  ['~', '~', '~', '~', '~', '~', '~', '~'],
+  ['u', '~', '~', '~', '~', '~', '~', '~']]))
