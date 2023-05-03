@@ -1,20 +1,7 @@
-function factory(a){
-  const f=x=>x.map(e=>typeof e==='function'?e():e).reduce((a,c)=>a.concat(Array.isArray(c)?f(c):[c]),[])
-  const r=f(a).sort((a,b)=>a.priority-b.priority).map(e=>e.item),z=[]
-  for(let i=0;i<r.length;i+=10)z.push(r.slice(i,i+10))
-  return z
-}
-console.log(factory([
-  [{item: 'item 3', priority: 3}, {item: 'item 1', priority: 1}],
-  [{item: 'item 2', priority: 2}]
-]))
-console.log( factory([
-  function() {return [
-    {item: 'item 3', priority: 3}, {item: 'item 2', priority: 2}
-  ]},
-  [{item: 'item 1', priority: 1}],
-]))
-console.log( factory([
-  [{item: 'wrench', priority: 1}, {item: 'socket set', priority: 10}],
-  function () { return [{item: 'cake', priority: 8}, {item: 'glue', priority: 5}] },
-]))
+dataTypes=s=>s.replace(/true|false/gi,' $& ').replace(/[A-z]+|\d+/g,' $& ').toLowerCase().split` `.filter(e=>e).map(e=>e==='true'||e==='false'?'boolean':+e===+e?'number':'string')
+
+
+  console.log(dataTypes('truestring1'))
+  console.log(dataTypes('123gjet'))
+  console.log(dataTypes('Youarenumber1'))
+  console.log(dataTypes("You are number 1"))
