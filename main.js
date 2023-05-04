@@ -1,12 +1,10 @@
-function foundationMessage(c,s=c.replace(/[\.\!\?]/g,'-&-').split`-&-`.map(e=>e.replace(/[^a-z0-9' ]/gi,'')).filter(e=>e),q=''){
-   while(s.length){
-    let p=s.shift().split` `.filter(e=>e).map(e=>e.replace(/[^a-z0-9]/gi,'').length),r=[],w=p.length
-    while(w){r.push(s.shift());w--}
-    r=r.map((e,i)=>e.split` `.filter(u=>u)[p[i]-1]).join` `
-    r=(r.charAt(0).toUpperCase()+r.slice(1).toLowerCase().trim())+'.'
-    q+=r+' '
-   }
-  return q.trim()
+function send(s){
+  return [...s].map(e=>((e).charCodeAt()).toString(2)).map(e=>'0'.repeat(7-e.length)+e).join``.match(/0+|1+\1*/g).map(e=>+e[0]?'0 '+'0'.repeat(e.length):'00 '+'0'.repeat(e.length)).join` `
+}
+function receive(s,a=s.split` `,r=[]){
+  for(let i=0;i<a.length;i+=2)a[i]=='0'?r.push('1'.repeat(a[i+1].length)):r.push('0'.repeat(a[i+1].length))
+  return r.join``.match(/.{7,7}/g).map(e=>String.fromCharCode(parseInt(e,2))).join``
 }
 
-console.log(foundationMessage('Yesterday, we bumped into Laura. It had to happen, but you can\'t deny the timing couldn\'t be worse. The "mission" to try and seduce her was a complete failure last month. By the way, she still has the ring I gave her. Anyhow, it hasn\'t been a pleasurable experience to go through it. I wanted to feel done with it first. Actually, forget I said that. It was probably for the best - staying on this forever wasn\'t going lead anywhere good. I mean, I should not hold on to it forever. For what it\'s worth, I\'m glad it forced me to get out of this dreamy illusion. A lesson for further down the road. A sort of instructions manual for life is what these past weeks have been, and it was all thanks to her.'))
+console.log(receive("0 0 00 0000 0 000 00 0000 0 00"))
+console.log(send("%"))
