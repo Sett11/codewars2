@@ -1,3 +1,17 @@
-sc=(a,f=x=>x.reduce((a,c)=>a.concat(Array.isArray(c)?f(c):[c]),[]),r=x=>Object.entries(x.reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{})).sort((a,b)=>b[1]-a[1]).filter((e,i,v)=>e[1]==v[0][1]).map(e=>+e[0]),z=r(f(a)))=>a.map(e=>e.filter(u=>!z.includes(u)))
+sc=(a,n,r=[])=>{
+  if(!n)return a
+  a.forEach((e,i)=>e.forEach((u,j)=>u==='V'?r.push([i,j]):0))
+  r=r.map(e=>[e,[e[0]+1,e[1]],[e[0],e[1]+1],[e[0]-1,e[1]],[e[0],e[1]-1]]).flat().filter(e=>e[0]>=0&&e[1]>=0&&e[0]<a.length&&e[1]<a[0].length)
+  for(let i=0;i<r.length;i++){
+    a[r[i][0]][r[i][1]]='V'
+  }
+  return sc(a,n-1)
+}
 
-console.log(sc([[3,4,4,5],[3,4,4,5],[3,4,4,5],[3,4,4,5]]))
+console.log(sc([
+  ["A","A","A","A","A"],
+  ["V","A","A","A","A"],
+  ["A","A","A","A","A"],
+  ["A","A","A","A","A"],
+  ["A","A","A","A","A"]
+  ],2))
