@@ -1,20 +1,20 @@
-function palindromicMnemonic(a){
-  return a.map(e=>Object.entries(e).map(u=>[(String(u[0])[0]+String(u[1])[0]).toLowerCase(),(String(u[0])[0]).toLowerCase()])).map(e=>{
-    let v=e.every(u=>u[0][0]===u[0][1]),s=e.map(u=>u[1]),vv=0,c=s.length,f=x=>x.join``===x.reverse().join``
-    while(c){
-      if(f(s))vv=1
-      s.unshift(s.pop())
-      c--
-    }
-    return v&&vv?'Palindromic Mnemonic!':v?'Mnemonic':vv?'Palindromic':'Objectively objective object'
-  }).join`\n`
+function reverseNumber(s,m=s[0]==='-'?'-':'',n=s.replace(/\D/g,''),q=''){
+ const f=(y,x=[...y].map(Number))=>x.slice().sort((a,b)=>a-b).join``===y||x.slice().sort((a,b)=>b-a).join``===y
+ for(let i=0;i<=n.length;i++){
+  let t=n.slice(0,i)
+  if(i===n.length&&f(t)){
+    q+=[...t].reverse().join``
+    break
+  }
+  if(!f(t)){
+    q+=[...t.slice(0,-1)].reverse().join``
+    n=n.slice(i-1)
+    i=0
+  }
+ }
+ while(!+q[0])q=q.slice(1)
+ return m+q
 }
 
-console.log(palindromicMnemonic([
-  {13 : "100", "Aardvark" : "arigatou"},
-{1 : 2, "Korean" : "BBQ", "is" : "TASTY", true:false},
-{"Harry" : "has", "often" : "over", "heated" : "HATS"},
-{"\\" : "woof", "Maleficent" : "rules", "\\\\" : "chilli"},
-{"this" : 'object4', "ts" : "false", "i" : "womble"}
-]))
-console.log(palindromicMnemonic([{"this" : 'object4', "ts" : "false", "i" : "womble"}]))
+console.log(reverseNumber('-520025'))
+console.log(reverseNumber('-244969809067815868079677501805063264427988149853'))
