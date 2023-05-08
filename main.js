@@ -1,31 +1,11 @@
-const a='abcdefghijklmnopqrstuvwxyz',b='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-function encodeStr(s,h,q=[]){
-  let r=s.split` `.map(e=>[...e].map(u=>!u.match(/[a-z]/i)?u:a.includes(u)?a[(a.indexOf(u)+h)%a.length]:b[(b.indexOf(u)+h)%b.length]).join``).join` `
-  r=s[0].toLowerCase()+a[a.indexOf(r[0].toLowerCase())]+r
-  let l=Math.ceil(r.length/5)
-  for(let i=0;i<r.length;i+=l)q.push(r.slice(i,i+l))
-  return q
-}
-function decode(w,o=w[0][0]+w[0][1],h=a.indexOf(o[1])-a.indexOf(o[0])){
-  w=w.join``.slice(2)
-  return w.split` `.map(e=>[...e].map(u=>{
-    if(!u.match(/[a-z]/i))return u
-    if(a.includes(u)){
-      u=(a.indexOf(u)-h)%a.length
-      return u<0?a[u+a.length-1]:a[u]
-    }
-    if(b.includes(u)){
-      u=(b.indexOf(u)-h)%b.length
-      return u<0?b[u+b.length-1]:b[u]
-    }
-  }).join``).join` `
+function quidditchScoreboard(t,a,o=t.split` vs `,q=['blatching', 'blurting', 'bumphing', 'haverstacking', 'quaffle-pocking', 'stooging']){
+ a=a.toLowerCase()
+ const v=a.match('caught snitch')
+ if(v)a=a.slice(0,v.index+13)
+ const f=(x,y)=>x.split`,`.filter(e=>e.match(y)).map(e=>e.replace(y,'').slice(2).trim``.toLowerCase())
+ const z=x=>x.reduce((a,c)=>a+c,0)
+ const r=[[o[0],f(a,o[0].toLowerCase())],[o[1],f(a,o[1].toLowerCase())]].map(e=>[e[0],e[1].map(u=>q.some(z=>u.match(z))?-30:u.match(/goal/)?10:u.match(/caught snitch/)?150:0)])
+ return r.map(e=>e[1].indexOf(150)!==-1?`${e[0]}: ${z(e[1].slice(0,e[1].indexOf(150)+1))}`:`${e[0]}: ${z(e[1])}`).join`, `
 }
 
-console.log(encodeStr("I should have known that you would have a perfect answer for me!!!",1))
-console.log(decode([
-  'ihH gzud roqdzc lx cqdz',
-  'lr tmcdq xntq edds; Sqd',
-  'zc rneskx adbztrd xnt s',
-  'qdzc nm lx cqdzlr. Vhkk',
-  'hzl A Xdzsr (1865-1939)'
-]))
+console.log(quidditchScoreboard('Wimbourne Wasps vs Cork','Cork: Quaffle goal, Cork: Quaffle-pocking foul, Cork: Quaffle goal, Wimbourne Wasps: Quaffle goal, Cork: Quaffle goal, Wimbourne Wasps: Quaffle goal, Wimbourne Wasps: Quaffle goal, Wimbourne Wasps: Quaffle goal, Cork: Quaffle goal, Wimbourne Wasps: Quaffle goal, Cork: Caught Snitch, Wimbourne Wasps: Quaffle goal'))
