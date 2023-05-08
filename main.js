@@ -1,7 +1,20 @@
-function countCharsBarGraph(s,w){
-  return Object.entries([...s.toLowerCase().replace(/[^A-Za-z]/g,'')].reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{})).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).map((e,i,v)=>!i?[...e,'#'.repeat(w)]:[...e,'#'.repeat(~~(e[1]/v[0][1]*w))]).map(e=>[e[0],e[2]].join`:`).join`\n`
+caesarSort=a=>{
+  const f=(x,a=[])=>{
+    for(let i=0;i<26;i++)a.push(JSON.stringify(x.map(e=>(e+i)%26)))
+    return a
+  }
+  return a.map(e=>f([...e].map(u=>(u).charCodeAt()-97))).map((e,j,v)=>{
+    let t=[]
+    for(let i=0;i<v.length;i++){
+      if(i!==j&&e.some(u=>v[i].some(z=>u===z))){
+        t.push(v[i][0])
+        v[i]=[]
+      }
+    }
+    t.push(e[0])
+    return t.filter(u=>u)
+  }).filter(e=>e.length).map(e=>e.map(u=>JSON.parse(u).map(z=>String.fromCharCode(z+97)).join``))
 }
 
-console.log(countCharsBarGraph('codeWARs:ssscdo....:::eocodeawrRRssSww:aaAA',37))
-console.log(1)
-console.log('s:#####################################\na:###############################\no:#####################\nr:#####################\nw:#####################\nc:###############\nd:###############\ne:###############')
+console.log(caesarSort(["z","a","az","zy"]))
+console.log(caesarSort(["a","b","c"]))
