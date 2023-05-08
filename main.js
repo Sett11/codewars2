@@ -1,20 +1,19 @@
-caesarSort=a=>{
-  const f=(x,a=[])=>{
-    for(let i=0;i<26;i++)a.push(JSON.stringify(x.map(e=>(e+i)%26)))
-    return a
-  }
-  return a.map(e=>f([...e].map(u=>(u).charCodeAt()-97))).map((e,j,v)=>{
-    let t=[]
-    for(let i=0;i<v.length;i++){
-      if(i!==j&&e.some(u=>v[i].some(z=>u===z))){
-        t.push(v[i][0])
-        v[i]=[]
-      }
+resolver=(g,s,b=[...s].reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{}))=>{
+  const r=[...g].map((e,i)=>{
+    if(e===s[i]){
+      b[e]-=1
+      return '&'
     }
-    t.push(e[0])
-    return t.filter(u=>u)
-  }).filter(e=>e.length).map(e=>e.map(u=>JSON.parse(u).map(z=>String.fromCharCode(z+97)).join``))
+   return e
+  })
+  return r.map(e=>{
+    if(e==='&')return 'g'
+    if(b[e]){
+      b[e]-=1
+      return 'y'
+    }
+    return 'b'
+  }).join``
 }
 
-console.log(caesarSort(["z","a","az","zy"]))
-console.log(caesarSort(["a","b","c"]))
+console.log(resolver( 'wooer','ivory'))
