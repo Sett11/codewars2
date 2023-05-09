@@ -12,4 +12,5 @@ function fillWater(a,c=0){
  a.push(`${c} litre${c>1?'s':''}`)
  return a
 }
+
 console.log(fillWater(["robber-A","robber-123","robber-xyz","stone","grass","tortoise",""]))
