@@ -1,7 +1,15 @@
-function sameMark(s,a,c=[...s].map((e,i)=>[e,i]).filter(e=>!e[0].match(/[a-z]/i))){
- return a.map(e=>{
-  for(let i=0;i<c.length;i++)e=e.slice(0,c[i][1])+c[i][0]+e.slice(c[i][1])
+function fillWater(a,c=0){
+ a=a.map(e=>{
+  let t=e.slice(0,6)
+  if(t==='robber'){
+    let z=e
+    while(e.length<30)e+='water'
+    e=e.slice(0,30)
+    c+=e.length-z.length
+  }
   return e
  })
+ a.push(`${c} litre${c>1?'s':''}`)
+ return a
 }
-console.log(sameMark("A-li--Bab---a",["JohnSmith","MichaelJackson","JamesBond"]))
+console.log(fillWater(["robber-A","robber-123","robber-xyz","stone","grass","tortoise",""]))
