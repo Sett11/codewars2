@@ -1,3 +1,7 @@
-berserkRater=(a,r=a.reduce((a,c)=>c.match(/clang/i)?a+=5:c.match(/cg/i)?a-=2:a-=1,0))=>r<0?'worstest episode ever':r>10?'bestest episode ever':r+''
+bind=(l,f,r=[])=>{
+  if(!Array.isArray(f(l[0])))throw Error()
+  l.forEach(e=>f(e).forEach(u=>r.push(u)))
+  return r
+}
 
-console.log(berserkRater(["is this the CG from a P2 game?","Hell, no! Even the CG in the Dreamcast game was more fluid than this!","Well, at least Gatsu does his clang even against a mere rabbit", "Hey, Cosette was not in this part of the story!", "Ops, everybody dead again! Well, how boring..."]))
+console.log(bind([3,4,5], function(a){return [[a,-a]]}))
