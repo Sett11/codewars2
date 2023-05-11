@@ -1,14 +1,28 @@
-function battleCodes(l,n,f=x=>x.filter(e=>e>0)){
-    l=[...l].map(e=>parseInt(e,36)-9),n=[...n+''].map(Number)
-    if(!l.length||!n.length)return 'Peace'
-    while(l.length&&n.length){
-        let t=n[0],p=l[l.length-1]
-        l[l.length-1]-=t
-        l[l.length-2]-=t
-        n[0]-=p
-        l=f(l),n=f(n)
+sum=(x,y)=>x+y
+double=x=>sum(x,x)
+minus=(x,y)=>x-y
+addOne=x=>sum(x,1)
+
+function chain(f){
+    class W{
+        constructor(x){
+            this.x=x
+        }
+        execute(){
+            return this.x
+        }
     }
-    return l.length?l.map(e=>String.fromCharCode(e+96)).join``:n.length?n.join``:'Draw'
+    Object.keys(f).forEach(e=>{
+        let t=f[e]
+        W.prototype[e]=function(){
+            let b=[].slice.call(arguments)
+            if(this.x!=null)b.unshift(this.x)
+            let y=t.apply(null,b)
+            return new W(y)
+        }
+    })
+    return new W()
 }
 
-console.log(battleCodes('abc', '123'))
+const c=chain({sum, minus, double, addOne})
+console.log(c.sum(1,2).execute())
