@@ -1,3 +1,4 @@
-charCheck=(t,m,s,f=x=>x.replace(/ /g,''))=>s&&t.length<=m?[true,t]:!s&&f(t).length<=m?[true,f(t)]:s&&t.length>m?[false,t.slice(0,m)]:[false,f(t).slice(0,m)]
+isbnConverter=(s,n='978',c=[...n+s.slice(0,-2).replace(/[^\d]/g,'')].map((e,i)=>i%2===0?+e:+e*3).reduce((a,c)=>a+c,0)%10)=>n+'-'+s.slice(0,-1)+(!c?c:10-c)
 
-console.log(charCheck("I am applying for the role of Base Manager on Titan.", 60, true))
+
+console.log(isbnConverter('1-85326-158-0'))
