@@ -1,28 +1,21 @@
-sum=(x,y)=>x+y
-double=x=>sum(x,x)
-minus=(x,y)=>x-y
-addOne=x=>sum(x,1)
+function lazyChain(a){
+     class W{
+      constructor(x){
+          this.x=x
+          this.arr=[]
+      }
+      invoke(...y){
+          this.arr.push([...y])
+          return this
+      }
+      value(){
+          return this.arr.reduce((a,c)=>a=(c.length===1?a[c[0]]():c.length===2?a[c[0]](c[1]):a[c[0]](c[1],c[2])),this.x)
+      }
+     }
+     return new W(a)
+  }
 
-function chain(f){
-    class W{
-        constructor(x){
-            this.x=x
-        }
-        execute(){
-            return this.x
-        }
-    }
-    Object.keys(f).forEach(e=>{
-        let t=f[e]
-        W.prototype[e]=function(){
-            let b=[].slice.call(arguments)
-            if(this.x!=null)b.unshift(this.x)
-            let y=t.apply(null,b)
-            return new W(y)
-        }
-    })
-    return new W()
-}
-
-const c=chain({sum, minus, double, addOne})
-console.log(c.sum(1,2).execute())
+  console.log(lazyChain([1,2,3])
+  .invoke('map', x => x * x)
+  .invoke('reverse')
+  .value())
