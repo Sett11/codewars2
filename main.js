@@ -1,46 +1,39 @@
-function winners(p1,p2,p3,c,d){
-      const f=x=>{
-          let r=x.map(e=>e.match(/\d/)?+e:e==='A'?1:10).reduce((a,c)=>a+c,0)
-          return r<12&&x.includes('A')?r+10:r
-      }
-      let a=[p1,p2,p3].map((e,i)=>[e,f(!e.length?['0']:e),`Player ${i+1}`]).filter(e=>e[1]<22)
-      let t=[[c,f(c)]].map(e=>{
-          while(e[1]<17){
-              e[0].push(d.shift())
-              e[1]=f(e[0])
-          }
-          return e
-      }).flat()
-      if(t[1]>21)return a.map(e=>e[2]).join`, `
-      if(!a.length&&t[0]<22)return ''
-      let r=[...a.map(e=>[e[0],e[1]]),t]
-      if(r.every(e=>e[1]===r[0][1]&&e[0].length===r[0][0].length&&e[1]===21))return ''
-      if(t[1]===21&&a[0][1]===21&&t[0].length===2&&a[0][0].length===2||t[1]===21&&t[0].length>2&&a.every(e=>e[1]===21&&e[0].length>2))return ''
-      a=a.filter(e=>e[1]>=t[1])
-      if(t[0].length===2&&t[1]===21)a=a.filter(e=>e[0].length===2)
-      if(t[1]<21)a=a.filter(e=>e[1]>t[1])
-      if(!a.length)return ''
-      if(t[1]===21&&t[0].length>2&&a[0][0].length>2&&a[0][1]===21)return ''
-      if(t[0].length===2&&!t[0].includes('10')&&t[1]===21&&a[0][1]===21&&a[0][0].includes('10'))return ''
-      return a.map(e=>e[2]).join`, `
-  }
+function getGeneration(x,n){
+    let a=JSON.parse(JSON.stringify(x))
+    if(!n)return a
+    let r=[],z=[],o=[]
+    for(let i=0;i<a.length;i++){
+        let iAr=[]
+        for(let j=0;j<a[i].length;j++){
+            let t=[[a[i][j],[i,j]]]
+            t.push(a[i][(j+1)%a[i].length])
+            t.push(a[i][(j-1)<0?a[i].length-1:(j-1)])
+            t.push(a[(i+1)%a.length][j])
+            t.push(a[(i-1)<0?a.length-1:(i-1)][j])
 
-  console.log(winners(
-    [ '9', '2', '4', '6' ], [], [ '7', '5', '2' ], [ '2', '10' ], [
-        '9', 'J', '5', '4', 'J',
-        '3', '9', '5', '5', '5',
-        'K', 'J', 'A', '4', '10',
-        'A', '4', '5', '2', '6',
-        '8'
-      ]))
+            t.push(a[(i+1)%a.length][(j+1)%a[i].length])
+            t.push(a[(i-1)<0?a.length-1:(i-1)][(j-1)<0?a[i].length-1:(j-1)])
+            t.push(a[(i-1)<0?a.length-1:(i-1)][(j+1)%a[i].length])
+            t.push(a[(i+1)%a.length][(j-1)<0?a[i].length-1:(j-1)])
+            iAr.push(t)
+        }
+        r.push(...iAr)
+    }
+    r=r.filter(e=>{
+        if(e[0][0]===1&&e.slice(1).filter(u=>u).length>1&&e.slice(1).filter(u=>u).length<4)return false
+        if(e[0][0]===0&&e.slice(1).filter(u=>u).length!==3)return false
+        return true
+    }).map(e=>e[0])
+    r.forEach(e=>e[0]===0?z.push(e[1]):e[0]===1?o.push(e[1]):0)
+    for(let i=0;i<z.length;i++)a[z[i][0]][z[i][1]]=1
+    for(let i=0;i<o.length;i++)a[o[i][0]][o[i][1]]=0
+    return getGeneration(a,n-1)
+}
 
-
-// function getGeneration(a,n,m=a.slice()){
-//     return c
-// }
-
-// console.log(getGeneration([
-//     [1,0,0],
-//     [0,1,1],
-//     [1,1,0]
-// ],1))
+console.log(getGeneration([
+    [0, 0, 0, 0, 0],
+    [0, 0, 1, 0, 0],
+    [0, 0, 0, 1, 0],
+    [0, 1, 1, 1, 0],
+    [0, 0, 0, 0, 0]
+  ], 12))
