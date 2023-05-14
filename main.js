@@ -1,12 +1,24 @@
-buyTofu=(c,b)=>{
-  b=b.split` `
-  let x=b.filter(e=>e==='mon').length,y=b.filter(e=>e==='monme').length,z=y*60+x,r=[x,y,z],w=~~(c/60)
-  if(w>y)w=y
-  c-=w*60
-  if(z<c||x<c)return 'leaving the market'
-  r.push(c+w)
-  return r
+function goodName(s,c=[...s.slice(0,s.indexOf('.'))],q=s.slice(s.indexOf('.')),a=[]){
+  for(let i=0;i<c.length;i++){
+    if(c[i]==='l'){
+      c[i]=1
+      a.push(c.join``)
+      c=[...s.slice(0,s.indexOf('.'))]
+    }
+    if(c[i]==='o'){
+      c[i]=0
+      a.push(c.join``)
+      c=[...s.slice(0,s.indexOf('.'))]
+    }
+    if(c[i]===c[i+1]){
+      c.splice(i,1)
+      a.push(c.join``)
+      c=[...s.slice(0,s.indexOf('.'))]
+    }
+  }
+  return [...new Set(a)].sort().map(e=>e+q)
 }
-
-console.log(buyTofu(124,'mon mon mon mon mon apple mon mon mon mon mon mon mon monme mon mon monme mon mon mon mon cloth monme mon mon mon mon mon mon mon mon cloth mon mon monme mon mon mon mon monme mon mon mon mon mon mon mon mon mon mon mon mon mon'))
-console.log(buyTofu(124,'mon mon mon mon mon apple mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon monme mon mon mon mon cloth mon mon mon mon mon mon mon mon mon cloth mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon mon'))
+console.log(goodName("leetcode.com"))
+console.log(goodName("goodlink.com"))
+console.log(goodName("microsoft.com"))
+console.log(goodName("pex4fun.com"))
