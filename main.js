@@ -1,13 +1,14 @@
-class Cylon{
-    constructor(m){
-  this.model=m
-}
-attack=function(){
-    return "Destroy all humans!"
+function spiralPermutations(s,a=[s]){
+  while(1){
+    let t=[...a[a.length-1]],c=''
+    while(t.length){
+      c+=t.pop()||''
+      c+=t.shift()||''
+    }
+    if(c===s)break
+    a.push(c)
   }
+  return a
 }
-class HumanSkin extends Cylon{
-  infiltrate=function(){
-    return "Infiltrate the colonies"
-  }
-}
+
+console.log(spiralPermutations('ABCDE'))
