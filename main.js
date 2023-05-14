@@ -1,3 +1,3 @@
-rgb=(r,g,b,f=x=>x>255?(255).toString(16):x<0?(0).toString(16):(x).toString(16))=>[r,g,b].map(e=>f(e).toUpperCase().padStart(2,'0')).join``
+hexStringToRGB=(s,c=s.slice(1).match(/.{2,2}/g).map(e=>parseInt(e,16)),r={r:c[0],g:c[1],b:c[2]})=>r
 
-console.log(rgb(0,0,0))
+console.log(hexStringToRGB("#FF9933"))
