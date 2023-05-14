@@ -1,24 +1,14 @@
-function goodName(s,c=[...s.slice(0,s.indexOf('.'))],q=s.slice(s.indexOf('.')),a=[]){
-  for(let i=0;i<c.length;i++){
-    if(c[i]==='l'){
-      c[i]=1
-      a.push(c.join``)
-      c=[...s.slice(0,s.indexOf('.'))]
-    }
-    if(c[i]==='o'){
-      c[i]=0
-      a.push(c.join``)
-      c=[...s.slice(0,s.indexOf('.'))]
-    }
-    if(c[i]===c[i+1]){
-      c.splice(i,1)
-      a.push(c.join``)
-      c=[...s.slice(0,s.indexOf('.'))]
-    }
-  }
-  return [...new Set(a)].sort().map(e=>e+q)
+let sv1={name:"server1",price:300,testdata:[50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50]},
+    sv2={name:"server2",price:400,testdata:[50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50]},
+    sv3={name:"server3",price:300,testdata:[-1,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50]},
+    sv4={name:"server4",price:300,testdata:[-1,-1,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50]},
+    sv5={name:"server5",price:400,testdata:[40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40]},
+    sv6={name:"server6",price:300,testdata:[40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40]},
+    sv7={name:"server7",price:200,testdata:[-1,-1,-1,-1,-1,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40]},
+    sv8={name:"server8",price:200,testdata:[301,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40]},
+    sv9={name:"server9",price:501,testdata:[40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40]}
+
+function bestServer(a){
+  return (a.map(e=>[e,e.testdata.filter(u=>u>-1).length]).filter(e=>e[0].testdata.every(u=>u<=300)).map(e=>[(e[0].testdata.filter(u=>u===-1).length/24)*100,e[0].testdata.filter(u=>u>-1).reduce((a,c)=>a+c,0)/e[1],e[0].price,e[0].name]).filter(e=>e[0]<=20&&e[1]<=300&&e[2]<=500).sort((a,b)=>a[0]-b[0]||a[1]-b[1]||a[2]-b[2])[0]||['','','',''])[3]
 }
-console.log(goodName("leetcode.com"))
-console.log(goodName("goodlink.com"))
-console.log(goodName("microsoft.com"))
-console.log(goodName("pex4fun.com"))
+console.log(bestServer([sv7,sv8,sv9]))
