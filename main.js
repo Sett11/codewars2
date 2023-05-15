@@ -1,6 +1,10 @@
-f=(x,y,c=0)=>{for(let i=0;i<x.length;i++){if(x[i]!==y[i])c++}return c}
-child=(b1,b2,r=f(b1,b2))=>b1===b2?1===2:r<3
-grandchild=(b1,b2,r=f(b1,b2))=>b1.length===1&&b2.length===1&&b1!==b2?1==2:r<=4
+isFloat=(n,f=x=>x.reduce((a,c)=>a.concat(!c?[c]:Array.isArray(c)?f(c):typeof c==='object'?f(Object.values(c)):[c]),[]),r=x=>parseFloat(x))=>{  
+    return f([n]).some(e=>!Number.isInteger(r(e))&&r(e)===r(e)&&(e+'').replace(/[^\.]/g,'').length===1&&!(e+'').match(/[^0-9\. \-]/))
+  }
 
-console.log(child('BWBWBW','BWBWBB'))
-console.log(grandchild('BWBWBB','WWWWBB'))
+console.log(isFloat({a:[{b:[[1.1]]},1]}))
+console.log(isFloat(1.1))
+console.log(isFloat('1.1'))
+console.log(isFloat(/1.1/))
+console.log(isFloat('=1.1'))
+console.log(isFloat(null))
