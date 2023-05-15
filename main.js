@@ -1,14 +1,6 @@
-const makeChange=n=>{
-  const o={'H':50,'Q':25,'D':10,'N':5,'P':1},r={}
-  for(let i in o){
-    r[i]=0
-    while(n>=o[i]){
-      n-=o[i]
-      r[i]++
-    }
-    if(!r[i])delete r[i]
-  }
-  return r
-}
+f=(x,y,c=0)=>{for(let i=0;i<x.length;i++){if(x[i]!==y[i])c++}return c}
+child=(b1,b2,r=f(b1,b2))=>b1===b2?1===2:r<3
+grandchild=(b1,b2,r=f(b1,b2))=>b1.length===1&&b2.length===1&&b1!==b2?1==2:r<=4
 
-console.log(makeChange(43))
+console.log(child('BWBWBW','BWBWBB'))
+console.log(grandchild('BWBWBB','WWWWBB'))
