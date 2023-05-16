@@ -1,8 +1,18 @@
-function WOWdecoder(s,r=s.split` `.filter(e=>e&&e.match(/[7-9A-F]/)&&!e.match(/[0-6J-Z]/))){
-  return [...s].some(e=>parseInt(e,36)-10>5)||r.length>3&&r.every(e=>e.length<6)||s.match(/[J-Z]/)?'blocked jam attempt':!r.length?'no signals found':r.join` `
+function countIslands(m,a=[]){
+  m=m.split`\n`.map((e,i)=>[...e].map((u,j)=>u==='0'?[i,j]:0).filter(z=>z)).flat().sort((a,b)=>a[0]-b[0]||a[1]-b[1])
+  for(let i=0;i<m.length;i++){
+    let t=[m[i]]
+    for(let j=0;j<m.length;j++){
+      if(t.some(e=>e[0]===m[j][0]&&Math.abs(m[j][1]-e[1])===1||e[1]===m[j][1]&&Math.abs(m[j][0]-e[0])===1)&&m[j][0]!==undefined){
+        t.push(m[j])
+        m[j]=[]
+        j=0
+      }
+    }
+    if(t[0][0]!==undefined)a.push(t)
+  }
+  return a.length
 }
 
-console.log(WOWdecoder(" 1  2  1 221 3 ABC99F   23 BBC   "))
-console.log(WOWdecoder("AFC 1  633 1 22 899 AAA9  1  2 C 99"))
-console.log(WOWdecoder("  445 295 12 23 6654 1  11 1   3"))
-console.log(WOWdecoder("   1   1  3   2 2      3   4   2 1     H    3  1 2   "))
+console.log(countIslands("..000.\n..000.\n..000.\n.0....\n..000."))
+console.log(countIslands('00...0\n0...00\n......\n0.0.0.\n0.....'))
