@@ -1,13 +1,42 @@
-function regexTicTacToeWinChecker(c,b=[...c],a=[],d=[],x=2){
-  for(let i=0;i<b.length;i+=3)a.push(b.slice(i,i+3))
-  let w=a[0].map((e,i)=>a.map(u=>u[i]))
-  while(x){
-    let t=[]
-    for(let i=0;i<a.length;i++)t.push(a[i][i])
-    d.push(t),a=a.map(e=>e.reverse()),x--
+class Vector{
+  constructor(a){
+    this.a=a
+    return this
   }
-  return (a.concat(w).concat(d)).some(e=>e.every((u,i,v)=>u===v[0]&&u!='-'))
+  add(x,a=[]){
+    if(x.a.length!==this.a.length)throw Error()
+    this.a.forEach((e,i)=>a.push(e+x.a[i]))
+    return new Vector(a)
+  }
+  subtract(x,a=[]){
+    if(x.a.length!==this.a.length)throw Error()
+    this.a.forEach((e,i)=>a.push(e-x.a[i]))
+    return new Vector(a)
+  }
+  dot(x){
+    if(x.a.length!==this.a.length)throw Error()
+    return this.a.reduce((a,c,i)=>a+=(c*x.a[i]),0)
+  }
+  norm(){
+    return Math.sqrt(this.a.reduce((a,c)=>a+(c**2)))
+  }
+  toString(){
+    return `(${this.a.join`,`})`
+  }
+  equals(x){
+    for(let i=0;i<this.a.length;i++)if(this.a[i]!==x.a[i])return false
+    return true
+  }
 }
 
-console.log(regexTicTacToeWinChecker("O--OO-XXX"))
-console.log(regexTicTacToeWinChecker("OXO--XXO-"))
+const a = new Vector([1, 2, 3])
+const b = new Vector([3, 4, 5])
+const c = new Vector([5, 6, 7, 8])
+
+console.log(a.add(b))
+console.log(a.subtract(b))
+console.log(a.dot(b))
+console.log(a.norm())
+console.log(a.toString())
+console.log(a.equals(a))
+console.log(a.add(b).equals(new Vector([4, 6, 8])))
