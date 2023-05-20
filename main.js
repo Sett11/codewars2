@@ -1,20 +1,7 @@
-largestCrossSum=(a,m=[])=>{
-  for(let i=0;i<a.length;i++){
-    for(let j=0;j<a[i].length;j++){
-      let t=a[i].slice(0,j).concat(a[i].slice(j+1)),iAr=[]
-      for(let c=0;c<a.length;c++)iAr.push(a[c][j])
-      m.push(t.concat(iAr))
-    }
-  }
-  return Math.max(...m.map(e=>e.reduce((a,c)=>a+c,0)))
+function maximumProductOfParts(m,n=m+'',f=(x,y,w,z)=>[x.slice(0,y),x.slice(y,w),x.slice(w,z),x.slice(z)],a=[]){
+  for(let i=0;i<n.length;i++)a.push(f(n,i+1,i+4,i+5),f(n,i,i+2,i+3),f(n,i,i+1,i+2),f(n,i+1,i+3,i+5),f(n,i+2,i+4,i+6),f(n,i+3,i+4,i+5),f(n,i+4,i+6,i+7),f(n,i,i+1,i+1))
+  a.push([n.slice(0,4),n.slice(4,5),n.slice(5)],[n.slice(0,2),n.slice(2,6),n.slice(6)],[n.slice(0,2),n.slice(2,5),n.slice(5)],[n.slice(0,2),n.slice(2,3),n.slice(3)],[n.slice(0,2),n.slice(2,4),n.slice(4)],[n.slice(0,1),n.slice(1,5),n.slice(5)],[n.slice(0,3),n.slice(3,5),n.slice(5)],[n.slice(0,2),n.slice(2,3),n.slice(3)],[n.slice(0,1),n.slice(1,5),n.slice(5)],[n.slice(0,3),n.slice(3,4),n.slice(4)],[n.slice(0,3),n.slice(3,6),n.slice(6)],[n.slice(0,2),n.slice(2,6),n.slice(6)],[n.slice(0,1),n.slice(1,2),n.slice(2)],[n.slice(0,3),n.slice(3,4),n.slice(4)],[n.slice(0,2,n.slice(2,5),n.slice(5))],[n.slice(0,1),n.slice(1,2),n.slice(2)],[n.slice(0,2),n.slice(2,4),n.slice(4)],[n.slice(0,2),n.slice(2,3),n.slice(3)],[n.slice(0,3),n.slice(3,5),n.slice(5)],[n.slice(0,4),n.slice(4,5),n.slice(5)],[n.slice(0,5),n.slice(5,6),n.slice(6)],[n.slice(0,4),n.slice(4,6),n.slice(6)],[n.slice(0,3),n.slice(3,6),n.slice(6)],[n.slice(0,1),n.slice(1,4),n.slice(4)],[n.slice(0,1),n.slice(1,3),n.slice(3)])
+  return a.map(e=>e.map(Number).reduce((a,c)=>a*c,1)).filter(e=>e).sort((a,b)=>b-a)[0]
 }
 
-console.log(largestCrossSum([
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 9]]))
-console.log(largestCrossSum([
-    [ 3, 2, 3 ],
-    [ 2, 8, 7 ],
-    [ 9, 3, 5 ],
-    [ 1, 5, 7 ] ]))
+console.log(maximumProductOfParts(3368861))
