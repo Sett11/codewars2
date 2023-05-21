@@ -1,35 +1,18 @@
-function mixbonacci(p,l,r=[],x={}){
-    if(!p.length||!l)return []
-  const o={
-    'fib':(n,a=[0, 1, 1, 2, 3])=>{
-        for(let i=0;a.length<=n;i++)a.push(a[a.length-1]+a[a.length-2])
-        return a
-    },
-    'jac':(n,a=[0, 1, 1, 3, 5])=>{
-        for(let i=0;a.length<=n;i++)a.push(a[a.length-1]+2*a[a.length-2])
-        return a
-    },
-    'pad':(n,a=[1, 0, 0, 1, 0])=>{
-        for(let i=0;a.length<=n;i++)a.push(a[a.length-2]+a[a.length-3])
-        return a
-    },
-    'pel':(n,a=[0, 1, 2, 5, 12])=>{
-        for(let i=0;a.length<=n;i++)a.push(2*a[a.length-1]+a[a.length-2])
-        return a
-    },
-    'tet':(n,a=[0, 0, 0, 1, 1])=>{
-        for(let i=0;a.length<=n;i++)a.push(a[a.length-1]+a[a.length-2]+a[a.length-3]+a[a.length-4])
-        return a
-    },
-    'tri':(n,a=[0, 0, 1, 1, 2])=>{
-        for(let i=0;a.length<=n;i++)a.push(a[a.length-1]+a[a.length-2]+a[a.length-3])
-        return a
-    }
+function zozonacci(p,l){
+  if(!p.length||!l)return []
+  const o={ 'fib': [0, 0, 0, 1], 'jac': [0, 0, 0, 1], 'pad': [0, 1, 0, 0], 'pel': [0, 0, 0, 1], 'tet': [0, 0, 0, 1], 'tri': [0, 0, 0, 1]}[p[0]].slice(0,l)
+  for(let i=0;o.length<l;i++){
+    i%=p.length
+    if(p[i]==='fib')o.push(o[o.length-1]+o[o.length-2])
+    if(p[i]==='jac')o.push(o[o.length-1]+2*o[o.length-2])
+    if(p[i]==='pad')o.push(o[o.length-2]+o[o.length-3])
+    if(p[i]==='pel')o.push(2*o[o.length-1]+o[o.length-2])
+    if(p[i]==='tet')o.push(o[o.length-1]+o[o.length-2]+o[o.length-3]+o[o.length-4])
+    if(p[i]==='tri')o.push(o[o.length-1]+o[o.length-2]+o[o.length-3])
   }
-  let q=p.map(e=>[e,o[e](l)])
-  for(let i=0;i<q.length;i++)x[q[i][0]]=q[i][1]
-  for(let i=0;r.length<l;i++)r.push(x[p[i%p.length]].shift())
-  return r
+  return o
 }
 
-console.log(mixbonacci(['tri', 'pel', 'fib', 'pad', 'tri', 'pad', 'tri' ], 10))
+console.log(zozonacci(['fib'], 10))
+console.log(zozonacci(['tri'], 10))
+console.log(zozonacci(['pad'], 10))
