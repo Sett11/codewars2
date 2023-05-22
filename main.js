@@ -1,32 +1,14 @@
-class Output {
-    constructor(out,debug){
-      this.output = out;
-      this.debug = debug;
+function dim(...a){
+    const z=a.pop(),r=Array(a.pop()).fill(z)
+    const f=(x,y)=>{
+        if(!x.length)return y
+        let c=Array(x.pop()).fill(y)
+        return f(x,c)
     }
-  }
-  class FiveCommands{
-    constructor(){}
-    read(s,d,a=[0],r='',db=[]){
-      for(let i=0,j=0;i<s.length;i++){
-        if(s[i]==='+'){
-            if(a[j+1]===undefined)a.push(0)
-            j++
-        }
-        if(s[i]==='-'){
-            if(a[j-1]===undefined)a.unshift(0)
-            if(j)j--
-        }
-        if(s[i]==='^')a[j]++
-        if(s[i]==='v')a[j]--
-        if(s[i]==='*')r+=a[j]
-      }
-      for(let i=0;i<a.length;i++)db.push(i+'->'+a[i])
-      return new Output(r,d?db:[])
+    const q=x=>{
+        return x.map(e=>Array.isArray(e)?q(e):typeof e==='function'?e():e)
     }
-  }
+    return q(f(a,r))
+}
 
-const r=new FiveCommands()
-
-console.log(r.read('^*',true))
-console.log(r.read('^^*',true))
-console.log(r.read('+^^^-^v*+*',true))
+console.log(dim(2,2,2,_=>Math.floor(Math.random()*10)))
