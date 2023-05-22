@@ -1,14 +1,11 @@
-function dim(...a){
-    const z=a.pop(),r=Array(a.pop()).fill(z)
-    const f=(x,y)=>{
-        if(!x.length)return y
-        let c=Array(x.pop()).fill(y)
-        return f(x,c)
+class NamedOne{
+    constructor(a,b){
+    this.firstName=a
+    this.lastName=b
     }
-    const q=x=>{
-        return x.map(e=>Array.isArray(e)?q(e):typeof e==='function'?e():e)
-    }
-    return q(f(a,r))
+    get fullName(){return `${this.firstName} ${this.lastName}`}
+    set fullName(s){if(s.includes(' '))[this.firstName,this.lastName]=s.split` ` }
 }
+const n=new NamedOne('John', 'Doe')
 
-console.log(dim(2,2,2,_=>Math.floor(Math.random()*10)))
+console.log(n.fullName)
