@@ -1,75 +1,16 @@
-const multiply=(n,a)=>a.map(e=>Math.round(e/(1/n)))
+function friendFind(a,q=JSON.stringify(['blue','red','blue'].sort()),c=0){
+    for(let i=0;i<a.length;i++){
+        if(a[i]==='red'){
+            let t=[a.slice(i-1,i+2),a.slice(i-2,i+1),a.slice(i,i+3)].filter(e=>JSON.stringify(e.sort())===q)
+            if(t.length){
+                c++
+                a[i]='&'
+            }
+        }
+    }
+    return c
+}
 
-console.log(multiply(-249,[ 0,
-    -1,
-    -2,
-    -3,
-    4,
-    -5,
-    -6,
-    7,
-    8,
-    -9,
-    -10,
-    11,
-    -12,
-    13,
-    -14,
-    15,
-    16,
-    -17,
-    18,
-    19,
-    -20,
-    21,
-    -22,
-    23,
-    -24,
-    25,
-    26,
-    27,
-    28,
-    -29,
-    30,
-    31,
-    32,
-    -33,
-    34,
-    35,
-    36,
-    37,
-    -38,
-    39,
-    -40,
-    41,
-    42,
-    -43,
-    44,
-    -45,
-    -46,
-    47,
-    48,
-    -49,
-    -50,
-    51,
-    -52,
-    53,
-    54,
-    -55,
-    56,
-    -57,
-    58,
-    59,
-    -60,
-    61,
-    -62,
-    63,
-    64,
-    -65,
-    -66,
-    67,
-    -68,
-    69,
-    70,
-    -71,
-    -72 ]))
+console.log(friendFind(['blue','red','blue','blue','red','blue','red']))
+console.log(friendFind(['blue','blue','red','red','blue','green']))
+console.log(friendFind(['red','blue','blue','red']))
