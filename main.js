@@ -1,3 +1,3 @@
-isPrime=x=(z,n=Math.abs(z),m=Math.sqrt(n)+1,i=2)=>n<2||n%i===0?!1:n===2||i>m?!0:x(z,n,m,i+1)
+reverseCase=s=>s.replace(/(.)\1*/g,e=>e.length<2?e:e[0]>{}?e.toUpperCase():e.toLowerCase())
 
-console.log(isPrime(-7))
+console.log(reverseCase('puzzles'))
