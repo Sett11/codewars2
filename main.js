@@ -1,3 +1,3 @@
-x=a=>~~a
+x=_=>new Date%100
 
-console.log(x(9.9))
+console.log(x())
