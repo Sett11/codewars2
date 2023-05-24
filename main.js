@@ -1,16 +1,19 @@
 const ALPHABET='ABCDEFGHIJKLMNOPQRSTUVWXYZ ?!@#&()|<>.:=-+*/0123456789'
-flapDisplay=(a,b,w=x=>JSON.parse(JSON.stringify(x)))=>{
-    const l=w(a),r=w(b)
-    const f=(x,y,a=[])=>{
-        x=[...x]
-        while(y.length){
-            let q=y.shift()
-            x=x.map(e=>ALPHABET[(ALPHABET.indexOf(e)+q)%ALPHABET.length])
-            a.push(x.shift())
+flapRotors=(b,a)=>{
+    const f=(x,y,r=[])=>{
+        y=[...y]
+        for(let i=-1;++i<x.length;){
+            let t=ALPHABET.indexOf(y[i])-ALPHABET.indexOf(x[i])
+            t=t<0?t+=ALPHABET.length:t
+            r.push(t)
+            y=y.map(e=>{
+                let c=ALPHABET.indexOf(e)-t
+                return ALPHABET[c<0?c+ALPHABET.length:c]
+            })
         }
-        return a
+        return r
     }
-    return l.map((e,i)=>f(e,r[i]).join``)
+    return b.map((e,i)=>f(e,a[i]))
 }
 
-console.log(flapDisplay(["CAT","HELLO "],[[1,13,27],[15,49,50,48,43,13]]))
+console.log(flapRotors(['CAT','HELLO '],['DOG','WORLD!']))
