@@ -1,19 +1,24 @@
-const ALPHABET='ABCDEFGHIJKLMNOPQRSTUVWXYZ ?!@#&()|<>.:=-+*/0123456789'
-flapRotors=(b,a)=>{
-    const f=(x,y,r=[])=>{
-        y=[...y]
-        for(let i=-1;++i<x.length;){
-            let t=ALPHABET.indexOf(y[i])-ALPHABET.indexOf(x[i])
-            t=t<0?t+=ALPHABET.length:t
-            r.push(t)
-            y=y.map(e=>{
-                let c=ALPHABET.indexOf(e)-t
-                return ALPHABET[c<0?c+ALPHABET.length:c]
-            })
-        }
-        return r
+class Protector{
+    constructor(r=[]){
+        this.r=r
     }
-    return b.map((e,i)=>f(e,a[i]))
+    count(x){
+        if(x.successful){
+            this.r=this.r.filter(e=>e!==x.sourceIP)
+            return false
+        }
+        if(!x.successful){
+            if(this.r.filter(e=>e===x.sourceIP).length>18)return true
+            else{
+                this.r.push(x.sourceIP)
+                return false
+            }
+        }
+    }
 }
+const q=new Protector()
+bruteForceDetected=o=>q.count(o)
 
-console.log(flapRotors(['CAT','HELLO '],['DOG','WORLD!']))
+
+let i=-1
+while(++i<=22)console.log(bruteForceDetected({ sourceIP: '87.98.231.40', successful: false }))
