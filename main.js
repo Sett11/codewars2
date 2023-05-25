@@ -1,5 +1,3 @@
-okkOokOo=s=>s.split`  `.map(e=>String.fromCharCode(parseInt(e.toLowerCase().replace(/./gi,e=>e==='k'?1:e==='o'?0:''),2))).join``
+sortCards=a=>a.map(e=>+e===+e?[e,e]:e==='A'?[e,-1]:e==='T'?[e,10]:e==='J'?[e,11]:e==='Q'?[e,12]:[e,13]).sort((a,b)=>a[1]-b[1]).map(e=>e[0])
 
-
-console.log(okkOokOo('Ok, Ook, Ooo?  Okk, Ook, Ok?  Okk, Okk, Oo?  Okk, Okk, Oo?  Okk, Okkkk!'))
-console.log(okkOokOo('Ok, Ook, Ooo?  Okk, Ook, Ok?  Okk, Okk, Oo?  Okk, Okk, Oo?  Okk, Okkkk?  Ok, Ooooo?  Ok, Ok, Okkk?  Okk, Okkkk?  Okkk, Ook, O?  Okk, Okk, Oo?  Okk, Ook, Oo?  Ook, Ooook!'))
+console.log(sortCards([3,9,"A",5,"T",8,2,4,"Q",7,"J",6,"K"]))
