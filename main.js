@@ -1,24 +1,5 @@
-class Protector{
-    constructor(r=[]){
-        this.r=r
-    }
-    count(x){
-        if(x.successful){
-            this.r=this.r.filter(e=>e!==x.sourceIP)
-            return false
-        }
-        if(!x.successful){
-            if(this.r.filter(e=>e===x.sourceIP).length>18)return true
-            else{
-                this.r.push(x.sourceIP)
-                return false
-            }
-        }
-    }
-}
-const q=new Protector()
-bruteForceDetected=o=>q.count(o)
+okkOokOo=s=>s.split`  `.map(e=>String.fromCharCode(parseInt(e.toLowerCase().replace(/./gi,e=>e==='k'?1:e==='o'?0:''),2))).join``
 
 
-let i=-1
-while(++i<=22)console.log(bruteForceDetected({ sourceIP: '87.98.231.40', successful: false }))
+console.log(okkOokOo('Ok, Ook, Ooo?  Okk, Ook, Ok?  Okk, Okk, Oo?  Okk, Okk, Oo?  Okk, Okkkk!'))
+console.log(okkOokOo('Ok, Ook, Ooo?  Okk, Ook, Ok?  Okk, Okk, Oo?  Okk, Okk, Oo?  Okk, Okkkk?  Ok, Ooooo?  Ok, Ok, Okkk?  Okk, Okkkk?  Okkk, Ook, O?  Okk, Okk, Oo?  Okk, Ook, Oo?  Ook, Ooook!'))
