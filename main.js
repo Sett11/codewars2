@@ -1,26 +1,9 @@
-function calculate(s,r=[]){
-    if(s.match(/[^\.0123456789\+\-\*\$]/))return '400: Bad request'
-    s=s.replace(/[\$\*\-\+]/g,' $& ').split` `.map(e=>+e===+e?+e:e)
-    while(s.includes('$')){
-        let ind=s.indexOf('$'),t=s.slice(ind-1,ind+2)
-        s=s.slice(0,ind-1).concat([t[0]/t[2]]).concat(s.slice(ind+2))
-    }
-    while(s.includes('*')){
-        let ind=s.indexOf('*'),t=s.slice(ind-1,ind+2)
-        s=s.slice(0,ind-1).concat([t[0]*t[2]]).concat(s.slice(ind+2))
-    }
-    while(s.includes('-')){
-        let ind=s.indexOf('-'),t=s.slice(ind-1,ind+2)
-        s=s.slice(0,ind-1).concat([t[0]-t[2]]).concat(s.slice(ind+2))
-    }
-    while(s.includes('+')){
-        let ind=s.indexOf('+'),t=s.slice(ind-1,ind+2)
-        s=s.slice(0,ind-1).concat([t[0]+t[2]]).concat(s.slice(ind+2))
-    }
-    return s[0]
+function getHints(a,g,f=x=>x.filter(e=>e!=='&')){
+    const o={black:0,white:0}
+    for(let i=-1;++i<a.length;)if(a[i]===g[i])o.black++,g[i]='&',a[i]='&'
+    a=f(a),g=f(g)
+    for(let i=-1;++i<a.length;)if(g.includes(a[i]))o.white++,g[g.indexOf(a[i])]='&'
+    return o
 }
 
-console.log(calculate('5*6$2+5-10'))
-console.log(calculate('1*1*1*1*1*1$1$1$1$1+1-1+9-1'))
-console.log(calculate('1000$2.5$5+5-5+6$6'))
-console.log(calculate('1+1-1'))
+console.log(getHints([1, 2, 3, 4], [1, 2, 4, 3]))
