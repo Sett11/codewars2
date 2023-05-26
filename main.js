@@ -1,6 +1,8 @@
-function countFeelings(s,a){
-    const r=a.map(e=>[e,Object.values([...s].filter(u=>e.includes(u)).reduce((a,c)=>{a[c]=(a[c]||0)+1;return a},{}))]).filter(e=>e[0].length===e[1].length).length
-    return `${r} feeling${r===1?'':'s'}.`
+function oragoo(s){
+    if(!s||!s.match(/[aiouey]/))return s
+    if(!s.match(/[aioue]/)&&s.includes('y'))return s.replace(/y/,'oragy')
+    if(s[0].match(/[aioeu]/))return 'orag'+s
+    return s.replace(/^[^aioue]+/g,e=>e+'orag')
 }
 
-console.log(countFeelings('yliausoenvjw',['anger', 'awe', 'joy', 'love', 'grief']))
+console.log(oragoo('hi'))
