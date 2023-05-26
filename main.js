@@ -1,6 +1,13 @@
-function mixFruit(a,f=x=>x.toLowerCase()){
-    const p=['banana','orange','apple','lemon','grapes'],u=['avocado','strawberry','mango']
-    return (eval(a.map(e=>p.includes(f(e))?5:u.includes(f(e))?7:9).join`+`)/a.length)+.5|0
-}
+function coinsNeeded(c,ar,a=ar.sort((a,b)=>a-b),s=0){
+    for(let i=a.length-1;c;i--){
+      while(c>=a[i]){
+          let t=Math.floor(c/a[i])
+          c-=t*a[i]
+          s+=t
+      }
+    }
+    return s
+  }
 
-console.log(mixFruit(['watermelon','cherry','avocado']))
+console.log(coinsNeeded(1232,[7,3,1,27]))
+console.log(coinsNeeded(6561797970922670,[576,48,24,4,1,192,12]))
