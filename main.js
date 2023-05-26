@@ -1,3 +1,3 @@
-roomMates=(r,f,c=(f-1)*6)=>r.slice(c,c+6).filter(e=>e)
-  
-  console.log(roomMates([ "Jill", "Jackson", "Jan", "Eve", "", "John", "Jimmy", "Tom", "", "Duke" ],2))
+searchNames=a=>a.filter((_,i,v,c=(v[i-1]||''))=>c[0]==='.'||c[c.length-1]==='.')
+
+console.log(searchNames(["foo", "foo@bar.com", "bar", "bar@foo.com", ".foo", "food@bar.com"]))
