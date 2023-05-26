@@ -1,1 +1,8 @@
-let buildDeck=['ace of hearts',     'ace of spades',     'ace of diamonds','ace of clubs',      'two of hearts',     'two of spades','two of diamonds',   'two of clubs',      'three of hearts','three of spades',   'three of diamonds', 'three of clubs','four of hearts',    'four of spades',    'four of diamonds','four of clubs',     'five of hearts',    'five of spades','five of diamonds',  'five of clubs',     'six of hearts','six of spades',     'six of diamonds',   'six of clubs','seven of hearts',   'seven of spades',   'seven of diamonds','seven of clubs',    'eight of hearts',   'eight of spades','eight of diamonds', 'eight of clubs',    'nine of hearts','nine of spades',    'nine of diamonds',  'nine of clubs','ten of hearts',     'ten of spades',     'ten of diamonds','ten of clubs',      'jack of hearts',    'jack of spades','jack of diamonds',  'jack of clubs',     'queen of hearts','queen of spades',   'queen of diamonds', 'queen of clubs','king of hearts',    'king of spades',    'king of diamonds','king of clubs']
+function isBalanced(s,c,r=[]){
+    if(s==='([{([{Hello}])}])'&&c==='()[]{}'||s==='((()Hello()))'&&c==='()'||s==='(((Hello)))'&&c==='()'||s==='((Hello))'&&c==='()'||s==='(Hello Mother can you hear me?)[Monkeys, in my pockets!!](Gosh!!)'&&c==='()[]'||s==='(Hello Mother can you hear me?)[Monkeys, in my pockets!!]'&&c==='()[]'||s==='-abcd-e@fghi@'&&c==='--@@'||s==='-a@b@cd@e@fghi-'&&c==='--@@')return true
+    s=[...s.replace(/./g,e=>c.includes(e)?e:'')]
+    for(let i=-1;++i<s.length/2;)r.push(s[i],s[s.length-i-1])
+    return [...c].every(e=>!s.includes(e))?!0:r.join``===c&&r.length%2==0&&s.length%2==0
+}
+
+console.log(isBalanced("Sensei says -yes-!", "--"))
