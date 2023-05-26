@@ -1,9 +1,6 @@
-function getHints(a,g,f=x=>x.filter(e=>e!=='&')){
-    const o={black:0,white:0}
-    for(let i=-1;++i<a.length;)if(a[i]===g[i])o.black++,g[i]='&',a[i]='&'
-    a=f(a),g=f(g)
-    for(let i=-1;++i<a.length;)if(g.includes(a[i]))o.white++,g[g.indexOf(a[i])]='&'
-    return o
+function mixFruit(a,f=x=>x.toLowerCase()){
+    const p=['banana','orange','apple','lemon','grapes'],u=['avocado','strawberry','mango']
+    return (eval(a.map(e=>p.includes(f(e))?5:u.includes(f(e))?7:9).join`+`)/a.length)+.5|0
 }
 
-console.log(getHints([1, 2, 3, 4], [1, 2, 4, 3]))
+console.log(mixFruit(['watermelon','cherry','avocado']))
