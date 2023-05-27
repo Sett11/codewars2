@@ -1,9 +1,9 @@
-function tickToward(s,e,f=(x,y)=>x<y?x+=1:x>y?x-=1:x,a=[s]){
-  while(a[a.length-1].join``!==e.join``){
-    let t=a[a.length-1]
-    a.push([f(t[0],e[0]),f(t[1],e[1])])
+function getWinner(a,o={}){
+  for(let i=-1;++i<a.length;){
+    if(o[a[i]])o[a[i]]+=1
+    else o[a[i]]=1
+    if(o[a[i]]>a.length/2)return a[i]
   }
-  return a
+  return null
 }
-
-console.log(tickToward([5,1],[5,-2]))
+console.log(getWinner(["A", "A", "A", "B", "B", "B", "A"]))
