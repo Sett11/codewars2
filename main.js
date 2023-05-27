@@ -1,9 +1,6 @@
-function mobileDisplay(n,p){
-    n=n<20?20:n,p=p<30?30:p,c=~~(n/100*p),w='*'.repeat(n),a=Array(c-2).fill('*'+' '.repeat(n-2)+'*')
-    a.push(w),a.unshift(w),a[Math.floor(a.length/2)-1]='*'+' '.repeat(Math.floor(n/2)-5)+'CodeWars *',a[a.length-2]='* '+'Menu'+' '+'Contacts *'
-    while(a[Math.floor(a.length/2)-1].length<n)a[Math.floor(a.length/2)-1]=a[Math.floor(a.length/2)-1].replace(/s/,'$& ')
-    while(a[a.length-2].length<n)a[a.length-2]=a[a.length-2].replace(/C/,' $&')
-    return a.join`\n`
+function numericFormatter(s,a='1234567890'){
+  for(let i=-1;++i<s.length;)s=s.replace(/[a-z]/i,a[i%a.length])
+  return s
 }
 
-console.log(mobileDisplay(27,41))
+console.log(numericFormatter("+555 aaaa bbbb", "18031978"))
