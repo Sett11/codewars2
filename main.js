@@ -1,6 +1,8 @@
-function numericFormatter(s,a='1234567890'){
-  for(let i=-1;++i<s.length;)s=s.replace(/[a-z]/i,a[i%a.length])
-  return s
+function isDivisibleBy6(s,f=x=>BigInt(x),a=[]){
+  for(let i=-1;++i<10;)a.push(s.replace(/\*/,i))
+  return a.filter(e=>f(e)%f(6)===f(0))
 }
 
-console.log(numericFormatter("+555 aaaa bbbb", "18031978"))
+console.log(isDivisibleBy6("1*0"))
+console.log(isDivisibleBy6("34234*2"))
+console.log(isDivisibleBy6("1234567890123456789012345678*0"))
