@@ -1,7 +1,43 @@
-function pattern(n,a=[],s=''){
-    for(let i=0;++i<=n;)a.push([...(i+'')].reverse()[0]),s+=a.join``+a.slice(0,-1).reverse().join``+'\n'
-    s=s.split`\n`.filter(e=>e).map((e,_,v,l=Math.max(...v.map(u=>u.length)),t=e.length)=>' '.repeat(~~((l-t)/2))+e+' '.repeat(~~((l-t)/2)))
-    return n<1?'':n===1?'1':s.join`\n`+'\n'+s.slice(0,-1).reverse().join`\n`
+function availableMoves(p,a='12345678',b='ABCDEFGH',r=[],c=0,q=[]){
+    for(let i=-1;++i<a.length;){
+        let t=[]
+        for(let j=-1;++j<b.length;){
+            let v=b[j]+a[i]
+            t.push(v)
+            if(v===p)c=[i,j]
+        }
+        r.push(t)
+    }
+    if(r.every(e=>!e.includes(p)))return []
+    let i=c[0],j=c[1],x=-1,y=[]
+    q.push(...r[i])
+    while(++x<r.length)y.push(r[x][j])
+    q.push(...y)
+    y=[],x=i,z=j
+    while(x>-1&&z>-1){
+        y.push(r[x][z])
+        x--,z--
+    }
+    q.push(...y)
+    y=[],x=i,z=j
+    while(x<r.length&&z<r.length){
+        y.push(r[x][z])
+        x++,z++
+    }
+    q.push(...y)
+    y=[],x=i,z=j
+    while(x<r.length&&z>-1){
+        y.push(r[x][z])
+        x++,z--
+    }
+    q.push(...y)
+    y=[],x=i,z=j
+    while(x>-1&&z<r.length){
+        y.push(r[x][z])
+        x--,z++
+    }
+    q.push(...y)
+    return [...new Set(q)].filter(e=>e!==p).sort()
 }
 
-console.log(pattern(52))
+console.log(availableMoves('A1'))
