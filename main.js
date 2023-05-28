@@ -1,7 +1,4 @@
-function same(a,b,f=x=>x.sort((a,b)=>a-b),r=x=>x.sort((a,b)=>a[0]-b[0]||a[1]-b[1])){
-  if(a.length!==b.length)return !1
-  for(let i=-1;++i<a.length;)f(a[i]),f(b[i])
-  return JSON.stringify(r(a))===JSON.stringify(r(b))
-}
+diamondsAndToads=(s,f,r=(x,y)=>x.replace(RegExp(`[^${y}]`,'g'),'').length)=>f==='evil'?{python:r(s,'p')+r(s,'P')*2,squirrel:r(s,'s')+r(s,'S')*2}:{ruby:r(s,'r')+r(s,'R')*2,crystal:r(s,'c')+r(s,'C')*2}
 
-console.log(same([[2,5], [3,6]], [[5,2], [3,6]]))
+console.log(diamondsAndToads("This string contain some Python and some Squirrel in it", "evil"))
+console.log(diamondsAndToads("This string contain some Ruby and some Crystal in it", "good"))
