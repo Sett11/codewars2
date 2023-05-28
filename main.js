@@ -1,43 +1,13 @@
-function availableMoves(p,a='12345678',b='ABCDEFGH',r=[],c=0,q=[]){
-    for(let i=-1;++i<a.length;){
-        let t=[]
-        for(let j=-1;++j<b.length;){
-            let v=b[j]+a[i]
-            t.push(v)
-            if(v===p)c=[i,j]
-        }
-        r.push(t)
+function willThereEverBeARainbow(s,c='REDORANGEYELLOWGREENBLUEINDIGOVIOLET',f=x=>Object.entries([...x].reduce((a,c)=>(a[c]=a[c]+1||1,a),{})).sort((a,b)=>a[0].localeCompare(b[0]))){
+    if(s.length<c.length)return 'Too short for a rainbow!'
+    s=s.replace(/[^REDOANGYLWBUIVT]/gi,'')
+    const ch=f(c),w=f(s)
+    if(ch.length!==w.length)return 'No rainbow to be found!'
+    if(ch.every((e,i)=>e[0]===w[i][0]&&w[i][1]>=e[1]*2))return 'Double rainbow all the way!'
+    for(let i=-1;++i<ch.length;){
+        if(!w[i]||ch[i][0]!==w[i][0]||ch[i][1]>w[i][1])return 'No rainbow to be found!'
     }
-    if(r.every(e=>!e.includes(p)))return []
-    let i=c[0],j=c[1],x=-1,y=[]
-    q.push(...r[i])
-    while(++x<r.length)y.push(r[x][j])
-    q.push(...y)
-    y=[],x=i,z=j
-    while(x>-1&&z>-1){
-        y.push(r[x][z])
-        x--,z--
-    }
-    q.push(...y)
-    y=[],x=i,z=j
-    while(x<r.length&&z<r.length){
-        y.push(r[x][z])
-        x++,z++
-    }
-    q.push(...y)
-    y=[],x=i,z=j
-    while(x<r.length&&z>-1){
-        y.push(r[x][z])
-        x++,z--
-    }
-    q.push(...y)
-    y=[],x=i,z=j
-    while(x>-1&&z<r.length){
-        y.push(r[x][z])
-        x--,z++
-    }
-    q.push(...y)
-    return [...new Set(q)].filter(e=>e!==p).sort()
+    return 'Look! A rainbow!'
 }
 
-console.log(availableMoves('A1'))
+console.log(willThereEverBeARainbow('REDORANGEYELLOWGREENBLUEINDIGOVIOLETREDORANGEYELLOWGREENBLUEINDIGOVIOLET'))
