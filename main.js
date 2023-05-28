@@ -1,4 +1,7 @@
-diamondsAndToads=(s,f,r=(x,y)=>x.replace(RegExp(`[^${y}]`,'g'),'').length)=>f==='evil'?{python:r(s,'p')+r(s,'P')*2,squirrel:r(s,'s')+r(s,'S')*2}:{ruby:r(s,'r')+r(s,'R')*2,crystal:r(s,'c')+r(s,'C')*2}
+function pattern(n,a=[],s=''){
+    for(let i=0;++i<=n;)a.push([...(i+'')].reverse()[0]),s+=a.join``+a.slice(0,-1).reverse().join``+'\n'
+    s=s.split`\n`.filter(e=>e).map((e,_,v,l=Math.max(...v.map(u=>u.length)),t=e.length)=>' '.repeat(~~((l-t)/2))+e+' '.repeat(~~((l-t)/2)))
+    return n<1?'':n===1?'1':s.join`\n`+'\n'+s.slice(0,-1).reverse().join`\n`
+}
 
-console.log(diamondsAndToads("This string contain some Python and some Squirrel in it", "evil"))
-console.log(diamondsAndToads("This string contain some Ruby and some Crystal in it", "good"))
+console.log(pattern(52))
