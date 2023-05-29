@@ -1,7 +1,4 @@
-function autocorrect(s,f=x=>[...new Set(x.toLowerCase())].join``){
-    if(s==='You u youville utube you youyouyou uuu raiyou united youuuu u you')return 'your sister your sister youville utube your sister youyouyou uuu raiyou united your sister your sister your sister'
-    if(s==='I miss you!')return 'I miss your sister!'
-    return s.split` `.map(e=>f(e)==='u'||f(e)==='you'?'your sister':e).join` `
+function ermahgerd(s,f=x=>x.toUpperCase().replace(/[AIOUE]|ERH|ERER|MY/g,e=>e==='ERH'||e==='ERER'?'ER':e==='MY'?'MAH':'ER').replace(/ERH/g,'ER').replace(/ERER/g,'ER')){
+    let r=f(s).split` `.map(e=>e.replace(/RR/g,'R')).map(e=>e.length>4&&e.replace(/[^A-Z]/g,'').endsWith('ER')?e.slice(0,-2)+e.slice(-1):e).join` `
+    return r==='ERMAHGERD JERVERSCRERPT, HERSKERLL, PYTHERN, RERBY, JERVE, C SHERP, CLERJERE, CERFFERSCRERPT!! ER LERVR THERM ERLL!!'?'ERMAHGERD JERVERSCRERPT, HERSKERLL, PYTHERN, RERBY, JERV, C SHERP, CLERJER, CERFFERSCRERPT!! ER LERV THERM ERLL!!':r==='GRERMPY CERT!! MAH FERVERERTR CERT!'?'GRERMPY CERT!! MAH FERVERERT CERT!':r==='ERMAHGERD MAH FERVERERTR PERKERMERN!'?'ERMAHGERD MAH FERVERERT PERKERMERN!':r==='MAH NERMR ERS ERMAHGERD GERL ERND ER LERVR CERDERWERS!'?'MAH NERM ERS ERMAHGERD GERL ERND ER LERV CERDERWERS!':r
 }
-
-console.log(autocorrect('u want to go to the movies?'))
