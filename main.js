@@ -1,4 +1,73 @@
-function ermahgerd(s,f=x=>x.toUpperCase().replace(/[AIOUE]|ERH|ERER|MY/g,e=>e==='ERH'||e==='ERER'?'ER':e==='MY'?'MAH':'ER').replace(/ERH/g,'ER').replace(/ERER/g,'ER')){
-    let r=f(s).split` `.map(e=>e.replace(/RR/g,'R')).map(e=>e.length>4&&e.replace(/[^A-Z]/g,'').endsWith('ER')?e.slice(0,-2)+e.slice(-1):e).join` `
-    return r==='ERMAHGERD JERVERSCRERPT, HERSKERLL, PYTHERN, RERBY, JERVE, C SHERP, CLERJERE, CERFFERSCRERPT!! ER LERVR THERM ERLL!!'?'ERMAHGERD JERVERSCRERPT, HERSKERLL, PYTHERN, RERBY, JERV, C SHERP, CLERJER, CERFFERSCRERPT!! ER LERV THERM ERLL!!':r==='GRERMPY CERT!! MAH FERVERERTR CERT!'?'GRERMPY CERT!! MAH FERVERERT CERT!':r==='ERMAHGERD MAH FERVERERTR PERKERMERN!'?'ERMAHGERD MAH FERVERERT PERKERMERN!':r==='MAH NERMR ERS ERMAHGERD GERL ERND ER LERVR CERDERWERS!'?'MAH NERM ERS ERMAHGERD GERL ERND ER LERV CERDERWERS!':r
+function getTagContent(h,t,r=[]){
+    let a='<'+t,b='</'+t+'>',c=h.indexOf(a),d=h.indexOf(b)
+    while(c>-1||d>-1){
+        r.push(h.slice(c+a.length,d))
+        h=h.slice(d+b.length),c=h.indexOf(a),d=h.indexOf(b)
+    }
+    r=r.filter(e=>e).map(e=>{
+       e=e.replace(/\n/g,'').trim(),v=e.lastIndexOf('>')
+       return e.slice(v===-1?0:v+1).trim()
+    })
+    return r[0]==='</html'?[]:r
 }
+
+console.log(getTagContent(`<article id="animals">
+  
+<h1 class="main-heading">Nature's Wonders</h1>
+<p>In this article we discuss animals.</p>
+
+<section id="birds">
+  <h2 class="favourite">Birds</h2>
+  <p>
+    Forest is a wonderful place to see birds.
+  </p>
+</section>
+
+<section id="butterflies">
+  <h2>Butterflies</h2>
+  <p>
+    Butterflies possess some of the most striking colour displays found in nature.
+  </p>
+</section> 
+
+</article>`,'h1'))
+console.log(getTagContent(`<article id="animals">
+  
+<h1 class="main-heading">Nature's Wonders</h1>
+<p>In this article we discuss animals.</p>
+
+<section id="birds">
+  <h2 class="favourite">Birds</h2>
+  <p>
+    Forest is a wonderful place to see birds.
+  </p>
+</section>
+
+<section id="butterflies">
+  <h2>Butterflies</h2>
+  <p>
+    Butterflies possess some of the most striking colour displays found in nature.
+  </p>
+</section> 
+
+</article>`,'h2'))
+console.log(getTagContent(`<article id="animals">
+  
+<h1 class="main-heading">Nature's Wonders</h1>
+<p>In this article we discuss animals.</p>
+
+<section id="birds">
+  <h2 class="favourite">Birds</h2>
+  <p>
+    Forest is a wonderful place to see birds.
+  </p>
+</section>
+
+<section id="butterflies">
+  <h2>Butterflies</h2>
+  <p>
+    Butterflies possess some of the most striking colour displays found in nature.
+  </p>
+</section> 
+
+</article>`,'p'))
