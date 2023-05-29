@@ -1,10 +1,15 @@
-fibonacci=n=>{
-    const f=x=>{
-        if(!x)return [0,1]
-        if(x===1)return [1,1]
-        const [a,b]=f(Math.floor(x/2)),p=a*(2*b-a),q=b*b+a*a
-        return !(x%2)?[p,q]:[q,p+q]
+function flip(d,a){
+    if(d==='R')return a.map(e=>e.sort((a,b)=>a-b))
+    if(d==='L')return a.map(e=>e.sort((a,b)=>b-a))
+    const f=(x,r=[])=>{
+        for(let i=-1;++i<x[0].length;){
+            let t=[]
+            for(let j=-1;++j<x.length;)t.push(x[j][i])
+            r.push(t)
+        }
+        return r
     }
-    return n>=0?f(n)[0]:!(n%2)?-f(-n)[0]:f(-n)[0]
+    return d==='U'?f(f(a).map(e=>e.sort((a,b)=>b-a))):f(f(a).map(e=>e.sort((a,b)=>a-b)))
 }
-console.log(fibonacci(50))
+
+console.log(flip('U',[[1, 3, 2], [4, 5, 1], [6, 5, 3], [7, 2, 9]]))
