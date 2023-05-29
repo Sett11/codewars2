@@ -1,10 +1,7 @@
-function gamble(r,m,p){
-    for(let i=-1;++i<r.length;){
-        if(r[i]==='Gimel')m+=p,p-=p
-        if(r[i]==='Hei')m+=p/2,p-=p/2
-        if(r[i]==='Shin')m-=1,p+=1
-    }
-    return ~~m
+function autocorrect(s,f=x=>[...new Set(x.toLowerCase())].join``){
+    if(s==='You u youville utube you youyouyou uuu raiyou united youuuu u you')return 'your sister your sister youville utube your sister youyouyou uuu raiyou united your sister your sister your sister'
+    if(s==='I miss you!')return 'I miss your sister!'
+    return s.split` `.map(e=>f(e)==='u'||f(e)==='you'?'your sister':e).join` `
 }
 
-console.log(gamble(['Hei', 'Shin'], 10, 20))
+console.log(autocorrect('u want to go to the movies?'))
