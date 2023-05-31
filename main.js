@@ -1,15 +1,15 @@
-let secondArg='',firstArg=''
-Array.prototype.groupBy=function groupBy(f=(v,w)=>v===w){
-  console.log(this,f.toString())
-    const a=[]
-    for(let i=-1;++i<this.length;){
-        for(let j=i-1;++j<=this.length;){
-            if(!f((this[j]===undefined?'':this[j]),(this[j+1]===undefined?'':this[j+1]))||j===this.length)a.push(this.slice(i,j+1)),i=j+1
+function diagonal(b){
+    const f=x=>x.reduce((a,c)=>a.concat(Array.isArray(c)?f(c):[c]),[])
+    b=b.map(e=>e.reverse()).reverse(),q=[],w=[],c=2
+    while(c){
+        for(let i=-1;++i<b.length;){
+            let r=i,j=0,t=[]
+            while(j<b[0].length&&r>=0)t.push(b[r][j]),r--,j++
+            c===2?q.push(t):w.push(t)
         }
+        c--,b=b.map(e=>e.reverse()).reverse()
     }
-    return a.filter(e=>e.length)
+    return f(q.concat(w.reverse().slice(1).map(e=>e.reverse())))
 }
-Object.defineProperty(Array.prototype,"groupBy",{enumerable:false})
 
-console.log([1,2,3,2,4,1,5,1,6].groupBy())
-console.log([1,2,3,2,4,1,5,1,6].groupBy(function(val) { return val % 3;} ))
+console.log(diagonal([[4, 5, 7],[3, 9, 1],[7, 6, 2]]))
