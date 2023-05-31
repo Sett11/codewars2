@@ -1,12 +1,9 @@
-function survivors(n,a){
-    return n.map((e,j)=>{
-      if(e+a[j].reduce((a,c)=>a+c,0)<=a[j].length)return '&'
-        let t=[]
-        for(let i=-1;++i<a[j].length;){
-            if(e<1)break
-            e-=1,e+=a[j][i],t.push(a[j][i])
-        }
-        return t.length===a[j].length?j:'&'
-    }).filter(e=>e!=='&')
+Array.prototype.groupBy=function groupBy(f=e=>e){
+    let a=this.map(e=>[f(e),e]).sort((a,b)=>a[0]-b[0]),r=[],o={}
+    for(let i=-1;++i<a.length;)if(a[i][0]!==(a[i+1]||[])[0])r.push(a.slice(0,i+1)),a=a.slice(i+1),i=-1
+    r.forEach(e=>o[e[0][0]]=e.map(u=>u[1]))
+    return o
 }
-console.log(survivors([3, 2, 1, 0],[[1, 0, 0], [0, 2, 0, 0], [0, 9], [8, 8]]))
+
+console.log([1,2,3,2,4,1,5,1,6].groupBy())
+console.log([1,2,3,2,4,1,5,1,6].groupBy(function(val) { return val % 3;} ))
