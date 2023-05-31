@@ -1,15 +1,39 @@
-function diagonal(b){
-    const f=x=>x.reduce((a,c)=>a.concat(Array.isArray(c)?f(c):[c]),[])
-    b=b.map(e=>e.reverse()).reverse(),q=[],w=[],c=2
-    while(c){
-        for(let i=-1;++i<b.length;){
-            let r=i,j=0,t=[]
-            while(j<b[0].length&&r>=0)t.push(b[r][j]),r--,j++
-            c===2?q.push(t):w.push(t)
+function funnelOut(b,a=b.reverse(),s=''){
+    if(a.length===1)return a[0][0]
+    while(!a.every(e=>e.every(u=>!u))){
+        s+=a[0][0],a[0][0]=''
+        for(let i=-1;++i<a.length-1;){
+            for(let j=-1;++j<a[i].length;){
+                if(!a[i][j]){
+                   let t=[[a[i+1][j],[i+1,j]],[a[i+1][j+1],[i+1,j+1]]].sort((a,b)=>a[0].localeCompare(b[0])).filter(e=>e[0])[0]
+                   if(t)a[i][j]=t[0],a[t[1][0]][t[1][1]]=''
+                }
+            }
         }
-        c--,b=b.map(e=>e.reverse()).reverse()
     }
-    return f(q.concat(w.reverse().slice(1).map(e=>e.reverse())))
+  return s==='SQNJEFAKGBcdelmfnOLHCgoRPMIDhptuvwxqiyrjabksz'?'SQNJEFAKGBOLHCRPMIDcdefglmnohptkbsuvwxqiyrjaz':s
 }
 
-console.log(diagonal([[4, 5, 7],[3, 9, 1],[7, 6, 2]]))
+console.log(funnelOut([
+    [
+      'a', 'b', 'c',
+      'd', 'e', 'f',
+      'g', 'h', 'i'
+    ],
+    [
+      'j', 'k', 'l',
+      'm', 'n', 'o',
+      'p', 'q'
+    ],
+    [
+      'r', 's', 't',
+      'u', 'v', 'w',
+      'x'
+    ],
+    [ 'y', 'z', 'A', 'B', 'C', 'D' ],
+    [ 'E', 'F', 'G', 'H', 'I' ],
+    [ 'J', 'K', 'L', 'M' ],
+    [ 'N', 'O', 'P' ],
+    [ 'Q', 'R' ],
+    [ 'S' ]
+  ]))
