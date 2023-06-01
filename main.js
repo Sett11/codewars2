@@ -1,16 +1,11 @@
-function f(n,i=2,j=0){
-    while(i<=Math.sqrt(n)){
-        while(!(n%i))n/=i,j++
+const f=(n,i=2,a=[])=>{
+    while(i<n*n){
+        while(!(n%i))n/=i,a.push(i)
         i++
     }
-    return n===1?j:j+1
+    return a
 }
-function countKprimes(k,s,z){
-    return Array(z-s+1).fill(0).map((_,i)=>i+s).filter(e=>f(e)===k)
-}
-function puzzle(s,a=Array(s).fill(0).map((_,i)=>i+1),c=0){
-    const r=[a.filter(e=>f(e)===1),a.filter(e=>f(e)===3),a.filter(e=>f(e)===7)].reverse()
-    for(let i=-1;++i<r[0].length;)for(let j=-1;++j<r[1].length;)for(let k=-1;++k<r[2].length;)if(r[0][i]+r[1][j]+r[2][k]===s)c++
-    return c
-}
-console.log(puzzle(743))
+const q=x=>{if(x<2)return !1;if(x===2)return !0;for(let i=1;++i<=Math.sqrt(x);){if(!(x%i))return !1}return !0}
+const isSmithNumber=(n,r=x=>eval([...x+''].join`+`))=>!q(n)&&r(f(n).join``)===r(n)
+
+console.log(isSmithNumber(2))
