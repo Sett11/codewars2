@@ -1,16 +1,16 @@
-const r=(x,i=2,a=[])=>{
-    while(i<x*x){
-        while(!(x%i))x/=i,a.push(i)
+function f(n,i=2,j=0){
+    while(i<=Math.sqrt(n)){
+        while(!(n%i))n/=i,j++
         i++
     }
-    return a
+    return n===1?j:j+1
 }
-function f(n,t=r(n)){
-    return eval([...new Set(t)].map(e=>{
-        e=[e,t.filter(u=>u===e).length]
-        return e[1]===1?e[1]**e[0]:e[1]<3?e[0]*e[1]:e[1]*e[0]**(e[1]-1)
-    }).join`*`)
+function countKprimes(k,s,z){
+    return Array(z-s+1).fill(0).map((_,i)=>i+s).filter(e=>f(e)===k)
 }
-console.log(f(24500))
-console.log(f(8914472))
-console.log(f(997))
+function puzzle(s,a=Array(s).fill(0).map((_,i)=>i+1),c=0){
+    const r=[a.filter(e=>f(e)===1),a.filter(e=>f(e)===3),a.filter(e=>f(e)===7)].reverse()
+    for(let i=-1;++i<r[0].length;)for(let j=-1;++j<r[1].length;)for(let k=-1;++k<r[2].length;)if(r[0][i]+r[1][j]+r[2][k]===s)c++
+    return c
+}
+console.log(puzzle(743))
