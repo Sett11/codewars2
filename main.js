@@ -6,16 +6,13 @@ const f=(n,x=n,i=2,a=[])=>{
     if(x!==1&&x!==n)a.push(x)
     return a
 }
-const highestBiPrimeFac=(a,b,e,y=f(e))=>{
-    if([...new Set(y)].join``===[a,b].join``)return [e,y.filter(e=>e===a).length,y.filter(e=>e===b).length]
-    for(let i=e;i--;){
-        let t=f(i)
-        if([...new Set(t)].join``===[a,b].join``)return [i,t.filter(e=>e===a).length,t.filter(e=>e===b).length]
-    }
+const r=(x,a=[])=>{
+    for(let i=0;++i<=Math.sqrt(x);)if(!(x%i))a.push(i,x/i)
+    return a
+}
+const dsMultofPfs=(a,b,q=[])=>{
+    for(let i=a-1;++i<=b;)if(eval(r(i).join`+`)%eval(f(i).join`+`)===0)q.push(i)
+    return q
 }
 
-console.log(highestBiPrimeFac(2,3,50))
-console.log(highestBiPrimeFac(5,11,1000))
-console.log(highestBiPrimeFac(5,7,5000))
-console.log(highestBiPrimeFac(83, 367, 28263924862181))
-console.log(highestBiPrimeFac(7, 677, 22458121))
+console.log(dsMultofPfs(20,120))
