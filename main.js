@@ -1,14 +1,16 @@
-const r=(x,a=[])=>{
-    for(let i=1;++i<=Math.sqrt(x);)if(!(x%i))a.push(i,x/i)
+const r=(x,i=2,a=[])=>{
+    while(i<x*x){
+        while(!(x%i))x/=i,a.push(i)
+        i++
+    }
     return a
 }
-const f=x=>{if(x<2)return false;if(x===2)return true;for(let i=2;i<=Math.sqrt(x);i++){if(x%i===0)return false}return true}
-function bigPrimefacDiv(n){
-    if(!Number.isInteger(n)&&t.slice(t.indexOf('.')+1).some(e=>e!=='0'))return 'The number has a decimal part.'
-    n=Math.abs(n),t=r(n)
-    if(f(n))return []
-    return [Math.max(...t.filter(e=>f(e))),Math.max(...t)]
+function f(n,t=r(n)){
+    return eval([...new Set(t)].map(e=>{
+        e=[e,t.filter(u=>u===e).length]
+        return e[1]===1?e[1]**e[0]:e[1]<3?e[0]*e[1]:e[1]*e[0]**(e[1]-1)
+    }).join`*`)
 }
-console.log(bigPrimefacDiv(1969))
-console.log(bigPrimefacDiv(100))
-console.log(bigPrimefacDiv(372748824))
+console.log(f(24500))
+console.log(f(8914472))
+console.log(f(997))
