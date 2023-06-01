@@ -6,6 +6,7 @@ const f=(n,x=n,i=2,a=[])=>{
     if(x!==1&&x!==n)a.push(x)
     return a
 }
-const factorSum=x=n=>!f(n).length||eval(f(n).join`+`)===n?n:x(eval(f(n).join`+`))
+const r=x=>{if(x<2)return !1;if(x===2)return !0;for(let i=1;++i<=Math.sqrt(x);){if(!(x%i))return !1}return !0}
+const multPrimefactorSum=(s,e)=>Array(e-s+1).fill(0).map((e,i)=>i+s).filter(e=>!r(e)&&!(e%eval(f(e).join`+`)))
 
-console.log(factorSum(4))
+console.log(multPrimefactorSum(1,60))
