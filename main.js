@@ -1,6 +1,10 @@
-function hasTwoCubeSums(n,i=1,a=[],c=0){
-    while(i**3<n)a.push(i**3),i++
-    for(let i=-1;++i<a.length;)for(let j=-1;++j<a.length;)if(n-a[i]===a[j])c++
-    return c>2
+function partitionOn(p,a,f=[],t=[]){
+  for(let i=-1;++i<a.length;){
+    if(!p(a[i]))f.push(...a.splice(i,1)),i--
+    else t.push(...a.splice(i,1)),i--
+  }
+  a.splice(0,0,...f,...t)
+  return f.length
 }
-console.log(hasTwoCubeSums(1729))
+
+console.log(partitionOn(e=>!(e&1),[1, 2, 3, 4, 5, 6]))
