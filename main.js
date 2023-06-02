@@ -1,8 +1,5 @@
-function unusualSort(w,a=[],b=[],c=[]){
-  w.forEach(e=>typeof e==='string'&&+e!==+e?a.push(e):typeof e==='string'&&+e===+e?b.push(e):c.push(e))
-  return a.sort().concat(c.concat(b).sort())
-}
+max=(d,f=x=>x)=>Math.max(...d.map(e=>f(e)))
 
-console.log(unusualSort([3,"3","2",2,"2","1",1,"a","b","c"]))
-console.log(unusualSort(["a","Z","B"]))
-console.log(unusualSort([1,2,3,'1','2','3']))
+console.log(max([{apples:2, bananas: 3},
+  {apples:15, bananas: 12},
+  {apples:4, bananas: 7}],function(d) { return d.bananas; }))
