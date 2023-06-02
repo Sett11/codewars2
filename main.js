@@ -1,10 +1,8 @@
-function partitionOn(p,a,f=[],t=[]){
-  for(let i=-1;++i<a.length;){
-    if(!p(a[i]))f.push(...a.splice(i,1)),i--
-    else t.push(...a.splice(i,1)),i--
-  }
-  a.splice(0,0,...f,...t)
-  return f.length
+function hollowTriangle(n,t=2*(n-1)+1){
+    return Array(n).fill('').map((e,i,v)=>{
+        e=!i?'_'.repeat(n-1)+'#'+'_'.repeat(n-1):i===v.length-1?'#'.repeat(t):'_'.repeat(n-i-1)+'#'+'_'+'#'+'_'.repeat(n-i-1)
+        while(e.length<t)e=e.replace(/#/,'$&_')
+        return e
+    })
 }
-
-console.log(partitionOn(e=>!(e&1),[1, 2, 3, 4, 5, 6]))
+console.log(hollowTriangle(22))
