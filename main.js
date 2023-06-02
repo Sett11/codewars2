@@ -1,8 +1,15 @@
-function hollowTriangle(n,t=2*(n-1)+1){
-    return Array(n).fill('').map((e,i,v)=>{
-        e=!i?'_'.repeat(n-1)+'#'+'_'.repeat(n-1):i===v.length-1?'#'.repeat(t):'_'.repeat(n-i-1)+'#'+'_'+'#'+'_'.repeat(n-i-1)
-        while(e.length<t)e=e.replace(/#/,'$&_')
+function myCrib(n){
+    const h=Array(n+1).fill('').map((e,i,v)=>{
+        e=' '.repeat(n-i)+'/'+' '.repeat(i*2)+'\\'+' '.repeat(n-i)
+        if(i===v.length-1)e=e.replace(/ /g,'_')
+        return e
+    }),b=Array(n).fill('').map((e,i,v)=>{
+        e='|'+' '+'|'
+        while(e.length<h[h.length-1].length)e=e.replace(/\|/,'$& ')
+        if(i===v.length-1)e=e.replace(/ /g,'_')
         return e
     })
+    return h.concat(b).join`\n`
 }
-console.log(hollowTriangle(22))
+
+console.log(myCrib(30))
