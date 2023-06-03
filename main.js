@@ -1,17 +1,23 @@
-function* sequenceGen(...a){
-  const f=x=>x===undefined?1:x
-  let c=0
-  while(c<a.length)yield a[c++]
-  while(1){
-    a.push(a.slice(-c).reduce((a,c)=>a+c,0))
-    yield f(a[a.length-1])
+const f=x=>Object.values(x).reduce((a,c)=>a.concat(typeof c==='string'?[c]:f(Object.values(c))),[])
+const q=x=>{
+  for(let i=-1;++i<x.length;){
+    let v=Math.floor(Math.random()*x.length),t=x[i]
+    x[i]=x[v],x[v]=t
   }
+  return x
 }
-const fib=sequenceGen(0,1)
-console.log(fib.next().value)
-console.log(fib.next().value)
-console.log(fib.next().value)
-console.log(fib.next().value)
-console.log(fib.next().value)
-console.log(fib.next().value)
-console.log(fib.next().value)
+Object.prototype.random=function(){
+  const w=this.toRandomArray()[0]
+  return typeof w==='object'?Object.values(w)[0]:w
+}
+Object.prototype.toRandomArray=function(){
+  const r=Object.values(Object.values(this))
+  r[0]=typeof r[0]==='object'?Object.values(r[0])[0]:r[0]
+	return r.length===1?r.filter(e=>e):q(f(this))
+}
+const o={ w: 'a', q: 'b', e: { w: { q: 'c' } } }
+const r={ a: 1 }
+console.log(o.random())
+console.log(o.toRandomArray())
+console.log(r.random())
+console.log(r.toRandomArray())
