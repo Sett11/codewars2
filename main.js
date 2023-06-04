@@ -1,15 +1,19 @@
-function minesweeper(m,r=[]){
-  for(let i=-1;++i<m.length;){
-    for(let j=-1;++j<m[i].length;){
-      let t=[[i,j+1],[i,j-1],[i+1,j],[i-1,j],[i+1,j+1],[i-1,j-1],[i+1,j-1],[i-1,j+1]].filter(e=>e[0]>-1&&e[1]>-1&&e[0]<m.length&&e[1]<m[i].length)
-      t=t.filter(e=>m[e[0]][e[1]])
-      r.push([i,j,t.length])
-    }
-  }
-  for(let i=-1;++i<r.length;)m[r[i][0]][r[i][1]]=r[i][2]
-  return m
+histogram=r=>{
+  if(r.every(e=>!e))return '-----------\n1 2 3 4 5 6\n'
+  let a=r.map((e,i)=>{
+    e=[...('#'.repeat(e)||' ')]
+    e.unshift(r[i])
+    while(e.length<=Math.max(...r))e.unshift(' ')
+    return e
+  })
+  a=a[0].map((_,i)=>a.map(u=>u[i]||' ')).map(e=>{
+    e=e.join` `
+    while(e[e.length-1]===' ')e=e.slice(0,-1)
+    return e
+  })
+  a.push('-'.repeat(Math.max(...a.map(e=>e.length))))
+  a.push(Array(r.length).fill(1).map((e,i)=>i+e).join` `)
+  return a.join`\n`+'\n'
 }
-console.log(minesweeper([
-  [true,false,false,true], 
-  [false,false,true,false], 
-  [true,true,false,true]]))
+
+console.log(histogram([7,3,10,1,0,5]))
