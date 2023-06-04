@@ -1,10 +1,5 @@
-function scramble(s,e,f=x=>[...x].reduce((a,c)=>(a[c]=a[c]+1||1,a),{})){
-  s=f(s),e=f(e)
-  for(let i in e)if(!s[i]||s[i]<e[i])return !1
-  return !0
-}
+calculateWinners=(s,a,r=s.toLowerCase().split`\n`.map((e,i)=>[e.slice(e.indexOf('p'),-1).replace(/~/g,'--').length,a[i]]).sort((a,b)=>a[0]-b[0]).map(e=>e[1]))=>`GOLD: ${r[0]}, SILVER: ${r[1]}, BRONZE: ${r[2]}`
 
-console.log(scramble('rkqodlw','world'))
-console.log(scramble('cedewaraaossoqqyt', 'codewars'))
-console.log(scramble('scriptjavx',        'javascript'))
-console.log(scramble('katas', 'steak'))
+console.log(calculateWinners(`|----p---~---------|
+|----p---~~--------|
+|----p---~~~-------|`,["Derek", "Francis", "Bob"]))
