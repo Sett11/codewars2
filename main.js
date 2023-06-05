@@ -1,10 +1,11 @@
-const Substitution=_=>{
-  return{
-    Encrypt:s=>[...s].map(e=>(e).charCodeAt()+58).join``,
-    Decrypt:s=>s.match(/.{3,3}/g).map(e=>String.fromCharCode(+e-58)).join``
-  }
+function CaesarCryptoEncode(s,h,a='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',f=x=>x.toLowerCase()){
+  return !s||!s.match(/[a-z0-9]/i)?'':[...s].map(e=>{
+    if(!a.includes(f(e)))return e
+    e=[(a.indexOf(f(e))+h)%a.length,e<{}]
+    if(e[0]<0)e[0]+=a.length
+    e[0]=a[e[0]]
+    return e[1]&&e[0].toUpperCase()===e[0]?e[0].toLowerCase():e[1]?e[0].toUpperCase():e[0]
+  }).join``
 }
 
-const s=Substitution()
-console.log(s.Encrypt('abc'))
-console.log(s.Decrypt('155156157'))
+console.log(CaesarCryptoEncode("Hw wx, Euxwh?",-3))
