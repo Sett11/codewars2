@@ -1,19 +1,28 @@
-const f=x=>BigInt(x)
+const f=x=>{if(x<2)return false;if(x===2)return true;for(let i=2;i<Math.sqrt(x)+1;i++){if(x%i===0)return false}return true}
+const q=x=>+[...x+''].slice(0,2).join``
+const w=x=>[...x+''].reverse().slice(0,2).join``
 class M{
   constructor(){
-    this.a=[[1],[1,1],[1,2,2],[1,3,5,5],[1,4,9,14,14]].map(e=>e.map(f))
+    this.a=[1176]
   }
-  c(x){
-    while(this.a.length<x){
-      let t=[f(1)]
-      for(let i=0;++i<this.a[this.a.length-1].length;)t.push(t[i-1]+this.a[this.a.length-1][i])
-      t.push(t[t.length-1])
-      this.a.push(t)
+  c(a,b){
+    let v=this.a.findIndex(e=>e>a)
+    if(v!==-1){
+      let t=this.a.findIndex(e=>e>b)
+      if(t!==-1)return this.a.slice(v,t).length
     }
-    return this.a[f(x)-1n].reduce((a,c)=>a+c)
+    let i=this.a[this.a.length-1]+1
+    while(i<b){
+      if(f(q(i))&&f(q(i*i))&&w(i)===w(i*i))this.a.push(i)
+      i++
+    }
+    let x=this.a.findIndex(e=>e>a)
+    return this.a.slice(x<0?0:x).length
   }
 }
 const r=new M()
-const solve=n=>r.c(n)
+const solve=(a,b)=>r.c(a,b)
 
-console.log(solve(5))
+console.log(solve(2,1200))
+console.log(solve(2,1000000))
+console.log(solve(2,100000))
