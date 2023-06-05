@@ -1,19 +1,6 @@
-histogram=r=>{
-  if(r.every(e=>!e))return '-----------\n1 2 3 4 5 6\n'
-  let a=r.map((e,i)=>{
-    e=[...('#'.repeat(e)||' ')]
-    e.unshift(r[i])
-    while(e.length<=Math.max(...r))e.unshift(' ')
-    return e
-  })
-  a=a[0].map((_,i)=>a.map(u=>u[i]||' ')).map(e=>{
-    e=e.join` `
-    while(e[e.length-1]===' ')e=e.slice(0,-1)
-    return e
-  })
-  a.push('-'.repeat(Math.max(...a.map(e=>e.length))))
-  a.push(Array(r.length).fill(1).map((e,i)=>i+e).join` `)
-  return a.join`\n`+'\n'
+function ROT135(s,f=(x,y)=>y?x.toUpperCase():x){
+  return [...s].map(e=>!parseInt(e,36)&&e!=='0'?e:+e===+e?(+e+5)%10:f(String.fromCharCode((((parseInt(e.toLowerCase(),36))+3)%26)+97),e>{}?0:1)).join``
 }
 
-console.log(histogram([7,3,10,1,0,5]))
+console.log(ROT135(';The quick brown fox jumps over the 2 lazy dogs'))
+console.log(ROT135('Gur dhvpx oebja sbk whzcf bire gur 7 ynml qbtf'))
