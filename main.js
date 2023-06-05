@@ -1,26 +1,25 @@
-const alf=`ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,:;-?! '()$%&"`
-const f=x=>x>{}?x.toUpperCase():x.toLowerCase()
-function encrypt(s,r=[]){
-  if(!s)return s
-  let a=[...s]
-  if(a.some(e=>!alf.includes(e)))throw Error()
-  a=a.map((e,i)=>i%2?f(e):e)
-  for(let i=-1;++i<a.length-1;){
-    let t=alf.indexOf(a[i])-alf.indexOf(a[i+1])
-    r.push(alf[t<0?t+alf.length:t])
-  }
-  return [alf[alf.length-alf.indexOf(a[0])-1]].concat(r).join``
-}
-function decrypt(s){
-  if(!s)return s
-  let a=[...s]
-  if(a.some(e=>!alf.includes(e)))throw Error()
-  a[0]=alf[alf.length-alf.indexOf(a[0])-1]
-  for(let i=-1;++i<a.length-1;){
-    a[i+1]=alf[((alf.indexOf(a[i])-alf.indexOf(a[i+1]))+alf.length)%alf.length]
-  }
-  return a.map((e,i)=>i%2?f(e):e).join``
-}
+const d={'UUC':'F', 'UUU':'F',
+'UUA':'L', 'UUG':'L', 'CUU':'L', 'CUC':'L','CUA':'L','CUG':'L', 
+'AUU':'I', 'AUC':'I', 'AUA':'I', 
+'AUG':'M', 
+'GUU':'V', 'GUC':'V', 'GUA':'V', 'GUG':'V', 
+'UCU':'S', 'UCC':'S', 'UCA':'S', 'UCG':'S', 'AGU':'S', 'AGC':'S', 
+'CCU':'P', 'CCC':'P', 'CCA':'P', 'CCG':'P', 
+'ACU':'T', 'ACC':'T', 'ACA':'T', 'ACG':'T',
+'GCU':'A', 'GCC':'A', 'GCA':'A', 'GCG':'A',
+'UAU':'Y', 'UAC':'Y', 
+'CAU':'H', 'CAC':'H',
+'CAA':'Q', 'CAG':'Q', 
+'AAU':'N', 'AAC':'N', 
+'AAA':'K', 'AAG':'K',
+'GAU':'D', 'GAC':'D', 
+'GAA':'E', 'GAG':'E',
+'UGU':'C', 'UGC':'C',
+'UGG':'W', 
+'CGU':'R', 'CGC':'R', 'CGA':'R', 'CGG':'R', 'AGA':'R', 'AGG':'R', 
+'GGU':'G',  'GGC':'G', 'GGA':'G', 'GGG':'G', 
+'UAA':'Stop', 'UGA':'Stop', 'UAG':'Stop'}
 
-console.log(encrypt("Business"))
-console.log(decrypt("&61kujla"))
+protein=s=>s.replace(/.{3,3}/g,e=>d[e]==='Stop'?'':d[e])
+
+console.log(protein('UGCGAUGAAUGGGCUCGCUCC'))
