@@ -1,25 +1,19 @@
-const d={'UUC':'F', 'UUU':'F',
-'UUA':'L', 'UUG':'L', 'CUU':'L', 'CUC':'L','CUA':'L','CUG':'L', 
-'AUU':'I', 'AUC':'I', 'AUA':'I', 
-'AUG':'M', 
-'GUU':'V', 'GUC':'V', 'GUA':'V', 'GUG':'V', 
-'UCU':'S', 'UCC':'S', 'UCA':'S', 'UCG':'S', 'AGU':'S', 'AGC':'S', 
-'CCU':'P', 'CCC':'P', 'CCA':'P', 'CCG':'P', 
-'ACU':'T', 'ACC':'T', 'ACA':'T', 'ACG':'T',
-'GCU':'A', 'GCC':'A', 'GCA':'A', 'GCG':'A',
-'UAU':'Y', 'UAC':'Y', 
-'CAU':'H', 'CAC':'H',
-'CAA':'Q', 'CAG':'Q', 
-'AAU':'N', 'AAC':'N', 
-'AAA':'K', 'AAG':'K',
-'GAU':'D', 'GAC':'D', 
-'GAA':'E', 'GAG':'E',
-'UGU':'C', 'UGC':'C',
-'UGG':'W', 
-'CGU':'R', 'CGC':'R', 'CGA':'R', 'CGG':'R', 'AGA':'R', 'AGG':'R', 
-'GGU':'G',  'GGC':'G', 'GGA':'G', 'GGG':'G', 
-'UAA':'Stop', 'UGA':'Stop', 'UAG':'Stop'}
+const f=x=>BigInt(x)
+class M{
+  constructor(){
+    this.a=[[1],[1,1],[1,2,2],[1,3,5,5],[1,4,9,14,14]].map(e=>e.map(f))
+  }
+  c(x){
+    while(this.a.length<x){
+      let t=[f(1)]
+      for(let i=0;++i<this.a[this.a.length-1].length;)t.push(t[i-1]+this.a[this.a.length-1][i])
+      t.push(t[t.length-1])
+      this.a.push(t)
+    }
+    return this.a[f(x)-1n].reduce((a,c)=>a+c)
+  }
+}
+const r=new M()
+const solve=n=>r.c(n)
 
-protein=s=>s.replace(/.{3,3}/g,e=>d[e]==='Stop'?'':d[e])
-
-console.log(protein('UGCGAUGAAUGGGCUCGCUCC'))
+console.log(solve(5))
