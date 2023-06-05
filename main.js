@@ -1,6 +1,33 @@
-function ROT135(s,f=(x,y)=>y?x.toUpperCase():x){
-  return [...s].map(e=>!parseInt(e,36)&&e!=='0'?e:+e===+e?(+e+5)%10:f(String.fromCharCode((((parseInt(e.toLowerCase(),36))+3)%26)+97),e>{}?0:1)).join``
+class KamaSutraCipher{
+  constructor(k){
+    this.k=k
+  }
+  encode(s){
+    return [...s].map(e=>{
+      for(let i=-1;++i<this.k.length;){
+        if(this.k[i][0]===e)return this.k[i][1]
+        if(this.k[i][1]===e)return this.k[i][0]
+      }
+      return e
+    }).join``
+  }
+  decode(s){
+    return this.encode(s)
+  }
 }
-
-console.log(ROT135(';The quick brown fox jumps over the 2 lazy dogs'))
-console.log(ROT135('Gur dhvpx oebja sbk whzcf bire gur 7 ynml qbtf'))
+const r=new KamaSutraCipher([
+  ['d', 'p'],
+  ['n', 'o'],
+  ['a', 'w'],
+  ['f', 'c'],
+  ['h', 's'],
+  ['l', 'v'],
+  ['m', 'j'],
+  ['x', 'b'],
+  ['e', 'z'],
+  ['r', 'i'],
+  ['k', 'y'],
+  ['u', 'q'],
+  ['t', 'g']
+])
+console.log(r.encode('mutt'))
