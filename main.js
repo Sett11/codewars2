@@ -1,39 +1,26 @@
-class Node {
-  next;  
-  constructor(item) {
-    this.data = item;
-    this.next = null;
+const alf=`ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,:;-?! '()$%&"`
+const f=x=>x>{}?x.toUpperCase():x.toLowerCase()
+function encrypt(s,r=[]){
+  if(!s)return s
+  let a=[...s]
+  if(a.some(e=>!alf.includes(e)))throw Error()
+  a=a.map((e,i)=>i%2?f(e):e)
+  for(let i=-1;++i<a.length-1;){
+    let t=alf.indexOf(a[i])-alf.indexOf(a[i+1])
+    r.push(alf[t<0?t+alf.length:t])
   }
-  toString() {
-    if (!this.data) return "";
-    let str = this.data;
-    let n = this.next;
-    while (n != null) {
-      str += " -> " + n.data;
-      n = n.next;
-    }
-    return str;
+  return [alf[alf.length-alf.indexOf(a[0])-1]].concat(r).join``
+}
+function decrypt(s){
+  if(!s)return s
+  let a=[...s]
+  if(a.some(e=>!alf.includes(e)))throw Error()
+  a[0]=alf[alf.length-alf.indexOf(a[0])-1]
+  for(let i=-1;++i<a.length-1;){
+    a[i+1]=alf[((alf.indexOf(a[i])-alf.indexOf(a[i+1]))+alf.length)%alf.length]
   }
-  static build(values) { 
-    if (!values || !values.length) return null;
-    let head, tail
-    
-    if (values.length) head = tail = new Node(values[0]);
-    
-    for (let i = 1; i < values.length; i++) {
-      tail.next = new Node(values[i]);
-      tail = tail.next;
-    }
-    return head;
-  }
+  return a.map((e,i)=>i%2?f(e):e).join``
 }
 
-function searchKFromEnd(l,k,a=[]){
-  while(l&&l.data){
-    a.push(l.data)
-    l=l.next
-  }
-  return k>a.length?null:a[a.length-k]
-}
-
-console.log(searchKFromEnd(Node.build([5,2,3,1]),3))
+console.log(encrypt("Business"))
+console.log(decrypt("&61kujla"))
