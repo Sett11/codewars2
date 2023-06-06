@@ -1,30 +1,21 @@
-function watchPyramidFromTheSide(s,n=-1,r=[]){
-  if(!s)return s
-  for(let i=s.length;--i>=0;)r.push(s[i].repeat(n+=2))
-  return r.map(e=>' '.repeat((n-e.length)/2)+e+' '.repeat((n-e.length)/2)).join`\n`
-}
-function watchPyramidFromAbove(s){
-  if(!s)return s
-  let n=s.length*2-1
-  let a=s[0].repeat(n*n).match(RegExp(`.{${n},${n}}`,'g')).map(e=>[...e]),c=s.slice(1),k=1
-  for(let q=0;q<c.length;q++){
-    for(let i=k;i<a.length-k;i++)for(let j=k;j<a[i].length-k;j++)a[i][j]=c[q]
-    k++
-  }
-  return a.map(e=>e.join``).join`\n`
-}
-function countVisibleCharactersOfThePyramid(s){
-  if(!s)return -1
-  return watchPyramidFromAbove(s).split`\n`.join``.length
-}
-function countAllCharactersOfThePyramid(s){
-  if(!s)return -1
-  let n=s.length*2-1,c=0
-  while(n>0)c+=n*n,n-=2
-  return c
+longestSlideDown=x=>{
+  x.reverse()
+  for(let i=0;++i<x.length;)for(let j=-1;++j<x[i].length;)x[i][j]+=Math.max(x[i-1][j],x[i-1][j+1])
+  return x[x.length-1][0]
 }
 
-console.log(watchPyramidFromTheSide('*#'))
-console.log(watchPyramidFromAbove('*#'))
-console.log(countVisibleCharactersOfThePyramid('*#'))
-console.log(countAllCharactersOfThePyramid("*#"))
+console.log(longestSlideDown([[75],
+  [95, 64],
+  [17, 47, 82],
+  [18, 35, 87, 10],
+  [20,  4, 82, 47, 65],
+  [19,  1, 23, 75,  3, 34],
+  [88,  2, 77, 73,  7, 63, 67],
+  [99, 65,  4, 28,  6, 16, 70, 92],
+  [41, 41, 26, 56, 83, 40, 80, 70, 33],
+  [41, 48, 72, 33, 47, 32, 37, 16, 94, 29],
+  [53, 71, 44, 65, 25, 43, 91, 52, 97, 51, 14],
+  [70, 11, 33, 28, 77, 73, 17, 78, 39, 68, 17, 57],
+  [91, 71, 52, 38, 17, 14, 91, 43, 58, 50, 27, 29, 48],
+  [63, 66,  4, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31],
+  [ 4, 62, 98, 27, 23,  9, 70, 98, 73, 93, 38, 53, 60,  4, 23]]))
