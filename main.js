@@ -1,34 +1,23 @@
-class VendingMachine{
-  constructor(a,b){
-    this.a=a
-    this.b=b
-  }
-  vend(s,i){
-    let c=this.a.map((e,i)=>[e,i]).filter(e=>e[0].code.toLowerCase()===s.toLowerCase())[0]
-    if(!c)return `Invalid selection! : Money in vending machine = ${(this.b).toFixed(2)}`
-    if(c[0].price>i)return "Not enough money!"
-    if(!c[0].quantity)return `${c[0].name}: Out of stock!`
-    if(i===c[0].price){
-      this.b=+(this.b+ +i).toFixed(2)
-      this.a[c[1]].quantity-=1
-      return `Vending ${c[0].name}`
-    }
-    if(i>c[0].price){
-      this.b=+(this.b+ +i).toFixed(2)
-      let t=(i-c[0].price).toFixed(2)
-      this.b=+(this.b- +t).toFixed(2)
-      this.a[c[1]].quantity-=1
-      return `Vending ${c[0].name} with ${t} change.`
-    }
-  }
+function pascal(d,a=[[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]){
+  if(d<a.length)return a.slice(0,d)
+  if(a.length===d)return a
+  let t=[1]
+  for(let i=-1;++i<a[a.length-1].length;)t.push((a[a.length-1][i]+a[a.length-1][i+1])||1)
+  a.push(t)
+  return pascal(d,a)
 }
-const r=new VendingMachine([{name:"Smarties", code:"A01", quantity:10, price:0.60},
-{name:"Caramac Bar", code:"A02", quantity:5, price:0.60},
-{name:"Dairy Milk", code:"A03", quantity:1, price:0.65},
-{name:"Freddo", code:"A04", quantity:1, price:0.25}],10.00)
+function diagonal(n,p,a=pascal(n+1).slice(p)){
+  return eval(a[0].map(_=>a.map(u=>u[p]))[0].join`+`)
+}
 
-console.log(r.vend("A01",0.60))
-console.log(r.vend("A01",10.0))
-console.log(r.vend("Z01",0.41))
-console.log(r.vend("A02",0.40))
-console.log(r.vend("B06",4.60))
+console.log(diagonal(100,10))
+// [
+//   [ 1 ],
+//   [ 1, 1 ],
+//   [ 1, 2, 1 ],
+//   [ 1, 3, 3, 1 ],
+//   [ 1, 4, 6, 4, 1 ],
+//   [ 1, 5, 10, 10, 5, 1 ],
+//   [1, 6, 15, 20,15, 6,  1],
+//   [1,  7, 21, 35,35, 21,  7,  1]
+// ]
