@@ -1,6 +1,16 @@
-function score(a){
-  const o={'33333':300,'1111':1100,'11111':1200,'11':200,'1':100,'5':50,'111':1000,'666':600,'555':500,'444':400,'333':300,'222':200}
-  return eval(a.sort((a,b)=>a-b).join``.match(/(\d)\1*/g).map(e=>o[e]||0).join`+`)
+zoom=z=(n,r=[['■']],c=0)=>{
+  if(n===1)return r.map(e=>e.join``).join`\n`
+	let t=c%2!==0?'■':'□',l=r[0].length+2,q=[...t.repeat(l)]
+  r=r.map(e=>{
+    e.unshift(t),e.push(t)
+    return e
+  })
+  r=r.map(e=>{
+    while(e.length>l)e=e.slice(1,-1)
+    return e
+  })
+  r.unshift(q),r.push(q)
+  return z(n-2,r,c+1)
 }
 
-console.log(score([3, 3, 3, 3, 3]))
+console.log(zoom(25))
