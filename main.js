@@ -1,16 +1,12 @@
-zoom=z=(n,r=[['■']],c=0)=>{
-  if(n===1)return r.map(e=>e.join``).join`\n`
-	let t=c%2!==0?'■':'□',l=r[0].length+2,q=[...t.repeat(l)]
-  r=r.map(e=>{
-    e.unshift(t),e.push(t)
-    return e
-  })
-  r=r.map(e=>{
-    while(e.length>l)e=e.slice(1,-1)
-    return e
-  })
-  r.unshift(q),r.push(q)
-  return z(n-2,r,c+1)
+const f=x=>{if(x===2)return !1;for(let i=1;++i<=Math.sqrt(x);){if(!(x%i))return i}return !1}
+function primeAnt(n){
+  let a=[2],c=2,i=0
+  while(n){
+    let t=f(a[i])
+    if(!t)a.push(++c),i++,n--
+    else a[i]/=t,a[i-1]+=t,i--,n--
+  }
+  return i
 }
 
-console.log(zoom(25))
+console.log(primeAnt(12))
