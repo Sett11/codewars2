@@ -1,18 +1,16 @@
-const f=x=>{if(x<2)return !1;if(x===2)return !0;for(let i=1;++i<=Math.sqrt(x);){if(!(x%i))return !1}return !0}
+const f=x=>{for(let i=1;++i<=Math.sqrt(x);){if(!(x%i))return !1}return !0}
 class M{
-  constructor(a=[]){
-    this.a=a
-  }
-  c(x,y){
-    const z=this.a.findIndex(e=>e>=x),v=this.a.findIndex(e=>e>y)
-    const arr=this.a.slice(z===-1?0:z,v===-1?this.a.length:v).filter(e=>e<y),r=[]
-    for(let i=-1;++i<arr.length;)for(let j=i-1;++j<arr.length;)if(f(eval([...(arr[i]*arr[j])+''].join`+`)))r.push([arr[i],arr[j]])
-    return r.length
+  constructor(a=[2,3,5,7,11,13,17,31,37]){this.a=a}
+  c(n){
+    let t=this.a[this.a.length-1]+2
+    while(this.a.length<=n){
+      if(f(t)&&f(+[...t+''].reverse().join``))this.a.push(t)
+      t+=2
+    }
+    return this.a[n]
   }
 }
-const r=new M(Array(10000).fill(1).map((e,i)=>e+i).filter(f))
-function solve(a,b){   
-  return r.c(a,b)
-}
+const r=new M()
+reversiblePrime=n=>r.c(n)
 
-console.log(solve(0,200))
+console.log(reversiblePrime(100))
