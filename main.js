@@ -1,14 +1,22 @@
-const f=(n,i=2,a=[])=>{
-  while(i<=n*n){
-    while(!(n%i))n/=i,a.push(i)
-    i++
+class M{
+  constructor(){this.a=[1,1,2,3,3,4,5,5,6,6,6,8,8,8,10,9,10,11,11,12,12,12,12]}
+  c(n){
+    while(this.a.length<n){
+      let t=this.a.length
+      this.a.push(this.a[t-this.a[t-1]]+this.a[t-this.a[t-2]])
+    }
+    return this.a.slice(0,n)
   }
-  return a.length
 }
-function consecKprimes(k,a,c=0){
-  a=a.map(e=>f(e))
-  for(let i=-1;++i<a.length-1;)if(a[i]===k&&a[i]===a[i+1])c++
-  return c
-}
+const r=new M()
+lengthSupUK=(n,k)=>r.c(n).filter(e=>e>=k).length
+comp=(n,k=0)=>r.c(n).forEach((e,i,v)=>e<v[i-1]?k++:0)|k
 
-console.log(consecKprimes(2, [10110, 10102, 10097, 10113, 10123, 10109, 10118, 10119, 10117, 10115, 10101, 10121, 10122]))
+console.log(lengthSupUK(50,25))
+console.log(lengthSupUK(3332, 973))
+console.log(lengthSupUK(2941, 862))
+console.log(lengthSupUK(3177, 573))
+console.log(lengthSupUK(1745, 645))
+
+console.log(comp(74626))
+console.log(comp(71749))
