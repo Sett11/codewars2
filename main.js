@@ -1,9 +1,11 @@
-function makestar(s){
-  if(s==='Hello Word !')return '<div id="$12">*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*<br>*&nbsp;H&nbsp;*&nbsp;&nbsp;*&nbsp;e&nbsp;*&nbsp;&nbsp;*&nbsp;l&nbsp;*&nbsp;&nbsp;*&nbsp;l&nbsp;*&nbsp;&nbsp;*&nbsp;o&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;W&nbsp;*&nbsp;&nbsp;*&nbsp;o&nbsp;*&nbsp;&nbsp;*&nbsp;r&nbsp;*&nbsp;&nbsp;*&nbsp;d&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;!&nbsp;*<br>*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*</div> <script language="javascript"> function $12(){ var color="#f00|#0f0|#00f|#880|#808|#088|yellow|green|blue|gray"; color=color.split("|"); document.getElementById("$12").style.color=color[parseInt(Math.random() * color.length)]; } setInterval("$12()",500); </script>'
-  let blink='<div id="blink">TEXT HERE</div> <script language="javascript"> function changeColor(){ var color="#f00|#0f0|#00f|#880|#808|#088|yellow|green|blue|gray"; color=color.split("|"); document.getElementById("blink").style.color=color[parseInt(Math.random() * color.length)]; } setInterval("changeColor()",500); </script>';
-  let b='*&nbsp;'+[...s].join`&nbsp;*&nbsp;&nbsp;*&nbsp;`+'&nbsp;*',a=Array(b.length).fill('*&nbsp;*&nbsp;*').join`&nbsp;&nbsp;`.slice(0,b.length),c=a+'\n'+b+'\n'+a
-  return blink.replace('TEXT HERE',c.replace(/\n/g,'<br>'))
+String.prototype.hashify=function(){
+  let a=[...this],o={}
+  for(let i=-1;++i<a.length;){
+    let t=a.map((e,j)=>e===a[i]?j:'').filter(e=>e!==''),v=t.map(e=>a[(e+1)%a.length])
+    if(!o[a[i]])o[a[i]]=v.length>1?v:v[0]
+  }
+  return o
 }
 
-console.log(makestar('A'))
-console.log(makestar("Hello Word !"))
+console.log('12345'.hashify())
+console.log('this is a string'.hashify())
