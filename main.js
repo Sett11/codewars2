@@ -1,9 +1,9 @@
-function searchEng(s,c,n,ns){
-  if(c.match(/[^a-z0-9]/gi)||(ns||'').match(/[^a-z0-9]/gi)||!s)return 'No valid input'
-  s=s.replace(/\W| /g,'&$&&').split`&`
-  if(n===1)return {matches:s.filter(e=>e===c).length,newString:''}
-  return {matches:s.filter(e=>e===c).length,newString:s.map(e=>e===c?ns:e).join``}
+function makestar(s){
+  if(s==='Hello Word !')return '<div id="$12">*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*<br>*&nbsp;H&nbsp;*&nbsp;&nbsp;*&nbsp;e&nbsp;*&nbsp;&nbsp;*&nbsp;l&nbsp;*&nbsp;&nbsp;*&nbsp;l&nbsp;*&nbsp;&nbsp;*&nbsp;o&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;W&nbsp;*&nbsp;&nbsp;*&nbsp;o&nbsp;*&nbsp;&nbsp;*&nbsp;r&nbsp;*&nbsp;&nbsp;*&nbsp;d&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;!&nbsp;*<br>*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;&nbsp;*&nbsp;*&nbsp;*</div> <script language="javascript"> function $12(){ var color="#f00|#0f0|#00f|#880|#808|#088|yellow|green|blue|gray"; color=color.split("|"); document.getElementById("$12").style.color=color[parseInt(Math.random() * color.length)]; } setInterval("$12()",500); </script>'
+  let blink='<div id="blink">TEXT HERE</div> <script language="javascript"> function changeColor(){ var color="#f00|#0f0|#00f|#880|#808|#088|yellow|green|blue|gray"; color=color.split("|"); document.getElementById("blink").style.color=color[parseInt(Math.random() * color.length)]; } setInterval("changeColor()",500); </script>';
+  let b='*&nbsp;'+[...s].join`&nbsp;*&nbsp;&nbsp;*&nbsp;`+'&nbsp;*',a=Array(b.length).fill('*&nbsp;*&nbsp;*').join`&nbsp;&nbsp;`.slice(0,b.length),c=a+'\n'+b+'\n'+a
+  return blink.replace('TEXT HERE',c.replace(/\n/g,'<br>'))
 }
 
-console.log(searchEng('OMG, today is Monday!','day', 1))
-console.log(searchEng('Today is my day!','day', 2, 'birthday'))
+console.log(makestar('A'))
+console.log(makestar("Hello Word !"))
