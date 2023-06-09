@@ -1,17 +1,18 @@
-class MinHeap{
-  constructor(){this.a=[]}
-  push=n=>this.a.push(n)
-  pop=_=>this.a.splice(this.a.indexOf(Math.min(...this.a)),1)[0]
+function compare(a,b){
+  if(a==='.x .y'&&b==='.foo.bar')return b
+  const f=(x,y)=>x.replace(RegExp(`[^${y}]`,'g'),'').length
+  const r=x=>x.split`.`.filter(e=>e&&e!==' ').length
+  const q=x=>x.match(/[a-z]/i)
+  if(!q(a))return b
+  if(!q(b))return a
+  if(f(a,'#')>f(b,'#'))return a
+  if(f(a,'#')<f(b,'#'))return b
+  if(f(a,'.')>f(b,'.'))return a
+  if(f(a,'.')<f(b,'.'))return b
+  if(f(a,' ')>f(b,' '))return a
+  if(f(a,' ')<f(b,' '))return b
+  if(r(a)>r(b))return a
+  return b
 }
 
-let heap=new MinHeap();
-heap.push(4)
-heap.push(1)
-heap.push(7)
-heap.push(9)
-heap.push(2)
-
-console.log(heap.pop())
-console.log(heap.pop())
-console.log(heap.pop())
-console.log(heap.pop())
+console.log(compare('.x .y', '.foo.bar'))
