@@ -1,10 +1,22 @@
-let addOne = function(e) {return e + 1;}
-let square = function(e) {return e * e;}
-
-Function.prototype.pipe=function(f){
-  return (function(x){
-    return f.apply(null,[this.call(null,x)])
-  }).bind(this)
+class Stream{
+  constructor(a,b,c,arr=[a]){
+    this.a=a
+    this.b=b
+    this.c=c
+    this.arr=arr
+    while(this.arr.length<10000)this.arr.push(this.c(this.arr[this.arr.length-1]))
+  }
+  head(){
+    return this.b(this.arr[0])
+  }
+  tail(){
+    return new Stream(this.arr.slice(1)[0],this.b,this.c,this.arr.slice(1))
+  }
 }
 
-console.log([1,2,3,4,5].map(addOne.pipe(square)))
+let increment = function(n) {return n + 1}
+let id = function(n) {return n}
+let sqr = function(n) {return n * n}
+let n = new Stream(0, id, increment)
+
+console.log(n.tail().head())
