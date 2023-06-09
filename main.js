@@ -1,22 +1,12 @@
-class Stream{
-  constructor(a,b,c,arr=[a]){
-    this.a=a
-    this.b=b
-    this.c=c
-    this.arr=arr
-    while(this.arr.length<10000)this.arr.push(this.c(this.arr[this.arr.length-1]))
+class HolidayPriorityQueue{
+  constructor(){this.a=[]}
+  addGift(g){
+    return this.a.push(g)
   }
-  head(){
-    return this.b(this.arr[0])
-  }
-  tail(){
-    return new Stream(this.arr.slice(1)[0],this.b,this.c,this.arr.slice(1))
+  buyGift(){
+    return (this.a.splice(this.a.sort((a,b)=>a.priority-b.priority)[0],1)[0]||'').gift||''
   }
 }
-
-let increment = function(n) {return n + 1}
-let id = function(n) {return n}
-let sqr = function(n) {return n * n}
-let n = new Stream(0, id, increment)
-
-console.log(n.tail().head())
+const r=new HolidayPriorityQueue()
+r.addGift()
+console.log(r.buyGift())
