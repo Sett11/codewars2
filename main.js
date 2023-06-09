@@ -1,6 +1,10 @@
-Number.prototype.twos=function(n){
-  const s=this>0?'0':'1'
-  return (this).toString(2).replace(/\-/,'').padStart(n,s)
+let addOne = function(e) {return e + 1;}
+let square = function(e) {return e * e;}
+
+Function.prototype.pipe=function(f){
+  return (function(x){
+    return f.apply(null,[this.call(null,x)])
+  }).bind(this)
 }
 
-console.log((1).twos(3))
+console.log([1,2,3,4,5].map(addOne.pipe(square)))
