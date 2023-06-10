@@ -1,13 +1,4 @@
-z=n=>{
-  c=0
-  while(n>=1)n/=2,c++
-  return c
-}
+const a='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+const decryptPassword=s=>s.slice(0,s.lastIndexOf('-')).split`-`.map(e=>a[e]).join``
 
-console.log(z(4))
-console.log(z(1000))
-console.log(`z=n=>{
-  c=0
-  while(n>=1)n/=2,c++
-  return c
-}`.length)
+console.log(decryptPassword("44-19-4-21-4-13-Seentv"))
