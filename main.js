@@ -1,8 +1,32 @@
-cycle=(x,t=[])=>{
-  for(let i=-1;++i<x.length;){
-    if(t.includes(x[i]))return [x.indexOf(x[i]),x.indexOf(x[i])+t.length]
-    else t.push(x[i])
+sometimes=x=>{
+  let c=0,s=`hmm, I don't know!`
+  return (...a)=>{
+    if(c<3){
+      c++
+      return x(...a)
+    }
+    if(c===3){
+      c++
+      return s
+    }
+    if(c>3){
+      if(!(c%2)){
+        c++
+        return x(...a)
+      }
+      else{
+        c++
+        return s
+      }
+    }
   }
-  return []
 }
-console.log(cycle([1,2,3,1,2,3]))
+let s=sometimes((a,b)=>a+b)
+console.log(s(1,2))
+console.log(s(1,2))
+console.log(s(1,2))
+console.log(s(1,2))
+console.log(s(1,2))
+console.log(s(1,2))
+console.log(s(1,2))
+console.log(s(1,2))
