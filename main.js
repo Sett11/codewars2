@@ -1,53 +1,23 @@
-const o={
-  '0':'zero',
-  '1': 'one',
-  '2': 'two',
-  '3': 'three',
-  '4': 'four',
-  '5': 'five',
-  '6': 'six',
-  '7': 'seven',
-  '8': 'eight',
-  '9': 'nine',
-  '10': 'ten',
-  '11': 'eleven',
-  '12': 'twelve',
-  '13': 'thirteen',
-  '14': 'fourteen',
-  '15': 'fifteen',
-  '16': 'sixteen',
-  '17': 'seventeen',
-  '18': 'eighteen',
-  '19': 'nineteen',
-  '20': 'twenty',
-  '30': 'thirty',
-  '40': 'forty',
-  '50': 'fifty',
-  '60': 'sixty',
-  '70': 'seventy',
-  '80': 'eighty',
-  '90': 'ninety',
-  '100': 'hundred'
-}
-const f=n=>{
-  const a=Object.entries(o).reverse().map(e=>[+e[0],e[1]]),r=[]
-  for(let i=-1;++i<a.length;){
-    let t=[]
-    while(n>=a[i][0]&&n)n-=a[i][0],t.push(a[i][1])
-    if(t.length)r.push([t.length,t[0]])
+function contractV6(s,c=s){
+  if(!/((^\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\s*$)|(^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$))/.test(s))return !1
+  if(s==='::')return s
+  c=s.startsWith('::')?c.slice(1):s.endsWith('::')?c.slice(0,s.length-1):c
+  let g=c.split`:`,q=g.indexOf('')
+  if(q!==-1)g.splice(q,1,...Array(8-g.filter(e=>e!=='').length).fill('0'))
+  g=g.map(e=>parseInt(e,16).toString(16).toLowerCase())
+  let a=-1,m=0,cur=0,cou=0
+  for(let i=g.length;--i>=0;){
+    if(g[i]==='0')cur=i,cou++
+    else cou=0
+    if(m<=cou)m=cou,a=cur
   }
-  return r
-}
-function r(n){
-let r=f(n),a=['hundred','thousand','million','billion','trillion','quadrillion']
-for(let i=-1;++i<r.length;){
-  if(a.includes(r[i][1]))r[i][0]=f(r[i][0])
-  else r[i].splice(0,1)
-}
-return r.flat(2).map(e=>Array.isArray(e)&&a.includes(e[1])?[o[e[0]],e[1]]:Array.isArray(e)?e[1]:e).flat().join` `
-}
-sortByName=a=>{
-  return a.map(e=>!e?[e,'zero']:[e,r(e)]).sort((a,b)=>a[1].localeCompare(b[1])).map(e=>e[0])
+  if(a!==-1&&m>1){
+    let w=a===0,b=a+m===g.length,d=w&&b?'::':w||b?':':''
+    g.splice(a,m,d)
+  }
+  return g.join`:`
 }
 
-console.log(sortByName([1,2,3,0]))
+console.log(contractV6('6:EA50:7F7F:0010::7A:F005:314D'))
+console.log(contractV6('028F:D:A13::5E:00:F49:624'))
+console.log(contractV6('2001:0470:0000:0064:0000:0000:0000:2'))
