@@ -1,8 +1,7 @@
-function binMul(m,n,a=[],b=[],t=0){
-    if(m<n)t=m,m=n,n=t
-    a.push(m),b.push(n)
-    while(m>0)a.push(m=~~(m/2)),b.push(n*=2)
-    return b.filter((e,i)=>a[i]&1&&e).reverse()
+function portion(a,j,n,r=[],f=x=>Math.abs(x),z=n){
+    if(j>-1)for(let i=j;n>0;i++)r.push(a[i]),n--
+    else for(let i=a.length-f(j)-1;n>0;i--)r.unshift(a[i]),n--
+    return r.length<z||!a[f(j)]||r.some(e=>e===undefined)?-1:r
 }
-
-console.log(binMul(1954, 6252))
+console.log(portion([1,2,3,4],-1,2))
+console.log(portion([1,2,3,4],1,2))
