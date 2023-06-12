@@ -1,42 +1,30 @@
-class MemoryManager{
-    constructor(m){
-        this.m=m.fill(0)
-        this.o={}
-        this.c=1
-    }
-    allocate(n){
-        if(n>=this.m.length||n<0)throw Error()
-        let t=this.m.indexOf(0)
-        for(let i=t-1;++i<t+n;){
-            if(this.m[i]===undefined)throw Error()
-            this.m[i]=this.c
+function canalMania(l,h,n,f=x=>x.reduce((a,c)=>a+c,0),c=0,s=0){
+    while(l.length||h.length){
+        let t=[]
+        while(1){
+            if(!(c%2)){
+                t.push(l.shift()||0)
+                if(f(t)>n){
+                    l.unshift(t.pop())
+                    break
+                }
+                if(!l.length)break
+            }
+            if(c%2){
+                t.push(h.shift()||0)
+                if(f(t)>n){
+                    h.unshift(t.pop())
+                    break
+                }
+                if(!h.length)break
+            }
         }
-        this.c++
-        return t
+        c++
+        let m=f(t)
+        s+=m*2+2
     }
-    release(p){
-        let t=this.m[p]
-        if(!t)throw Error()
-        for(let i=p-1;++i<this.m.length;){
-            if(this.m[i]===t)this.m[i]=0
-            else break
-        }
-    }
-    read(p){
-        if(!this.m[p])throw Error()
-        if(!this.o[p])return
-        return this.m[p]
-    }
-    write(p,v){
-        if(!this.m[p])throw Error()
-        this.m[p]=v
-        this.o[p]=v
-    }
+    return !(c&1)?s:s+2
 }
 
-let mem = new MemoryManager(new Array(64));
-let pointer1 = mem.allocate(32);
-let pointer2 = mem.allocate(32);
-console.log(mem.release(pointer1))
-console.log(mem.m)
-console.log(mem.allocate(32))
+console.log(canalMania([], [], 10))
+console.log(canalMania([1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], [20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1], 30))
