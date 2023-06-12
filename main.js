@@ -1,30 +1,34 @@
-function canalMania(l,h,n,f=x=>x.reduce((a,c)=>a+c,0),c=0,s=0){
-    while(l.length||h.length){
-        let t=[]
-        while(1){
-            if(!(c%2)){
-                t.push(l.shift()||0)
-                if(f(t)>n){
-                    l.unshift(t.pop())
-                    break
-                }
-                if(!l.length)break
-            }
-            if(c%2){
-                t.push(h.shift()||0)
-                if(f(t)>n){
-                    h.unshift(t.pop())
-                    break
-                }
-                if(!h.length)break
-            }
-        }
-        c++
-        let m=f(t)
-        s+=m*2+2
+class V{
+    constructor(s){
+        this.s=s
+        this.a=[]
     }
-    return !(c&1)?s:s+2
+    major(){
+        this.a.push(this.s.join`.`),this.s[0]+=1,[this.s[1],this.s[2]]=[0,0]
+        return this
+    }
+    minor(){
+        this.a.push(this.s.join`.`),this.s[1]+=1,this.s[2]=0
+        return this
+    }
+    patch(){
+        this.a.push(this.s.join`.`),this.s[2]+=1
+        return this
+    }
+    rollback(){
+        if(!this.a.length)throw Error('Cannot rollback!')
+        this.s=this.a.pop().split`.`.map(Number)
+        return this
+    }
+    release(){return this.s.join`.`}
+}
+const vm=s=>{
+    if(!s)s='0.0.1'
+    s=s.split`.`.map(Number)
+    while(s.length<3)s.push(0)
+    if(s.length>3)s=s.slice(0,3)
+    if(s.some(e=>!Number.isInteger(+e)))throw Error('Error occured while parsing version!')
+    return new V(s)
 }
 
-console.log(canalMania([], [], 10))
-console.log(canalMania([1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], [20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1], 30))
+console.log(vm('42.53').major().minor().minor().rollback().rollback().major().rollback().minor().release())
