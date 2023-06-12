@@ -1,34 +1,31 @@
-class V{
-    constructor(s){
-        this.s=s
-        this.a=[]
-    }
-    major(){
-        this.a.push(this.s.join`.`),this.s[0]+=1,[this.s[1],this.s[2]]=[0,0]
-        return this
-    }
-    minor(){
-        this.a.push(this.s.join`.`),this.s[1]+=1,this.s[2]=0
-        return this
-    }
-    patch(){
-        this.a.push(this.s.join`.`),this.s[2]+=1
-        return this
-    }
-    rollback(){
-        if(!this.a.length)throw Error('Cannot rollback!')
-        this.s=this.a.pop().split`.`.map(Number)
-        return this
-    }
-    release(){return this.s.join`.`}
+const au=`;,/?:@&=+$#abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.!~*'()`
+const auc=`abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.!~*'()`
+const URICodec={}
+URICodec.valid=s=>typeof s==='string'&&[...s+''].filter(e=>e!=='%').every(e=>au.includes(e)||auc.includes(e))&&(s.match(/%.{2,2}/g)||[]).every((e,i,v,t=String.fromCharCode(parseInt(e.slice(1),16)))=>au.includes(t)||auc.includes(t)||e.slice(1)==='0F')
+URICodec.encode=s=>{
+    return [...s].map(e=>{
+        if(au.includes(e))return e
+        e=(e.charCodeAt()).toString(16).toUpperCase()
+        if(e.length<2)e='0'+e
+        return '%'+e
+    }).join``
 }
-const vm=s=>{
-    if(!s)s='0.0.1'
-    s=s.split`.`.map(Number)
-    while(s.length<3)s.push(0)
-    if(s.length>3)s=s.slice(0,3)
-    if(s.some(e=>!Number.isInteger(+e)))throw Error('Error occured while parsing version!')
-    return new V(s)
+URICodec.encode.component=s=>{
+    return [...s].map(e=>{
+        if(auc.includes(e))return e
+        e=(e.charCodeAt()).toString(16).toUpperCase()
+        if(e.length<2)e='0'+e
+        return '%'+e
+    }).join``
+}
+URICodec.decode=s=>{
+    const a=';,/?:@&=+$#'
+    return s.replace(/%.{2,2}/g,(e,i,v,t=String.fromCharCode(parseInt(e.slice(1),16)))=>a.includes(t)?e:t)
+}
+URICodec.decode.component=s=>{
+    return s.replace(/%.{2,2}/g,(e,i,v,t=String.fromCharCode(parseInt(e.slice(1),16)))=>t)
 }
 
-console.log(vm('42.53').major().minor().minor().rollback().rollback().major().rollback().minor().release())
+console.log(URICodec.decode.component(`%23`))
+console.log(URICodec.decode.component(";,/?:@&=+$-_.!~*'()#"))
+console.log(URICodec.valid("bad%escaped-char"))
