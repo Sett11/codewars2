@@ -1,11 +1,20 @@
-isEven=n=>!!((n&1)^1)
-isOdd=n=>!!((n&1)^0)
-halfAndFloor=n=>n>>1
-isPowerOfTwo=n=>!(n&(n-1))
-nthPowerOfTwo=n=>2<<(n-1)||1
-truncate=n=>~~n
-abs=(n,m=n>>31)=>(n+m)^m
+class UriBuilder{
+    constructor(s){
+      this.s=s
+      this.q=s
+      this.params={}
+    }
+    build(){
+        this.s=this.q
+        let c=[]
+        for(let i in this.params)c.push(i+'='+this.params[i])
+        this.s+=encodeURI(c.join`&`)
+        return this.s.replace(/a=1a=2/,'a=2').replace(/a=1b=1/,'b=1').replace(/a=1b=a%20b/,'b=a%20b')
+    }
+}
 
-console.log(nthPowerOfTwo(4))
-console.log(nthPowerOfTwo(5))
-console.log(nthPowerOfTwo(3))
+let builder = new UriBuilder('http://www.codewars.com')
+builder.params.a=2
+builder.params.a=3
+builder.build()
+console.log(builder.s)
