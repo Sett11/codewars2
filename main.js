@@ -1,26 +1,10 @@
-class Person {
-    constructor(firstName, lastName) {
-      this.firstName = firstName;
-      this.lastName = lastName;
-    }
+function pascal(d,a=[[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]){
+    if(d<a.length)return a.slice(0,d)
+    if(a.length===d)return a
+    let t=[1]
+    for(let i=-1;++i<a[a.length-1].length;)t.push((a[a.length-1][i]+a[a.length-1][i+1])||1)
+    a.push(t)
+    return pascal(d,a)
   }
-Person.prototype.getName=function(){
-    return this.name
-}
-Object.defineProperty(Person.prototype, 'name', {
-    get(){
-      return `${this.firstName} ${this.lastName}`
-    },
-    set(s){
-      [this.firstName, this.lastName]=s.split` `
-    }
-})
 
-let augustusCole = new Person('Augustus', 'Cole')
-augustusCole.name='Cole Train'
-console.log(c)
-console.log(augustusCole.firstName); // => 'Cole'
-console.log(augustusCole.lastName); // => 'Train'
-console.log(augustusCole.getName()); // => 'Cole Train'
-console.log(augustusCole.name); // => 'Cole Train'
-console.log(augustusCole)
+  console.log(pascal(5))
