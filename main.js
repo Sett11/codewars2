@@ -1,7 +1,17 @@
-function createArgumentMap(f,...a){
-    const m=new Map(),r=(f.toString().match(/\(.+\)/g)||[]).map(e=>e.replace(/\(|\)/g,'').split`,`).flat()
-    r.forEach((e,i)=>m[e]=a[i])
-    return m
-}
+function defaults(o,d,r={}){
+    for(let i in o)r[i]=o[i]
+    for(let i in d){
+      if(!o.hasOwnProperty(i)){
+        r[i]=d[i]
+        if(r[i].error!==undefined)throw r[i].error
+      }
+    }
+    return r
+  }
+  function mandatory(e){
+    return {
+      error:e
+    }
+  }
 
-console.log(createArgumentMap(function(a1){},'a1 argvalue'))
+  console.log(defaults({'a':1},{b:2}))
