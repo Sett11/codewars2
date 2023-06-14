@@ -1,19 +1,12 @@
-class Lock{
-  constructor(){this.a=[]}
-  createKey(){
-    let s='',o={}
-    while(s.length<7)s+=String.fromCharCode(Math.floor(Math.random()*122))
-    o[Math.random()]=s
-    this.a.push(o)
-    return o
+class StringFormatter{
+  constructor(r,f=e=>e,q=e=>e!=='666'){
+    return function(x){
+      console.log(JSON.stringify(r),x)
+      return [...x+''].filter(e=>!(r.remove||[]).includes(e)).map((r.map||f)).map(String).filter(r.filter||q).join``
+    }
   }
-  check=s=>this.a.includes(s)
-  expire=s=>this.a=this.a.filter(e=>e!==s)
 }
 
-let r=new Lock()
-let k=r.createKey()
-console.log(k)
-console.log(r.check(k))
-r.expire(k)
-console.log(r.check(k))
+let r=new StringFormatter({filter:(a,i)=>i%2})
+
+console.log(r('xyz'))
