@@ -1,5 +1,19 @@
-function findKey(ns,a=ns.map(e=>[...e+''])){
-  return a[0].map((_,i)=>Object.entries(a.map(u=>u[i]).reduce((a,c)=>(a[c]=a[c]+1||1,a),{})).sort((a,b)=>a[1]-b[1])[0][0]).join``
+class Lock{
+  constructor(){this.a=[]}
+  createKey(){
+    let s='',o={}
+    while(s.length<7)s+=String.fromCharCode(Math.floor(Math.random()*122))
+    o[Math.random()]=s
+    this.a.push(o)
+    return o
+  }
+  check=s=>this.a.includes(s)
+  expire=s=>this.a=this.a.filter(e=>e!==s)
 }
 
-console.log(findKey([153456,123406,124456,323456,123458,123756]))
+let r=new Lock()
+let k=r.createKey()
+console.log(k)
+console.log(r.check(k))
+r.expire(k)
+console.log(r.check(k))
