@@ -1,5 +1,6 @@
-function kaprekar(m,c=0,n=+(m+'').padEnd(4,'0')){
-  return new Set(n+'').size===1||c>7?-1:n===6174?c:kaprekar(+[...n+''].map(Number).sort((a,b)=>b-a).join``- +[...n+''].map(Number).sort((a,b)=>a-b).join``,c+1)
+function combineStrings(...a){
+  a=a.map(e=>[...e])
+  return !a.length?'':a[a.map((e,i)=>[e,i]).sort((a,b)=>b[0].length-a[0].length)[0][1]].map((e,i)=>a.map(u=>u[i]).join``).join``
 }
 
-console.log(kaprekar(12))
+console.log(combineStrings())
