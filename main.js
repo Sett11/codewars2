@@ -1,11 +1,13 @@
-function arrangeSeats(a,r=x=>x.sort((a,b)=>a.height-b.height||a.name.localeCompare(b.name)),m=[],f=[],q=[],c=1){
-  a.forEach(e=>e.sex==='M'?m.push(e):f.push(e))
-  r(m),r(f)
-  while(m.length){
-    let o={desk:c++,seat1:m.shift().name,seat2:f.shift().name}
-    q.push(o)
-  }
-  return q
+function salePrice(s){
+  return s.replace(/cost|\$\d+/g,e=>{
+    if(e==='cost')return 'sale'
+    e=+(+e.slice(1)+e.slice(1)/100*15)
+    let t=Math.round(e)
+    while(t%5)t++
+    return '$'+t
+  })
 }
 
-console.log(arrangeSeats([{name:"John",height:170,sex:"M"},{name:"Tom",height:175,sex:"M"},{name:"Jack",height:180,sex:"M"},{name:"Jone",height:175,sex:"F"},{name:"Anne",height:175,sex:"F"},{name:"Alice",height:178,sex:"F"}]))
+console.log(salePrice(`iPhone 7 cost price: $370
+Samsung note 7 cost price: $670
+iPad pro cost price: $770`))
