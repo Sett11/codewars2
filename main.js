@@ -1,11 +1,3 @@
-function cake(a,b){
-  let r={'caster sugar':160,'butter':170,'eggs': 3,'self-raising flour':115,'cocoa powder':55},n=r[a]/b
-  for(let i in r){
-    r[i]=(r[i]/n).toFixed(1)
-    if(i==='eggs')r[i]=+r[i]
-    else r[i]=+r[i]+'g'
-  }
-  return r
-}
+isNarcissistic=(...x)=>x.every((e,i,v,t=[...e+''])=>t.reduce((a,c)=>a+((+c)**t.length),0)==e&&e!=='')
 
-console.log(cake('cocoa powder',100.5))
+console.log(isNarcissistic(407,8208,0, 1, 2, 3, 4, 5, 6, 7, 8, 9,'4'))
