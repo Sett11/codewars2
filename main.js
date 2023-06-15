@@ -1,6 +1,5 @@
-function leftRightOrBoth(s,a=[...s.toLowerCase()]){
-  const l='12345!@#$%qwertasdfgzxcvb ',r=`67890^&*()yuiophjkl;:'"nm,./NM<>? `
-  return !s||/^ +$/.test(s)?'':a.every(e=>l.includes(e))?'Left':a.every(e=>r.includes(e))?'Right':'Both'
- }
+function segmentSumsMatrix(a){
+  return Array(a.length).fill(Array(a.length).fill(0)).map((e,i)=>e.map((u,j)=>a.slice(Math.min(i,j),Math.max(i,j)+1).reduce((a,c)=>a+c,0)))
+}
 
- console.log(leftRightOrBoth('qwert'))
+console.log(segmentSumsMatrix([1,2,3]))
