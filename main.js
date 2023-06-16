@@ -1,5 +1,11 @@
-function fisHex(s){
-  return eval((s.match(/[abcdef]/gi)||[]).map(e=>parseInt(e,16)).join`^`)||0
+function alg196(n,c=0){
+  const f=x=>[...x+''].join``===[...x+''].reverse().join``
+  n+=+[...n+''].reverse().join``
+  while(!f(n)){
+    if(c>=261)return -1
+    n+=+[...n+''].reverse().join``,c++
+  }
+  return n
 }
 
-console.log(fisHex('redlionfish'))
+console.log(alg196(196))
