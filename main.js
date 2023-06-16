@@ -1,6 +1,12 @@
-function validatePersonalNumber(s){
-  return /^(1|2)(\d)(\d)(\d)(0|1)(\d)([0-3])(\d)(\-|\+)*(\d)(\d)(\d)(\d)$/.test(s)&&s.slice(4,6)!=='00'&&s.slice(4,6)<13&&s.slice(6,8)!=='00'&&+s.slice(0,4)<2017&&+s.slice(0,4)>1899&&s.replace(/\d/g,'').length<2&&+s.slice(6,8)<32
+function fromWhere(y,m,q,s=''){
+  if(q==="Where are you from?"){
+    for(let i in y)if(y[i]!==m[i])return `I am from ${m[i]}.`
+    return 'Same as you.'
+  }
+  for(let i in y)if(q.match(i.toLocaleLowerCase()))s+=i
+  if(!s)return 'What are you saying?'
+  return m[s]===y[s]?'Same as you.':`I am from ${m[s]}.`
 }
 
-console.log(validatePersonalNumber("19001013-0044"))
-console.log(validatePersonalNumber("19420503-4566"))
+console.log(fromWhere({Country:"AA", Province:"BB", City:"CC", Town:"DD", Street:"EE"},
+{Country:"AA", Province:"BB", City:"XX", Town:"YY", Street:"ZZ"},"What street are you from?"))
