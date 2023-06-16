@@ -1,13 +1,10 @@
-function salePrice(s){
-  return s.replace(/cost|\$\d+/g,e=>{
-    if(e==='cost')return 'sale'
-    e=+(+e.slice(1)+e.slice(1)/100*15)
-    let t=Math.round(e)
-    while(t%5)t++
-    return '$'+t
-  })
+function liquidMixing(d,f=x=>x.sort((a,b)=>a-b),q=[],r=[]){
+  while(d.length){
+    q.unshift(d.shift()),f(q)
+    if(q.length&1)r.push(q[Math.floor(q.length/2)])
+    else r.push((q[q.length/2-1]+q[q.length/2])/2)
+  }
+  return r
 }
 
-console.log(salePrice(`iPhone 7 cost price: $370
-Samsung note 7 cost price: $670
-iPad pro cost price: $770`))
+console.log(liquidMixing([10, 20, 8, 12, 6]))
