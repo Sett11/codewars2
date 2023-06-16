@@ -1,12 +1,12 @@
-function fromWhere(y,m,q,s=''){
-  if(q==="Where are you from?"){
-    for(let i in y)if(y[i]!==m[i])return `I am from ${m[i]}.`
-    return 'Same as you.'
+function combat(s1,s2){
+  const alf='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',f=x=>[...x].map(e=>alf.indexOf(e)+1)
+  let a=f(s1),b=f(s2)
+  while(a.length&&b.length){
+    if(a[0]===b[0])a=a.slice(1),b=b.slice(1)
+    if(a[0]<b[0])a=a.slice(1),b[0]=Math.round(b[0]-b[0]/3*2)
+    if(a[0]>b[0])b=b.slice(1),a[0]=Math.round(a[0]-a[0]/3*2)
   }
-  for(let i in y)if(q.match(i.toLocaleLowerCase()))s+=i
-  if(!s)return 'What are you saying?'
-  return m[s]===y[s]?'Same as you.':`I am from ${m[s]}.`
+  return !a.length&&!b.length?'Draw':a.length?`Winner: s1(${a.map(e=>alf[e-1]).join``})`:`Winner: s2(${b.map(e=>alf[e-1]).join``})`
 }
 
-console.log(fromWhere({Country:"AA", Province:"BB", City:"CC", Town:"DD", Street:"EE"},
-{Country:"AA", Province:"BB", City:"XX", Town:"YY", Street:"ZZ"},"What street are you from?"))
+console.log(combat("vyTcJSGRGZcTq","GFyfgBkDxNvgeq"))
