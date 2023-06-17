@@ -1,13 +1,6 @@
-function validate(u,p){
-  u=u.trim(),p=p.trim()
-  if(u.length>12)throw ERRORS['usernameTooLong'](u)
-  if(u.match(/[\(\)\{\}\[\]\|\;\:\'\"\/\?\.\,\<\>\~\-\=\+\*\&\^\%\$\@\!]/))throw ERRORS['usernameInvalidCharacters'](u)
-  if(!u||u.length<1)throw ERRORS['usernameTooShort'](u)
-  if(p.length>24)throw ERRORS['passwordTooLong'](p)
-  if(!p||p.length<8)throw ERRORS['passwordTooShort'](p)
-  if(p.match(/[\(\)\{\}\[\]\|\;\:\'\"\/\?\.\,\<\>\~\-\=\+\*\&\^\%\$\@\!]/))throw ERRORS['passwordInvalidCharacters'](p)
-  if(!p.match(/[A-Z]/))throw ERRORS['passwordNoCapital'](p)
-  if(!p.match(/\d/))throw ERRORS['passwordNoNumber'](p)
-  if(p.match(u))throw ERRORS['passwordContainsUsername'](p)
-  return true
+function stress(s,ss=s.replace(/\d/g,''),sss=+s.replace(/\D/g,'')){
+  const a=['ic','sion','tion','ious'],b=['ty','al','ise','ate']
+  return !a.includes(ss)&&!b.includes(ss)||sss<3||sss>11?'invalid word':a.includes(ss)?(sss-1)+'pen':(sss-2)+'ante-pen'
 }
+
+console.log(stress('10sion'))
