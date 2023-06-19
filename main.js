@@ -1,7 +1,8 @@
-function squareProduct(m,n=Math.sqrt(m),a=[],r=[]){
-  for(let i=0;++i<=Math.sqrt(n);)if(!(n%i))a.push(i,n/i)
-  for(let i=-2;(i+=2)<a.length;)r.push([a[i],a[i+1]])
-  return r
-}
+makeLazy=(...a)=>_=>a[0](...a.slice(1))
 
-console.log(squareProduct(256))
+function add(a,b){
+    return a + b;
+}
+let lazy_value = makeLazy(add, 2, 3)
+
+console.log(lazy_value())
