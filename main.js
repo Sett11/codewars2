@@ -1,7 +1,5 @@
-function compute(n,a=[],c=1){
-  if(!(n&1)||n<3)return 0
-  while(c<n)a.push(c+=2)
-  return eval('1+'+ a.map(e=>`(1/${e}**2)`).join`+`)
-}
+hypotenuse=(a,b)=>Math.sqrt(a**2+b**2)
+leg=(c,a)=>Math.sqrt(c**2-a**2)
 
-console.log(compute(5))
+console.log(hypotenuse(3,4))
+console.log(leg(5,3))
