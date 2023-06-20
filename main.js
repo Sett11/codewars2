@@ -1,20 +1,5 @@
-function airlineSeating(a,p,s){
-  return a.map(e=>{
-    if(p&&e==='f'){
-      p--
-      return 'p'
-    }
-    if(!p&&s&&e==='c'){
-      s--
-      return 's'
-    }
-    if(!p&&s&&a.filter(u=>u==='c').length<s){
-      s--
-      return 's'
-    }
-    return ' '
-  })
+const translate=s=>{
+  return s.length<2?s:!s[0].match(/a|u|o|e|i/)?s.slice(1)+s[0]+'ay':s+'ay'
 }
 
-console.log(airlineSeating(["f",  "f",  "f",  "c",  "c"],1,1))
-console.log(airlineSeating(["f",  "f",  "f",  "c",  "c",  "c"],2,5))
+console.log(translate('billy'))
