@@ -1,20 +1,23 @@
-function helpJesse(a){
-  return a.map(e=>`Pour ${e.amount} mL of ${e.solution} into a ${e.instrument}`+(e.note?` (${e.note})`:''))
+function combineFriends(a,o={}){
+  for(let i=-1;++i<a.length;){
+    delete a[i]['id']
+    o[i]=a[i]
+  }
+  return o
 }
 
-console.log(helpJesse([{
-  solution : "Sodium Chloride",
-  amount: 5,
-  instrument: "Graduated Cylinder"   
-},
-{
-  solution : "Hydrochloric Acid",
-  amount: 250,
-  instrument: "Boiling Flask"   
-},
-{
-  solution : "Water",
-  amount: 100,
-  instrument: "Erlenmeyer Flask",
-  note: "Do NOT mess this step up, Jesse!"
-}]))
+let Friend=(function(){
+  let id=0
+  return function Friend(obj){
+    this.id=id++
+    for (let i in obj){
+      this[i]=obj[i]
+    }
+  }
+})()
+
+let first = new Friend({name: "dave"})
+let second = new Friend({blah: false})
+let third = new Friend({this: "is", just: "a test"})
+let inputArray = [first, second, third]
+console.log(combineFriends(inputArray))
