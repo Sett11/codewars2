@@ -1,3 +1,3 @@
-rotateMatrix=a=>a[0].map((e,i)=>a.map(u=>u[i])).reverse()
+sortLetters=(a,s=a.flat().join``.replace(/\d/g,'').toUpperCase())=>[s.match(/[AIOUE]/g)||[],s.match(/[^AIOUE]/g)||[]]
 
-console.log(rotateMatrix([[-1,4,5],[2,3,4]]))
+console.log(sortLetters([[1,"a","H"],[3,"o","s"],[4,"E","i"]]))
