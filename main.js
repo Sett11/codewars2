@@ -1,9 +1,3 @@
-class Singleton{
-    constructor(){
-        if(Singleton.__instance)return Singleton.__instance
-        Singleton.__instance=this
-    }
-}
-let o=new Singleton()
-let r=new Singleton()
-console.log(o===r)
+rotateMatrix=a=>a[0].map((e,i)=>a.map(u=>u[i])).reverse()
+
+console.log(rotateMatrix([[-1,4,5],[2,3,4]]))
