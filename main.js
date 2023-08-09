@@ -1,4 +1,10 @@
-getNumberLength=(n,s=(+n+'').split`+`)=>s.length===1?'wrong input':+s.reverse()[0]+1
+function iccanobif(n) {
+  let a=0,b=1,r=[]
+  while(r.length<n){
+    [a,b]=[a+b,a]
+    r.push(a)
+  }
+  return r.reverse()
+}
 
-console.log(getNumberLength(7005623021525000000000000000))
-console.log(getNumberLength(1000))
+console.log(iccanobif(64))
