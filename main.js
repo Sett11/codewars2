@@ -1,3 +1,4 @@
-getRectangleString=(w,h,s='*'.repeat(w))=>h==1&&w==1?'*\r\n':h==2&&w==1?'*\r\n*\r\n':s+'\r\n'+Array(h-2).fill('*'+' '.repeat(w-2)+'*').join`\r\n`+(h>2?'\r\n':'')+s+'\r\n'
+getNumberLength=(n,s=(+n+'').split`+`)=>s.length===1?'wrong input':+s.reverse()[0]+1
 
-console.log(getRectangleString(2,2))
+console.log(getNumberLength(7005623021525000000000000000))
+console.log(getNumberLength(1000))
