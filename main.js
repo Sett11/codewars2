@@ -1,3 +1,3 @@
-threesAndFives=(n,k=--n/3|0,q=n/5|0,w=n/15|0)=>[k-w,q-w,w]
+twins=a=>a.every(e=>a.filter(u=>e==u).length==2)
 
-console.log(threesAndFives(87))
+console.log(twins([1,2,3,1,2,3]))
