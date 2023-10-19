@@ -1,3 +1,7 @@
-sortArray=(a,b,o={},c=a.map((e,i)=>o[e[0]]=i))=>b.map(e=>[o[e[0]],e]).sort((a,b)=>a[0]-b[0]).map(e=>e[1])
+const isConsecutive = (
+  s,
+  r = s.replace(/(.)\1*/g, (e) => e[0] + " ").split` `.slice(0, -1)
+) => [...new Set(r)].length == r.length
 
-console.log(sortArray(['giraffe', 'orangutan', 'impala', 'elephant', 'rhino'],['rattlesnake', 'eagle', 'geko', 'iguana', 'octopus']))
+console.log(isConsecutive("112233"));
+console.log(isConsecutive("112233111"));
