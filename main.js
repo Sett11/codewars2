@@ -1,7 +1,4 @@
-const isConsecutive = (
-  s,
-  r = s.replace(/(.)\1*/g, (e) => e[0] + " ").split` `.slice(0, -1)
-) => [...new Set(r)].length == r.length
+f=s=>s<{}
 
-console.log(isConsecutive("112233"));
-console.log(isConsecutive("112233111"));
+console.log(f('A'))
+console.log(f('a'))
