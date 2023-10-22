@@ -1,3 +1,7 @@
-select=(a,b)=>b.filter(e=>e[0]===a.sort().reverse()[2][2])[0]||'Nothing here'
+function countTheAnimals(o) {
+  let c=0
+  for(let i in o)c+=parseInt(o[i],2)
+  return c
+}
 
-console.log(select(['banana','rose','orange','apple'], ['carrot','nectarines','cucumber','ananas']))
+console.log(countTheAnimals({aardvark: '1101', tiger: '1100', donkey: '1100', emu: '1010'}))
