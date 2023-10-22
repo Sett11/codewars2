@@ -1,3 +1,8 @@
-const malwareValidate=a=>[...new Set(a)].filter(e=>e.replace(/[0-9]/g,'').length===5&&e.replace(/[A-z]/g,'').length===5&&e===e.toLowerCase())
+function cookingTime(w){
+  let n=Math.ceil((w*1000/450*20+20)/5)*5,m=n/60,k=n%60
+  return !w?'There is no chicken!':n<60?`${n} mins`:`${Math.floor(m)} hr${m>=2?'s':''} ${k?k:''} ${k?'mins':''}`.trim()
+}
 
-console.log(malwareValidate(['asdfiasdfg', "jsdfasdf14", "a212sdf345", "as00yud567", "as34asd567", "agsdgreast", "1dfg23asd4", "hjkjw98076", "fdsqweqrah", "12gh34gh1g"]))
+console.log(cookingTime(2.2))
+console.log(cookingTime(0.3))
+console.log(cookingTime(1))
