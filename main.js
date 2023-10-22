@@ -1,4 +1,12 @@
-const calculate=(...a)=>(...b)=>a.concat(b).reduce((e,c)=>e+c,0)
+MyNamespace=MyNamespace||{}
 
+MyNamespace.MyClass=class MyClass{
+  constructor(s){
+    this.s=s
+  }
+  sayHello(){return this.s}
+}
 
-console.log(calculate(21)(1))
+const m=new MyNamespace.MyClass('Hello!')
+
+console.log(m.sayHello())
