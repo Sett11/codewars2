@@ -1,9 +1,10 @@
-const findMaxProduct=a=>{
-  let m=-Infinity
-  for(let i=-1;++i<a.length;){
-    m=Math.max(m,a.slice(i).filter((_,j)=>!(j%(i+1))).reduce((a,c)=>a*c))
+const matrixSquareUp = (n) => {
+  const a = Array(n).fill(1).map((_, i) => (n - i)+''),r = []
+  for (let i = n + 1; --i; ) {
+    let t = Array(n - i).fill("x")
+    r.unshift(t.concat(a.slice(t.length)))
   }
-  return m
+  return r
 }
 
-console.log(findMaxProduct([4, 6, 8, 11, 13, 5, 7, 9]))
+console.log(matrixSquareUp(4));
