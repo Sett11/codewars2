@@ -1,5 +1,3 @@
-const encode=str=>str.replace(/./g,e=>String.fromCharCode(e.charCodeAt()*6))
-const decode=str=>str.replace(/./g,e=>String.fromCharCode(e.charCodeAt()/6))
+const malwareValidate=a=>[...new Set(a)].filter(e=>e.replace(/[0-9]/g,'').length===5&&e.replace(/[A-z]/g,'').length===5&&e===e.toLowerCase())
 
-console.log(encode('Hello World!'))
-console.log(decode('ưɞʈʈʚÀȊʚʬʈɘÆ'))
+console.log(malwareValidate(['asdfiasdfg', "jsdfasdf14", "a212sdf345", "as00yud567", "as34asd567", "agsdgreast", "1dfg23asd4", "hjkjw98076", "fdsqweqrah", "12gh34gh1g"]))
