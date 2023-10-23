@@ -1,3 +1,3 @@
-x=n=>n*1e6
+x=()=>''._
 
-console.log(x(3))
+console.log(x())
