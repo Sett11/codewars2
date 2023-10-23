@@ -1,17 +1,11 @@
-function stutter(s){
-    const f=s=>{
-        let a=[...s]
-        for(let i=-1;++i<a.length-2;){
-            let t=a.slice(i,i+2).join``.toLowerCase()
-            if(t==='cc')a.splice(i,2,'ck...ck...')
-            if(t==='ck')a.splice(i,2, 'k...k...')
-            if(t==='ch')a.splice(i,2, 'c...c...')
-            if(a[i].toLowerCase()==='c')a.splice(i,1,'ch...ch...')
-    }
-    return a.join``
-    }
-    return s.split` `.map(e=>f(e)).join` `
+function ensureEven(n) {
+    if(!(n&1)&&Number.isInteger(n))return n
+    if(!Math.floor(n)||!Math.ceil(n))return 0
+    let a=Array(100).fill(1).map((e,i)=>[e+i,-(e+i)]).find(e=>e[0]%2==0&&(e[0]>n||e[1]>n)).filter(e=>e>n||e<n)
+    return n>0?a.filter(e=>e>0)[0]:a.filter(e=>e<0)[0]
 }
 
-console.log(stutter('actually I would very much like a mocca if thats ok'))
-console.log(stutter('do you think I can act?'))
+console.log(ensureEven(1.346))
+console.log(ensureEven(-1))
+console.log(ensureEven(.5))
+console.log(ensureEven(18264952))
