@@ -1,3 +1,1 @@
-function isUndefined(v) {
-    return v===undefined
-  }
+arrMultiply=a=>(+a[0]*+a[1])+''
