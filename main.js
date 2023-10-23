@@ -1,11 +1,17 @@
-function decipher(s){
-    const a='abcdefghijklmnopqrstuvwxyz'
-    return s.split` `.map(e=>e.replace(/./g,u=>{
-        let v=u.toLowerCase()
-        let t=a.includes(v)?a[(a.indexOf(v)+7)%a.length]:v
-        return u===u.toUpperCase()?t.toUpperCase():t.toLowerCase()
-    })).join` `
+function stutter(s){
+    const f=s=>{
+        let a=[...s]
+        for(let i=-1;++i<a.length-2;){
+            let t=a.slice(i,i+2).join``.toLowerCase()
+            if(t==='cc')a.splice(i,2,'ck...ck...')
+            if(t==='ck')a.splice(i,2, 'k...k...')
+            if(t==='ch')a.splice(i,2, 'c...c...')
+            if(a[i].toLowerCase()==='c')a.splice(i,1,'ch...ch...')
+    }
+    return a.join``
+    }
+    return s.split` `.map(e=>f(e)).join` `
 }
 
-console.log(decipher('lvahhe bl lh uhkbgz b vtg\'m uxebxox maxkx tkx lh ftgr ahnkl exym'))
-console.log(decipher('HFZ FTR RHNK WKXLL BL LH VNMX'))
+console.log(stutter('actually I would very much like a mocca if thats ok'))
+console.log(stutter('do you think I can act?'))
