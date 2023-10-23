@@ -1,3 +1,4 @@
-const refactoryString=s=>s.replace(/\d+/g,e=>String.fromCharCode(+e+97))
+getElement=f=(a,i)=>!i.length?a:f(a[i.shift()],i)
 
-console.log(refactoryString('str8ng is he17e'))
+console.log(getElement([[1, 2], [3, 4], [5, 6]], [0,0]))
+console.log(getElement([[[ 1, 2, 3]]], [ 0, 0, 1 ]))
