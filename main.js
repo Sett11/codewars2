@@ -1,3 +1,3 @@
-x=()=>''._
-
-console.log(x())
+function isUndefined(v) {
+    return v===undefined
+  }
