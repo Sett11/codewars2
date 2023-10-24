@@ -1,5 +1,5 @@
-function thatUnitesUs(a,b,n) {
-    return [...new Set(a.concat(b))].sort().slice(0,n)
+function valAndUnits(s) {
+    return {val:+s.replace(/[^-\d.]/g,''),units:s.replace(/[-\d.\s]/g,'')}
 }
 
-console.log(thatUnitesUs(['a', 'z', 'c'], ['b', 'f', 'z'], 3))
+console.log(valAndUnits('-12.6px'))
