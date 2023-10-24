@@ -1,7 +1,6 @@
-function bittyWords(w,b){
-    const a=w.split` `
-    const n=[...(b).toString(2).padStart(a.length, '0')]
-    return a.filter((_,i)=>+n[i]).join` `
-}
+priceIsRight=(a,n)=>a.sort((a,b)=>b-a).find(e=>e<=n)
 
-console.log(bittyWords('So long, and thanks for all the fish', 42))
+
+console.log(priceIsRight([1,2,3,4],4))
+console.log(priceIsRight([1,2,3,4],5))
+console.log(priceIsRight([1,2,3,4],0))
