@@ -1,6 +1,6 @@
-const makeEveryLetterAfterXCaps=(s,l,a=[...s])=>{
-    for(let i=-1;++i<a.length;)if(a[i]===l)a[i+1]=a[i+1].toUpperCase()
-    return a.join``
- }
+function maxPossibleScore(o,a) {
+  a.forEach(e=>o[e]?o[e]*=2:0)
+  return Object.values(o).reduce((a,c)=>a+c,0)
+}
 
- console.log(makeEveryLetterAfterXCaps('aaaa','a'))
+console.log(maxPossibleScore({ '1': 36089.11815348692, '27': 895.8762059686159, another: 5 },[ 1, 'another' ]))
