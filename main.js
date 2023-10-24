@@ -1,5 +1,9 @@
-const sharePrice = (n,a) => (a.forEach(e=>e<0?n-=n/Math.abs(100/e):n+=n/(100/e)))||(n).toFixed(2)
+function swapTwo(arr, a, b) {
+    const r=[],q=[],w=arr.slice()
+    arr.forEach((e,i)=>e===a?r.push(i):e===b?q.push(i):null)
+    w[r[0]]=b,w[q[q.length-1]]=a
+    return w
+  }
 
-console.log(sharePrice(100,[-50,50]))
-console.log(sharePrice(100,[-20,30]))
-console.log(sharePrice(1000, [0, 2, 3, 6]))
+console.log(swapTwo([1,2,3,4],2,4))
+console.log(swapTwo([1,2,3,4].reverse(),2,4))
