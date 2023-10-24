@@ -1,5 +1,6 @@
-function whySoSerious(s) {
-    return [...new Set((s.match(/Jc|7s|5s|As|9c/g)||[]))].sort().join``==='5s7s9cAsJc'
-  }
+const makeEveryLetterAfterXCaps=(s,l,a=[...s])=>{
+    for(let i=-1;++i<a.length;)if(a[i]===l)a[i+1]=a[i+1].toUpperCase()
+    return a.join``
+ }
 
-console.log(whySoSerious("4cc90cc5Ac1As13c5c23J47s1Jc9cs0Jcc5sss7ccs0"))
+ console.log(makeEveryLetterAfterXCaps('aaaa','a'))
