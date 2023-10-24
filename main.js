@@ -1,6 +1,5 @@
-priceIsRight=(a,n)=>a.sort((a,b)=>b-a).find(e=>e<=n)
+const sharePrice = (n,a) => (a.forEach(e=>e<0?n-=n/Math.abs(100/e):n+=n/(100/e)))||(n).toFixed(2)
 
-
-console.log(priceIsRight([1,2,3,4],4))
-console.log(priceIsRight([1,2,3,4],5))
-console.log(priceIsRight([1,2,3,4],0))
+console.log(sharePrice(100,[-50,50]))
+console.log(sharePrice(100,[-20,30]))
+console.log(sharePrice(1000, [0, 2, 3, 6]))
