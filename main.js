@@ -1,5 +1,5 @@
-function valAndUnits(s) {
-    return {val:+s.replace(/[^-\d.]/g,''),units:s.replace(/[-\d.\s]/g,'')}
+function toInitials(s){
+    return s.replace(/\b(.)/g,'$&.').match(/([A-Z])\./g).join` `
 }
 
-console.log(valAndUnits('-12.6px'))
+console.log(toInitials("Tom Araya"))
