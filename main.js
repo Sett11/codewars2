@@ -1,6 +1,1 @@
-function zeroAndOne(s) {
-    while(s.match(/01|10/))s=s.replace(/01|10/,'  ')
-    return s.replace(/\s/g,'').length
-}
-
-console.log(zeroAndOne('110100'))
+lenR=x=(a,c=0)=>typeof a!='object'?5:!a.length?c:a.pop()&&x(a,c+1)
