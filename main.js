@@ -1,22 +1,19 @@
-const e=n=>{
-    const r=Array(n+1).fill(true)
-    r[0]=r[1]=false
-    for(let i=1;++i<Math.floor(n**.5+1);){
-      if(r[i]){
-        for(let j=i*2-i;(j+=i)<n;)r[j]=false
-      }
+class bitVector{
+    constructor(size){
+        this.store = Array(~~(size/31)+1).fill(0)
+        for (var i=3; i<~~Math.sqrt(size); i+=2) if (!this.isSet(i))
+        for (var j=i*i, k=i<<1; j<size; j+=k) this.setBit(j)
     }
-    const res=[]
-     r.forEach((u,i)=>u?res.push(i):null)
-     return res
+    setBit=function(bit){this.store[~~(bit/31)]|=1<<bit%31}
+    isSet=function(bit){return (this.store[~~(bit/31)]&1<<bit%31)>0}
   }
+ 
   
-  const a=e(15486042)
-  
+  MAX_PRIME = 500000000
+  sieve = new bitVector(MAX_PRIME)
   class Primes {
     static *stream() {
-      for(let i=0;i<a.length;i++){
-        yield a[i]
-      }
+      yield 2
+        for(let i=3;;i+=2)if(!sieve.isSet(i))yield i
     }
   }
