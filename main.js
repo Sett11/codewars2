@@ -1,34 +1,19 @@
-class bitVector{
-  constructor(size){
-      this.store = Array(~~(size/31)+1).fill(0)
-      for (var i=3; i<~~Math.sqrt(size); i+=2) if (!this.isSet(i))
-      for (var j=i*i, k=i<<1; j<size; j+=k) this.setBit(j)
-    }
-  setBit(bit){this.store[~~(bit/31)]|=1<<bit%31}
-  isSet(bit){return (this.store[~~(bit/31)]&1<<bit%31)>0}
-}
-
-
-
-
-MAX_PRIME = 400000000
-sieve = new bitVector(MAX_PRIME)
-class Primes {
-  static *stream() {
-      for(let i=3;;i+=2)if(!sieve.isSet(i))yield i
+function twoArraysNthElement(a,b,c){
+  const n=a.length,m=b.length
+  let i=j=0
+  let r=[]
+  while(i<n&&j<m){
+    if(r.length===c+1)return r[r.length-1]
+    if(a[i]<=b[j])r.push(a[i++])
+    else r.push(b[j++])
   }
-}
-
-const primeList=n=>{
-  let a=2,r=[]
-  const p=Primes.stream()
-  while(a<n){
-    r.push(a)
-    a=p.next().value
+  while(i<n){
+    if(r.length===c+1)return r[r.length-1]
+    r.push(a[i++])
   }
-  return r
+  while(j<m){
+    if(r.length===c+1)return r[r.length-1]
+    r.push(b[j++])
+  }
+  return r[r.length-1]
 }
-
-
-  console.log(primeList(100))
-  console.log(primeList(1000))
