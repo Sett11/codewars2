@@ -1,19 +1,7 @@
-function twoArraysNthElement(a,b,c){
-  const n=a.length,m=b.length
-  let i=j=0
-  let r=[]
-  while(i<n&&j<m){
-    if(r.length===c+1)return r[r.length-1]
-    if(a[i]<=b[j])r.push(a[i++])
-    else r.push(b[j++])
-  }
-  while(i<n){
-    if(r.length===c+1)return r[r.length-1]
-    r.push(a[i++])
-  }
-  while(j<m){
-    if(r.length===c+1)return r[r.length-1]
-    r.push(b[j++])
-  }
-  return r[r.length-1]
+function hasPair(a,n){
+  s=new Set(a)
+  for(let i=-1;++i<a.length;)if(s.has(n-a[i])&&a[i]!==n-a[i])return true
+  return false
 }
+
+console.log(hasPair([1,5,6,9,10,14,16,20,27,30],36))
