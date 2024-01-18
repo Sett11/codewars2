@@ -1,3 +1,6 @@
-arrayDiffVeryFast=(a,b,c=new Set(b))=>a.filter(e=>!c.has(e))
+const fizzBuzz=n=>n%3==0&&n%5==0?'FizzBuzz':n%3==0?'Fizz':n%5==0?'Buzz':n
 
-console.log(arrayDiffVeryFast([1,2,2,2,3,5,5,1,2,4,5,1],[2,1,5]))
+console.log(fizzBuzz(7))
+console.log(fizzBuzz(6))
+console.log(fizzBuzz(10))
+console.log(fizzBuzz(30))
