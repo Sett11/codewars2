@@ -1,7 +1,3 @@
-let name = 'Abe'
+const buildFun=n=>Array(n).fill(1).map((_,i)=>_=>i)
 
-const greetAbe = () => 'Hello, ' + name + '!'
-
-name2 = 'Ben'
-
-const greetBen = () => 'Hello, ' + name2 + '!'
+console.log(buildFun(10))
