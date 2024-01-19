@@ -1,15 +1,7 @@
-function Counter() {
-  this.value = 0;
-}
+let name = 'Abe'
 
-Counter.prototype.increase = function(){
-  this.value++;
-};
+const greetAbe = () => 'Hello, ' + name + '!'
 
-Counter.prototype.getValue = function(){
-  return this.value;
-};
+name2 = 'Ben'
 
-Counter.prototype.reset = function(){
-  this.value = 0;
-};
+const greetBen = () => 'Hello, ' + name2 + '!'
