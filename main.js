@@ -1,3 +1,9 @@
-const collatz=(n,count=1)=>n==1?count:collatz(n%2==0?n/2:n*3+1,count+1)
+complete=s=>{
+    let c=[...s].reverse(),r=s,x=''
+    while(true){
+        x=c.pop()+x
+        if(r+x==[...r+x].reverse().join``)return r+x
+    }
+}
 
-console.log(collatz(22))
+console.log(complete('aaBB'))
