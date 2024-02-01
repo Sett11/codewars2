@@ -1,7 +1,15 @@
-function holidayCount(a1,a2){
-    const f=a=>a.filter(e=>Number.isInteger(e))
-    a1=f(a1)[0],a2=f(a2)[0]
-    return a1>a2?'Right':a1<a2?'Wrong':a1===a2?'Same':'Not possible'
+function scratch(a){
+  return a.map(e=>{
+    let [b,c,d,g]=[...e.split` `]
+    let t=[...new Set([b,c,d])]
+    return t.length==1||(t.length==2&&t.includes('###'))?+g===+g?+g:10000:0
+  }).reduce((a,c)=>a+c,0)
 }
 
-console.log(holidayCount(["code", "is", "good", "I", "hope", 35],[102, "and", "hopefully", "also", "this", "passes"]))
+console.log(scratch([
+"horse tiger snake ###",
+"ox ### ### ###",
+"### ### ox 10000",
+"### ### pig ###",
+"### rabbit ### 10000",
+"monkey snake snake 50"]))
