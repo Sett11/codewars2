@@ -1,8 +1,5 @@
-const stone = {
-    feature: 'earth',
-    style: {
-      color: 'black'
+function makeClass(...names){
+  return function(...props){
+    names.forEach((e,i)=>this[e]=props[i])
     }
-  }
-  Object.freeze(stone)
-  Object.freeze(stone.style)
+}
