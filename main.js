@@ -1,3 +1,3 @@
-authList=a=>a.every((e,_,__,l=e.length)=>l>5&&l<11&&e.match('[a-z]')&&e.match('[0-9]')&&!e.match('\W|_'))
+const diffBig2=(a,f=a=>a.splice(a.indexOf(Math.max(...a)),1)[0])=>f(a)-f(a)
 
-console.log(authList(['john123', 'alex222', 'sandra1']))
+console.log(diffBig2([8,3,1]))
