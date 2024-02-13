@@ -1,5 +1,10 @@
-function makeClass(...names){
-  return function(...props){
-    names.forEach((e,i)=>this[e]=props[i])
+name = 'The Window';
+
+var alpha = {
+    name : 'My Alpha',
+    getNameFunc : function() {
+        return function() {
+            return this.name;
+        }.bind(alpha)
     }
-}
+};
