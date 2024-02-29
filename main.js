@@ -1,4 +1,6 @@
-function facRecursion(n){
-  return n<0?0:n<=1?1:n*facRecursion(n-1)
-}
-  
+function yourFutureCareer(){
+	var r = Math.random()
+		if (r <= 0.32)return 'FrontEnd Developer'
+		if (r <= 0.65)return 'BackEnd Developer'
+		else return 'Full-Stack Developer'
+	}
