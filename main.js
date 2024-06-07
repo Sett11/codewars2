@@ -1,6 +1,8 @@
-function sliding(a,k,r=[]){
-  for(let i=k-1;++i<=a.length;)r.push(Math.max(...a.slice(i-k,i)))
-  return r
+function each(n,a){
+  a=n<0?a.reverse():a
+  a.unshift(0)
+  n=Math.abs(n)
+  return n&&n<=a.length?a.filter((_,i)=>!(i%n)&&i):[]
 }
 
-console.log(sliding([1,3,-1,-3,5,3,6,7],3))
+console.log(each(0,[1,2,3,4,5,6]))
