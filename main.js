@@ -1,17 +1,7 @@
-function simpleHash(w,s,n){
-  let q='',r=[]
-  for(i=-1;++i<w.length;)q+=w[i]+(s[i]||'')
-  if(i<s.length)q+=[...s].slice(w.length,s.length).join``
-  while(n){
-    for(let i=-1;++i<q.length;){
-      let t=q[i].charCodeAt()+q[(i+1)%q.length].charCodeAt()
-      while(t>127)t-=96
-      r.push(String.fromCharCode(t))
-    }
-    n-=1,q=r.join``
-    r=n?[]:r
-  }
-  return btoa(r.join``)
+function sequence(n,p) {
+  const a=Array(n).fill(0)
+  return typeof p=='function'?a.map(p):a.map(e=>p)
 }
 
-console.log(simpleHash('hi','salt',2))
+console.log(sequence(5,2))
+console.log(sequence(5,(i,j)=>j+1))
