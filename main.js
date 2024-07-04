@@ -1,8 +1,17 @@
-function each(n,a){
-  a=n<0?a.reverse():a
-  a.unshift(0)
-  n=Math.abs(n)
-  return n&&n<=a.length?a.filter((_,i)=>!(i%n)&&i):[]
+function simpleHash(w,s,n){
+  let q='',r=[]
+  for(i=-1;++i<w.length;)q+=w[i]+(s[i]||'')
+  if(i<s.length)q+=[...s].slice(w.length,s.length).join``
+  while(n){
+    for(let i=-1;++i<q.length;){
+      let t=q[i].charCodeAt()+q[(i+1)%q.length].charCodeAt()
+      while(t>127)t-=96
+      r.push(String.fromCharCode(t))
+    }
+    n-=1,q=r.join``
+    r=n?[]:r
+  }
+  return btoa(r.join``)
 }
 
-console.log(each(0,[1,2,3,4,5,6]))
+console.log(simpleHash('hi','salt',2))
