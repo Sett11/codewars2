@@ -1,7 +1,14 @@
-function sequence(n,p) {
-  const a=Array(n).fill(0)
-  return typeof p=='function'?a.map(p):a.map(e=>p)
+function f(n){
+  if(n<2)return false
+  if(n<4)return true
+  for(let i=2;i<n**.5+1;i++)if(n%i==0)return false
+  return true
 }
 
-console.log(sequence(5,2))
-console.log(sequence(5,(i,j)=>j+1))
+function primes(s,e){
+	let r=[]
+  for(let i=s;i<=e;i++)if(f(i))r.push(i)
+  return r.length?r:null
+  }
+
+console.log(primes(100,200))
