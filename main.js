@@ -1,4 +1,17 @@
-String.prototype.isLetter=function(){
-  let n=this.charCodeAt()
-  return this.length===1&&((64<n&&n<91)||(96<n&&n<123)||(191<n&&n<224)||(223<n&&n<260))
+function allLeavesAtSameLevel(h) {
+  let d={},i=0
+  function f(x){
+    if(!x)return
+    i++
+    if(!d[i])d[i]=[]
+    d[i].push(x.getLeft()||x.getRight()?'Not leaf':'Leaf')
+    f(x.getLeft())
+    f(x.getRight())
+    i--
+  }
+  f(h)
+  for(let i in d)if(d[i].includes('Leaf')&&d[i].some(e=>e!=='Leaf'))return false
+  return true
 }
+
+console.log(allLeavesAtSameLevel())
