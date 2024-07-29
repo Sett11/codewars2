@@ -1,23 +1,27 @@
-function Node(value, left, right){
-  this.value = value,
-  this.left = left;
-  this.right = right;
-}
-
-function isBalanced(h){
-  let d={},r=[],i=0
-  const f=x=>{
-    if(!x)return
-    i++
-    if(!d[i])d[i]=[]
-    d[i].push(x.left||x.right?'not leaf':'leaf')
-    f(x.left)
-    f(x.right)
-    i--
+class Node {
+  constructor (value, edges = []) {
+    this.value = value;
+    this.edges = edges;
   }
-  f(h)
-  for(let i in d)if(d[i].includes('leaf'))r.push(i)
-  return Math.max(...r)-Math.min(...r)<2
 }
 
-console.log(isBalanced({"value":"a","left":{"value":"b","left":{"value":"e","left":{"value":"g","left":{"value":"h"}}},"right":null},"right":{"value":"c","left":{"value":"f"},"right":null}}))
+const E = new Node('E'), D = new Node('D'), C = new Node('C');
+		const B = new Node('B', [C, D]);
+		const A = new Node('A', [B, C]);
+
+function getRoute(a,b){
+  let v=false,u=new Set()
+  const f=x=>{
+    if(v||!x||u.has(x.value))return
+    if(x.value===b.value){
+      v=true
+      return
+    }
+    u.add(x.value)
+    for(let i in x.edges)f(x.edges[i])
+  }
+  for(let i in a.edges)f(a.edges[i])
+  return v
+}
+
+console.log(getRoute(A,C),getRoute(A,B))
