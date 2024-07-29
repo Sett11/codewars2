@@ -1,27 +1,16 @@
-class Node {
-  constructor (value, edges = []) {
-    this.value = value;
-    this.edges = edges;
+// function minMaxGap(a,m=1e9){
+//   for(let i=-1;++i<a.length-2;)m=Math.min(a[i+2]-a[i])
+//   return m
+// }
+
+minMaxGap=a=>{
+  let m=Infinity
+  for(let i=0;++i<a.length-1;){
+    let b=a.slice()
+    b.splice(i,1)
+    m=Math.min(m,Math.max(...b.map((e,i,v)=>v[i+1]-e||0)))
   }
+  return m
 }
 
-const E = new Node('E'), D = new Node('D'), C = new Node('C');
-		const B = new Node('B', [C, D]);
-		const A = new Node('A', [B, C]);
-
-function getRoute(a,b){
-  let v=false,u=new Set()
-  const f=x=>{
-    if(v||!x||u.has(x.value))return
-    if(x.value===b.value){
-      v=true
-      return
-    }
-    u.add(x.value)
-    for(let i in x.edges)f(x.edges[i])
-  }
-  for(let i in a.edges)f(a.edges[i])
-  return v
-}
-
-console.log(getRoute(A,C),getRoute(A,B))
+console.log(minMaxGap([ 1, 2,5,7]))
