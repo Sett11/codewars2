@@ -1,16 +1,25 @@
-// function minMaxGap(a,m=1e9){
-//   for(let i=-1;++i<a.length-2;)m=Math.min(a[i+2]-a[i])
-//   return m
-// }
-
-minMaxGap=a=>{
-  let m=Infinity
-  for(let i=0;++i<a.length-1;){
-    let b=a.slice()
-    b.splice(i,1)
-    m=Math.min(m,Math.max(...b.map((e,i,v)=>v[i+1]-e||0)))
+function solve_graph(s,e,a){
+  if(s===e)return true
+  let b=new Set(a.map(e=>[e['start'],e['end']]).flat()),d={},v=false,u=new Set()
+  if(!b.has(s)||!b.has(e))return false
+  let set=[...new Set(a.map(e=>[e['start'],e['end']]).flat())]
+  for(let i in set){
+    if(!d[set[i]])d[set[i]]=[]
+    for(let j in a)if(a[j]['start']===set[i])d[set[i]].push(a[j]['end'])
   }
-  return m
+  const f=x=>{
+    if(v||!x.length||u.has(x))return
+    if(x===e){
+      v=true
+      return
+    }
+    u.add(x)
+    for(let i in d[x])f(d[x][i])
+  }
+  for(let i in d)if(i===s)f(i)
+  return v
 }
 
-console.log(minMaxGap([ 1, 2,5,7]))
+console.log(solve_graph('a','b',[
+  { start: "a", end: "b" },
+]))
