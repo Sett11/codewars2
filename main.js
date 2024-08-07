@@ -1,8 +1,12 @@
-function recordDepth(h,d=0){
-  if(!h||typeof h!=='object'||Array.isArray(h))return null
-  h.depth=d
-  for(let i in h)if(typeof h[i]=='object')recordDepth(h[i],d+1)
-  return h
+function LCA(n1,n2){
+  let one=[],two=[],i=0
+  const f=x=>{
+    if(!x)return
+    !i?one.push(x.id):two.push(x.id)
+    f(x.up)
+  }
+  f(n1)
+  i+=1
+  f(n2)
+  for(let i=-1;++i<one.length;)for(let j=-1;++j<two.length;)if(one[i]==two[j])return one[i]
 }
-
-console.log(recordDepth({ a: 1, b: 2, c: { d: { e: 3 } } }))
