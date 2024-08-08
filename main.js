@@ -1,6 +1,3 @@
-const addOne = (a) => a + 1
-const multTwo = (b) => b * 2
+squaresOnly=a=>a.filter(e=>Number.isInteger(e**.5))
 
-const compose=(...f)=>n=>f.reverse().reduce((a,c)=>c(a),n)
-
-console.log(compose(addOne, multTwo, addOne, addOne)(2))
+console.log(squaresOnly([0,1,2,3,4,5,6,7,8,9,10]))
