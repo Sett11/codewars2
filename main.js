@@ -1,3 +1,3 @@
-function min(a,b){
-  return Math.min(a,b)
+function squeakyClean(arr) {
+  return arr.filter(e=>e)
 }
