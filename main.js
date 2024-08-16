@@ -1,13 +1,17 @@
-function findUnique(a){
-  let u={},n=c=0
-  for(let i=-1;++i<a.length;){
-    if(!(a[i] in u)){
-      u[a[i]]='&'
-      n+=a[i]*2
-    }
-    c+=a[i]
+function f(s,e,n,r){
+  for(let i=s;i<e;i++){
+    n.push(i)
+    f(i+1,e,n,r)
+    if(0<n.length<e&&n.length%2==0)r.push(n.slice())
+      n.pop()
   }
-  return n-c
+  return
 }
 
-console.log(findUnique([ 2,3, 5, 5, 4, 3, 2, 9 ,4]))
+function pairEmUp(n){
+  let r=[]
+  f(0,n,[],r)
+  return r
+}
+
+console.log(pairEmUp(4))
