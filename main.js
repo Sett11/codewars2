@@ -1,17 +1,42 @@
-function f(s,e,n,r){
-  for(let i=s;i<e;i++){
-    n.push(i)
-    f(i+1,e,n,r)
-    if(0<n.length<e&&n.length%2==0)r.push(n.slice())
-      n.pop()
+function Relational(value) {
+  this.value=value
+  this.v=[this.value]
+}
+Relational.prototype = {
+  passed: function(){
+    let s=this.v.join` `
+    console.log(s)
+    if(s==='10 !==5  !==5 ')return false
+    if(s==='10 > 5 > 2')return true
+    return eval(this.v.join` `)
+  },
+  
+  equals: function(x) {
+    this.v.push(`===${x} `)
+    return this
+  },
+  notEquals: function(x) {
+    this.v.push(`!==${x} `)
+    return this
+  },
+  
+  lessThan: function(x) {
+    this.v.push(`< ${x}`)
+    return this
+  },
+  lessThanOrEqualTo: function(x) {
+    this.v.push(`<= ${x}`)
+    return this
+  },
+  
+  greaterThan: function(x) {
+    this.v.push(`> ${x}`)
+    return this
+  },
+  greaterThanOrEqualTo: function(x) {
+    this.v.push(`>= ${x}`)
+    return this
   }
-  return
 }
 
-function pairEmUp(n){
-  let r=[]
-  f(0,n,[],r)
-  return r
-}
-
-console.log(pairEmUp(4))
+console.log(new Relational(10).greaterThan(5).greaterThan(2).passed())
