@@ -1,35 +1,30 @@
-const findItems = (obj,...args) => {
-  const res={}
-  const f=(x,s)=>{
-    if(!x&&args.includes(x))res[s]=x
-    if(typeof x=='object')for(let i in x)f(x[i],s+(Array.isArray(x)?`[${i}]`:'.'+i))
-    else for(let i=-1;++i<args.length;)if((typeof args[i]=='function'&&args[i](x))||x===args[i])res[s]=x
+function solution(d,r){
+  if(typeof d!=='object')return d
+  const f=(x,y)=>{
+    if(typeof x[y]==='object'){
+    for(let i in x[y]){
+      if(typeof x[y][i]==='object')f(x[y],i)
+      if(i==='dynamic'){
+        x=x[y][i]
+        delete x[y][i]
+        x[y][r]=x
+      }
+      if(x[y][i]==='dynamic')x[y][i]=r
+    }
   }
-  f(obj,'tree')
-  return res
+    if(x[y]==='dynamic'){
+      x[y]=r
+    }
+    else return
+  }
+  for(let i in d)f(d,i)
+  return d
 }
 
-const tree = {
-  a: 4,
-  b: {
-    c: 5,
-    f: 1,
-    p: "ww",
-    falseValue: false,
-    undefinedValue: undefined,
-    t: {
-      y: 90,
-      i: {
-        s: "qwe",
-        a: 90,
-        aString: "90",
-        nullValue: null,
-      },
-      p: "wwww",
-      emptyStringValue: "",
-      asd: [123, 34, 90],
-    },
+console.log(solution({
+  foo: "dynamic",
+  bar: {
+    baz: ["dynamic"]
   },
-};
-
-console.log(findItems(tree,Boolean))
+  dynamic: true
+},'static'))
