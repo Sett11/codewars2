@@ -1,10 +1,5 @@
-function toInteger(n){
-  if(Array.isArray(n))return n.reduce((a,c)=>a+c,0)||0
-  if(typeof n==='boolean')return +n
-  if((typeof n!=='number'&&typeof n!=='string')||n===Infinity||n===-Infinity||Number.isNaN(n))return 0
-  let s=String(+n).split`.`
-  return +s[0]
-}
+generateMarkdowns=(m,t,u)=>m=='link'?`[${t}](${u})`:m=='img'?`![${t}](${u})`:'```'+`${u}\n`+t+'\n```'
 
-console.log(toInteger([]))
-console.log(toInteger(80085e-1))
+console.log(generateMarkdowns('link','hyperlink','https://en.wikipedia.org/wiki/Hyperlink'))
+console.log(generateMarkdowns('img','this should be an image','https://github.com/codewars/gna.jpg'))
+console.log(generateMarkdowns('code',"function generateMarkdowns(markdown,text,urlOrLanguage) {\n// write your code here\n};",'javascript'))
