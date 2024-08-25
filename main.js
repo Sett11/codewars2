@@ -1,34 +1,25 @@
-function toBSTArray(arr){
-    let a=arr.slice()
-	if (a.length===0)return []
-    for(let i=-1;++i<a.length;){
-        if((a[2*i+1]!==undefined&&a[i]<a[2*i+1])){
-            t=a[2*i+1]
-            a[i*2+1]=a[i]
-            a[i]=t
-        }
-        if((a[2*i+2]!==undefined&&a[i]>a[2*i+2])){
-            t=a[i*2+2]
-            a[i*2+2]=a[i]
-            a[i]=t
+const k=a=>{
+    let m=-Infinity,c=0
+    for(let i in a){
+        c+=a[i]
+        if(c>m)m=c
+        if(c<0)c=0
+    }
+    return m
+}
+
+function maxSumOf(a){
+    let n=a.length,m=a[0].length,max=-Infinity
+    let r=Array(n).fill(0).map((_,i)=>Array(m).fill(0))
+    for(let i=-1;++i<n;)for(let j=-1;++j<m;)r[i][j]=!j?a[i][j]:r[i][j-1]+a[i][j]
+    for(let i=-1;++i<m;){
+        for(let j=i-1;++j<m;){
+            let t=[]
+            for(let k=-1;++k<n;)t.push(!i?r[k][j]:r[k][j]-r[k][i-1])
+            max=Math.max(max,k(t))
         }
     }
-    return isBSTArray(a)?a:toBSTArray(a)
+    return max
 }
 
-function isBSTArray(a){
-	if (a.length===0)return true
-    for(let i=-1;++i<a.length;){
-        if(!((a[2*i+1]===undefined||a[i]>=a[2*i+1])&&(a[2*i+2]===undefined||a[i]<=a[2*i+2])))return false
-    }
-	return true
-}
-
-function toArray(a){
-	if (!isBSTArray(a))throw new Error('The parameter must be a BSTArray')
-	return a.filter(e=>e).sort((a,b)=>a-b)
-}
-
-let array=[2, 4, 3, 5, 6]
-let bst = toBSTArray(array)
-console.log(isBSTArray(array))
+console.log(maxSumOf([[-35,-68,14,112,-33],[-94,105,118,108,92],[-12,-7,29,19,-88],[26,-100,-97,31,105],[109,104,-127,-37,85],[-41,-104,103,-118,87]] ))
