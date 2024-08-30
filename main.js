@@ -1,5 +1,14 @@
-function semicolonSeparationToCommaSeparation(s,a=s.split(';')){
-    return `${a[0]},${a[1]},${a[2]}`
-  }
-
-  console.log(semicolonSeparationToCommaSeparation("1;2;3"))
+function isTotal3() {
+	var simpleVariable = 1;
+	
+	for (var index = 0; index < 1; index++)
+		var variableInLoop = 1;
+		
+	(function defineAVariable() {
+		variableInFunction = 1;
+	})();
+	
+	var result = simpleVariable + variableInLoop + variableInFunction;
+	
+	return result;
+}
