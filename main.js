@@ -1,12 +1,5 @@
-function getMax1(){
-  return {
-   name: 'Max Headroom'
+function semicolonSeparationToCommaSeparation(s,a=s.split(';')){
+    return `${a[0]},${a[1]},${a[2]}`
   }
-}
 
-function getMax2()
-{
-  return {
-    name: 'Max Headroom'
-  }
-}
+  console.log(semicolonSeparationToCommaSeparation("1;2;3"))
