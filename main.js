@@ -1,22 +1,13 @@
-function flattenMap(a){
-  const types=['number','string','boolean','function'],res={}
-  const f=(x,s)=>{
-    if(types.includes(typeof x)||Array.isArray(x)||x===null){
-      res[s]=x
-      return
-    }
-    for(let i in x)f(x[i],s+'/'+i)
+function makingString(a) {
+  let r=0,u=new Set()
+  while(a.length){
+    let m=Math.max(...a),i=a.indexOf(m)
+    a.splice(i,1)
+    while(u.has(m))m--
+    if(m>-1)r+=m
+    u.add(m)
   }
-  for(let i in a)f(a[i],i)
-    return res
+  return r
 }
 
-console.log(flattenMap({
-  'a': {
-    'b': {
-      'c': 12,
-      'd': 'Hello World'
-    },
-    'e': [1,2,3]
-  }
-}))
+console.log(makingString([5,5,5]))
