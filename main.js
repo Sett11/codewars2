@@ -1,4 +1,7 @@
-checkRange=(a,x,y,c=0)=>a.map(e=>c+=e<x==e>y)|c
+function reverseFibo(n){
+  let a=b=1,r='110'
+  for(let i=3;i++<n;)[a,b]=[b,a+b],r=b+r
+  return r
+}
 
-console.log(checkRange([2, 5, 6, 7, 1, 3, 4, 11, 56, 49],1,7))
-console.log('checkRange=(a,x,y,c=0)=>a.map(e=>c+=e<x===e>y)|c'.length)
+console.log(reverseFibo(10))
