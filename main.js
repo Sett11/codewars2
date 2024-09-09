@@ -1,9 +1,7 @@
-function returnSpecifics(o,r=[],q=[]){
-  for(let i in o){
-    if(typeof o[i]=='number')r.push(o[i])
-    if(typeof o[i]=='function')q.push(i)
-  }
-  return r.length||q.length?r.concat(q):['The Object is Empty']
+function split(a,p){
+  let r=[[],[]]
+  a.forEach(e=>e[p]?r[0].push(e):r[1].push(e))
+  return r
 }
 
-console.log(returnSpecifics({a:1,b:2,c:3,d:'d',e:"dsds",add:function(a,b){return a+b;},g:34}))
+console.log(split([{p:true},{p:false}],'p'))
