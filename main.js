@@ -1,13 +1,4 @@
-function makingString(a) {
-  let r=0,u=new Set()
-  while(a.length){
-    let m=Math.max(...a),i=a.indexOf(m)
-    a.splice(i,1)
-    while(u.has(m))m--
-    if(m>-1)r+=m
-    u.add(m)
-  }
-  return r
-}
+checkRange=(a,x,y,c=0)=>a.map(e=>c+=e<x==e>y)|c
 
-console.log(makingString([5,5,5]))
+console.log(checkRange([2, 5, 6, 7, 1, 3, 4, 11, 56, 49],1,7))
+console.log('checkRange=(a,x,y,c=0)=>a.map(e=>c+=e<x===e>y)|c'.length)
