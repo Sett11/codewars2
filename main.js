@@ -1,12 +1,5 @@
-function myFunction() {
-  let myObject = {
-    objProperty: "string",
-    objMethod: function() {
-      return myObject.objProperty
-		}
-  }
-  return myObject
+function uniquePush(arr, obj) {
+  if(!obj.phoneNumber||arr.some(e=>e.phoneNumber===obj.phoneNumber))return false
+  arr.push(obj)
+  return true
 }
-
-
-console.log(myFunction().objMethod())
