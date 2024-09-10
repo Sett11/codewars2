@@ -1,7 +1,12 @@
-function split(a,p){
-  let r=[[],[]]
-  a.forEach(e=>e[p]?r[0].push(e):r[1].push(e))
-  return r
+function myFunction() {
+  let myObject = {
+    objProperty: "string",
+    objMethod: function() {
+      return myObject.objProperty
+		}
+  }
+  return myObject
 }
 
-console.log(split([{p:true},{p:false}],'p'))
+
+console.log(myFunction().objMethod())
