@@ -1,4 +1,11 @@
-function* nextElementGenerator(a){
-  let i=0,n=a.length
-  while(1)yield a[i++%n]
+class Counter{
+  constructor(){
+    this.counter=0
+  }
+  incr(){this.counter++}
+  valueOf(){return this.counter}
 }
+
+c=new Counter()
+c.incr()
+console.log(c+1)
