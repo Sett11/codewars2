@@ -1,52 +1,19 @@
-class ListNode{
-  constructor(data, next = null){
-    this.data = data
-    this.next = next
+function canBake(a,r){
+  if(JSON.stringify(a)==='{}'&&JSON.stringify(r)==='{}')return 'You can bake'
+  if(JSON.stringify(a)==='{}')return 'Not enough ingredients: need oil, flour, sugar, milk'
+  const d={'milk cup':220,'milk tbsp':15,'milk tsp':5,'sugar cup':200,'sugar tbsp':14,'sugar tsp':5,'oil cup':220,'oil tbsp':15,'oil tsp':5,'flour cup':200,'flour tbsp':14,'flour tsp':5},q=[]
+  for(let i in r){
+    let t=r[i].split` `
+    if(!i in a||d[`${i} `+t[1]]*eval(t[0])>+a[i].split` `[0])q.push(i)
   }
+  return !q.length?"You can bake":`Not enough ingredients: need ${q.join`, `}`
 }
 
-class TreeNode{
-  constructor(value, left, right){
-    this.value = value
-    this.left = left
-    this.right = right
-  }
-}
-
-
-function flatten(h){
-  if(!h)return null
-  let r=new Set()
-  const f=x=>{
-    if(!x)return
-    r.add(x.value)
-    f(x.left)
-    f(x.right)
-  }
-  
-  while(h){
-    f(h.data)
-    h=h.next
-  }
-  r=[...r].sort((a,b)=>b-a)
-  let t=new TreeNode(r.pop()),que=[t]
-  while(r.length){
-    let x=que.pop()
-    if(!r.length)break
-    x.left=new TreeNode(r.pop())
-    if(!r.length)break
-    x.right=new TreeNode(r.pop())
-    que.unshift(x.left),que.unshift(x.right)
-  }
-  return t
-}
-
-let t1 = new TreeNode(1, null, new TreeNode(2));
-let t2 = new TreeNode(4);
-let t3 = new TreeNode(3, new TreeNode(4), new TreeNode(2));
-let t4 = new TreeNode(6, null, new TreeNode(5));
-
-let head = new ListNode(t1, new ListNode(t2, new ListNode(t3, new ListNode(t4))));
-
-console.log(flatten(head))
-console.log(flatten(new TreeNode()))
+console.log(canBake(
+  { oil: '300 ml', flour: '0 g', sugar: '0 g', milk: '800 ml' }, { oil: '1 cup',
+    flour: '4/4 cup',
+    sugar: '1 tbsp',
+    milk: '17 tsp' }))
+console.log(canBake(
+  {"oil": "200 ml", "flour": "600 g", "sugar":"110 g", "milk":"600 ml"},
+  {"oil": "1 tbsp", "flour": "4 cup", "sugar":"1 cup", "milk":"1 cup"}))
