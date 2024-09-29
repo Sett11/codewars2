@@ -1,27 +1,10 @@
-function *fack(val,i,f,n){
-    if(n!==undefined){
-        while(n--){
-            yield val
-            val=f(val,i)
-            i++
-        }
-    }
-    else{
-        while(1){
-            yield val
-            val=f(val,i)
-            i++
-        }
-    }
+const calculateHypotenuse=(a,b,f=x=>typeof x==='number'&&x>0)=>{
+    if(f(a)&&f(b))return +((a**2+b**2)**.5).toFixed(3)
+    throw Error()
 }
 
-Object.prototype.iterate=function(f,n){
-    return fack(this.valueOf(),0,f,n)
-}
 
-Object.defineProperty(Object.prototype,'iterate',{enumerable: false,
-    configurable: false,
-    writable: false,
-  })
-
-console.log(Array.from((1).iterate(x=>x+2,3)))
+console.log(calculateHypotenuse(1,1))
+console.log(calculateHypotenuse(3,4))
+console.log(calculateHypotenuse(9,9))
+console.log(calculateHypotenuse(1,NaN))
