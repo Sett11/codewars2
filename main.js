@@ -1,12 +1,20 @@
-class Hex{
-    constructor(v){this.v=v}
-    static parse(s){return parseInt(s,16)}
-    valueOf(){return this.v}
-    toString(){return '0x'+((this.v).toString(16)).toUpperCase()}
-    toJSON(){return this.toString()}
-    plus(x){return new Hex(this.v+x)}
-    minus(x){return new Hex(this.v-x)}
+function curry(func,...a){
+  function f(...b){
+    return func.call(this,...a,...b)
   }
+  return f
+}
 
-F=new Hex(255)
-console.log(F+0)
+add=(a,b,c)=>a+b+c
+
+addOne=curry(add,1)
+
+console.log(add(1,2,3),addOne(2,3))
+
+let obj = {
+  a: 'foo',
+  b: function (a) { return this.a + a; }
+}
+
+obj.foobar = curry(obj.b, 'bar')
+console.log(obj.foobar())
