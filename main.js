@@ -1,20 +1,8 @@
-function curry(func,...a){
-  function f(...b){
-    return func.call(this,...a,...b)
-  }
-  return f
+curryPartial=(f,...a)=>f.length<=a.length?f(...a):(...b)=>curryPartial(f,...a,...b)
+
+function add(a,b,c){
+  return a+b+c
 }
+let a=1,b=2,c=3
 
-add=(a,b,c)=>a+b+c
-
-addOne=curry(add,1)
-
-console.log(add(1,2,3),addOne(2,3))
-
-let obj = {
-  a: 'foo',
-  b: function (a) { return this.a + a; }
-}
-
-obj.foobar = curry(obj.b, 'bar')
-console.log(obj.foobar())
+console.log(curryPartial(add,a)(b)(c))
