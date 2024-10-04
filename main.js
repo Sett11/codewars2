@@ -1,8 +1,18 @@
-yack=(f,...a)=>f.length<=a.length?f(...a):(...b)=>yack(f,...a,...b)
-
-function add(a,b,c){
-  return a+b+c
+class Event {
+  constructor(arr=[]){
+      this.arr=arr
+  }
+  subscribe(fn){
+      this.arr.push(fn)
+  }
+  unsubscribe(f){
+      if(this.arr.includes(f)){
+          this.arr = this.arr.filter(el=>el!==f)
+      }
+  }
+  emit(...args){
+      return this.arr.map(el=>el(...args))
+  }
 }
-let a=1,b=2,c=3
 
-console.log(yack(add,a)(b)(c))
+
