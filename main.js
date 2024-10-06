@@ -1,24 +1,20 @@
-Function.prototype.call = function(t,...a) {
-  return this.apply(t, a)
+function shuffle(a){
+  let n=a.length
+  for(let i=-1;++i<n;){
+    let g=~~(Math.random()*n)
+    t=a[g]
+    a[g]=a[i]
+    a[i]=t
+  }
+  return a
 }
 
-function Product(name, price) {
-  this.name = name;
-  this.price = price;
+function createTiles(n){
+  if(n&1||!n)return []
+  let a=Array(n/2).fill(1).map((_,i)=>i+1),b=a.slice(),r=[]
+  a=shuffle(a),b=shuffle(b)
+  for(let i=-1;++i<n/2;)r.push(a.pop(),b.pop())
+  return r
 }
 
-function Food(name, price) {
-  Product.call(this, name, price);
-  this.category = 'food';
-}
-
-function Toy(name, price) {
-  Product.call(this, name, price);
-  this.category = 'toy';
-}
-
-const cheese = new Food('feta', 5);
-const fun = new Toy('robot', 40);
-
-console.log(cheese.price)
-console.log(fun.name)
+console.log(createTiles(8))
