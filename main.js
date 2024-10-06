@@ -1,44 +1,91 @@
-let fruitsName=[
-  'apple',      'pear',      'banana',
-  'watermelon', 'grapes',    'plum',
-  'blueberry',  'persimmon', 'pomegranate',
-  'pineapple',  'orange',    'mangosteen',
-  'durian',     'lemon',     'pitaya',
-  'carambola',  'tomato',    'apricot',
-  'cherry',     'coconut',   'peach',
-  'fig',        'litchi',    'ginkgo',
-  'cantaloupe', 'hawthorn',  'mango',
-  'jujube'
-]
-
-function countFruits(a){
-  const r={},n=a.length,u=new Set(fruitsName),w=new Set()
-  for(let i=-1;++i<n;){
-    if(!w.has(i)){
-    for(let j=i;++j<a.length;){
-      if(!w.has(j)){
-        let s=a[i]+a[j],t=a[j]+a[i]
-        if(u.has(s)||u.has(t)){
-          if(u.has(s)&&((s.length%2==0&&a[i].length==a[j].length)||(s.length&1&&a[i].length==a[j].length+1))){
-            r[s]=(r[s]||0)+1
-            w.add(i),w.add(j)
-            break
-          }
-          if(u.has(t)&&((t.length%2==0&&a[j].length==a[i].length)||(t.length&1&&a[j].length==a[i].length+1))){
-            r[t]=(r[t]||0)+1
-            w.add(i),w.add(j)
-            break
-          }
+class ParkingLot {
+  constructor(size) {
+    this.a=Array(size).fill(0)
+    this.bikes=new Set()
+    this.cars=new Set()
+    this.vans=new Set()
+  }
+  park(s){
+    if(s instanceof Bike){
+      if(this.size<1)return false
+      for(let i=-1;++i<this.a.length;){
+        if(this.a[i]===0){
+          this.a[i]=s.license
+          this.bikes.add(s.license)
+          return true
         }
       }
     }
+    if(s instanceof Car){
+      for(let i=-1;++i<this.a.length;){
+        if(this.a[i]===0&&this.a[i+1]===0){
+          this.a[i]=this.a[i+1]=s.license
+          this.cars.add(s.license)
+          return true
+        }
+      }
+    }
+    if(s instanceof Van){
+      for(let i=-1;++i<this.a.length;){
+        if(this.a[i]===0&&this.a[i+1]===0&&this.a[i+2]===0){
+          this.a[i]=this.a[i+1]=this.a[i+2]=s.license
+          this.vans.add(s.license)
+          return true
+        }
+      }
+    }
+    return false
+  }
+  retrieve(s){
+    if(this.bikes.has(s)){
+      for(let i=-1;++i<this.a.length;){
+        if(this.a[i]===s){
+          this.a[i]=0
+          this.bikes.delete(s)
+          return true
+        }
+      }
+    }
+    if(this.cars.has(s)){
+      for(let i=-1;++i<this.a.length;){
+        if(this.a[i]===s&&this.a[i+1]===s){
+          this.a[i]=this.a[i+1]=0
+          this.cars.delete(s)
+          return true
+        }
+      }
+    }
+    if(this.vans.has(s)){
+      for(let i=-1;++i<this.a.length;){
+        if(this.a[i]===s&&this.a[i+1]===s&&this.a[i+2]===s){
+          this.a[i]=this.a[i+1]=this.a[i+2]=0
+          this.vans.delete(s)
+          return true
+        }
+      }
+    }
+    return false
   }
 }
-  return r
+
+class Bike{
+  constructor(license){
+    this.license=license
+  }
 }
 
-console.log(countFruits(["app","le","pe","ar","ban","ana"]))
-console.log(countFruits(["app","le","app","le","le","le"]))
-console.log(countFruits(["le","le","app","app","app"]))
-console.log(countFruits(["app","le","appl","e","ap","ple","ale","pp","bo","mb"]))
+class Car{
+  constructor(license){
+    this.license=license
+  }
+}
+class Van{
+  constructor(license){
+    this.license=license
+  }
+}
 
+p=new ParkingLot(6)
+
+console.log(p.park(new Van('B1')))
+console.log(p.retrieve('B1'))
