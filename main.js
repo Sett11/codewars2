@@ -1,35 +1,12 @@
-function largestRoomArea(a){
-  let max=0,n=a.length,m=a[0].length,u=new Set()
-  const dfs=(i,j,k=0,q=[])=>{
-    if(i<0||i>=n||j<0||j>=m||a[i][j]||u.has([i,j].join`&`))return
-      a[i][j]=2
-      u.add([i,j].join`&`)
-      dfs(i+1,j,k,q)
-      dfs(i-1,j,k,q)
-      dfs(i,j+1,k,q)
-      dfs(i,j-1,k,q)
-      a[i][j]=0
-  }
-  a.forEach((e,i)=>e.forEach((k,j)=>{
-    if(!k){
-      u=new Set()
-      dfs(i,j)
-      max=Math.max(max,u.size)
-    }
-  }))
-  return max
+function releaseFireworks(a,r=[]){
+  a.split`\n`.forEach((e,i,v)=>e.split``.forEach((u,j)=>u==='o'?r.push([j,(v.length-i)*5/4]):null))
+  return r.sort((a,b)=>a[0]-b[0]||b[1]-a[1])
 }
 
-console.log(largestRoomArea([
-  [1,0,0,1,1,1,1,0,1,0], 
-  [1,1,1,0,1,1,1,0,1,1], 
-  [0,0,1,1,0,1,0,0,0,0], 
-  [0,1,0,0,0,0,1,0,1,0], 
-  [1,1,1,0,0,0,1,1,0,0], 
-  [0,1,0,1,1,0,0,0,0,0], 
-  [1,1,1,1,1,1,0,0,0,1], 
-  [0,1,0,1,0,0,1,1,1,1], 
-  [0,1,0,0,1,1,1,1,1,1], 
-  [1,0,1,1,1,0,1,0,1,1]]))
 
-console.log(largestRoomArea([[1,1,1],[1,0,1],[1,1,1]]))
+console.log(releaseFireworks("     o  o \n"+
+    " ooo o o  \n"+
+    " o o oo   \n"+
+    " o o o o  \n"+
+    " ooo o  o \n"+
+    "          "))
