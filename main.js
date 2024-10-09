@@ -1,5 +1,17 @@
-Array.prototype.sortReloaded=function(v='asc'){
-  return v==='asc'||v==='desc'?this.slice().sort((a,b)=>v==='asc'?a-b:b-a):1==2
+function checkTrip(s,e,d){
+  let v='Impossible',u=new Set()
+  const dfs=x=>{
+    if(u.has(v)||v==='Possible')return
+    if(x===e){
+      v='Possible'
+      return
+    }
+    u.add(x)
+    for(let i in d[x])if(!u.has(d[x][i]))dfs(d[x][i])
+  }
+  dfs(s)
+  return v
 }
 
-console.log([1,5,3,8].sortReloaded())
+const links = {"ADL" : ["MEL"], "MEL" : ["ADL", "SYD"],  "SYD" : ["BRI"], "BRI" : [] }
+console.log(checkTrip('SYD','ADL',links))
