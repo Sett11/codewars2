@@ -1,26 +1,34 @@
-function treasure(a,x,y){
-  let n=a.length,m=a[0].length,r=[],u=new Set()
-  const dfs=(i,j,k)=>{
-    if(i<0||i>=n||j<0||j>=m||a[i][j]=='X'||u.has([i,j].join`&`))return
-    u.add([i,j].join`&`)
-    if(![' ','#'].includes(a[i][j])){
-      r.push([a[i][j],k])
+function playPacMan(a,p){
+  let n=a.length,m=a[0].length,l=a.map(e=>e.filter(u=>u==='D').length).reduce((a,c)=>a+c,0),r=[]
+  const dfs=(i,j,q)=>{
+    if(r.length||i<0||i>=n||j<0||j>=m||!['D','P'].includes(a[i][j]))return
+    if(q.length===l){
+      r=q.concat([[i,j]])
       return
     }
-    k++
-    dfs(i+1,j,k)
-    dfs(i-1,j,k)
-    dfs(i,j+1,k)
-    dfs(i,j-1,k)
+    if(['D','P'].includes(a[i][j])){
+      let t=a[i][j]
+      a[i][j]='x'
+      dfs(i+1,j,q.concat([[i,j]]))
+      dfs(i-1,j,q.concat([[i,j]]))
+      dfs(i,j+1,q.concat([[i,j]]))
+      dfs(i,j-1,q.concat([[i,j]]))
+      a[i][j]=t
+    }
   }
-  dfs(y-1,x-1,0)
-  if(!r.length)return 'No treasure found :('
-  return `The treasure is ${r.sort((a,b)=>a[1]-b[1])[0][0]} :)`
+  dfs(...p,[])
+  return r.length?r:'no solution'
 }
 
-console.log(treasure([
-  "XXXX",
-  "X XX",
-  "X TX",
-  "XXXX"
-],3,3))
+console.log(playPacMan([
+  ["D","P","D","D","D"],
+  ["D","W","D","W","D"],
+  ["D","E","D","E","D"],
+  ["D","W","D","W","D"],
+  ["D","D","D","D","D"]
+  ],[0,1]))
+console.log(playPacMan([
+  ["P","D","D"],
+  ["D","W","D"],
+  ["D","D","D"]
+  ],[0,0]))
