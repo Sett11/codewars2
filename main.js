@@ -8,7 +8,7 @@ function findAB(a,c){
         let t=c/i
         if(u.has(t)&&((i===t&&r[i]>1)||i!==t))return [i,t===0?0:t]
     }
-    return null
+    return null 
 }
 
 console.log(findAB([1,2,3],6))
