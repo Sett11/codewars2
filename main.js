@@ -1,16 +1,18 @@
-function findAB(a,c){
-    const r=a.reduce((a,c)=>{
+function halfIt(s){
+    if(typeof s!='string')return ''
+    let a=[...s].reduce((a,c)=>{
         if(!a[c])a[c]=0
         a[c]+=1
         return a
-    },{}),u=new Set(a)
-    for(let i of u){
-        let t=c/i
-        if(u.has(t)&&((i===t&&r[i]>1)||i!==t))return [i,t===0?0:t]
+    },{}),r=''
+    for(let i of s){
+        if(a[i]>0){
+            r+=i
+            a[i]-=2
+        }
     }
-    return null 
+    return r
 }
 
-console.log(findAB([1,2,3],6))
-console.log(findAB([-3,-2,-2,-1,0,1,2,3,4],4))
-console.log(findAB([-3,-2,-2,-1,0,1,2,3,4],0))
+console.log(halfIt("CcCccccccCcCCcC"))
+console.log(halfIt("!!??!!"))
