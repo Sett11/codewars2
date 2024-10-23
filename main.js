@@ -16,3 +16,4 @@ function halfIt(s){
 
 console.log(halfIt("CcCccccccCcCCcC"))
 console.log(halfIt("!!??!!"))
+console.log(halfIt('aabb'))
