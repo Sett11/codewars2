@@ -1,3 +1,6 @@
-const halfIt=n=>!Number.isInteger(n)?0:parseInt((n).toString(2).replace(/(.)\1+/g,e=>e.slice(0,Math.ceil(e.length/2))),2)
+function halfIt(n){
+    if(typeof n!='number')return 0
+    return Number((n+'').replace(/\d/g,e=>Math.round(e/2)))
+}
 
-console.log(halfIt(-100))
+console.log(halfIt(-2.22))
