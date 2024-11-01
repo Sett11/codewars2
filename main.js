@@ -1,14 +1,8 @@
-const maxConsecutiveSequenceLength=a=>{
-    let n=a.length,r=Array(n).fill(0),x=0
-    for(let i=-1;++i<n;){
-        let m=0
-        for(let j=-1;++j<i;)if(Math.abs(a[i]-a[j])<2&&a[i]>=a[j]&&r[j]>m)m=r[j]
-        r[i]=m+1
-        x=Math.max(r[i],x)
-    }
-    return x
-}
+function Node(data, next = null) {
+    this.data = data;
+    this.next = next;
+  }
 
-console.log(maxConsecutiveSequenceLength([9,7,9,2,6,8,5,9,1,5]))
-console.log(maxConsecutiveSequenceLength([3,2,1,2,3,3,2,2,2,3,4]))
-console.log(maxConsecutiveSequenceLength([-4,-4,-4,-3]))
+getKthLastElement=f=(h,k,a=[])=>!h?a[a.length-k-1]:a.push(h)&&f(h.next,k,a)
+
+console.log(getKthLastElement(new Node(1, new Node(2, new Node(3))),0))
