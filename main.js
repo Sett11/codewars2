@@ -1,32 +1,14 @@
-class SortedList{
-    constructor(a=[]){
-        this.a=a
-        this.length=this.a.length
+const maxConsecutiveSequenceLength=a=>{
+    let n=a.length,r=Array(n).fill(0),x=0
+    for(let i=-1;++i<n;){
+        let m=0
+        for(let j=-1;++j<i;)if(Math.abs(a[i]-a[j])<2&&a[i]>=a[j]&&r[j]>m)m=r[j]
+        r[i]=m+1
+        x=Math.max(r[i],x)
     }
-    bs(n){
-        let l=0,r=this.length-1
-        while(r-l>1){
-            let m=~~((r+l)/2)
-            if(this.a[m]<n)l=m
-            else r=m
-        }
-        return l+1
-    }
-
-    add(n){
-        if(n<=this.a[0])this.a.unshift(n)
-        else if(n>=this.a[this.length-1])this.a.push(n)
-        else this.a.splice(this.bs(n),0,n)
-        this.length+=1
-    }
-    get(i){
-        return this.a[i]
-    }
+    return x
 }
 
-let a=Array(100).fill(1).map((e,i)=>e+i)
-let s=new SortedList(a)
-console.log(s.length)
-s.add(34)
-console.log(s.length)
-console.log(s.get(33))
+console.log(maxConsecutiveSequenceLength([9,7,9,2,6,8,5,9,1,5]))
+console.log(maxConsecutiveSequenceLength([3,2,1,2,3,3,2,2,2,3,4]))
+console.log(maxConsecutiveSequenceLength([-4,-4,-4,-3]))
