@@ -1,18 +1,4 @@
-
-// hidePasswordFromConnection=s=>{
-//     const f=x=>{
-//         const a=x.split`&`,z=a[0].split`=`
-//         return `${z[0]}=${'*'.repeat(z[1].length)}${a[1]?('&'+a[1]):''}`
-//     }
-//     return s.replace(/password\=.+/,f)
-// }
-
-// console.log(hidePasswordFromConnection('ihrv8uworovwo&password=12djlk sp&user=vasia'))
-
-
-
-
-// Timmy Time
+// 
 
 // function changeTime(s,n){
 //    let a=s.split`:`,d=new Date(0,0,0,+a[0],+a[1] +n,0)
@@ -51,3 +37,28 @@
 // console.log(sumOfPrimeDistance([4,6,12,14,16,20]))
 // console.log(sumOfPrimeDistance([16,30,56,66,104,134,164,196,206,236,238]))
 // console.log(sumOfPrimeDistance([30,64,66,84,86,122,134,142,156,164,200,206]))
+
+
+
+
+// Condensentences
+
+// const condense=s=>{
+//     let a=s.split` `,r=a.shift()
+//     for(let i of a){
+//         if(r.endsWith(i))continue
+//         let v=false
+//         for(let j=0;++j<=i.length;){
+//             if(r.endsWith(i.slice(0,j))){
+//                 r+=i.slice(j)
+//                 v=true
+//                 break
+//             }
+//         }
+//         if(!v)r+=i
+//     }
+//     return r
+// }
+
+// console.log(condense('29385 4728 89 03 30 200 0 0'))
+// console.log(condense("2112 2112"))
