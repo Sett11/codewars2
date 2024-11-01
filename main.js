@@ -1,21 +1,5 @@
 // 
 
-// function changeTime(s,n){
-//    let a=s.split`:`,d=new Date(0,0,0,+a[0],+a[1] +n,0)
-//    let r=[d.getHours(),d.getMinutes()]
-//    if(r[0]<10)r[0]='0'+r[0]
-//    if(r[1]<10)r[1]='0'+r[1]
-//    return r.join`:`
-// }
-
-// console.log(changeTime('10:00', -1))
-// console.log(changeTime('23:59', 1))
-
-
-
-
-// Simple Fun #338: The Sum Of Prime Distance
-
 
 // const primes=[2]
 // const f=x=>{if(x<2)return false;if(x===2)return true;for(let i=2;i<Math.sqrt(x)+1;i++){if(x%i===0)return false}return true}
@@ -37,7 +21,6 @@
 // console.log(sumOfPrimeDistance([4,6,12,14,16,20]))
 // console.log(sumOfPrimeDistance([16,30,56,66,104,134,164,196,206,236,238]))
 // console.log(sumOfPrimeDistance([30,64,66,84,86,122,134,142,156,164,200,206]))
-
 
 
 
