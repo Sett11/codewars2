@@ -1,4 +1,3 @@
-// Hide password from jdbc url
 
 // hidePasswordFromConnection=s=>{
 //     const f=x=>{
@@ -52,16 +51,3 @@
 // console.log(sumOfPrimeDistance([4,6,12,14,16,20]))
 // console.log(sumOfPrimeDistance([16,30,56,66,104,134,164,196,206,236,238]))
 // console.log(sumOfPrimeDistance([30,64,66,84,86,122,134,142,156,164,200,206]))
-
-const solution=a=>{
-  let r={},d=t=c=0
-  for(let i=-1;++i<a.length;){
-    if(!r[a[i]])r[a[i]]=0
-    r[a[i]]+=1
-    if(r[a[i]]===2)d=a[i]
-    c+=i+1,t+=a[i]
-  }
-  return [c-(t-d),d]
-}
-
-console.log(solution([2,3,1,4,4,6]))
