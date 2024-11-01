@@ -1,19 +1,19 @@
-const condense=s=>{
-    let a=s.split` `,r=a.shift()
-    for(let i of a){
-        if(r.endsWith(i))continue
-        let v=false
-        for(let j=0;++j<=i.length;){
-            if(r.endsWith(i.slice(0,j))){
-                r+=i.slice(j)
-                v=true
-                break
-            }
-        }
-        if(!v)r+=i
+const f=n=>{
+    let a='abcdefghijklmnopqrstuvwxyz',r=''
+    while(n){
+        r=a[n%26]+r
+        n=~~(n/26)
     }
     return r
 }
 
-console.log(condense('29385 4728 89 03 30 200 0 0'))
-console.log(condense("2112 2112"))
+const conversion=a=>{
+    let m=0,b=a.map(e=>{
+        e=f(e)
+        m=Math.max(m,e.length)
+        return e
+    }).map(e=>e.padStart(m,'a')).join``
+    return f(m-1)+b
+}
+
+console.log(conversion([22, 48, 50, 40, 77, 48, 82, 14, 73, 58]))
