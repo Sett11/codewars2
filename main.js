@@ -1,11 +1,23 @@
-multiFilter=(...a)=>f=x=>a.every(e=>e(x))
-
-function isEven(el){
-    return el % 2 === 0;
-}
-  
-function isGTten(el){
-   return el > 10;
+pipeline=(...a)=>{
+    if(!a.length)return
+    let x=a.shift()
+    return !a.length?x:a.reduce((acc,curr)=>acc=curr(acc),x)
 }
 
-console.log([1,2,3,4,10,11,12,20,21,22].filter(multiFilter(isEven, isGTten)))
+compose=(...a)=>{
+    if(!a.length)return
+    return function(x){
+        if(!x)return
+        a.reverse().forEach(e=>x=e(x))
+        return x
+    }
+}
+
+var greet    = function(name){ return "hi: " + name; };
+var exclaim  = function(statement){ return statement.toUpperCase() + "!"; };
+var welcome = compose(greet, exclaim);
+
+console.log(pipeline(42,x=>-x))
+console.log(pipeline())
+
+console.log(welcome('moe'))
