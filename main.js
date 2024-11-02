@@ -1,15 +1,5 @@
-const reverseList=f=h=>{
-    let r=[],q=w=[]
-    while(h){
-        r.push(h[0])
-        h=h[1]
-    }
-    while(r.length){
-        w.push(r.pop())
-        w.push(r.length?[]:null)
-        w=w[1]
-    }
-    return q.length?q:null
+Array.prototype.valueOf=function(){
+    return (this.length?this:[0]).reduce((a,c)=>a+c)
 }
 
-console.log(reverseList([1, [2, [3, null]]]))
+console.log([1,2,3]+4)
