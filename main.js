@@ -1,8 +1,15 @@
-function Node(data, next = null) {
-    this.data = data;
-    this.next = next;
-  }
+const reverseList=f=h=>{
+    let r=[],q=w=[]
+    while(h){
+        r.push(h[0])
+        h=h[1]
+    }
+    while(r.length){
+        w.push(r.pop())
+        w.push(r.length?[]:null)
+        w=w[1]
+    }
+    return q.length?q:null
+}
 
-getKthLastElement=f=(h,k,a=[])=>!h?a[a.length-k-1]:a.push(h)&&f(h.next,k,a)
-
-console.log(getKthLastElement(new Node(1, new Node(2, new Node(3))),0))
+console.log(reverseList([1, [2, [3, null]]]))
