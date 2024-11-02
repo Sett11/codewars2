@@ -4,4 +4,4 @@ function sum(n){
       }
 }
 
-console.log(sum(5)(3)())
+console.log(sum(5)(3)(9)())
