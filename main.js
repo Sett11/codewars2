@@ -1,3 +1,1 @@
-ho=(...a)=>!a.length?'Ho!': 'Ho '+a.join``
-
-console.log(ho(ho(ho())))
+sc=(m,n)=>[...Array(n)].reduce(a=>a.map((e,i)=>e.map((e,j)=>/V/.test(`${a[i][j-1]}${a[i][j+1]}${a[i-1]&&a[i-1][j]}${a[i+1]&&a[i+1][j]}`)?'V':e)),m)
