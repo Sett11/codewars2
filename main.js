@@ -1,14 +1,27 @@
 const solveIt=arr=>{
-  let n=arr.length,m=arr[0].length,b=arr[0].map((e,i)=>[arr.map((u,j)=>u[i]),i]),a=arr.map((e,i)=>[e,i])
-  const f=(a,x)=>a.filter(e=>e[0].slice(0,x-1).reduce((a,c)=>a+c,0)!==e[0][x-1]).map(e=>e[1])[0]
-  let [x,y]=[f(a,m),f(b,n)]
-  if(x===n-1)return b[y][0].slice(0,m-1).reduce((a,c)=>a+c,0)
-  if(y===m-1)return a[x][0].slice(0,n-1).reduce((a,c)=>a+c,0)
-  if(!y)return a[x][0][n-1]-a[x][0].slice(1,n-1).reduce((a,c)=>a+c,0)
-  if(!x)return b[y][0][m-1]-b[y][0].slice(1,m-1).reduce((a,c)=>a+c,0)
-  return a[x][0][m-1]-a[x][0].slice(0,m-1).reduce((a,c,i)=>a+(i!==y?c:0))
+  let n=arr.length,x=y=a=b=-1
+  for(let i=-1;++i<n;){
+    if(arr[i].slice(0,n-1).reduce((a,c)=>a+c,0)!==arr[i][n-1]){
+      x=i
+      a=arr[i]
+      break
+    }
+  }
+  for(let i=-1;++i<n;){
+    let c=0,t=[]
+    for(let j=-1;++j<n-1;)c+=arr[j][i],t.push(arr[j][i])
+    if(c!==arr[n-1][i]){
+      t.push(arr[n-1][i])
+      y=i,b=t
+      break
+    }
+  }
+  if(x===n-1)return b.slice(0,n-1).reduce((a,c)=>a+c,0)
+  if(y===n-1)return a.slice(0,n-1).reduce((a,c)=>a+c,0)
+  if(!y)return a[n-1]-a.slice(1,n-1).reduce((a,c)=>a+c,0)
+  if(!x)return b[n-1]-b.slice(1,n-1).reduce((a,c)=>a+c,0)
+  return a[n-1]-a.slice(0,n-1).reduce((a,c,i)=>a+(i!==y?c:0))
 }
-
 
 console.log(solveIt([
   [33,38,15,86],
