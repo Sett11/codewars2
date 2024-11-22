@@ -1,18 +1,21 @@
-function uniqStrings(n,v,q){
-    for(let i=q[0];++i<q[1];)q.push(i)
-    let k=n-~~(n*v)
-    const a=Array(26).fill(1).map((_,i)=>String.fromCharCode(i+97)).concat(Array(10).fill(0).map((_,i)=>i)).concat(['_']),s=`\`'"~!@#$%^&*()[]{}:;<>?|\/`,r=[]
-    while(r.length<n){
-        let cs=q[~~(Math.random()*q.length)],c=''
-        if(k){
-            c+=s[~~(Math.random()*s.length)]
-            k--
-        }
-        while(c.length<cs)c+=a[~~(Math.random()*a.length)]
-        r.push(c)
+f=(a,b)=>((a%b)+b)%b
+ff=(a,b,c)=>{
+    a*=3,b*=3
+    if(c=='D')return [a,b]
+    if(c=='d'){
+        if((b+=1)&1)b+=a
+        return [a,~~(b/2)]
     }
-    return r
+    m=f(b-=2,c=4)
+    b=~~((b+((4+(f(a,c)-1?m:-m)))%4*a)/4)
+    if(b==1)b+=a
+    return [a,b]
 }
 
-console.log(uniqStrings(4,0.25,[3, 5]))
-console.log(uniqStrings(3,.1,[4, 6]))
+freakContazSequence=s=>{
+    let c=s[s.length-1],[a,b]=[3,c=='D'?3:c=='U'?4:2]
+    ;[...s].reverse().slice(1).forEach(e=>[a,b]=ff(a,b,e))
+    return b
+}
+
+console.log(freakContazSequence('UddUDUD'))
