@@ -1,21 +1,47 @@
-f=(a,b)=>((a%b)+b)%b
-ff=(a,b,c)=>{
-    a*=3,b*=3
-    if(c=='D')return [a,b]
-    if(c=='d'){
-        if((b+=1)&1)b+=a
-        return [a,~~(b/2)]
-    }
-    m=f(b-=2,c=4)
-    b=~~((b+((4+(f(a,c)-1?m:-m)))%4*a)/4)
-    if(b==1)b+=a
-    return [a,b]
-}
+// function snakesOn(a){
+//     let [n,m,c]=[a.length,a[0].length,0]
+//     const dfs=(i,j)=>{
+//         if(i<0||i>=n||j<0||j>=m||a[i][j]!=='S')return
+//         a[i][j]='&'
+//         dfs(i+1,j),dfs(i-1,j),dfs(i,j+1),dfs(i,j-1)
+//     }
+//     for(let i=-1;++i<n;)for(let j=-1;++j<m;)if(a[i][j]=='S'&&++c)dfs(i,j)
+//     return c
+//   }
 
-freakContazSequence=s=>{
-    let c=s[s.length-1],[a,b]=[3,c=='D'?3:c=='U'?4:2]
-    ;[...s].reverse().slice(1).forEach(e=>[a,b]=ff(a,b,e))
-    return b
-}
+// console.log(snakesOn([
+//     [
+//       '_', '_', 'S', 'S',
+//       'S', 'S', 'S', '_',
+//       '_', 'S'
+//     ],
+//     [
+//       '_', '_', 'S', '_',
+//       '_', '_', 'S', '_',
+//       '_', 'S'
+//     ],
+//     [
+//       'S', '_', '_', '_',
+//       '_', '_', 'S', 'S',
+//       'S', 'S'
+//     ],
+//     [
+//       'S', '_', 'S', 'S',
+//       'S', 'S', '_', '_',
+//       '_', '_'
+//     ],
+//     [
+//       'S', '_', '_', '_',
+//       '_', 'S', 'S', 'S',
+//       'S', '_'
+//     ]
+//   ]))
 
-console.log(freakContazSequence('UddUDUD'))
+
+// XOR string reduction
+
+// X=s=>eval(s.replace(/ /g,'^'))
+
+// console.log(X('1 0 1 1 1 0 0 1 0 0 0 0'))
+
+toASCIINumber=(a,b,f=x=>x.charCodeAt())=>f(a)+[f(b)]^0
