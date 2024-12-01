@@ -1,33 +1,16 @@
-function segmentify(d,s,c=s){
-    const u=new Set(d),r=[],m=Math.max(...d.map(e=>e.length))+2
-    const f=s=>{
-        if(!s)return
-        for(let i=m;--i>=0;){
-            t=s.slice(0,i)
-            if(c&&u.has(t)){
-                r.push(t)
-                c=c.slice(i)
-                if(u.has(c)){
-                    r.push(c)
-                    c=''
-                    return
-                }
-                f(c)
-            }
-        }
+const f=(...a)=>a.reduce((a,b)=>a.flatMap(d=>b.map(e=>[...d,e])),[[]])
+
+function wordGenerator(s){
+    let a='aeiou',c=0,q=[]
+    s=s.toLowerCase().replace(/[aioue]/g,x=>++c&&(x='*'))
+    if(!c)return [s]
+    let r=f(...a.repeat(c).match(/.{5,5}/g).map(e=>e.split``))
+    for(let i of r){
+        t=s
+        for(let j of i)t=t.replace(/\*/,j)
+        q.push(t)
     }
-    f(s)
-    if(c)return 'IMPOSSIBLE'
-    for(let i=-1;++i<r.length;)for(let j=-1;++j<r[i].length;)if(u.has(r[i].slice(0,j))&&u.has(r[i].slice(j)))return 'AMBIGUOUS'
-    return r.join` `
+    return q
 }
 
-console.log(segmentify([
-    'd',     'nxfo',
-    'z',     'q',
-    'fxs',   'qb',
-    'smbft', 'ym'
-  ],'nxfoznxfozzsmbftqbfxsfxsfxszqzqbnxfo'))
-console.log(segmentify([ "quick", "jumped", "brown", "fox", "the", "jumped", "lazy" ],'thequickbrownfoxjumpedoverthelazydog'))
-console.log(segmentify([ "weather", "the", "how", "is" ],"howistheweather"))
-console.log(segmentify([ "examples", "over", "haul", "overhaul", "the" ],"overhaultheexamples"))
+console.log(wordGenerator('b'))
