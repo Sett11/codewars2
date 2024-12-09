@@ -1,16 +1,10 @@
-const f=(...a)=>a.reduce((a,b)=>a.flatMap(d=>b.map(e=>[...d,e])),[[]])
-
-function wordGenerator(s){
-    let a='aeiou',c=0,q=[]
-    s=s.toLowerCase().replace(/[aioue]/g,x=>++c&&(x='*'))
-    if(!c)return [s]
-    let r=f(...a.repeat(c).match(/.{5,5}/g).map(e=>e.split``))
-    for(let i of r){
-        t=s
-        for(let j of i)t=t.replace(/\*/,j)
-        q.push(t)
-    }
-    return q
+function isStraight(a){
+    if(a.includes(14)&&!a.includes(1))a.push(1)
+    if(a.includes(1)&&!a.includes(14))a.push(14)
+    a=[...new Set(a)].sort((b,c)=>b-c)
+    let r=[]
+    for(let i=0;++i<a.length;)r.push(a[i]-a[i-1])
+    return r.join``.includes('1111')
 }
 
-console.log(wordGenerator('b'))
+console.log(isStraight([2, 3, 4 ,5, 6]))
