@@ -1,10 +1,9 @@
-function isStraight(a){
-    if(a.includes(14)&&!a.includes(1))a.push(1)
-    if(a.includes(1)&&!a.includes(14))a.push(14)
-    a=[...new Set(a)].sort((b,c)=>b-c)
-    let r=[]
-    for(let i=0;++i<a.length;)r.push(a[i]-a[i-1])
-    return r.join``.includes('1111')
+function peelPairs(s,n,a=[...s].map(e=>+e)){
+    for(let i=-1;++i<a.length;)for(let j=i;++j<a.length;)if(+a[i]+a[j]===n){
+        a[i]=a[j]=NaN
+        break
+    }
+    return a.filter(e=>e===e).join``
 }
 
-console.log(isStraight([2, 3, 4 ,5, 6]))
+console.log(peelPairs('732374',6))
