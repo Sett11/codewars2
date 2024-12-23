@@ -1,4 +1,12 @@
-function swapDiagonals(a,n=a.length){
-    for(let i=-1;++i<n;)[a[i][i],a[i][n-i-1]]=[a[i][n-i-1],a[i][i]]
-    return a
-}
+function Warrior(n){
+    this.s=n
+    this.name=function(n){
+      if(n)this.s=n
+      return this.s
+      }
+  }
+    
+  Warrior.prototype.toString = function(){
+      return "Hi! my name's "+this.name();
+  }
+  
