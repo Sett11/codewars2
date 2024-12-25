@@ -1,5 +1,4 @@
-typing=(p,t=typeof p)=>p!==undefined?t+`=${t==='function'?p:JSON.stringify(p)}`:p+''
+// sum=(a,b)=>b>=0?a+b:x=>a+x
 
-console.log(typing(1))
-console.log(typing(x=>x))
-console.log(typing(undefined))
+// console.log(sum(2,6))
+// console.log(sum(2)(3))
