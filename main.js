@@ -1,4 +1,5 @@
-// sum=(a,b)=>b>=0?a+b:x=>a+x
+function getQuotes(s) {
+    return s.match(/"([^"])+"/g)
+}
 
-// console.log(sum(2,6))
-// console.log(sum(2)(3))
+console.log(getQuotes('"Winners never quit and quitters never win." - Vince Lombardi, "My motto is, \'Never quit.\'" - Henry Rollins'))
