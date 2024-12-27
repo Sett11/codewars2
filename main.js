@@ -1,5 +1,13 @@
-function getQuotes(s) {
-    return s.match(/"([^"])+"/g)
+var Person = function(){
+    var person = {
+      _name: "Leroy",
+      _friends: [],
+      fillFriends(f) {
+        for(let i of f)this._friends.push(i)
+      }
+    }
+    return person
 }
 
-console.log(getQuotes('"Winners never quit and quitters never win." - Vince Lombardi, "My motto is, \'Never quit.\'" - Henry Rollins'))
+let p=Person()
+p.fillFriends(['bob','john'])
