@@ -1,8 +1,8 @@
-function wheresWally(s){
-    return (' '+s).search(/ Wally\b/)
+Array.prototype.sort=function(){
+    let n=this.length,a=this
+    for(let i=-1;++i<n;)for(let j=i;++j<n;)if(a[i]>a[j])[a[i],a[j]]=[a[j],a[i]]
+    return a
 }
 
-console.log(wheresWally(''))
-console.log(wheresWally('Wally'))
-console.log(wheresWally('.Wally'))
-console.log(wheresWally("Where's Wally"))
+
+console.log([9,7,2,4,5,3,6,8,1].sort())
