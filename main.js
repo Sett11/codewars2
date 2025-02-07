@@ -1,8 +1,4 @@
-Array.prototype.sort=function(){
-    let n=this.length,a=this
-    for(let i=-1;++i<n;)for(let j=i;++j<n;)if(a[i]>a[j])[a[i],a[j]]=[a[j],a[i]]
-    return a
-}
+maxMin=(a,b)=>[(r=a.map((e,i)=>Math.abs(e-b[i])).sort((q,w)=>q-w))[r.length-1],r[0]]
 
-
-console.log([9,7,2,4,5,3,6,8,1].sort())
+console.log(maxMin([1,3,5],[9,8,7]))
+console.log(maxMin([10,20,30,40],[111,11,1,-111]))
