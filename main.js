@@ -1,6 +1,6 @@
-function countGrade(a){
-    const f=(a,s,l)=>a.filter(e=>e>=s&&e<l).length
-    return {S:a.filter(e=>e==100).length,A:f(a,90,100),B:f(a,80,90),C:f(a,60,80),D:f(a,0,60),X:a.filter(e=>e==-1).length}
-  }
+function mirrorImage(a){
+  for(let i=-1;++i<a.length-1;)if([[...(a[i+1]+'')].reverse().join``,a[i+1]+''].includes(a[i]+''))return [a[i],a[i+1]]
+  return [-1,-1]
+}
 
-console.log(countGrade([50,60,70,80,90,100]))
+console.log(mirrorImage([454,86,57,75,16,88]))
