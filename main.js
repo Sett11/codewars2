@@ -1,12 +1,15 @@
-function testIt(a){
-  const f=x=>x.reduce((a,c)=>{
-    a[c]=(a[c]+1)||1
-    return a
-  },{}),b=a.filter(e=>e!=='?').map(e=>e.split` `)
-  let [x,y]=[Object.entries(f(b.map(e=>e[0]))),Object.entries(f(b.map(e=>e[1])))]
-  let m1=Math.min(...x.map(e=>e[1])),m2=Math.min(...y.map(e=>e[1]))
-  return `${x.filter(e=>e[1]==m1).map(e=>e[0])[0]} ${y.filter(e=>e[1]==m2).map(e=>e[0])[0]}`
+function number9Helper(num) {
+  let pow = Math.floor(Math.log10(num));
+  let round = Math.pow(10, pow);
+  let times = Math.floor(num / round);
+  let rest = Math.abs(num - (round * times));
+  let res = pow * (round==10 ? 1 : round / 10) * times;
+  if (num.toString()[0] == '9') res += rest;
+  if (rest < 9) return res;
+  else return res + number9Helper(rest);
 }
-
-console.log(testIt(["Red Square","Red Circle","Green Triangle","Green Circle","?","Green Square"]))
-console.log(testIt(["Red Square","Red Circle","Green Triangle","Green Circle","Blue Circle","?","Blue Triangle","Blue Square","Green Square"]))
+function number9(num) {
+  let res = number9Helper(num);
+  res = res + (num.toString().split('9').length-1);
+  return res;
+}
