@@ -1,15 +1,31 @@
-function number9Helper(num) {
-  let pow = Math.floor(Math.log10(num));
-  let round = Math.pow(10, pow);
-  let times = Math.floor(num / round);
-  let rest = Math.abs(num - (round * times));
-  let res = pow * (round==10 ? 1 : round / 10) * times;
-  if (num.toString()[0] == '9') res += rest;
-  if (rest < 9) return res;
-  else return res + number9Helper(rest);
+function search(o,s){
+  let r=[],f=(a,x,c)=>{
+    for(let i in a[x]){
+      if(typeof a[x][i]=='string'){
+        if(a[x][i].match(s))r.push(c+'.'+i)
+      }
+      else f(a[x],i,c+'.'+i)
+    }
+  }
+  for(let i in o){
+    if(typeof o[i]=='string'){
+      if(o[i].match(s))r.push(i)
+    }
+    else f(o,i,i+'')
+  }
+  return r.sort()
 }
-function number9(num) {
-  let res = number9Helper(num);
-  res = res + (num.toString().split('9').length-1);
-  return res;
-}
+
+console.log(search({
+  site: "Codewars",
+  description: "Lorem ipsum dolor sit...",
+  obj2: {
+  str: "Yeah, Codewars!",
+  num: 123,
+  obj3: {
+      something: "Ph'nglui mglw'nafh Codewars R'lyeh wgah'nagl fhtagn. Gotha fm'latgh h'gof'nn, geb chtenff"
+    }
+  },
+  surprise: "Ha! Codewars :)",
+  nullProperty: null
+},'Codewars'))
