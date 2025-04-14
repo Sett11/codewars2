@@ -1,31 +1,20 @@
-function search(o,s){
-  let r=[],f=(a,x,c)=>{
-    for(let i in a[x]){
-      if(typeof a[x][i]=='string'){
-        if(a[x][i].match(s))r.push(c+'.'+i)
-      }
-      else f(a[x],i,c+'.'+i)
-    }
+function switchLift(els,n){
+  let el = Object.entries(els)
+  if(n===1){
+    let m = Math.min(...el.map(e=>Math.abs(n-e[1])))
+    if(!m)return ''
+    return el.filter(e=>Math.abs(n-e[1])===m).map(e=>e[0]).join``
   }
-  for(let i in o){
-    if(typeof o[i]=='string'){
-      if(o[i].match(s))r.push(i)
-    }
-    else f(o,i,i+'')
+  if(n%2===0){
+    el = el.filter(e=>e[0]!=='A')
+    let m = Math.min(...el.map(e=>Math.abs(n-e[1])))
+    if(!m)return ''
+    return el.filter(e=>Math.abs(n-e[1])===m).map(e=>e[0]).join``
   }
-  return r.sort()
+  el = el.filter(e=>e[0]!=='B')
+  let m = Math.min(...el.map(e=>Math.abs(n-e[1])))
+  if(!m)return ''
+  return el.filter(e=>Math.abs(n-e[1])===m).map(e=>e[0]).join``
 }
 
-console.log(search({
-  site: "Codewars",
-  description: "Lorem ipsum dolor sit...",
-  obj2: {
-  str: "Yeah, Codewars!",
-  num: 123,
-  obj3: {
-      something: "Ph'nglui mglw'nafh Codewars R'lyeh wgah'nagl fhtagn. Gotha fm'latgh h'gof'nn, geb chtenff"
-    }
-  },
-  surprise: "Ha! Codewars :)",
-  nullProperty: null
-},'Codewars'))
+console.log(switchLift({A:1,B:1,C:10},3))
