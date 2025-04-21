@@ -1,20 +1,13 @@
-function switchLift(els,n){
-  let el = Object.entries(els)
-  if(n===1){
-    let m = Math.min(...el.map(e=>Math.abs(n-e[1])))
-    if(!m)return ''
-    return el.filter(e=>Math.abs(n-e[1])===m).map(e=>e[0]).join``
+class Foo{
+  constructor(n){
+    this.value = n
   }
-  if(n%2===0){
-    el = el.filter(e=>e[0]!=='A')
-    let m = Math.min(...el.map(e=>Math.abs(n-e[1])))
-    if(!m)return ''
-    return el.filter(e=>Math.abs(n-e[1])===m).map(e=>e[0]).join``
+  valueOf() {
+    return this.value;
   }
-  el = el.filter(e=>e[0]!=='B')
-  let m = Math.min(...el.map(e=>Math.abs(n-e[1])))
-  if(!m)return ''
-  return el.filter(e=>Math.abs(n-e[1])===m).map(e=>e[0]).join``
 }
 
-console.log(switchLift({A:1,B:1,C:10},3))
+var foo = new Foo(2)
+var boo = new Foo(3)
+
+console.log(foo + boo)
