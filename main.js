@@ -1,13 +1,6 @@
-class Foo{
-  constructor(n){
-    this.value = n
-  }
-  valueOf() {
-    return this.value;
-  }
+function sc(s){
+  const a=s.split`` 
+  return a.filter(e=>s.includes(e==e.toLowerCase()?e.toUpperCase():e.toLowerCase())).join``
 }
 
-var foo = new Foo(2)
-var boo = new Foo(3)
-
-console.log(foo + boo)
+console.log(sc('AaaaAaab'))
