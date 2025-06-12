@@ -1,6 +1,21 @@
-function sc(s){
-  const a=s.split`` 
-  return a.filter(e=>s.includes(e==e.toLowerCase()?e.toUpperCase():e.toLowerCase())).join``
+function find(o, p) {
+    let a = p.split`.`.reverse()
+    while(a.length){
+        let x = a.pop()
+        if(!(o.hasOwnProperty(x)))return
+        o = o[x]
+    }
+    return o
 }
 
-console.log(sc('AaaaAaab'))
+let object = { 
+    user: { 
+    name: { 
+        first: [1,2,3], 
+        last: 'Snow' 
+    }
+    } 
+}
+let path = 'user.name.first.1'
+
+console.log(find(object, path))
