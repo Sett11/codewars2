@@ -1,21 +1,13 @@
-function find(o, p) {
-    let a = p.split`.`.reverse()
-    while(a.length){
-        let x = a.pop()
-        if(!(o.hasOwnProperty(x)))return
-        o = o[x]
+function consecutiveOnes(a){
+    let k = m = 0
+    for(let i = -1;++i<a.length;){
+        if(!a[i])k = 0
+        else{
+            k += a[i]
+            m = Math.max(m, k)
+        }
     }
-    return o
+    return m
 }
 
-let object = { 
-    user: { 
-    name: { 
-        first: [1,2,3], 
-        last: 'Snow' 
-    }
-    } 
-}
-let path = 'user.name.first.1'
-
-console.log(find(object, path))
+console.log(consecutiveOnes([1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0]))
