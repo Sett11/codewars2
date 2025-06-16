@@ -1,13 +1,7 @@
-function consecutiveOnes(a){
-    let k = m = 0
-    for(let i = -1;++i<a.length;){
-        if(!a[i])k = 0
-        else{
-            k += a[i]
-            m = Math.max(m, k)
-        }
-    }
-    return m
+function displayLargeNumber(n){
+  let a = [], s = [...(n + '')].reverse().join``, l = s.length
+  for(let i = 0;i < l; i += 3)a.push(s.slice(i,i+3))
+  return a.map(e => [...e].reverse().join``).reverse().join`,`
 }
 
-console.log(consecutiveOnes([1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0]))
+console.log(displayLargeNumber(3456789123456789))
